@@ -13,32 +13,31 @@ const typedServicesData: any[] = servicesData;
 const Services = () => {
 	const locale = useLocale();
 	const t = useTranslations("services");
-	console.log("locale:", locale);
 	useEffect(() => {
-		const handleScroll = () => {
-			const parallaxText1 = document.querySelector(
-				".parallax-text-1"
-			) as HTMLElement;
-			const parallaxText2 = document.querySelector(
-				".parallax-text-2"
-			) as HTMLElement;
+		// const handleScroll = () => {
+		// 	const parallaxText1 = document.querySelector(
+		// 		".parallax-text-1"
+		// 	) as HTMLElement;
+		// 	const parallaxText2 = document.querySelector(
+		// 		".parallax-text-2"
+		// 	) as HTMLElement;
 
-			if (parallaxText1) {
-				parallaxText1.style.transform = `translateX(${window.scrollY * 0.5}px)`;
-			}
+		// 	if (parallaxText1) {
+		// 		parallaxText1.style.transform = `translateX(${window.scrollY * 0.5}px)`;
+		// 	}
 
-			if (parallaxText2) {
-				parallaxText2.style.transform = `translateX(${
-					window.scrollY * -0.5
-				}px)`;
-			}
-		};
+		// 	if (parallaxText2) {
+		// 		parallaxText2.style.transform = `translateX(${
+		// 			window.scrollY * -0.5
+		// 		}px)`;
+		// 	}
+		// };
 
-		window.addEventListener("scroll", handleScroll);
+		// window.addEventListener("scroll", handleScroll);
 
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
+		// return () => {
+		// 	window.removeEventListener("scroll", handleScroll);
+		// };
 	}, []);
 	return (
 		<>
@@ -117,13 +116,13 @@ const Services = () => {
 							{t("description")}
 						</p>
 					</div>
-					<h2 className='text-9xl font-bold parallax-text-1 absolute text-yellow-400 z-[-2]'>
+					{/* <h2 className='text-9xl font-bold parallax-text-1 absolute text-yellow-400 z-[-2]'>
 						{t("parallax_text_1")}
 					</h2>
 
 					<h2 className='text-9xl font-bold parallax-text-2 absolute text-yellow-400 z-[-2]'>
 						{t("parallax_text_2")}
-					</h2>
+					</h2> */}
 					<div className='grid gap-8 md:grid-cols-2 lg:grid-cols-3'>
 						{typedServicesData.map((service, i) => {
 							const Icon: any = (Icons as any)[service.icon];
