@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -19,7 +19,8 @@ const Testimonial = () => {
 
 	return (
 		<>
-			<section className='w-full py-12 sm:py-24 lg:py-32 bg-muted relative bg-gradient-to-b from-[#facb1a] to-[#edb403] opacity-80'>
+			<section id="testimonials" className='w-full py-12 sm:py-24 lg:py-32 bg-muted relative bg-[#171717] '>
+			{/* bg-gradient-to-b from-[#facb1a] to-[#edb403] opacity-80'> */}
 				<div className='container px-4 md:px-6'>
 					<div className='flex flex-col items-center justify-center space-y-4 text-center z-10'>
 						<div className='space-y-2'>
@@ -32,8 +33,6 @@ const Testimonial = () => {
 						</div>
 						<Carousel
 							opts={{ align: "center", loop: true }}
-							// autoplay={true}
-							// autoplayInterval={2000}
 							className='w-full'
 							plugins={[
 								Autoplay({
@@ -43,58 +42,18 @@ const Testimonial = () => {
 								}) as any,
 							]}
 						>
-							<CarouselContent className='flex gap-4'>
+							<CarouselContent className='flex gap-4 mx-6'>
 								{testimonialsData.map((testimonial, i) => (
 									<CarouselItem
 										key={i}
 										className='w-full sm:w-1/2 lg:w-1/3 px-2 flex-shrink-0 flex-grow-0 max-w-[400px]'
 									>
-										<Card className='bg-white dark:bg-gray-900 h-full flex flex-col justify-between'>
-											<CardContent className='p-6 flex flex-col h-full'>
-												<div className='flex items-center mb-4'>
-													<Avatar className='h-16 w-16 mr-4'>
-														<AvatarImage
-															src={`/images/clients/${testimonial.avatar}`}
-															alt={testimonial.name}
-														/>
-														<AvatarFallback>
-															{testimonial.name
-																.split(" ")
-																.map((n) => n[0])
-																.join("")}
-														</AvatarFallback>
-													</Avatar>
-													<div>
-														<h3 className='font-semibold text-lg'>
-															{testimonial.name}, {testimonial.age}
-														</h3>
-														<p className='text-sm font-medium text-green-600 dark:text-green-400'>
-															{testimonial.achievement}
-														</p>
-													</div>
-												</div>
-												<p className='text-gray-700 dark:text-gray-300 mb-4 italic flex-grow'>{`"${testimonial.content}"`}</p>
-												{testimonial.image && (
-													<div className='mt-4'>
-														<Image
-															src={`/images/clients/${testimonial.image}`}
-															alt={`Antes y después de ${testimonial.name}`}
-															// layout="fill"
-															// objectFit="cover"
-															// className='w-full h-auto object-cover rounded-md max-h-[334px]'
-															width={333}
-															height={333}
-															className='rounded-md max-h-[334px]'
-														/>
-													</div>
-												)}
-											</CardContent>
-										</Card>
+										<ExpandableCard testimonial={testimonial} />
 									</CarouselItem>
 								))}
 							</CarouselContent>
-							<CarouselPrevious />
-							<CarouselNext />
+							{/* <CarouselPrevious className="hidden lg:flex" />
+							<CarouselNext className="hidden lg:flex" /> */}
 						</Carousel>
 					</div>
 					{/* <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-cover bg-center opacity-20 z-[-1]" /> */}
@@ -105,3 +64,68 @@ const Testimonial = () => {
 };
 
 export default Testimonial;
+
+interface Testimonial {
+	name: string;
+	age: number;
+	achievement: string;
+	content: string;
+	avatar: string;
+	image?: string;
+}
+
+const ExpandableCard: React.FC<{ testimonial: Testimonial }> = ({
+	testimonial,
+}) => {
+	const [isExpanded, setIsExpanded] = useState(false);
+
+	const toggleExpand = () => {
+		setIsExpanded(!isExpanded);
+	};
+
+	return (
+		<Card className='bg-white dark:bg-gray-900 h-full flex flex-col justify-between'>
+			<CardContent className='p-6 flex flex-col h-full'>
+				<div className='flex items-center mb-4'>
+					<Avatar className='h-16 w-16 mr-4'>
+						<AvatarImage
+							src={`/images/clients/${testimonial.avatar}`}
+							alt={testimonial.name}
+						/>
+						<AvatarFallback>
+							{testimonial.name
+								.split(" ")
+								.map((n) => n[0])
+								.join("")}
+						</AvatarFallback>
+					</Avatar>
+					<div>
+						<h3 className='font-semibold text-lg'>
+							{testimonial.name}, {testimonial.age}
+						</h3>
+						<p className='text-sm font-medium text-green-600 dark:text-green-400'>
+							{testimonial.achievement}
+						</p>
+					</div>
+				</div>
+				<p className='text-gray-700 dark:text-gray-300 mb-4 italic flex-grow'>
+					{testimonial.content}
+				</p>
+				{testimonial.image && (
+					<div className='mt-4'>
+						<Image
+							src={`/images/clients/${testimonial.image}`}
+							alt={`Antes y después de ${testimonial.name}`}
+							// layout="fill"
+							// objectFit="cover"
+							// className='w-full h-auto object-cover rounded-md max-h-[334px]'
+							width={333}
+							height={333}
+							className='rounded-md max-h-[334px]'
+						/>
+					</div>
+				)}
+			</CardContent>
+		</Card>
+	);
+};

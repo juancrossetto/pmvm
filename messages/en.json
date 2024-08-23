@@ -8,6 +8,8 @@
 	},
 	"hero": {
 		"title": "Your Journey to a Better Version of Yourself",
+		"greeting": "Hi, I'm Ale Gerez",
+		"about_me": "Head trainer and physical trainer",
 		"description": "Transform your body and mind with personalized workouts and expert guidance.",
 		"start_now": "Start Now",
 		"learn_more": "Learn More"

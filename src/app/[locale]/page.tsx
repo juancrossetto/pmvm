@@ -13,7 +13,7 @@ const MyApp = () => {
 
 	return (
 		<>
-			<div className='flex flex-col min-h-[100dvh]'>
+			<div className='flex flex-col min-h-[100dvh] bg-[#171717]'>
 				{/* <Header /> */}
 				<main className='flex-1'>
 					<Hero />
@@ -22,9 +22,6 @@ const MyApp = () => {
 					<ContactUs />
 				</main>
 				<Footer />
-			</div>
-			<div className='absolute top-[20px] right-[20px]'>
-				<LanguageSelector />
 			</div>
 			<ScrollToTop />
 		</>

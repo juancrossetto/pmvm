@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
@@ -14,6 +14,12 @@ const fontBody = Inter({
 	display: "swap",
 	variable: "--font-body",
 });
+
+const poppins = Poppins({
+	subsets: ['latin'],
+	weight: ['400', '700'], // Puedes incluir otros pesos si lo necesitas
+	variable: '--font-poppins', // Define una variable CSS para la fuente
+  });
 
 export const metadata: Metadata = {
 	title: "PMVM",
@@ -31,7 +37,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body
-				className={cn("antialiased", fontHeading.variable, fontBody.variable)}
+				className={cn("antialiased", fontHeading.variable, fontBody.variable, poppins.variable)}
 			>
 				{children}
 			</body>

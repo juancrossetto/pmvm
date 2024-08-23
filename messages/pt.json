@@ -8,6 +8,8 @@
 	},
 	"hero": {
 		"title": "Sua Jornada para uma Melhor Versão de Você Mesmo",
+		"greeting": "Olá, eu sou o Ale Gerez",
+  		"about_me": "Treinador principal e preparador físico",
 		"description": "Transforme seu corpo e mente com treinos personalizados e orientação especializada.",
 		"start_now": "Comece Agora",
 		"learn_more": "Saiba Mais"

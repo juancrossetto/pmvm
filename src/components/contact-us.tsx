@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 const ContactUs = () => {
 	const t = useTranslations("contact");
 	return (
-		<section className='w-full py-12 sm:py-24 lg:py-32 relative bg-gradient-to-b from-[#edb403] to-[#ef8108] opacity-80'>
+		<section id="contact" className='w-full py-12 sm:py-24 lg:py-32 relative bg-gradient-to-b from-[#171717] to-[#212121]'>
 			<div className='container px-4 md:px-6 space-y-12'>
 				<div className='flex flex-col items-center justify-center text-center'>
 					<div className='space-y-2'>

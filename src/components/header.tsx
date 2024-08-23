@@ -11,45 +11,31 @@ const Header = () => {
 	const t = useTranslations("header");
 	return (
 		<>
-			<header className='flex items-center justify-between py-6'>
-				<Link className='flex items-center justify-center' href='#'>
-					<Avatar className='h-14 w-14 mr-2'>
+			<header className='header'>
+				<Link
+					// className='flex items-center justify-center'
+					className='logo'
+					href='#'
+				>
+					<Avatar className='h-12 w-12'>
 						<AvatarImage
+							className='bg-white'
 							src={`/images/icon.webp`}
 							alt={"Pesá menos, viví más"}
 						/>
 						<AvatarFallback>PMVM</AvatarFallback>
 					</Avatar>
-					{/* <span className='ml-2 text-2xl font-bold text-white'>PMVM</span> */}
 				</Link>
-				<nav className='hidden md:flex space-x-8'>
-					<Link
-						className='text-[21px] font-medium text-white hover:text-gray-300 transition-colors transition-transform duration-[950ms] ease-in-out hover:scale-105'
-						href='#about'
-					>
-						{t("about")}
-					</Link>
-					<Link
-						className='text-[21px] font-medium text-white hover:text-gray-300 transition-colors transition-transform duration-[950ms] ease-in-out hover:scale-105'
-						href='#services'
-					>
-						{t("services")}
-					</Link>
-					<Link
-						className='text-[21px] font-medium text-white hover:text-gray-300 transition-colors transition-transform duration-900 ease-in-out hover:scale-105'
-						href='#testimonials'
-					>
-						{t("testimonials")}
-					</Link>
-					<Link
-						className='text-[21px] font-medium text-white hover:text-gray-300 transition-colors transition-transform duration-900 ease-in-out hover:scale-105'
-						href='#contact'
-					>
-						{t("contact")}
-					</Link>
+				{/* <a href="#" className="logo">PMVM</a> */}
+				<nav className='navbar'>
+					<a href='#services' className='active'>{t("services")}</a>
+					<a href='#testimonials'>{t("testimonials")}</a>
+					<a href='#contact'>{t("contact")}</a>
 				</nav>
-				<div/>
-				{/* <Button className='hidden md:inline-flex'>{t("schedule-consultation")}</Button> */}
+				<div className='language-selector-container'>
+					<LanguageSelector />
+				</div>
+				<div className="div-empty"/>
 			</header>
 		</>
 	);
