@@ -1,0 +1,110 @@
+[
+	{
+		"icon": "UserIcon",
+		"title": {
+			"en": "Personal Training",
+			"es": "Entrenamiento Personal",
+			"pt": "Treinamento Pessoal"
+		},
+		"description": {
+			"en": "One-on-one sessions designed to maximize your results and reach your specific goals.",
+			"es": "Sesiones uno a uno diseñadas para maximizar tus resultados y alcanzar tus objetivos específicos.",
+			"pt": "Sessões individuais projetadas para maximizar seus resultados e alcançar seus objetivos específicos."
+		},
+		"link": {
+			"en": "Learn more →",
+			"es": "Saber más →",
+			"pt": "Saiba mais →"
+		}
+	},
+	{
+		"icon": "UsersIcon",
+		"title": {
+			"en": "Group Classes",
+			"es": "Clases Grupales",
+			"pt": "Aulas em Grupo"
+		},
+		"description": {
+			"en": "Energizing group workouts to motivate and challenge you in a fun and social environment.",
+			"es": "Entrenamientos energéticos en grupo para motivarte y desafiarte en un ambiente divertido y social.",
+			"pt": "Treinos em grupo energizantes para motivá-lo e desafiá-lo em um ambiente divertido e social."
+		},
+		"link": {
+			"en": "Learn more →",
+			"es": "Saber más →",
+			"pt": "Saiba mais →"
+		}
+	},
+	{
+		"icon": "ClipboardIcon",
+		"title": {
+			"en": "Nutrition Plans",
+			"es": "Planes de Nutrición",
+			"pt": "Planos de Nutrição"
+		},
+		"description": {
+			"en": "Personalized meal plans that complement your workout routine for optimal results.",
+			"es": "Planes de alimentación personalizados que complementan tu rutina de ejercicios para obtener resultados óptimos.",
+			"pt": "Planos de refeições personalizados que complementam sua rotina de exercícios para obter resultados ideais."
+		},
+		"link": {
+			"en": "Learn more →",
+			"es": "Saber más →",
+			"pt": "Saiba mais →"
+		}
+	},
+	{
+		"icon": "HeartPulseIcon",
+		"title": {
+			"en": "Health Assessment",
+			"es": "Evaluación de Salud",
+			"pt": "Avaliação de Saúde"
+		},
+		"description": {
+			"en": "Comprehensive assessments of your physical condition and health to create a personalized fitness plan.",
+			"es": "Evaluaciones completas de tu condición física y salud para crear un plan de fitness personalizado.",
+			"pt": "Avaliações completas da sua condição física e saúde para criar um plano de fitness personalizado."
+		},
+		"link": {
+			"en": "Learn more →",
+			"es": "Saber más →",
+			"pt": "Saiba mais →"
+		}
+	},
+	{
+		"icon": "PhoneIcon",
+		"title": {
+			"en": "Online Consulting",
+			"es": "Consultoría Online",
+			"pt": "Consultoria Online"
+		},
+		"description": {
+			"en": "Remote advice and follow-up for those who prefer to train at home or travel frequently.",
+			"es": "Asesoramiento y seguimiento a distancia para aquellos que prefieren entrenar desde casa o viajar frecuentemente.",
+			"pt": "Aconselhamento remoto e acompanhamento para quem prefere treinar em casa ou viajar com frequência."
+		},
+		"link": {
+			"en": "Learn more →",
+			"es": "Saber más →",
+			"pt": "Saiba mais →"
+		}
+	},
+	{
+		"icon": "BrainIcon",
+		"title": {
+			"en": "Wellness Coaching",
+			"es": "Coaching de Bienestar",
+			"pt": "Coaching de Bem-Estar"
+		},
+		"description": {
+			"en": "Coaching sessions to improve your overall wellness, including stress management and mindfulness techniques.",
+			"es": "Sesiones de coaching para mejorar tu bienestar general, incluyendo manejo del estrés y técnicas de mindfulness.",
+			"pt": "Sessões de coaching para melhorar seu bem-estar geral, incluindo gerenciamento de estresse e técnicas de mindfulness."
+		},
+		"link": {
+			"en": "Learn more →",
+			"es": "Saber más →",
+			"pt": "Saiba mais →"
+		}
+	}
+]

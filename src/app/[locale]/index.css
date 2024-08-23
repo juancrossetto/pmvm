@@ -1,0 +1,27 @@
+/* .parallax-text-1 {
+    top: 20%;
+    left: 0;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-out;
+  }
+  
+  .parallax-text-2 {
+    bottom: 20%;
+    right: 0;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-out;
+  } */
+
+.parallax-text-1 {
+	top: 20%;
+	left: 0; /* Desplazar 20% desde el borde izquierdo */
+	transform: translateX(-100%);
+	transition: transform 0.5s ease-out;
+}
+
+.parallax-text-2 {
+	bottom: 20%;
+	right: 0; /* Desplazar 20% desde el borde derecho */
+	transform: translateX(100%);
+	transition: transform 0.5s ease-out;
+}

@@ -1,0 +1,73 @@
+{
+	"header": {
+		"about": "Sobre Mim",
+		"services": "Serviços",
+		"testimonials": "Depoimentos",
+		"contact": "Contato",
+		"schedule-consultation": "Agende a sua Consulta"
+	},
+	"hero": {
+		"title": "Sua Jornada para uma Melhor Versão de Você Mesmo",
+		"description": "Transforme seu corpo e mente com treinos personalizados e orientação especializada.",
+		"start_now": "Comece Agora",
+		"learn_more": "Saiba Mais"
+	},
+	"services": {
+		"parallax_text_1": "Pesar menos",
+		"parallax_text_2": "Viva mais",
+		"title": "Experiência em que você pode confiar",
+		"description": "Com mais de 10 anos de experiência na indústria de fitness, estou dedicado a ajudá-lo a alcançar seus objetivos através de treinamentos personalizados e orientação nutricional.",
+		"weight_loss": {
+			"title": "Perda de Peso",
+			"description": "Desenvolva um plano personalizado para ajudá-lo a perder peso de forma segura e sustentável."
+		},
+		"muscle_building": {
+			"title": "Construção Muscular",
+			"description": "Ganhe massa muscular magra através de treinamento de força direcionado e nutrição."
+		},
+		"injury_prevention": {
+			"title": "Prevenção de Lesões",
+			"description": "Aprenda a forma e a técnica adequadas para evitar lesões e manter-se ativo."
+		},
+		"image_alt": "Experiência em Fitness"
+	},
+	"about": {
+		"title": "Sobre Mim",
+		"content": "Com mais de 10 anos de experiência na área de fitness e saúde, dedico-me a ajudar meus clientes a alcançar seus objetivos físicos e mentais. Minha abordagem é baseada na criação de planos personalizados que se adaptam às necessidades e objetivos únicos de cada indivíduo."
+	},
+	"testimonials": {
+    "title": "O que meus clientes dizem",
+    "description": "Ouça clientes reais que transformaram suas vidas com minha orientação e apoio.",
+    "clients": {
+      "jessica_davis": {
+        "name": "Jessica Davis",
+        "achievement": "Perdeu 11 kg",
+        "quote": "Trabalhar com este treinador mudou minha vida. Ele criou um plano que se encaixava no meu estilo de vida e me ajudou a alcançar meus objetivos."
+      },
+      "michael_roberts": {
+        "name": "Michael Roberts",
+        "achievement": "Ganhou 7 kg de músculo",
+        "quote": "Eu estava com dificuldade para ganhar músculo, mas este treinador desenhou um programa que me ajudou a ganhar massa magra sem lesões."
+      },
+      "sarah_kim": {
+        "name": "Sarah Kim",
+        "achievement": "Melhorou sua aptidão física geral",
+        "quote": "Eu queria melhorar minha aptidão física geral, e este treinador criou um programa completo que fez uma grande diferença na minha energia e força."
+      }
+    }
+  },
+  "contact": {
+    "title": "Comece Hoje",
+    "description": "Preencha o formulário abaixo para agendar sua consulta gratuita e dar o primeiro passo em direção aos seus objetivos de fitness.",
+    "name_placeholder": "Nome",
+    "email_placeholder": "E-mail",
+    "message_placeholder": "Conte-me sobre seus objetivos de fitness",
+    "submit_button": "Agendar Consulta",
+    "calendar_link": "Adicionar ao Google Calendar"
+  },
+  "footer": {
+    "copyright": "© 2024 Treinador Físico. Todos os direitos reservados.",
+    "terms": "Termos de Serviço",
+    "privacy": "Política de Privacidade"
+  }
+}

@@ -1,0 +1,73 @@
+{
+	"header": {
+		"about": "About Me",
+		"services": "Services",
+		"testimonials": "Testimonials",
+		"contact": "Contact",
+		"schedule-consultation": "Schedule your consultation"
+	},
+	"hero": {
+		"title": "Your Journey to a Better Version of Yourself",
+		"description": "Transform your body and mind with personalized workouts and expert guidance.",
+		"start_now": "Start Now",
+		"learn_more": "Learn More"
+	},
+	"services": {
+		"parallax_text_1": "Weigh less",
+		"parallax_text_2": "Live longer",
+		"title": "Expertise You Can Trust",
+		"description": "With over 10 years of experience in the fitness industry, I am dedicated to helping you achieve your goals through personalized training and nutrition guidance.",
+		"weight_loss": {
+			"title": "Weight Loss",
+			"description": "Develop a customized plan to help you lose weight safely and sustainably."
+		},
+		"muscle_building": {
+			"title": "Muscle Building",
+			"description": "Gain lean muscle mass through targeted strength training and nutrition."
+		},
+		"injury_prevention": {
+			"title": "Injury Prevention",
+			"description": "Learn proper form and technique to avoid injuries and stay active."
+		},
+		"image_alt": "Fitness Expertise"
+	},
+	"about": {
+		"title": "About Me",
+		"content": "With over 10 years of experience in the fitness and health field, I am dedicated to helping my clients achieve their physical and mental goals. My approach is based on creating personalized plans that adapt to the unique needs and objectives of each individual."
+	},
+	"testimonials": {
+		"title": "What My Clients Say",
+		"description": "Hear from real clients who have transformed their lives with my guidance and support.",
+		"clients": {
+			"jessica_davis": {
+				"name": "Jessica Davis",
+				"achievement": "Lost 25 lbs",
+				"quote": "Working with this trainer has been life-changing. They created a plan that fit my lifestyle and helped me reach my goals."
+			},
+			"michael_roberts": {
+				"name": "Michael Roberts",
+				"achievement": "Gained 15 lbs of muscle",
+				"quote": "I was struggling to build muscle, but this trainer designed a program that helped me pack on lean mass without any injuries."
+			},
+			"sarah_kim": {
+				"name": "Sarah Kim",
+				"achievement": "Improved overall fitness",
+				"quote": "I was looking to improve my overall fitness, and this trainer created a well-rounded program that has made a huge difference in my energy and strength."
+			}
+		}
+	},
+	"contact": {
+		"title": "Get Started Today",
+		"description": "Fill out the form below to schedule your free consultation and take the first step towards your fitness goals.",
+		"name_placeholder": "Name",
+		"email_placeholder": "Email",
+		"message_placeholder": "Tell me about your fitness goals",
+		"submit_button": "Schedule Consultation",
+		"calendar_link": "Add to Google Calendar"
+	},
+	"footer": {
+		"copyright": "© 2024 Fitness Trainer. All rights reserved.",
+		"terms": "Terms of Service",
+		"privacy": "Privacy Policy"
+	}
+}

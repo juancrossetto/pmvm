@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Ana García",
+    "age": 32,
+    "content": "Cuando empecé, apenas podía correr 5 minutos seguidos. Después de 6 meses de entrenamiento, completé mi primera carrera de 10K. El apoyo constante y los planes personalizados hicieron toda la diferencia.",
+    "achievement": "De sedentaria a corredora",
+    "image": "anagarcia-avatar.jpg",
+    "avatar": "anamaria-avatar.jpg",
+    "fallback": "AG"
+  },
+  {
+    "name": "Carlos Fernández",
+    "age": 40,
+    "content": "Perder peso siempre fue un desafío para mí. Con este entrenador, logré bajar 15 kg en un año. Sus consejos y rutinas personalizadas me ayudaron a alcanzar mis objetivos de manera sostenible.",
+    "achievement": "Pérdida de peso significativa",
+    "image": "carlosfernandez-avatar.webp",
+    "avatar": "carlosfernandez-avatar.webp",
+    "fallback": "CF"
+  },
+  {
+    "name": "Jessica Davis",
+    "age": 29,
+    "content": "I used to struggle with maintaining a consistent workout routine. Now, after 8 months of training, I feel stronger and more confident than ever. The personalized plans and constant support have been incredible.",
+    "achievement": "From inconsistent to unstoppable",
+    "image": "jessicadavis-avatar.webp",
+    "avatar": "jessicadavis-avatar.webp",
+    "fallback": "JD"
+  },
+  {
+    "name": "Michael Roberts",
+    "age": 35,
+    "content": "Gaining muscle mass was always a challenge for me. Thanks to the tailored workout plans, I’ve added 10 lbs of muscle in just 6 months, and I feel healthier than ever.",
+    "achievement": "From lean to muscular",
+    "beforeAfterImages": false,
+    "image": "michaelroberts-avatar.jpg",
+    "avatar": "michaelroberts-avatar.jpg",
+    "fallback": "MR"
+  },
+  {
+    "name": "João Silva",
+    "age": 42,
+    "content": "Antes de empezar, no podía completar una sesión de entrenamiento sin sentirme agotado. Con la ayuda de mi entrenador, he mejorado mi condición física y ahora me siento más enérgico cada día.",
+    "achievement": "De fatigado a enérgico",
+    "image": "joaosilva-avatar.avif",
+    "avatar": "joaosilva-avatar.avif",
+    "fallback": "JS"
+  },
+  {
+    "name": "Ana Costa",
+    "age": 30,
+    "content": "Siempre quise mejorar mi fuerza, pero no sabía por dónde empezar. Mi entrenador me guió en cada paso, y ahora me siento más fuerte que nunca. Gané 6 kg de músculo y estoy muy satisfecha.",
+    "achievement": "Fortaleza renovada",
+    "image": "anacosta-avatar.avif",
+    "avatar": "/placeholder-user.jpg",
+    "fallback": "AC"
+  }
+]
