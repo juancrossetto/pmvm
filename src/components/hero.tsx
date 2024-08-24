@@ -18,14 +18,17 @@ const Hero = () => {
 					<h3>{t("about_me")}</h3>
 					<p>{t("description")}</p>
 					<div className="btn-box">
-						<a href="#">{t("start_now")}</a>
-						<a href="#">{t("learn_more")}</a>
+						<Link 
+							href='https://form.jotform.com/242192994073362'
+							passHref
+							target='_blank'>{t("start_now")}</Link>
+						<Link href="#services">{t("learn_more")}</Link>
 					</div>
 				</div>
 				<div className="home-sci">
-					<a href="#"><TwitterLogoIcon /></a>
-					<a href="#"><InstagramLogoIcon/></a>
-					<a href="#"><Facebook/></a>
+					<Link href="#"><TwitterLogoIcon /></Link>
+					<Link href="#"><InstagramLogoIcon/></Link>
+					<Link href="#"><Facebook/></Link>
 				</div>
 
 				<span className="home-imgHover"></span>

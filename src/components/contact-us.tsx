@@ -20,7 +20,7 @@ const ContactUs = () => {
 					</div>
 				</div>
 				<div className='mx-auto w-full max-w-md space-y-2'>
-					<form className='flex flex-col gap-4'>
+					<form className='flex flex-col gap-4 text-white'>
 						<Input type='text' placeholder={t('name_placeholder')} className='max-w-lg flex-1' />
 						<Input
 							type='email'
@@ -31,7 +31,7 @@ const ContactUs = () => {
 							placeholder={t('message_placeholder')}
 							className='max-w-lg flex-1'
 						/>
-						<Button type='submit'>{t('submit_button')}</Button>
+						<Button type='submit' className="bg-[#facb1a]">{t('submit_button')}</Button>
 					</form>
 					{/* <a
 						href='https://calendar.google.com/calendar/u/0/r/eventedit?text=Consulta+Gratis&dates=20240824T100000Z/20240824T110000Z&details=Habla+con+nuestro+entrenador+sobre+tus+objetivos+de+fitness&location=Tu+Ubicación&sf=true'

@@ -63,15 +63,15 @@ const Services = () => {
 						return (
 							<Card
 								key={i}
-								className='relative overflow-hidden group from-gray-600 to-white-900'
+								className='relative overflow-hidden group bg-gradient-to-b from-[#212121] to-[#171717]'
 							>
-								<div className='absolute inset-0 bg-[#facb1a] opacity-0 group-hover:opacity-10 transition-opacity duration-300'></div>
+								<div className='absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300'></div>
 								<CardContent className='p-6'>
 									<Icon className='h-12 w-12 mb-4 text-[#facb1a]' />
-									<h3 className='text-2xl font-bold mb-2'>
+									<h3 className='text-2xl font-bold mb-2 text-white'>
 										{service.title[locale]}
 									</h3>
-									<p className='text-gray-600 dark:text-gray-400 mb-4'>
+									<p className='text-white opacity-80 mb-4'>
 										{service.description[locale]}
 									</p>
 									<Link
