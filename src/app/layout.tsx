@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
+import { Providers } from "./providers";
 
 const fontHeading = Inter({
 	subsets: ["latin"],
@@ -39,7 +40,7 @@ export default function RootLayout({
 			<body
 				className={cn("antialiased", fontHeading.variable, fontBody.variable, poppins.variable)}
 			>
-				{children}
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	);

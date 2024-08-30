@@ -7,10 +7,10 @@
 		"schedule-consultation": "Agenda tu Consulta"
 	},
 	"hero": {
-		"title": "Tu Camino hacia una Mejor Versión de Ti Mismo",
-		"greeting": "Hola, soy Ale Gerez",
+		"title": "Pesa Menos, Viví Más",
+		"subtitle": "Tu camino hacia una vida más saludable y equilibrada empieza aquí.",
 		"about_me": "Head trainer y preparador físico",
-		"description": "Transforma tu cuerpo y mente con entrenamientos personalizados y orientación experta.",
+		"description": "Transforma tu vida con un enfoque integral en la salud y el bienestar. Nuestros planes de entrenamiento personalizados te ayudarán a alcanzar tus metas y disfrutar de una vida más ligera y plena.",
 		"start_now": "Comienza Ahora",
 		"learn_more": "Conoce Más"
 	},
@@ -35,7 +35,10 @@
 	},
 	"about": {
 		"title": "Sobre Mí",
-		"content": "Con más de 10 años de experiencia en el campo del fitness y la salud, me dedico a ayudar a mis clientes a alcanzar sus metas físicas y mentales. Mi enfoque se basa en crear planes personalizados que se adaptan a las necesidades y objetivos únicos de cada individuo."
+		"greeting": "Hola, soy Ale Gerez",
+		"content": "Con más de 10 años de experiencia en el campo del fitness y la salud, me dedico a ayudar a mis clientes a alcanzar sus metas físicas y mentales. Mi enfoque se basa en crear planes personalizados que se adaptan a las necesidades y objetivos únicos de cada individuo.",
+		"title2": "Transforma Tu Vida con 'Pesa Menos, Viví Más'",
+		"content2": "En 'Pesa Menos, Viví Más', creemos que el camino hacia una vida más saludable no se trata solo de perder peso, sino de ganar bienestar, energía y confianza. Nuestro programa de entrenamiento personalizado está diseñado para adaptarse a tus necesidades, objetivos y estilo de vida. Con un enfoque integral en la salud física y mental, te ofrecemos planes de ejercicio efectivos, asesoramiento nutricional y apoyo constante para que puedas alcanzar tus metas de manera segura y sostenible. Únete a nosotros y descubre cómo puedes vivir más pleno, más activo y más feliz."
 	},
 	"testimonials": {
 		"title": "Lo que dicen mis clientes",

@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useRef } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,71 +7,71 @@ import Header from "./header";
 import { Button } from "@/components/ui/button";
 import { InstagramLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import { Facebook } from "lucide-react";
+import { useScroll, useTransform, motion } from "framer-motion";
+import { isMobileDevice } from "@/hooks/isMobileDevice";
+import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
 
 const Hero = () => {
 	const t = useTranslations("hero");
+	const container = useRef(null);
+	const { scrollYProgress } = useScroll({
+		target: container,
+		offset: ["start start", "end end"],
+	});
+	const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+	// const isMobile = isMobileDevice();
+	const isMobile = useClientMediaQuery("(max-width: 640px)");
 	return (
-		<div className="hero-section">
-			<Header/>
-			<section className="home">
-				<div className="home-content">
-					<h1>{t("greeting")}</h1>
-					<h3>{t("about_me")}</h3>
-					<p>{t("description")}</p>
-					<div className="btn-box">
-						<Link 
-							href='https://form.jotform.com/242192994073362'
-							passHref
-							target='_blank'>{t("start_now")}</Link>
-						<Link href="#services">{t("learn_more")}</Link>
-					</div>
-				</div>
-				<div className="home-sci">
-					<Link href="#"><TwitterLogoIcon /></Link>
-					<Link href="#"><InstagramLogoIcon/></Link>
-					<Link href="#"><Facebook/></Link>
-				</div>
-
-				<span className="home-imgHover"></span>
-			</section>
-			{/* <section className='relative'>
-				<div className='absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-600 opacity-80'></div>
-
-				<div className='relative z-10 container mx-auto px-4'>
+		<div
+			ref={container}
+			className={`hero-section max-w-[1600px] text-lightColor mx-auto relative h-[100vh] sm:h-[120vh]`}
+		>
+			<div className='sticky  overflow-hidden top-0 h-[100vh]'>
+				<motion.div
+					style={{ scale: isMobile ? 1 : scale }}
+					// className='absolute top-0 w-full h-full flex items-center justify-center'
+				>
 					<Header />
-					<div className='py-20 md:py-32 text-center'>
-						<h1 className='text-4xl md:text-6xl font-bold text-white mb-6'>
-							{t("title")}
-						</h1>
-						<p className='text-xl text-gray-300 mb-8 max-w-2xl mx-auto'>
-							{t("description")}
-						</p>
-						<div className='space-x-4'>
-							<Link
-								href='https://form.jotform.com/242192994073362'
-								passHref
-								target='_blank'
-							>
-								<Button
-									size='lg'
-									className='bg-white text-gray-900 hover:bg-gray-200'
-									variant='outline'
-									rel='noopener noreferrer'
+					<section className='home'>
+						<video
+							className='absolute top-0 left-0 w-full h-full object-cover'
+							src='/videos/bg-hero.mp4'
+							autoPlay
+							loop
+							muted
+							playsInline
+						/>
+						<div className='home-content'>
+							<h1>{t("title")}</h1>
+							<h3>{t("subtitle")}</h3>
+							<p className='text-lightColor'>{t("description")}</p>
+							<div className='btn-box'>
+								<Link
+									href='https://form.jotform.com/242192994073362'
+									passHref
+									target='_blank'
 								>
 									{t("start_now")}
-								</Button>
-							</Link>
-							<Button
-								size='lg'
-								variant='outline'
-								className='text-[#e07608] border-white hover:bg-white hover:text-gray-900'
-							>
-								{t("learn_more")}
-							</Button>
+								</Link>
+								<Link href='#services'>{t("learn_more")}</Link>
+							</div>
+							<div className='home-sci'>
+								<Link href='#'>
+									<TwitterLogoIcon />
+								</Link>
+								<Link href='#'>
+									<InstagramLogoIcon />
+								</Link>
+								<Link href='#'>
+									<Facebook />
+								</Link>
+							</div>
 						</div>
-					</div>
-				</div>
-			</section> */}
+
+						<span className='home-imgHover'></span>
+					</section>
+				</motion.div>
+			</div>
 		</div>
 	);
 };

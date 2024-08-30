@@ -12,6 +12,7 @@ import {
 	SheetContent,
 	SheetTrigger,
 } from "@/components/ui/sheet";
+import ThemeSelector from "./theme-selector";
 
 const Header = () => {
 	return (
@@ -19,28 +20,7 @@ const Header = () => {
 			<header
 			// className='header'
 			>
-				{/* <Link className='logo' href='#'>
-					<Avatar className='h-12 w-12'>
-						<AvatarImage
-							className='bg-white'
-							src={`/images/icon.webp`}
-							alt={"Pesá menos, viví más"}
-						/>
-						<AvatarFallback>PMVM</AvatarFallback>
-					</Avatar>
-				</Link> */}
 				<Navbar />
-				{/* <nav className='navbar'>
-					<a href='#services' className='active'>
-						{t("services")}
-					</a>
-					<a href='#testimonials'>{t("testimonials")}</a>
-					<a href='#contact'>{t("contact")}</a>
-				</nav>
-				<div className='language-selector-container'>
-					<LanguageSelector />
-				</div>
-				<div className='div-empty' /> */}
 			</header>
 		</>
 	);
@@ -48,7 +28,7 @@ const Header = () => {
 
 export default Header;
 
-const Navbar = () => {
+export const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const t = useTranslations("header");
 	// const [currentLanguage, setCurrentLanguage] = useState('es')
@@ -59,7 +39,7 @@ const Navbar = () => {
 	];
 	return (
 		<nav className='navbar shadow-md'>
-			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+			<div className='max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='flex justify-between h-16 relative z-[1]'>
 					<div className='flex-shrink-0 flex items-center'>
 						<Logo className='logo' />
@@ -77,6 +57,10 @@ const Navbar = () => {
 						))}
 					</div>
 
+					<div className='hidden sm:flex sm:items-center'>
+						<ThemeSelector />
+					</div>
+
 					{/* Language Selector (Desktop) */}
 					<div className='hidden sm:flex sm:items-center'>
 						<LanguageSelector />
@@ -88,7 +72,7 @@ const Navbar = () => {
 							<SheetTrigger asChild>
 								<Button
 									variant='ghost'
-									className='inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#facb1a]'
+									className='inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primaryColor'
 									onClick={() => setIsOpen(!isOpen)}
 								>
 									<span className='sr-only'>Abrir menú principal</span>
@@ -97,19 +81,11 @@ const Navbar = () => {
 							</SheetTrigger>
 							<SheetContent
 								side='right'
-								className='w-[400px] sm:w-[500px] bg-[#171717]'
+								className='w-[400px] sm:w-[500px] bg-darkColor'
 							>
 								<nav className='flex flex-col h-full'>
 									<div className='flex items-center justify-between mb-8 ml-2'>
 										<Logo />
-										{/* <SheetTrigger asChild>
-											<Button
-												variant='ghost'
-												className='rounded-full w-9 h-9 p-0'
-											>
-												<X className='h-6 w-6' />
-											</Button>
-										</SheetTrigger> */}
 									</div>
 									<div className='flex flex-col space-y-4 items-center'>
 										{navItems.map((item) => (
@@ -123,7 +99,8 @@ const Navbar = () => {
 											</Link>
 										))}
 									</div>
-									<div className='mt-auto mb-8'>
+									<div className='mt-auto mb-8 flex justify-around items-center'>
+										<ThemeSelector />
 										<LanguageSelector />
 									</div>
 								</nav>

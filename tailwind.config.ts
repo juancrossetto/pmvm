@@ -10,6 +10,9 @@ const config = {
   ],
   prefix: "",
   theme: {
+    // screens: {
+    //   "sm": "640px",
+    // },
     container: {
       center: true,
       padding: "2rem",
@@ -52,6 +55,11 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        primaryColor: "#FAD02C",
+        secondaryColor: "#ef8108",
+        grayColor: "#E6C2BF",
+        lightColor: "#F8EFE4",
+        darkColor: "#171717",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -82,7 +90,7 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "slow-bounce": "slow-bounce 3s infinite",
-        "ease-in-out":	"transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)"
+        "ease-in-out": "transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)"
       },
       transitionDuration: {
         '450': '450ms',

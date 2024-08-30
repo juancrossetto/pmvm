@@ -7,10 +7,10 @@
 		"schedule-consultation": "Schedule your consultation"
 	},
 	"hero": {
-		"title": "Your Journey to a Better Version of Yourself",
-		"greeting": "Hi, I'm Ale Gerez",
+		"title": "Weigh Less, Live More",
+		"subtitle": "Your journey to a healthier, more balanced life starts here.",
 		"about_me": "Head trainer and physical trainer",
-		"description": "Transform your body and mind with personalized workouts and expert guidance.",
+		"description": "Transform your life with a comprehensive approach to health and wellness. Our personalized training plans will help you achieve your goals and enjoy a lighter, fuller life.",
 		"start_now": "Start Now",
 		"learn_more": "Learn More"
 	},
@@ -35,7 +35,10 @@
 	},
 	"about": {
 		"title": "About Me",
-		"content": "With over 10 years of experience in the fitness and health field, I am dedicated to helping my clients achieve their physical and mental goals. My approach is based on creating personalized plans that adapt to the unique needs and objectives of each individual."
+		"greeting": "Hi, I'm Ale Gerez",
+		"content": "With over 10 years of experience in the fitness and health field, I am dedicated to helping my clients achieve their physical and mental goals. My approach is based on creating personalized plans that adapt to the unique needs and objectives of each individual.",
+		"title2": "Transform Your Life with 'Weigh Less, Live More'",
+		"content2": "At 'Weigh Less, Live More,' we believe that the path to a healthier life is not just about losing weight but gaining wellness, energy, and confidence. Our personalized training program is designed to fit your needs, goals, and lifestyle. With a holistic approach to physical and mental health, we offer effective exercise plans, nutritional guidance, and ongoing support to help you achieve your goals safely and sustainably. Join us and discover how you can live a fuller, more active, and happier life."
 	},
 	"testimonials": {
 		"title": "What My Clients Say",

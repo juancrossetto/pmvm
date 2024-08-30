@@ -29,6 +29,11 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --primaryColor: #FAD02C;
+    --secondaryColor:#ef8108;
+    --grayColor: #E6C2BF;
+    --lightColor: #F8EFE4;
+    --darkColor: #171717;
   }
 
   .dark {
@@ -65,5 +70,6 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-poppins), sans-serif;
   }
 }

@@ -38,7 +38,7 @@ const Services = () => {
 	return (
 		<section
 			id='services'
-			className='w-full py-12 md:py-24 lg:py-32 bg-[#171717]
+			className='w-full py-12 md:py-24 lg:py-32 bg-darkColor
 			 relative'
 		>
 			<div className='container px-4 md:px-6 mx-auto'>
@@ -63,11 +63,11 @@ const Services = () => {
 						return (
 							<Card
 								key={i}
-								className='relative overflow-hidden group bg-gradient-to-b from-[#212121] to-[#171717]'
+								className='relative overflow-hidden group bg-gradient-to-b from-[#212121] to-bg-darkColor'
 							>
 								<div className='absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300'></div>
 								<CardContent className='p-6'>
-									<Icon className='h-12 w-12 mb-4 text-[#facb1a]' />
+									<Icon className='h-12 w-12 mb-4 text-primaryColor' />
 									<h3 className='text-2xl font-bold mb-2 text-white'>
 										{service.title[locale]}
 									</h3>
@@ -76,7 +76,7 @@ const Services = () => {
 									</p>
 									<Link
 										href='#'
-										className='text-[#facb1a] hover:underline font-semibold'
+										className='text-primaryColor hover:underline font-semibold'
 									>
 										{service.link[locale]}
 									</Link>

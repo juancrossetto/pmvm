@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 const ContactUs = () => {
 	const t = useTranslations("contact");
 	return (
-		<section id="contact" className='w-full py-12 sm:py-24 lg:py-32 relative bg-gradient-to-b from-[#171717] to-[#212121]'>
+		<section id="contact" className='w-full py-12 sm:py-24 lg:py-32 relative bg-gradient-to-b from-bg-darkColor to-[#212121]'>
 			<div className='container px-4 md:px-6 space-y-12'>
 				<div className='flex flex-col items-center justify-center text-center'>
 					<div className='space-y-2'>
@@ -31,7 +31,7 @@ const ContactUs = () => {
 							placeholder={t('message_placeholder')}
 							className='max-w-lg flex-1'
 						/>
-						<Button type='submit' className="bg-[#facb1a]">{t('submit_button')}</Button>
+						<Button type='submit' className="bg-primaryColor">{t('submit_button')}</Button>
 					</form>
 					{/* <a
 						href='https://calendar.google.com/calendar/u/0/r/eventedit?text=Consulta+Gratis&dates=20240824T100000Z/20240824T110000Z&details=Habla+con+nuestro+entrenador+sobre+tus+objetivos+de+fitness&location=Tu+Ubicación&sf=true'

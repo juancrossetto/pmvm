@@ -19,7 +19,7 @@ const Testimonial = () => {
 
 	return (
 		<>
-			<section id="testimonials" className='w-full py-12 sm:py-24 lg:py-32 relative bg-[#171717] '>
+			<section id="testimonials" className='w-full py-12 sm:py-24 lg:py-32 relative bg-darkColor '>
 			{/* bg-gradient-to-b from-[#facb1a] to-[#edb403] opacity-80'> */}
 				<div className='container px-4 md:px-6'>
 					<div className='flex flex-col items-center justify-center space-y-4 text-center z-10'>

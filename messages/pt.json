@@ -7,10 +7,10 @@
 		"schedule-consultation": "Agende a sua Consulta"
 	},
 	"hero": {
-		"title": "Sua Jornada para uma Melhor Versão de Você Mesmo",
-		"greeting": "Olá, eu sou o Ale Gerez",
+		"title": "Pese Menos, Viva Mais",
+		"subtitle": "Sua jornada para uma vida mais saudável e equilibrada começa aqui.",
   		"about_me": "Treinador principal e preparador físico",
-		"description": "Transforme seu corpo e mente com treinos personalizados e orientação especializada.",
+		"description": "Transforme sua vida com uma abordagem completa para a saúde e o bem-estar. Nossos planos de treinamento personalizados ajudarão você a atingir seus objetivos e a desfrutar de uma vida mais leve e plena.",
 		"start_now": "Comece Agora",
 		"learn_more": "Saiba Mais"
 	},
@@ -35,7 +35,10 @@
 	},
 	"about": {
 		"title": "Sobre Mim",
-		"content": "Com mais de 10 anos de experiência na área de fitness e saúde, dedico-me a ajudar meus clientes a alcançar seus objetivos físicos e mentais. Minha abordagem é baseada na criação de planos personalizados que se adaptam às necessidades e objetivos únicos de cada indivíduo."
+		"greeting": "Olá, eu sou o Ale Gerez",
+		"content": "Com mais de 10 anos de experiência na área de fitness e saúde, dedico-me a ajudar meus clientes a alcançar seus objetivos físicos e mentais. Minha abordagem é baseada na criação de planos personalizados que se adaptam às necessidades e objetivos únicos de cada indivíduo.",
+		"title2": "Transforme Sua Vida com 'Pese Menos, Viva Mais'",
+		"content2": "No 'Pese Menos, Viva Mais', acreditamos que o caminho para uma vida mais saudável não se trata apenas de perder peso, mas de ganhar bem-estar, energia e confiança. Nosso programa de treinamento personalizado é projetado para se adaptar às suas necessidades, objetivos e estilo de vida. Com uma abordagem holística à saúde física e mental, oferecemos planos de exercícios eficazes, orientação nutricional e apoio contínuo para ajudá-lo a alcançar seus objetivos de forma segura e sustentável. Junte-se a nós e descubra como você pode viver de forma mais plena, mais ativa e mais feliz."
 	},
 	"testimonials": {
     "title": "O que meus clientes dizem",
