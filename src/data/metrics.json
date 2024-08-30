@@ -1,34 +1,38 @@
 [
 	{
 		"title": {
-			"en": "Clients Served",
-			"es": "Clientes Atendidos",
-			"pt": "Clientes Atendidos"
+			"en": "Years specialized in overweight and obesity",
+			"es": "Años especializado en sobrepeso y obesidad",
+			"pt": "Anos especializada em excesso de peso e obesidade"
 		},
-		"number": 37
+		"number": 10,
+		"symbol": "+"
 	},
 	{
 		"title": {
-			"en": "Training Hours",
-			"es": "Horas de Entrenamiento",
-			"pt": "Horas de Treinamento"
+			"en": "Years of experience in the fitness world",
+			"es": "Años de experiencia en el mundo fitness",
+			"pt": "Anos de experiência no mundo do fitness"
 		},
-		"number": 120
+		"number": 10,
+		"symbol": "+"
 	},
 	{
 		"title": {
-			"en": "Successful Transformations",
-			"es": "Transformaciones Exitosas",
-			"pt": "Transformações Bem-Sucedidas"
+			"en": "Lives transformed in the PMVM team",
+			"es": "Vidas transformadas en el team PMVM",
+			"pt": "Vidas transformadas na equipa PMVM"
 		},
-		"number": 22
+		"number": 100,
+		"symbol": "+"
 	},
 	{
 		"title": {
-			"en": "Countries Reached",
-			"es": "Países Alcanzados",
-			"pt": "Países Alcançados"
+			"en": "health professionals working as a team",
+			"es": "Profesionales de la salud trabajando en equipo",
+			"pt": "Profissionais de saúde a trabalhar em equipa"
 		},
-		"number": 4
+		"number": 10,
+		"symbol": "+"
 	}
 ]

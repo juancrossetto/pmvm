@@ -85,12 +85,29 @@ const config = {
             'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)',
           },
         },
+        pulse: {
+          '0%, 100%': {
+            transform: 'scale(1)',
+            opacity: "1",
+          },
+          '50%': {
+            transform: 'scale(1.02)',
+            opacity: "0.7",
+          },
+        },
+        ping: {
+          '75%, 100%': {
+            transform: 'scale(1.3)',
+            opacity: '0',
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "slow-bounce": "slow-bounce 3s infinite",
-        "ease-in-out": "transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)"
+        "ease-in-out": "transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)",
+        "pulse": "pulse 5s infinite",
       },
       transitionDuration: {
         '450': '450ms',

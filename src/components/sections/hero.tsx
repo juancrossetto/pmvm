@@ -3,8 +3,7 @@ import React, { useRef } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import Header from "./header";
-import { InstagramLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
-import { Facebook } from "lucide-react";
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
 import Video from "../video";
@@ -52,13 +51,13 @@ const Hero = () => {
 							</div>
 							<div className='home-sci'>
 								<Link href='#'>
-									<TwitterLogoIcon />
+									<FaTwitter />
 								</Link>
 								<Link href='#'>
-									<InstagramLogoIcon />
+									<FaInstagram />
 								</Link>
 								<Link href='#'>
-									<Facebook />
+									<FaFacebookF />
 								</Link>
 							</div>
 						</div>

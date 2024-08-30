@@ -1,4 +1,10 @@
 {
+	"general": {
+		"choose_plan": "Elegir plan",
+		"i_want_to_start": "Quiero empezar",
+		"view_detail": "Ver detalles",
+		"monthly_payment": "Pago mensual"
+	},
 	"header": {
 		"about": "Sobre Mí",
 		"services": "Servicios",

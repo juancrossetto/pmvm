@@ -50,6 +50,7 @@ const Metrics = () => {
 							!isMobile ? [-100, 100] : index % 2 === 0 ? [25, -25] : [-25, 25]
 						}
 						translateY={[0, 0]}
+						className="min-w-[300px]"
 					>
 						<div
 							className={`text-center sm:text-start flex flex-col sm:flex-row items-center justify-center transition-transform duration-500 relative`}
@@ -69,15 +70,15 @@ const Metrics = () => {
 										textAnchor='middle'
 										dominantBaseline='middle'
 										className='fill-transparent stroke-current  text-primaryColor'
-										fontSize='60'
+										fontSize='42'
 										strokeWidth='2'
 									>
-										{metric.number}
+										{metric.symbol}{metric.number}
 									</text>
 								</svg>
 							</span>
-							<Counter value={metric.number} className="opacity-70" />
-							<p className='text-[16px] sm:text-[18px] font-bold text-darkColor dark:text-lightColor flex-wrap max-w-[170px] text-center sm:text-start sm:pl-2 mt-2 sm:mt-0 opacity-90'>
+							<Counter value={metric.number} symbol={metric.symbol} className="opacity-95" />
+							<p className='text-[16px] sm:text-[18px] font-bold text-darkColor dark:text-lightColor flex-wrap max-w-[170px] text-center sm:text-start sm:pl-2 mt-2 sm:mt-0 opacity-95'>
 								{metric.title[locale]}
 							</p>
 						</div>

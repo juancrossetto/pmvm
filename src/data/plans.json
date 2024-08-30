@@ -1,0 +1,140 @@
+[
+    {
+        "title": {
+            "en": "Workout",
+            "es": "Workout",
+            "pt": "Workout"
+        },
+        "items": [
+            {
+                "en": "Personalized training routine",
+                "es": "Rutina de entrenamiento personalizado",
+                "pt": "Rotina de treino personalizada"
+            },
+            {
+                "en": "Exercise demonstration videos",
+                "es": "Videos demostrativos de los ejercicios",
+                "pt": "Vídeos demonstrativos dos exercícios"
+            },
+            {
+                "en": "Food guide",
+                "es": "Guía alimentaria",
+                "pt": "Guia alimentar"
+            },
+            {
+                "en": "Shopping list",
+                "es": "Lista de compras",
+                "pt": "Lista de compras"
+            },
+            {
+                "en": "Exclusive Mobile App (Android IOS)",
+                "es": "Aplicación Mobile exclusiva (Android IOS)",
+                "pt": "Aplicativo Mobile exclusivo (Android IOS)"
+            },
+            {
+                "en": "Support through our App",
+                "es": "Soporte mediante nuestra App",
+                "pt": "Suporte através do nosso App"
+            },
+            {
+                "en": "Private Community for support and motivation",
+                "es": "Comunidad Privada de acompañamiento y motivación",
+                "pt": "Comunidade Privada de acompanhamento e motivação"
+            },
+            {
+                "en": "Exclusive Blog for P-V+ community",
+                "es": "Blog Exclusivo comunidad P-V+",
+                "pt": "Blog Exclusivo da comunidade P-V+"
+            },
+            {
+                "en": "Weekly and monthly check-ins",
+                "es": "Chequeos semanales y mensuales",
+                "pt": "Checagens semanais e mensais"
+            },
+            {
+                "en": "Individual sessions with Ale Gerez",
+                "es": "Sesiones individuales con Ale Gerez",
+                "pt": "Sessões individuais com Ale Gerez"
+            }
+        ],
+        "price": {
+            "en": "$19USD / Month",
+            "es": "$20.000 / Mes",
+            "pt": "$150 / Mês"
+        }
+    },
+    {
+        "title": {
+            "en": "Workout Mind and Nutri",
+            "es": "Workout Mind and Nutri",
+            "pt": "Workout Mind and Nutri"
+        },
+        "items": [
+            {
+                "en": "Personalized training routine",
+                "es": "Rutina de entrenamiento personalizado",
+                "pt": "Rotina de treino personalizada"
+            },
+            {
+                "en": "Exercise demonstration videos",
+                "es": "Videos demostrativos de los ejercicios",
+                "pt": "Vídeos demonstrativos dos exercícios"
+            },
+            {
+                "en": "Exclusive Mobile App (Android IOS)",
+                "es": "Aplicación Mobile exclusiva (Android IOS)",
+                "pt": "Aplicativo Mobile exclusivo (Android IOS)"
+            },
+            {
+                "en": "Support through our App",
+                "es": "Soporte mediante nuestra App",
+                "pt": "Suporte através do nosso App"
+            },
+            {
+                "en": "Private Community for support and motivation",
+                "es": "Comunidad Privada de acompañamiento y motivación",
+                "pt": "Comunidade Privada de acompanhamento e motivação"
+            },
+            {
+                "en": "Exclusive Blog for P-V+ community",
+                "es": "Blog Exclusivo comunidad P-V+",
+                "pt": "Blog Exclusivo da comunidade P-V+"
+            },
+            {
+                "en": "Weekly and monthly check-ins",
+                "es": "Chequeos semanales y mensuales",
+                "pt": "Checagens semanais e mensais"
+            },
+            {
+                "en": "Individual sessions with Ale Gerez",
+                "es": "Sesiones individuales con Ale Gerez",
+                "pt": "Sessões individuais com Ale Gerez"
+            },
+            {
+                "en": "Online consultations and Nutritional support with a specialist in Overweight & Obesity",
+                "es": "Consultas online y soporte Nutricional con una Licenciada especialista en Sobrepeso & Obesidad",
+                "pt": "Consultas online e suporte Nutricional com uma Licenciada especialista em Excesso de Peso & Obesidade"
+            },
+            {
+                "en": "100% goal-adapted Meal Plan",
+                "es": "Plan Alimentario adaptado 100% a objetivos",
+                "pt": "Plano Alimentar adaptado 100% aos objetivos"
+            },
+            {
+                "en": "Tracking of all meals",
+                "es": "Seguimientos de todas las comidas",
+                "pt": "Acompanhamento de todas as refeições"
+            },
+            {
+                "en": "Weekly Therapeutic sessions with psychologists specialized in the field under Dr. Flavio Calvo's team",
+                "es": "Sesiones Terapéuticas semanales con psicólogos especializados en la materia del equipo del Dr. Flavio Calvo",
+                "pt": "Sessões Terapêuticas semanais com psicólogos especializados na área da equipa do Dr. Flavio Calvo"
+            }
+        ],
+        "price": {
+            "en": "$30USD / Month",
+            "es": "$30.000 / Mes",
+            "pt": "$200 / Mês"
+        }
+    }
+]

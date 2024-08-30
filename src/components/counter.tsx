@@ -6,6 +6,7 @@ interface CounterProps {
 	fontSize?: number;
 	padding?: number;
 	className?: string;
+	symbol?: string;
 }
 
 interface DigitProps {
@@ -26,6 +27,7 @@ function Counter({
 	fontSize = 70,
 	padding = 15,
 	className = "",
+	symbol = "",
 }: CounterProps) {
 	const height = fontSize + padding;
 	const [isVisible, setIsVisible] = useState(false);
@@ -55,11 +57,9 @@ function Counter({
 		};
 	}, []);
 
-	// Convertir el valor en dígitos y eliminar ceros a la izquierda
 	const digits = String(value)
-		.split('')
-		.map((digit) => parseInt(digit, 10))
-		.filter((digit, index, arr) => digit !== 0 || index === arr.length - 1);
+		.split("")
+		.map((digit) => parseInt(digit, 10));
 
 	return (
 		<div
@@ -67,6 +67,7 @@ function Counter({
 			style={{ fontSize }}
 			className={`flex space-x-3 overflow-hidden rounded bg-transparent px-2 leading-none text-darkColor dark:text-lightColor font-bold ${className}`}
 		>
+			{symbol}
 			{digits.map((_, index) => (
 				<Digit
 					key={index}
@@ -81,10 +82,10 @@ function Counter({
 }
 
 function Digit({ place, value, isVisible, height }: DigitProps) {
-	let valueRoundedToPlace = Math.floor(value / place);
+	let valueRoundedToPlace = Math.floor(value / place) % 10;
 	let animatedValue = useSpring(isVisible ? valueRoundedToPlace : 0, {
-		stiffness: 50, // Disminuye la rigidez para hacer la animación más lenta
-		damping: 20, // Aumenta la amortiguación para suavizar la animación
+		stiffness: 50,
+		damping: 20,
 	});
 
 	useEffect(() => {

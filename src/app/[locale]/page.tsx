@@ -12,6 +12,7 @@ import AboutMe from "@/components/sections/about-me";
 import Pricing from "@/components/sections/pricing";
 import ZoomParallax from "@/components/ZoomParallax";
 import Metrics from "@/components/sections/metrics";
+import WhatsappButton from "@/components/whatsapp-button";
 
 const MyApp = () => {
 	return (
@@ -24,13 +25,14 @@ const MyApp = () => {
 					{/* <ZoomParallax /> */}
 					<AboutMe />
 					<Metrics />
-					{/* <Pricing />
-					<Services />
+					<Pricing />
+					{/* <Services />
 					<Testimonial />
 					<ContactUs /> */}
 				</main>
 				<Footer />
 			</div>
+			<WhatsappButton />
 			<ScrollToTop />
 		</>
 	);
