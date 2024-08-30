@@ -1,16 +1,17 @@
 import "./index.css";
-import ContactUs from "@/components/contact-us";
-import Testimonial from "@/components/testimonial";
+import ContactUs from "@/components/sections/contact-us";
+import Testimonial from "@/components/sections/testimonial";
 import { useTranslations } from "next-intl";
-import Hero from "@/components/hero";
-import Services from "@/components/services";
-import Footer from "@/components/footer";
+import Hero from "@/components/sections/hero";
+import Services from "@/components/sections/services";
+import Footer from "@/components/sections/footer";
 import LanguageSelector from "@/components/language-selector";
 import ScrollToTop from "@/components/scroll-to-top";
 // import Parallax from "@/components/parallax";
-import AboutMe from "@/components/about-me";
-import Pricing from "@/components/pricing";
+import AboutMe from "@/components/sections/about-me";
+import Pricing from "@/components/sections/pricing";
 import ZoomParallax from "@/components/ZoomParallax";
+import Metrics from "@/components/sections/metrics";
 
 const MyApp = () => {
 	return (
@@ -22,6 +23,7 @@ const MyApp = () => {
 					{/* <Parallax/> */}
 					{/* <ZoomParallax /> */}
 					<AboutMe />
+					<Metrics />
 					<Pricing />
 					<Services />
 					<Testimonial />

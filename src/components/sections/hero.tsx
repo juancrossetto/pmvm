@@ -2,13 +2,10 @@
 import React, { useRef } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import Image from "next/image";
 import Header from "./header";
-import { Button } from "@/components/ui/button";
 import { InstagramLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import { Facebook } from "lucide-react";
 import { useScroll, useTransform, motion } from "framer-motion";
-import { isMobileDevice } from "@/hooks/isMobileDevice";
 import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
 
 const Hero = () => {
@@ -19,7 +16,6 @@ const Hero = () => {
 		offset: ["start start", "end end"],
 	});
 	const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
-	// const isMobile = isMobileDevice();
 	const isMobile = useClientMediaQuery("(max-width: 640px)");
 	return (
 		<div

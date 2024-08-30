@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { DumbbellIcon, Menu, X } from "lucide-react";
-import LanguageSelector from "./language-selector";
+import LanguageSelector from "../language-selector";
 import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,7 @@ import {
 	SheetContent,
 	SheetTrigger,
 } from "@/components/ui/sheet";
-import ThemeSelector from "./theme-selector";
+import ThemeSelector from "../theme-selector";
 
 const Header = () => {
 	return (

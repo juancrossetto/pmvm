@@ -1,0 +1,34 @@
+[
+	{
+		"title": {
+			"en": "Clients Served",
+			"es": "Clientes Atendidos",
+			"pt": "Clientes Atendidos"
+		},
+		"number": 37
+	},
+	{
+		"title": {
+			"en": "Training Hours",
+			"es": "Horas de Entrenamiento",
+			"pt": "Horas de Treinamento"
+		},
+		"number": 120
+	},
+	{
+		"title": {
+			"en": "Successful Transformations",
+			"es": "Transformaciones Exitosas",
+			"pt": "Transformações Bem-Sucedidas"
+		},
+		"number": 22
+	},
+	{
+		"title": {
+			"en": "Countries Reached",
+			"es": "Países Alcanzados",
+			"pt": "Países Alcançados"
+		},
+		"number": 4
+	}
+]
