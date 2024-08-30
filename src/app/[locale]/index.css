@@ -477,3 +477,8 @@ body {
 	/* backdrop-filter: blur(15px); */
 
 }
+
+.custom-max-width-unset {
+	@apply max-w-none;
+	max-width: unset;
+  }

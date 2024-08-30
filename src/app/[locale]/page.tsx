@@ -24,10 +24,10 @@ const MyApp = () => {
 					{/* <ZoomParallax /> */}
 					<AboutMe />
 					<Metrics />
-					<Pricing />
+					{/* <Pricing />
 					<Services />
 					<Testimonial />
-					<ContactUs />
+					<ContactUs /> */}
 				</main>
 				<Footer />
 			</div>

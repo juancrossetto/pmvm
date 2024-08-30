@@ -7,6 +7,7 @@ import { InstagramLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import { Facebook } from "lucide-react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
+import Video from "../video";
 
 const Hero = () => {
 	const t = useTranslations("hero");
@@ -20,22 +21,20 @@ const Hero = () => {
 	return (
 		<div
 			ref={container}
-			className={`hero-section max-w-[1600px] text-lightColor mx-auto relative h-[100vh] sm:h-[120vh]`}
+			// className={`hero-section max-w-[1600px] text-lightColor mx-auto relative h-[100vh] sm:h-[120vh]`}
+			className={`hero-section text-lightColor mx-auto relative h-[100vh] sm:h-[120vh]`}
 		>
-			<div className='sticky  overflow-hidden top-0 h-[100vh]'>
+			<div className='sticky overflow-hidden top-0 h-[100vh]'>
 				<motion.div
 					style={{ scale: isMobile ? 1 : scale }}
 					// className='absolute top-0 w-full h-full flex items-center justify-center'
 				>
 					<Header />
 					<section className='home'>
-						<video
+						<Video
+							preload='auto'
 							className='absolute top-0 left-0 w-full h-full object-cover'
 							src='/videos/bg-hero.mp4'
-							autoPlay
-							loop
-							muted
-							playsInline
 						/>
 						<div className='home-content'>
 							<h1>{t("title")}</h1>
