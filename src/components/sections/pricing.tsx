@@ -13,6 +13,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
+	DialogOverlay,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import {
@@ -132,7 +133,8 @@ const Pricing = () => {
 												{t("view_detail")}
 											</Button>
 										</DialogTrigger>
-										<DialogContent className='max-w-md bg-darkColor'>
+										<DialogOverlay className="fixed inset-0 bg-black bg-opacity-50 z-40" />
+										<DialogContent className='mx-auto max-w-80 sm:max-w-md bg-darkColor '>
 											<DialogHeader>
 												<DialogTitle className='text-2xl text-primaryColor'>
 													{plan.title[locale]}

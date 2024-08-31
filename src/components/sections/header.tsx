@@ -81,7 +81,7 @@ export const Navbar = () => {
 							</SheetTrigger>
 							<SheetContent
 								side='right'
-								className='w-[400px] sm:w-[500px] bg-darkColor'
+								className='w-screen sm:w-[500px] bg-darkColor'
 							>
 								<nav className='flex flex-col h-full'>
 									<div className='flex items-center justify-between mb-8 ml-2'>
