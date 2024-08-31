@@ -133,12 +133,10 @@ const Pricing = () => {
 												{t("view_detail")}
 											</Button>
 										</DialogTrigger>
-										<DialogOverlay className="fixed inset-0 bg-black bg-opacity-50 z-40" />
-										<DialogContent className='mx-auto max-w-80 sm:max-w-md bg-darkColor '>
+										<DialogContent className='mx-auto max-w-[22rem] sm:max-w-md bg-darkColor max-h-[95vh] overflow-y-auto'>
 											<DialogHeader>
 												<DialogTitle className='text-2xl text-primaryColor'>
 													{plan.title[locale]}
-													{/* - {t("more_information")} */}
 												</DialogTitle>
 											</DialogHeader>
 											<div className='mb-4'>
