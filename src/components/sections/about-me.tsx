@@ -3,7 +3,7 @@ import { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useTranslations } from "next-intl";
-import Typewriter from "../type-writer";
+import Typewriter from "../common/type-writer";
 import Image from "next/image";
 import { Parallax } from "react-scroll-parallax";
 
@@ -59,6 +59,7 @@ const AboutMe = () => {
 					width={100}
 					height={100}
 					alt='+'
+					priority
 				/>
 				<div
 					ref={lessEmpty}
@@ -71,6 +72,7 @@ const AboutMe = () => {
 					width={100}
 					height={100}
 					alt='+'
+					priority
 				/>
 				<div
 					ref={less}

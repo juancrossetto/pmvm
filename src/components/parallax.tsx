@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { DumbbellIcon, Menu, X } from "lucide-react";
-import LanguageSelector from "./language-selector";
+import LanguageSelector from "./common/language-selector";
 import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";

@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useLocale } from "next-intl";
 import { Parallax } from "react-scroll-parallax";
-import Counter from "../counter";
+import Counter from "../common/counter";
 import metricsData from "@/data/metrics.json";
 import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
 

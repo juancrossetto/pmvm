@@ -5,56 +5,121 @@
             "es": "Workout",
             "pt": "Workout"
         },
+        "description": {
+            "en": "This plan offers a comprehensive fitness approach with personalized training routines, nutritional guidance, and motivational support to help you achieve your fitness goals.",
+            "es": "Este plan ofrece un enfoque integral de fitness con rutinas de entrenamiento personalizadas, orientación nutricional y apoyo motivacional para ayudarte a alcanzar tus objetivos de fitness.",
+            "pt": "Este plano oferece uma abordagem completa de fitness com rotinas de treino personalizadas, orientação nutricional e apoio motivacional para ajudar você a alcançar seus objetivos de fitness."
+        },
         "items": [
             {
                 "en": "Personalized training routine",
                 "es": "Rutina de entrenamiento personalizado",
-                "pt": "Rotina de treino personalizada"
+                "pt": "Rotina de treino personalizada",
+                "icon": "FaDumbbell",
+                "description": {
+                    "en": "A workout plan tailored specifically to your fitness level and goals.",
+                    "es": "Un plan de entrenamiento diseñado específicamente para tu nivel de fitness y objetivos.",
+                    "pt": "Um plano de treino adaptado especificamente ao seu nível de fitness e objetivos."
+                }
             },
             {
                 "en": "Exercise demonstration videos",
                 "es": "Videos demostrativos de los ejercicios",
-                "pt": "Vídeos demonstrativos dos exercícios"
+                "pt": "Vídeos demonstrativos dos exercícios",
+                "icon": "FaVideo",
+                "description": {
+                    "en": "Detailed videos showing how to perform each exercise correctly.",
+                    "es": "Videos detallados que muestran cómo realizar cada ejercicio correctamente.",
+                    "pt": "Vídeos detalhados mostrando como realizar cada exercício corretamente."
+                }
             },
             {
                 "en": "Food guide",
                 "es": "Guía alimentaria",
-                "pt": "Guia alimentar"
+                "pt": "Guia alimentar",
+                "icon": "FaAppleAlt",
+                "description": {
+                    "en": "Nutritional advice and meal plans to complement your workouts.",
+                    "es": "Consejos nutricionales y planes de comidas para complementar tus entrenamientos.",
+                    "pt": "Orientação nutricional e planos de refeições para complementar seus treinos."
+                }
             },
             {
                 "en": "Shopping list",
                 "es": "Lista de compras",
-                "pt": "Lista de compras"
+                "pt": "Lista de compras",
+                "icon": "FaShoppingCart",
+                "description": {
+                    "en": "A curated list of ingredients to help you prepare your meals.",
+                    "es": "Una lista de ingredientes seleccionados para ayudarte a preparar tus comidas.",
+                    "pt": "Uma lista de ingredientes selecionados para ajudar a preparar suas refeições."
+                }
             },
             {
                 "en": "Exclusive Mobile App (Android IOS)",
                 "es": "Aplicación Mobile exclusiva (Android IOS)",
-                "pt": "Aplicativo Mobile exclusivo (Android IOS)"
+                "pt": "Aplicativo Mobile exclusivo (Android IOS)",
+                "icon": "FaMobileAlt",
+                "description": {
+                    "en": "Access your plan and track progress on our exclusive app.",
+                    "es": "Accede a tu plan y sigue tu progreso en nuestra aplicación exclusiva.",
+                    "pt": "Acesse seu plano e acompanhe o progresso no nosso aplicativo exclusivo."
+                }
             },
             {
                 "en": "Support through our App",
                 "es": "Soporte mediante nuestra App",
-                "pt": "Suporte através do nosso App"
+                "pt": "Suporte através do nosso App",
+                "icon": "FaHeadset",
+                "description": {
+                    "en": "Get support from our team directly through the app.",
+                    "es": "Obtén soporte de nuestro equipo directamente a través de la aplicación.",
+                    "pt": "Obtenha suporte da nossa equipe diretamente pelo aplicativo."
+                }
             },
             {
                 "en": "Private Community for support and motivation",
                 "es": "Comunidad Privada de acompañamiento y motivación",
-                "pt": "Comunidade Privada de acompanhamento e motivação"
+                "pt": "Comunidade Privada de acompanhamento e motivação",
+                "icon": "FaUsers",
+                "description": {
+                    "en": "Join a community of like-minded individuals for support and motivation.",
+                    "es": "Únete a una comunidad de personas con ideas afines para apoyo y motivación.",
+                    "pt": "Junte-se a uma comunidade de pessoas com ideias semelhantes para apoio e motivação."
+                }
             },
             {
                 "en": "Exclusive Blog for P-V+ community",
                 "es": "Blog Exclusivo comunidad P-V+",
-                "pt": "Blog Exclusivo da comunidade P-V+"
+                "pt": "Blog Exclusivo da comunidade P-V+",
+                "icon": "FaBlog",
+                "description": {
+                    "en": "Access exclusive content and articles tailored to the P-V+ community.",
+                    "es": "Accede a contenido exclusivo y artículos diseñados para la comunidad P-V+.",
+                    "pt": "Acesse conteúdo exclusivo e artigos feitos para a comunidade P-V+."
+                }
             },
             {
                 "en": "Weekly and monthly check-ins",
                 "es": "Chequeos semanales y mensuales",
-                "pt": "Checagens semanais e mensais"
+                "pt": "Checagens semanais e mensais",
+                "icon": "FaCalendarCheck",
+                "description": {
+                    "en": "Regular check-ins to track your progress and adjust your plan as needed.",
+                    "es": "Chequeos regulares para rastrear tu progreso y ajustar tu plan según sea necesario.",
+                    "pt": "Checagens regulares para acompanhar seu progresso e ajustar seu plano conforme necessário."
+                }
             },
             {
                 "en": "Individual sessions with Ale Gerez",
                 "es": "Sesiones individuales con Ale Gerez",
-                "pt": "Sessões individuais com Ale Gerez"
+                "pt": "Sessões individuais com Ale Gerez",
+                "icon": "FaUserTie",
+                "description": {
+                    "en": "One-on-one sessions with Ale Gerez to focus on your specific needs.",
+                    "es": "Sesiones individuales con Ale Gerez para enfocarse en tus necesidades específicas.",
+                    "pt": "Sessões individuais com Ale Gerez para focar nas suas necessidades específicas."
+                }
             }
         ],
         "price": {
@@ -69,66 +134,143 @@
             "es": "Workout Mind and Nutri",
             "pt": "Workout Mind and Nutri"
         },
+        "description": {
+            "en": "This advanced plan combines physical training with nutritional and psychological support, tailored to those who seek a holistic approach to health and wellness.",
+            "es": "Este plan avanzado combina entrenamiento físico con apoyo nutricional y psicológico, diseñado para aquellos que buscan un enfoque holístico de salud y bienestar.",
+            "pt": "Este plano avançado combina treino físico com suporte nutricional e psicológico, direcionado para aqueles que buscam uma abordagem holística para saúde e bem-estar."
+        },
         "items": [
             {
                 "en": "Personalized training routine",
                 "es": "Rutina de entrenamiento personalizado",
-                "pt": "Rotina de treino personalizada"
+                "pt": "Rotina de treino personalizada",
+                "icon": "FaDumbbell",
+                "description": {
+                    "en": "A workout plan tailored specifically to your fitness level and goals.",
+                    "es": "Un plan de entrenamiento diseñado específicamente para tu nivel de fitness y objetivos.",
+                    "pt": "Um plano de treino adaptado especificamente ao seu nível de fitness e objetivos."
+                }
             },
             {
                 "en": "Exercise demonstration videos",
                 "es": "Videos demostrativos de los ejercicios",
-                "pt": "Vídeos demonstrativos dos exercícios"
+                "pt": "Vídeos demonstrativos dos exercícios",
+                "icon": "FaVideo",
+                "description": {
+                    "en": "Detailed videos showing how to perform each exercise correctly.",
+                    "es": "Videos detallados que muestran cómo realizar cada ejercicio correctamente.",
+                    "pt": "Vídeos detalhados mostrando como realizar cada exercício corretamente."
+                }
             },
             {
                 "en": "Exclusive Mobile App (Android IOS)",
                 "es": "Aplicación Mobile exclusiva (Android IOS)",
-                "pt": "Aplicativo Mobile exclusivo (Android IOS)"
+                "pt": "Aplicativo Mobile exclusivo (Android IOS)",
+                "icon": "FaMobileAlt",
+                "description": {
+                    "en": "Access your plan and track progress on our exclusive app.",
+                    "es": "Accede a tu plan y sigue tu progreso en nuestra aplicación exclusiva.",
+                    "pt": "Acesse seu plano e acompanhe o progresso no nosso aplicativo exclusivo."
+                }
             },
             {
                 "en": "Support through our App",
                 "es": "Soporte mediante nuestra App",
-                "pt": "Suporte através do nosso App"
+                "pt": "Suporte através do nosso App",
+                "icon": "FaHeadset",
+                "description": {
+                    "en": "Get support from our team directly through the app.",
+                    "es": "Obtén soporte de nuestro equipo directamente a través de la aplicación.",
+                    "pt": "Obtenha suporte da nossa equipe diretamente pelo aplicativo."
+                }
             },
             {
                 "en": "Private Community for support and motivation",
                 "es": "Comunidad Privada de acompañamiento y motivación",
-                "pt": "Comunidade Privada de acompanhamento e motivação"
+                "pt": "Comunidade Privada de acompanhamento e motivação",
+                "icon": "FaUsers",
+                "description": {
+                    "en": "Join a community of like-minded individuals for support and motivation.",
+                    "es": "Únete a una comunidad de personas con ideas afines para apoyo y motivación.",
+                    "pt": "Junte-se a uma comunidade de pessoas com ideias semelhantes para apoio e motivação."
+                }
             },
             {
                 "en": "Exclusive Blog for P-V+ community",
                 "es": "Blog Exclusivo comunidad P-V+",
-                "pt": "Blog Exclusivo da comunidade P-V+"
+                "pt": "Blog Exclusivo da comunidade P-V+",
+                "icon": "FaBlog",
+                "description": {
+                    "en": "Access exclusive content and articles tailored to the P-V+ community.",
+                    "es": "Accede a contenido exclusivo y artículos diseñados para la comunidad P-V+.",
+                    "pt": "Acesse conteúdo exclusivo e artigos feitos para a comunidade P-V+."
+                }
             },
             {
                 "en": "Weekly and monthly check-ins",
                 "es": "Chequeos semanales y mensuales",
-                "pt": "Checagens semanais e mensais"
+                "pt": "Checagens semanais e mensais",
+                "icon": "FaCalendarCheck",
+                "description": {
+                    "en": "Regular check-ins to track your progress and adjust your plan as needed.",
+                    "es": "Chequeos regulares para rastrear tu progreso y ajustar tu plan según sea necesario.",
+                    "pt": "Checagens regulares para acompanhar seu progresso e ajustar seu plano conforme necessário."
+                }
             },
             {
                 "en": "Individual sessions with Ale Gerez",
                 "es": "Sesiones individuales con Ale Gerez",
-                "pt": "Sessões individuais com Ale Gerez"
+                "pt": "Sessões individuais com Ale Gerez",
+                "icon": "FaUserTie",
+                "description": {
+                    "en": "One-on-one sessions with Ale Gerez to focus on your specific needs.",
+                    "es": "Sesiones individuales con Ale Gerez para enfocarse en tus necesidades específicas.",
+                    "pt": "Sessões individuais com Ale Gerez para focar nas suas necessidades específicas."
+                }
             },
             {
                 "en": "Online consultations and Nutritional support with a specialist in Overweight & Obesity",
                 "es": "Consultas online y soporte Nutricional con una Licenciada especialista en Sobrepeso & Obesidad",
-                "pt": "Consultas online e suporte Nutricional com uma Licenciada especialista em Excesso de Peso & Obesidade"
+                "pt": "Consultas online e suporte Nutricional com uma Licenciada especialista em Excesso de Peso & Obesidade",
+                "icon": "FaHeartbeat",
+                "description": {
+                    "en": "Get expert nutritional advice and support from a specialist in overweight and obesity.",
+                    "es": "Obtén asesoramiento nutricional experto y soporte de una especialista en sobrepeso y obesidad.",
+                    "pt": "Obtenha aconselhamento nutricional especializado e suporte de uma especialista em excesso de peso e obesidade."
+                }
             },
             {
                 "en": "100% goal-adapted Meal Plan",
                 "es": "Plan Alimentario adaptado 100% a objetivos",
-                "pt": "Plano Alimentar adaptado 100% aos objetivos"
+                "pt": "Plano Alimentar adaptado 100% aos objetivos",
+                "icon": "FaUtensils",
+                "description": {
+                    "en": "A meal plan fully customized to meet your specific fitness goals.",
+                    "es": "Un plan alimentario totalmente personalizado para cumplir con tus objetivos de fitness específicos.",
+                    "pt": "Um plano alimentar totalmente personalizado para atender seus objetivos específicos de fitness."
+                }
             },
             {
                 "en": "Tracking of all meals",
                 "es": "Seguimientos de todas las comidas",
-                "pt": "Acompanhamento de todas as refeições"
+                "pt": "Acompanhamento de todas as refeições",
+                "icon": "FaClipboardCheck",
+                "description": {
+                    "en": "Monitor and track all your meals to stay on target with your plan.",
+                    "es": "Monitorea y sigue todas tus comidas para mantenerte en el objetivo con tu plan.",
+                    "pt": "Monitore e acompanhe todas as suas refeições para manter-se no alvo com seu plano."
+                }
             },
             {
                 "en": "Weekly Therapeutic sessions with psychologists specialized in the field under Dr. Flavio Calvo's team",
                 "es": "Sesiones Terapéuticas semanales con psicólogos especializados en la materia del equipo del Dr. Flavio Calvo",
-                "pt": "Sessões Terapêuticas semanais com psicólogos especializados na área da equipa do Dr. Flavio Calvo"
+                "pt": "Sessões Terapêuticas semanais com psicólogos especializados na área da equipa do Dr. Flavio Calvo",
+                "icon": "FaBrain",
+                "description": {
+                    "en": "Weekly sessions focused on mental well-being, guided by experts in the field.",
+                    "es": "Sesiones semanales enfocadas en el bienestar mental, guiadas por expertos en la materia.",
+                    "pt": "Sessões semanais focadas no bem-estar mental, orientadas por especialistas na área."
+                }
             }
         ],
         "price": {

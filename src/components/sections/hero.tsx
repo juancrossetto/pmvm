@@ -6,7 +6,7 @@ import Header from "./header";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
-import Video from "../video";
+import Video from "../common/video";
 
 const Hero = () => {
 	const t = useTranslations("hero");

@@ -3,7 +3,9 @@
 		"choose_plan": "Escolha o plano",
 		"i_want_to_start": "Eu quero começar",
 		"view_detail": "Ver detalhes",
-		"monthly_payment": "Pagamento mensal"
+		"monthly_payment": "Pagamento mensal",
+		"more_information": "Mais informação",
+		"what_this_plan_includes": "O que inclui este Plano?"
 	},
 	"header": {
 		"about": "Sobre Mim",
