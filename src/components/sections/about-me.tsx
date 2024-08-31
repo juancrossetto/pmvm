@@ -36,8 +36,8 @@ const AboutMe = () => {
 			});
 			tl.to(plus.current, { x: "-200%", rotateY: 45 }, 0);
 			tl.to(lessEmpty.current, { x: "-200%" }, 0);
-			tl.to(plusEmpty.current, { x: "200%", rotateY: 90 }, 0);
-			tl.to(less.current, { x: "200%" }, 0);
+			tl.to(plusEmpty.current, { x: "100%", rotateY: 90 }, 0);
+			tl.to(less.current, { x: "100%" }, 0);
 		});
 		return () => context.revert();
 	}, []);

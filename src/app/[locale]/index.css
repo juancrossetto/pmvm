@@ -227,7 +227,7 @@ body {
 	justify-content: space-between;
 }
 
-.home-sci::before {
+/* .home-sci::before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -238,7 +238,7 @@ body {
 	animation: showRight 1s ease forwards;
 	animation-delay: 2.5s;
 	z-index: 2;
-}
+} */
 
 .home-sci a {
 	position: relative;
