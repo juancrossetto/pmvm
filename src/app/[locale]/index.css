@@ -95,7 +95,7 @@ body {
 	line-height: 1.2;
 }
 
-.home-content h1::before {
+/* .home-content h1::before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -104,8 +104,8 @@ body {
 	height: 100%;
 	background-color: var(--darkColor);
 	animation: showRight 1s ease forwards;
-	animation-delay: 1s;
-}
+	animation-delay: .5s;
+} */
 
 .home-content h3 {
 	position: relative;
@@ -114,7 +114,7 @@ body {
 	color: var(--primaryColor);
 }
 
-.home-content h3::before {
+/* .home-content h3::before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -123,8 +123,8 @@ body {
 	height: 100%;
 	background-color: var(--darkColor);
 	animation: showRight 1s ease forwards;
-	animation-delay: 1.3s;
-}
+	animation-delay: 1.1s;
+} */
 
 .home-content p {
 	position: relative;
@@ -132,7 +132,7 @@ body {
 	margin: 20px 0 40px;
 }
 
-.home-content p::before {
+/* .home-content p::before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -141,8 +141,8 @@ body {
 	height: 100%;
 	background-color: var(--darkColor);
 	animation: showRight 1s ease forwards;
-	animation-delay: 1.6s;
-}
+	animation-delay: 1.4s;
+} */
 
 .home-content .btn-box {
 	position: relative;
@@ -152,7 +152,7 @@ body {
 	height: 50px;
 }
 
-.home-content .btn-box::before {
+/* .home-content .btn-box::before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -161,9 +161,9 @@ body {
 	height: 100%;
 	background-color: var(--darkColor);
 	animation: showRight 1s ease forwards;
-	animation-delay: 1.9s;
+	animation-delay: 1.2s;
 	z-index: 2;
-}
+} */
 
 .btn-box a {
 	position: relative;
@@ -202,7 +202,7 @@ body {
 	background-color: var(--primaryColor);
 }
 
-.btn-box a::before {
+/* .btn-box a::before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -212,7 +212,7 @@ body {
 	background-color: var(--darkColor);
 	z-index: -1;
 	transition: 0.5s;
-}
+} */
 
 .btn-box a:hover::before {
 	width: 100%;
@@ -284,9 +284,9 @@ body {
 	width: 100%;
 	height: 100%;
 	background-color: transparent;
-	transition: 3s;
+	transition: 1s;
 	animation: manipActiveHover 0.1s forwards;
-	animation-delay: 4s;
+	animation-delay: 2s;
 	pointer-events: none;
 }
 
@@ -304,7 +304,7 @@ body {
 	height: 100%;
 	background-color: var(--darkColor);
 	animation: showRight 1s ease forwards;
-	animation-delay: 3s;
+	animation-delay: 1s;
 	z-index: 100;
 }
 
