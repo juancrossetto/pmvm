@@ -34,6 +34,7 @@ const Video = forwardRef(({ src, autoPlay = true, preload = 'auto', ...rest }: V
       muted 
       loop 
       preload={preload} 
+      onCanPlay={(e) => e.currentTarget.play()}
       {...rest}
     >
       <source src={src} type="video/mp4" />
