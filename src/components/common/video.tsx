@@ -1,21 +1,45 @@
 /* eslint-disable react/display-name */
-import { forwardRef } from 'react'
+import { forwardRef, useEffect } from 'react';
 
 interface VideoProps {
-  src: string
-  id?: string
-  controls?: boolean
-  style?: any
-  className?: string
-  poster?: string
-  autoPlay?: boolean
-  preload?: string
+  src: string;
+  id?: string;
+  controls?: boolean;
+  style?: React.CSSProperties;
+  className?: string;
+  poster?: string;
+  autoPlay?: boolean;
+  preload?: 'auto' | 'metadata' | 'none';
 }
 
-const Video = forwardRef(({ src, autoPlay = true, ...rest }: VideoProps, ref: any) => (
-  <video playsInline autoPlay={autoPlay} ref={ref} loop muted {...rest}>
-    <source src={src} type="video/mp4" />
-  </video>
-))
+const Video = forwardRef(({ src, autoPlay = true, preload = 'auto', ...rest }: VideoProps, ref: any) => {
 
-export default Video
+  useEffect(() => {
+    const videoElement = ref?.current;
+    if (videoElement) {
+      videoElement.muted = true;
+      if (autoPlay) {
+        videoElement.play().catch((error: any) => {
+          console.error('AutoPlay error:', error);
+        });
+      }
+    }
+  }, [ref, autoPlay]);
+
+  return (
+    <video 
+      ref={ref} 
+      playsInline 
+      autoPlay={autoPlay} 
+      muted 
+      loop 
+      preload={preload} 
+      {...rest}
+    >
+      <source src={src} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  );
+});
+
+export default Video;

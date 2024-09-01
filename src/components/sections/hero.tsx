@@ -44,10 +44,16 @@ const Hero = () => {
 									href='https://form.jotform.com/242192994073362'
 									passHref
 									target='_blank'
+									className='relative h-[50px] w-40 overflow-hidden border border-primaryColor bg-primaryColor text-darkColor shadow-2xl transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-primaryColor hover:before:w-2/4 hover:before:bg-darkColor hover:after:w-2/4 hover:after:bg-darkColor'
 								>
-									{t("start_now")}
+									<span className='relative z-10'>{t("start_now")}</span>
 								</Link>
-								<Link href='#services'>{t("learn_more")}</Link>
+								<Link
+									href='#services'
+									className='relative h-[50px] w-40 overflow-hidden border border-primaryColor bg-transparent text-primaryColor shadow-2xl transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-darkColor hover:before:w-2/4 hover:before:bg-lightColor hover:after:w-2/4 hover:after:bg-lightColor hover:border-darkColor'
+								>
+									<span className='relative z-10'>{t("learn_more")}</span>
+								</Link>
 							</div>
 							<div className='home-sci'>
 								<Link href='#'>

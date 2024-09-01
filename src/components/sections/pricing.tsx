@@ -63,7 +63,8 @@ const Pricing = () => {
 						{typedPricingData.map((plan, index) => (
 							<div
 								key={index}
-								className='px-4 sm:px-4 py-2 sm:py-4 mx-4 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 border border-opacity-20 duration-1000 ease-in-out transform rounded-lg transition-transform max-w-[500px] cursor-pointer hover:bg-lightColor hover:bg-opacity-20 hover:scale-[1.005]'
+								className='px-4 sm:px-4 py-2 sm:py-4 mx-4 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 border border-opacity-20 duration-1000 ease-in-out transform rounded-lg transition-transform max-w-[500px] cursor-pointer hover:bg-lightColor hover:bg-opacity-20 hover:scale-[1.005] 
+								'
 							>
 								<div className='text-base sm:text-lg bg-primaryColor text-darkColor text-center rounded-md mb-3 uppercase'>
 									{t("monthly_payment")}
