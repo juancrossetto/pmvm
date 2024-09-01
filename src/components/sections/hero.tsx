@@ -7,6 +7,7 @@ import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
 import Video from "../common/video";
+import VideoJS from "../common/video-js";
 
 const Hero = () => {
 	const t = useTranslations("hero");
@@ -30,10 +31,15 @@ const Hero = () => {
 				>
 					<Header />
 					<section className='home'>
-						<Video
+						{/* <Video
 							preload='auto'
 							className='absolute top-0 left-0 w-full h-full object-cover'
 							src='/videos/bg-hero2.mp4'
+						/> */}
+						<VideoJS
+							className='absolute top-0 left-0 w-full h-full object-cover'
+							// url='/videos/bg-hero2.mp4'
+							url='https://www.w3schools.com/html/mov_bbb.mp4'
 						/>
 						<div className='home-content'>
 							<h1>{t("title")}</h1>
