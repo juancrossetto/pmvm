@@ -82,5 +82,11 @@
 		"copyright": "© 2024 Fitness Trainer. All rights reserved.",
 		"terms": "Terms of Service",
 		"privacy": "Privacy Policy"
+	},
+	"cookies": {
+		"title": "We use cookies",	
+		"text": "We use cookies to improve your browsing experience, serve personalized ads or content and analyze our traffic. By clicking \"Accept All Cookies\", you consent to our use of cookies.",
+		"btn_accept": "Accept All Cookies",
+		"btn_cancel": "Decline"
 	}
 }

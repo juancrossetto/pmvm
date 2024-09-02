@@ -25,8 +25,8 @@ export default function ThemeSelector() {
 						<TooltipTrigger asChild>
 							<DropdownMenuTrigger asChild>
 								<div className='flex justify-center items-center mr-2 cursor-pointer text-icons'>
-									<SunIcon className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-white' />
-									<MoonIcon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
+									<SunIcon className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-darkColor dark:text-white' />
+									<MoonIcon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-darkColor dark:text-white' />
 									<span className='sr-only'>Cambiar tema</span>
 								</div>
 							</DropdownMenuTrigger>

@@ -8,7 +8,7 @@ const SplashScreen = ({ finishLoading }: any) => {
         id="logoPreload"
         src="/images/icon-yellow.png"
         alt="Logo"
-        className="w-40 h-30"
+        className="w-40 sm:w-50 h-30"
         initial={{ scale: 1, opacity: 1 }}
         animate={{ scale: 5, opacity: 0 }}
         transition={{

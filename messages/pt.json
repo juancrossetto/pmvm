@@ -82,5 +82,11 @@
     "copyright": "© 2024 Treinador Físico. Todos os direitos reservados.",
     "terms": "Termos de Serviço",
     "privacy": "Política de Privacidade"
-  }
+  },
+  "cookies": {
+		"title": "Utilizamos cookies",	
+		"text": "Utilizamos cookies para melhorar a sua experiência de navegação, veicular anúncios ou conteúdos personalizados e analisar o nosso tráfego. Ao clicar em \"Aceitar todos os cookies\", concorda com a utilização de cookies.",
+		"btn_accept": "Aceitar todos os cookies",
+		"btn_cancel": "Rejeitar"
+	}
 }

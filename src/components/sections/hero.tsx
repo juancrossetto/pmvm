@@ -5,6 +5,7 @@ import Link from "next/link";
 import Header from "./header";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { useScroll, useTransform, motion } from "framer-motion";
+import { useTheme } from "next-themes";
 import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
 import Video from "../common/video";
 
@@ -17,6 +18,7 @@ const Hero = () => {
 	});
 	const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 	const isMobile = useClientMediaQuery("(max-width: 640px)");
+	const { theme } = useTheme();
 	return (
 		<div
 			ref={container}
@@ -34,7 +36,7 @@ const Hero = () => {
 							preload='auto'
 							className='absolute top-0 left-0 w-full h-full object-cover'
 							src='/videos/bg-hero2.mp4'
-							fallbackImage="/images/bg-hero.webp"
+							fallbackImage='/images/bg-hero.webp'
 						/>
 						<div className='home-content'>
 							<h1>{t("title")}</h1>
@@ -69,7 +71,12 @@ const Hero = () => {
 							</div>
 						</div>
 
-						<span className='home-imgHover'></span>
+						<span
+						className='home-imgHover'
+							// className={`${
+							// 	theme === "light" ? "home-imgHover" : "home-imgHoverBlack"
+							// } hover:bg-lightColor dark:hover:bg-darkColor hover:opacity-10`}
+						></span>
 					</section>
 				</motion.div>
 			</div>

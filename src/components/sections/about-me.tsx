@@ -45,7 +45,7 @@ const AboutMe = () => {
 	return (
 		<div
 			id='about-me'
-			className='about-me-parallax bg-darkColor'
+			className='about-me-parallax bg-white dark:bg-darkColor'
 			ref={parallaxRef}
 		>
 			<section

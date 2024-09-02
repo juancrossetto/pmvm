@@ -22,18 +22,23 @@ body {
 
 
 .header {
-	/* position: fixed; */
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	padding: 20px 10%;
-	background-color: transparent;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	z-index: 100;
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    transition: background-color 0.5s ease-in-out;
 }
+
+.header.scrolled {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
 
 .logo {
 	position: relative;
@@ -221,7 +226,7 @@ body {
 .home-sci {
 	position: absolute;
 	/* bottom: 40px; */
-	margin-top: 40px;
+	margin-top: 30px;
 	width: 170px;
 	display: flex;
 	justify-content: space-between;
@@ -277,7 +282,7 @@ body {
 	width: 100%;
 }
 
-.home-imgHover {
+.home-imgHover, .home-imgHoverBlack {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -307,6 +312,20 @@ body {
 	animation-delay: 1s;
 	z-index: 100;
 }
+
+.home-imgHoverBlack::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 120%;
+	height: 100%;
+	background-color: var(--darkColor);
+	animation: showRight 1s ease forwards;
+	animation-delay: 1s;
+	z-index: 100;
+}
+
 
 .language-selector-container {
 	position: absolute;

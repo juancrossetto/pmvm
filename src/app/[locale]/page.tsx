@@ -9,20 +9,19 @@ import ScrollToTop from "@/components/common/scroll-to-top";
 // import Parallax from "@/components/parallax";
 import AboutMe from "@/components/sections/about-me";
 import Pricing from "@/components/sections/pricing";
-import ZoomParallax from "@/components/ZoomParallax";
 import Metrics from "@/components/sections/metrics";
 import WhatsappButton from "@/components/common/whatsapp-button";
 import SplashScreenManager from "@/components/splash-screen-manager";
+import Header from "@/components/sections/header";
+import CookieConsent from "@/components/cookie-consent";
 
 const MyApp = () => {
 	return (
 		<SplashScreenManager>
-			<div className='flex flex-col min-h-[100vh] bg-darkColor'>
-				{/* <Header /> */}
+			<div className='flex flex-col min-h-[100vh] bg-lightColor dark:bg-darkColor'>
+				<Header/>
 				<main className='flex-1'>
 					<Hero />
-					{/* <Parallax/> */}
-					{/* <ZoomParallax /> */}
 					<AboutMe />
 					<Metrics />
 					<Pricing />
@@ -34,6 +33,7 @@ const MyApp = () => {
 			</div>
 			<WhatsappButton />
 			<ScrollToTop />
+			<CookieConsent />
 		</SplashScreenManager>
 	);
 };
