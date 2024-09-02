@@ -12,7 +12,6 @@ import Pricing from "@/components/sections/pricing";
 import ZoomParallax from "@/components/ZoomParallax";
 import Metrics from "@/components/sections/metrics";
 import WhatsappButton from "@/components/common/whatsapp-button";
-import { Suspense } from "react";
 import SplashScreenManager from "@/components/splash-screen-manager";
 
 const MyApp = () => {
