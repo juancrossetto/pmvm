@@ -1,0 +1,88 @@
+"use client";
+import { useRef } from "react";
+import {
+	motion,
+	useScroll,
+	useSpring,
+	useTransform,
+	useMotionValue,
+	useVelocity,
+	useAnimationFrame,
+} from "framer-motion";
+import { wrap } from "@motionone/utils";
+
+interface ParallaxProps {
+	children: string;
+	baseVelocity: number;
+}
+
+const ParallaxText = ({ children, baseVelocity = 100 }: ParallaxProps) => {
+	const baseX = useMotionValue(0);
+	const { scrollY } = useScroll();
+	const scrollVelocity = useVelocity(scrollY);
+	const smoothVelocity = useSpring(scrollVelocity, {
+		damping: 50,
+		stiffness: 400,
+	});
+	const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
+		clamp: false,
+	});
+
+	const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+
+	const directionFactor = useRef<number>(1);
+	useAnimationFrame((t, delta) => {
+		let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+
+		if (velocityFactor.get() < 0) {
+			directionFactor.current = -1;
+		} else if (velocityFactor.get() > 0) {
+			directionFactor.current = 1;
+		}
+
+		moveBy += directionFactor.current * moveBy * velocityFactor.get();
+
+		baseX.set(baseX.get() + moveBy);
+	});
+
+	return (
+		<div className='parallax overflow-hidden tracking-[-2px] leading-[0.8] m-0 whitespace-nowrap flex flex-nowrap'>
+			<motion.div
+				className='scroller font-semibold uppercase text-[50px] flex whitespace-nowrap flex-nowrap'
+				style={{ x }}
+			>
+				<Text>{children}</Text>
+				<Text>{children}</Text>
+				<Text>{children}</Text>
+				<Text>{children}</Text>
+			</motion.div>
+		</div>
+	);
+};
+
+export default ParallaxText;
+
+const Text = ({ children }: { children: string }) => {
+	return (
+		<span className='block mr-[30px] ' style={{ top: "50%" }}>
+			<svg
+				// className='w-full h-full'
+				className='h-[80px]'
+				// viewBox='0 0 100 50'
+				// preserveAspectRatio='xMidYMid meet'
+			>
+				<text
+					x='50%'
+					y='50%'
+					textAnchor='middle'
+					dominantBaseline='middle'
+					className='fill-transparent stroke-current  text-primaryColor'
+					// fontSize='27'
+					strokeWidth='2'
+				>
+					{children}
+				</text>
+			</svg>
+		</span>
+	);
+};

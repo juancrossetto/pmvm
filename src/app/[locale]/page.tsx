@@ -14,17 +14,19 @@ import WhatsappButton from "@/components/common/whatsapp-button";
 import SplashScreenManager from "@/components/splash-screen-manager";
 import Header from "@/components/sections/header";
 import CookieConsent from "@/components/cookie-consent";
+import ParallaxMessage from "@/components/sections/parallax-message";
 
 const MyApp = () => {
 	return (
 		<SplashScreenManager>
 			<div className='flex flex-col min-h-[100vh] bg-lightColor dark:bg-darkColor'>
-				<Header/>
+				<Header />
 				<main className='flex-1'>
 					<Hero />
 					<AboutMe />
 					<Metrics />
 					<Pricing />
+					<ParallaxMessage />
 					{/* <Services />
 					<Testimonial />
 					<ContactUs /> */}
