@@ -413,66 +413,6 @@ body {
 	background-position: center; */
 }
 
-.about-me-parallax img {
-    /* position: absolute; */
-}
-
-.ale-parallax {
-    /* right: 5%; */
-	/* top: 15%; */
-    width: 600px;
-	/* opacity: .2; */
-	z-index: 20;
-	right: 0;
-    /* width: 20%; */
-}
-
-.logo-parallax {
-    left: 10%;
-	top: 20%;
-    width: 600px;
-	/* position: relative; */
-	z-index: -1;
-	opacity: .8;
-}
-
-/* .plus-parallax {
-    left: 5%;
-	top: 15%;
-    width: 100px;
-	z-index: -1;
-} */
-
-/* .lessEmpty-parallax {
-	left: 5%;
-	top: 80%;
-    width: 100px;
-	z-index: -1;
-} */
-/* 
-.less-parallax {
-    right: 5%;
-	top: 80%;
-    width: 100px;
-	z-index: -1;
-}
-
-.plusEmpty-parallax {
-    right: 5%;
-	top: 15%;
-    width: 100px;
-	z-index: -1;
-} */
-
-
-
-.shape-parallax {
-	left: 0%;
-	top: 10%;
-    width: 100px;
-	z-index: -1;
-}
-
 .about-me {
 	height: 100vh;
 	/* background: url("/images/ale-bg.png") no-repeat; 

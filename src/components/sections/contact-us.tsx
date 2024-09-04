@@ -7,25 +7,25 @@ import { Button } from "@/components/ui/button";
 const ContactUs = () => {
 	const t = useTranslations("contact");
 	return (
-		<section id="contact" className='w-full py-12 sm:py-24 lg:py-32 relative bg-gradient-to-b from-bg-darkColor to-[#212121]'>
+		<section id="contact" className='w-full py-12 sm:py-24 lg:py-32 relative bg-white dark:bg-darkColor'>
 			<div className='container px-4 md:px-6 space-y-12'>
 				<div className='flex flex-col items-center justify-center text-center'>
 					<div className='space-y-2'>
-						<h2 className='text-3xl font-bold tracking-tighter sm:text-5xl text-white'>
+						<h2 className='text-3xl font-bold tracking-tighter sm:text-5xl text-primaryColor'>
 							{t('title')}
 						</h2>
-						<p className='max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-white'>
+						<p className='max-w-[900px] text-g dark:text-lightColor md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'>
 							{t('description')}
 						</p>
 					</div>
 				</div>
 				<div className='mx-auto w-full max-w-md space-y-2'>
-					<form className='flex flex-col gap-4 text-white'>
+					<form className='flex flex-col gap-4 text-darkColor dark:text-white'>
 						<Input type='text' placeholder={t('name_placeholder')} className='max-w-lg flex-1' />
 						<Input
 							type='email'
 							placeholder={t('email_placeholder')}
-							className='max-w-lg flex-1 text-white'
+							className='max-w-lg flex-1 text-darkColor dark:text-white'
 						/>
 						<Textarea
 							placeholder={t('message_placeholder')}

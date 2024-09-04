@@ -15,6 +15,7 @@ import SplashScreenManager from "@/components/splash-screen-manager";
 import Header from "@/components/sections/header";
 import CookieConsent from "@/components/cookie-consent";
 import ParallaxMessage from "@/components/sections/parallax-message";
+import Transformations from "@/components/sections/transformations";
 
 const MyApp = () => {
 	return (
@@ -27,9 +28,10 @@ const MyApp = () => {
 					<Metrics />
 					<Pricing />
 					<ParallaxMessage />
+					<Transformations />
 					{/* <Services />
-					<Testimonial />
-					<ContactUs /> */}
+					<Testimonial /> */}
+					<ContactUs />
 				</main>
 				<Footer />
 			</div>

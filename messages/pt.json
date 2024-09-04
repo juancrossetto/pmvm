@@ -11,13 +11,16 @@
 		"about": "Sobre Mim",
 		"services": "Serviços",
 		"testimonials": "Depoimentos",
+		"transformations": "Transformações",
 		"contact": "Contato",
-		"schedule-consultation": "Agende a sua Consulta"
+		"schedule-consultation": "Agende a sua Consulta",
+		"join_team_pmvm": "Junte-se à equipa PMVM",
+		"start_your_change": "Inicie a sua alteração"
 	},
 	"hero": {
 		"title": "Pese Menos, Viva Mais",
 		"subtitle": "Sua jornada para uma vida mais saudável e equilibrada começa aqui.",
-  		"about_me": "Treinador principal e preparador físico",
+		"about_me": "Treinador principal e preparador físico",
 		"description": "Transforme sua vida com uma abordagem completa para a saúde e o bem-estar. Nossos planos de treinamento personalizados ajudarão você a atingir seus objetivos e a desfrutar de uma vida mais leve e plena.",
 		"start_now": "Comece Agora",
 		"learn_more": "Saiba Mais"
@@ -49,42 +52,47 @@
 		"content2": "No 'Pese Menos, Viva Mais', acreditamos que o caminho para uma vida mais saudável não se trata apenas de perder peso, mas de ganhar bem-estar, energia e confiança. Nosso programa de treinamento personalizado é projetado para se adaptar às suas necessidades, objetivos e estilo de vida. Com uma abordagem holística à saúde física e mental, oferecemos planos de exercícios eficazes, orientação nutricional e apoio contínuo para ajudá-lo a alcançar seus objetivos de forma segura e sustentável. Junte-se a nós e descubra como você pode viver de forma mais plena, mais ativa e mais feliz."
 	},
 	"testimonials": {
-    "title": "O que meus clientes dizem",
-    "description": "Ouça clientes reais que transformaram suas vidas com minha orientação e apoio.",
-    "clients": {
-      "jessica_davis": {
-        "name": "Jessica Davis",
-        "achievement": "Perdeu 11 kg",
-        "quote": "Trabalhar com este treinador mudou minha vida. Ele criou um plano que se encaixava no meu estilo de vida e me ajudou a alcançar meus objetivos."
-      },
-      "michael_roberts": {
-        "name": "Michael Roberts",
-        "achievement": "Ganhou 7 kg de músculo",
-        "quote": "Eu estava com dificuldade para ganhar músculo, mas este treinador desenhou um programa que me ajudou a ganhar massa magra sem lesões."
-      },
-      "sarah_kim": {
-        "name": "Sarah Kim",
-        "achievement": "Melhorou sua aptidão física geral",
-        "quote": "Eu queria melhorar minha aptidão física geral, e este treinador criou um programa completo que fez uma grande diferença na minha energia e força."
-      }
-    }
-  },
-  "contact": {
-    "title": "Comece Hoje",
-    "description": "Preencha o formulário abaixo para agendar sua consulta gratuita e dar o primeiro passo em direção aos seus objetivos de fitness.",
-    "name_placeholder": "Nome",
-    "email_placeholder": "E-mail",
-    "message_placeholder": "Conte-me sobre seus objetivos de fitness",
-    "submit_button": "Agendar Consulta",
-    "calendar_link": "Adicionar ao Google Calendar"
-  },
-  "footer": {
-    "copyright": "© 2024 Treinador Físico. Todos os direitos reservados.",
-    "terms": "Termos de Serviço",
-    "privacy": "Política de Privacidade"
-  },
-  "cookies": {
-		"title": "Utilizamos cookies",	
+		"title": "O que meus clientes dizem",
+		"description": "Ouça clientes reais que transformaram suas vidas com minha orientação e apoio.",
+		"clients": {
+			"jessica_davis": {
+				"name": "Jessica Davis",
+				"achievement": "Perdeu 11 kg",
+				"quote": "Trabalhar com este treinador mudou minha vida. Ele criou um plano que se encaixava no meu estilo de vida e me ajudou a alcançar meus objetivos."
+			},
+			"michael_roberts": {
+				"name": "Michael Roberts",
+				"achievement": "Ganhou 7 kg de músculo",
+				"quote": "Eu estava com dificuldade para ganhar músculo, mas este treinador desenhou um programa que me ajudou a ganhar massa magra sem lesões."
+			},
+			"sarah_kim": {
+				"name": "Sarah Kim",
+				"achievement": "Melhorou sua aptidão física geral",
+				"quote": "Eu queria melhorar minha aptidão física geral, e este treinador criou um programa completo que fez uma grande diferença na minha energia e força."
+			}
+		}
+	},
+	"contact": {
+		"title": "Comece Hoje",
+		"description": "Preencha o formulário abaixo para agendar sua consulta gratuita e dar o primeiro passo em direção aos seus objetivos de fitness.",
+		"name_placeholder": "Nome",
+		"email_placeholder": "E-mail",
+		"message_placeholder": "Conte-me sobre seus objetivos de fitness",
+		"submit_button": "Agendar Consulta",
+		"calendar_link": "Adicionar ao Google Calendar"
+	},
+	"transformations": {
+		"title": "Transformações Incríveis",
+		"before": "Antes",
+		"after": "Depois"
+	},
+	"footer": {
+		"copyright": "© 2024 Treinador Físico. Todos os direitos reservados.",
+		"terms": "Termos de Serviço",
+		"privacy": "Política de Privacidade"
+	},
+	"cookies": {
+		"title": "Utilizamos cookies",
 		"text": "Utilizamos cookies para melhorar a sua experiência de navegação, veicular anúncios ou conteúdos personalizados e analisar o nosso tráfego. Ao clicar em \"Aceitar todos os cookies\", concorda com a utilização de cookies.",
 		"btn_accept": "Aceitar todos os cookies",
 		"btn_cancel": "Rejeitar"

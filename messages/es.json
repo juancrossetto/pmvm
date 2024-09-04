@@ -11,8 +11,11 @@
 		"about": "Sobre Mí",
 		"services": "Servicios",
 		"testimonials": "Testimonios",
+		"transformations": "Transformaciones",
 		"contact": "Contacto",
-		"schedule-consultation": "Agenda tu Consulta"
+		"schedule-consultation": "Agenda tu Consulta",
+		"join_team_pmvm": "Unite al Team PMVM",
+		"start_your_change": "Empezá tu cambio"
 	},
 	"hero": {
 		"title": "Pesa Menos, Viví Más",
@@ -70,23 +73,28 @@
 		}
 	},
 	"contact": {
-    "title": "Comienza Hoy",
-    "description": "Completa el formulario a continuación para programar tu consulta gratuita y dar el primer paso hacia tus metas de fitness.",
-    "name_placeholder": "Nombre",
-    "email_placeholder": "Correo Electrónico",
-    "message_placeholder": "Cuéntame sobre tus objetivos de fitness",
-    "submit_button": "Programar Consulta",
-    "calendar_link": "Agregar a Google Calendar"
-  },
-  "footer": {
-    "copyright": "© 2024 Entrenador Físico. Todos los derechos reservados.",
-    "terms": "Términos de Servicio",
-    "privacy": "Política de Privacidad"
-  },
-  "cookies": {
-	"title": "Usamos cookies",	
-	"text": "Utilizamos cookies para mejorar su experiencia de navegación, servir anuncios personalizados o contenido y analizar nuestro tráfico. Al hacer clic en \"Aceptar todas las cookies\", usted consiente nuestro uso de cookies.",
-	"btn_accept": "Aceptar todas las cookies",
-	"btn_cancel": "Rechazar"
-  }
+		"title": "Comienza Hoy",
+		"description": "Completa el formulario a continuación para programar tu consulta gratuita y dar el primer paso hacia tus metas de fitness.",
+		"name_placeholder": "Nombre",
+		"email_placeholder": "Correo Electrónico",
+		"message_placeholder": "Cuéntame sobre tus objetivos de fitness",
+		"submit_button": "Programar Consulta",
+		"calendar_link": "Agregar a Google Calendar"
+	},
+	"transformations": {
+		"title": "Transformaciones Increíbles",
+		"before": "Antes",
+		"after": "Después"
+	},
+	"footer": {
+		"copyright": "© 2024 Entrenador Físico. Todos los derechos reservados.",
+		"terms": "Términos de Servicio",
+		"privacy": "Política de Privacidad"
+	},
+	"cookies": {
+		"title": "Usamos cookies",
+		"text": "Utilizamos cookies para mejorar su experiencia de navegación, servir anuncios personalizados o contenido y analizar nuestro tráfico. Al hacer clic en \"Aceptar todas las cookies\", usted consiente nuestro uso de cookies.",
+		"btn_accept": "Aceptar todas las cookies",
+		"btn_cancel": "Rechazar"
+	}
 }

@@ -11,8 +11,11 @@
 		"about": "About Me",
 		"services": "Services",
 		"testimonials": "Testimonials",
+		"transformations": "Transformations",
 		"contact": "Contact",
-		"schedule-consultation": "Schedule your consultation"
+		"schedule-consultation": "Schedule your consultation",
+		"join_team_pmvm": "Join Team PMVM",
+		"start_your_change": "Start your change"
 	},
 	"hero": {
 		"title": "Weigh Less, Live More",
@@ -77,6 +80,11 @@
 		"message_placeholder": "Tell me about your fitness goals",
 		"submit_button": "Schedule Consultation",
 		"calendar_link": "Add to Google Calendar"
+	},
+	"transformations": {
+		"title": "Incredible Transformations",
+		"before": "Before",
+		"after": "After"
 	},
 	"footer": {
 		"copyright": "© 2024 Fitness Trainer. All rights reserved.",

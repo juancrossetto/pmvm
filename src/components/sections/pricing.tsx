@@ -71,24 +71,24 @@ export default Pricing;
 
 interface PlanCardProps {
 	plan: any;
-	key: number;
 }
-const PlanCard = ({ plan, key }: PlanCardProps) => {
+const PlanCard = ({ plan }: PlanCardProps) => {
 	const t = useTranslations("general");
 	const locale = useLocale();
 	return (
 		<div
-			key={key}
 			className='px-4 sm:px-4 py-2 sm:py-4 mx-4 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-95 border border-opacity-20 duration-1000 ease-in-out transform rounded-lg transition-transform max-w-[500px] cursor-pointer hover:bg-lightColor hover:bg-opacity-20 hover:scale-[1.005] 
 		bg-white dark:bg-darkColor hover:text-darkColor hover:dark:text-lightColor hover:opacity-100'
 		>
 			<div className='text-base sm:text-lg bg-primaryColor text-darkColor text-center rounded-md mb-3 uppercase'>
 				{t("monthly_payment")}
 			</div>
-			<p className='text-2xl sm:text-4xl font-bold text-center'>
-				{plan.title[locale]}
-				<p className='text-sm opacity-50 sm:min-h-[5rem]'>{plan.description[locale]}</p>
-			</p>
+			<div className='text-2xl sm:text-4xl font-bold text-center'>
+				<p className='py-3'>{plan.title[locale]}</p>
+				<p className='text-sm opacity-50 sm:min-h-[5rem]'>
+					{plan.description[locale]}
+				</p>
+			</div>
 			<h4 className='mt-2 text-lg sm:text-2xl font-semibold text-primaryColor text-center'>
 				{plan.price[locale]}
 			</h4>

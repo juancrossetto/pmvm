@@ -59,13 +59,13 @@ const Hero = () => {
 								</Link>
 							</div>
 							<div className='home-sci'>
-								<Link href='#'>
+								<Link target="_blank" href='#'>
 									<FaTwitter />
 								</Link>
-								<Link href='#'>
+								<Link target="_blank" href='https://www.instagram.com/alegerez/'>
 									<FaInstagram />
 								</Link>
-								<Link href='#'>
+								<Link target="_blank" href='https://www.facebook.com/alejandro.gerezcdp/'>
 									<FaFacebookF />
 								</Link>
 							</div>

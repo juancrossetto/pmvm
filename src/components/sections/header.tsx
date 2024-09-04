@@ -48,9 +48,9 @@ export const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const t = useTranslations("header");
 	const navItems = [
-		{ name: "services", href: "#services" },
-		{ name: "testimonials", href: "#testimonials" },
-		{ name: "contact", href: "#contact" },
+		{ name: "about", href: "#about" },
+		{ name: "transformations", href: "#transformations" },
+		{ name: "start_your_change", href: "#contact" },
 	];
 	return (
 		<nav className='navbar shadow-md'>
@@ -90,7 +90,7 @@ export const Navbar = () => {
 									onClick={() => setIsOpen(!isOpen)}
 								>
 									<span className='sr-only'>Abrir menú principal</span>
-									<Menu className='h-6 w-6' aria-hidden='true' />
+									<Menu className='h-6 w-6 text-lightColor' aria-hidden='true' />
 								</Button>
 							</SheetTrigger>
 							<SheetContent
