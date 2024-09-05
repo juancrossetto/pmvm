@@ -76,10 +76,12 @@
 		"title": "Comece Hoje",
 		"description": "Preencha o formulário abaixo para agendar sua consulta gratuita e dar o primeiro passo em direção aos seus objetivos de fitness.",
 		"name_placeholder": "Nome",
+		"phone_placeholder": "Telefone",
 		"email_placeholder": "E-mail",
 		"message_placeholder": "Conte-me sobre seus objetivos de fitness",
 		"submit_button": "Agendar Consulta",
-		"calendar_link": "Adicionar ao Google Calendar"
+		"calendar_link": "Adicionar ao Google Calendar",
+		"send_message": "Enviar mensagem"
 	},
 	"transformations": {
 		"title": "Transformações Incríveis",

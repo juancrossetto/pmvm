@@ -3,46 +3,58 @@ import { useTranslations } from "next-intl";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const ContactUs = () => {
 	const t = useTranslations("contact");
 	return (
-		<section id="contact" className='w-full py-12 sm:py-24 lg:py-32 relative bg-white dark:bg-darkColor'>
-			<div className='container px-4 md:px-6 space-y-12'>
-				<div className='flex flex-col items-center justify-center text-center'>
-					<div className='space-y-2'>
-						<h2 className='text-3xl font-bold tracking-tighter sm:text-5xl text-primaryColor'>
-							{t('title')}
-						</h2>
-						<p className='max-w-[900px] text-g dark:text-lightColor md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'>
-							{t('description')}
-						</p>
+		<section
+			id='contact'
+			className='w-full py-12 md:py-24  bg-white dark:bg-darkColor'
+		>
+			<div className='container px-4 md:px-6'>
+				<div className='flex flex-col lg:flex-row items-center'>
+					<div className='w-full lg:w-1/2 mb-8 lg:mb-0 lg:pr-8'>
+						<Image
+							alt='Entrenamiento físico'
+							className='rounded-xl object-cover w-full h-full'
+							height='800'
+							src='/placeholder.svg'
+							width='800'
+							style={{
+								aspectRatio: "1/1",
+								objectFit: "cover",
+							}}
+						/>
+					</div>
+					<div className='w-full lg:w-1/2 space-y-8'>
+						<div className='space-y-4'>
+							<h2 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primaryColor'>
+								{t("title")}
+							</h2>
+							<p className='text-gray-500 dark:text-gray-400'>
+								{t("description")}
+							</p>
+						</div>
+						<form className='space-y-4'>
+							<Input placeholder={t("name_placeholder")} required />
+							<Input type='tel' placeholder={t("phone_placeholder")} required />
+							<Input
+								type='email'
+								placeholder={t("email_placeholder")}
+								required
+							/>
+							<Textarea placeholder={t("message_placeholder")} required />
+							<Button
+								type='submit'
+								className='relative h-[50px] w-full overflow-hidden border border-primaryColor bg-primaryColor text-darkColor shadow-2xl transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-primaryColor hover:before:w-2/4 hover:before:bg-darkColor hover:after:w-2/4 hover:after:bg-darkColor
+				rounded-lg inline-flex text-[13px] items-center justify-center font-medium'
+							>
+								<span className='relative z-10 flex'>{t("send_message")}</span>
+							</Button>
+						</form>
 					</div>
 				</div>
-				<div className='mx-auto w-full max-w-md space-y-2'>
-					<form className='flex flex-col gap-4 text-darkColor dark:text-white'>
-						<Input type='text' placeholder={t('name_placeholder')} className='max-w-lg flex-1' />
-						<Input
-							type='email'
-							placeholder={t('email_placeholder')}
-							className='max-w-lg flex-1 text-darkColor dark:text-white'
-						/>
-						<Textarea
-							placeholder={t('message_placeholder')}
-							className='max-w-lg flex-1'
-						/>
-						<Button type='submit' className="bg-primaryColor">{t('submit_button')}</Button>
-					</form>
-					{/* <a
-						href='https://calendar.google.com/calendar/u/0/r/eventedit?text=Consulta+Gratis&dates=20240824T100000Z/20240824T110000Z&details=Habla+con+nuestro+entrenador+sobre+tus+objetivos+de+fitness&location=Tu+Ubicación&sf=true'
-						target='_blank'
-						rel='noopener noreferrer'
-						className='inline-flex mt-4 h-10 items-center justify-center rounded-md bg-blue-500 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50'
-					>
-						{t('calendar_link')}
-					</a> */}
-				</div>
-				{/* <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-cover bg-center opacity-20 z-[-1]" /> */}
 			</div>
 		</section>
 	);

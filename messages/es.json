@@ -76,10 +76,12 @@
 		"title": "Comienza Hoy",
 		"description": "Completa el formulario a continuación para programar tu consulta gratuita y dar el primer paso hacia tus metas de fitness.",
 		"name_placeholder": "Nombre",
+		"phone_placeholder": "Teléfono",
 		"email_placeholder": "Correo Electrónico",
 		"message_placeholder": "Cuéntame sobre tus objetivos de fitness",
 		"submit_button": "Programar Consulta",
-		"calendar_link": "Agregar a Google Calendar"
+		"calendar_link": "Agregar a Google Calendar",
+		"send_message": "Enviar mensaje"
 	},
 	"transformations": {
 		"title": "Transformaciones Increíbles",

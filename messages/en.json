@@ -76,10 +76,12 @@
 		"title": "Get Started Today",
 		"description": "Fill out the form below to schedule your free consultation and take the first step towards your fitness goals.",
 		"name_placeholder": "Name",
+		"phone_placeholder": "Phone",
 		"email_placeholder": "Email",
 		"message_placeholder": "Tell me about your fitness goals",
 		"submit_button": "Schedule Consultation",
-		"calendar_link": "Add to Google Calendar"
+		"calendar_link": "Add to Google Calendar",
+		"send_message": "Send message"
 	},
 	"transformations": {
 		"title": "Incredible Transformations",

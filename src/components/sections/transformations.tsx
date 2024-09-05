@@ -40,8 +40,8 @@ const TransformationCard = ({
 				<Image
 					src={transformation.beforeImage}
 					alt={`${transformation.clientName[locale]} beforeImage`}
-					className='w-40 h-56 object-cover rounded-md'
-					width={40}
+					className='w-full md:w-96 h-56 object-cover rounded-md'
+					width={56}
 					height={56}
 				/>
 				<span className='absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-1 text-xs rounded'>
@@ -52,8 +52,8 @@ const TransformationCard = ({
 				<Image
 					src={transformation.afterImage}
 					alt={`${transformation.clientName[locale]} {t("after")}`}
-					className='w-40 h-56 object-cover rounded-md'
-					width={40}
+					className='w-full md:w-96 h-56 object-cover rounded-md'
+					width={56}
 					height={56}
 				/>
 				<span className='absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 text-xs rounded'>
@@ -91,8 +91,8 @@ const TransformationDialog = ({
 							<Image
 								src={transformation?.beforeImage}
 								alt={`${transformation?.clientName[locale]} beforeImage`}
-								className='w-64 h-80 object-cover rounded-md'
-								width={64}
+								className='w-full md:w-96 h-80 object-cover rounded-md'
+								width={80}
 								height={80}
 							/>
 							<span className='absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-1 text-sm rounded'>
@@ -105,8 +105,8 @@ const TransformationDialog = ({
 							<Image
 								src={transformation?.afterImage}
 								alt={`${transformation?.clientName[locale]} {t("after")}`}
-								className='w-64 h-80 object-cover rounded-md'
-								width={64}
+								className='w-full md:w-96 h-80 object-cover rounded-md'
+								width={80}
 								height={80}
 							/>
 							<span className='absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 text-sm rounded'>
