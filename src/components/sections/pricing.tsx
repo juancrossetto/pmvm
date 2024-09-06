@@ -96,12 +96,12 @@ const PlanCard = ({ plan }: PlanCardProps) => {
 				{plan.items.map((item: any, itemIndex: number) => {
 					const text = item[locale];
 					const truncatedText =
-						text.length > 60 ? `${text.slice(0, 60)}...` : text;
+						text.length > 160 ? `${text.slice(0, 160)}...` : text;
 					return (
 						<div key={itemIndex} className='flex items-center'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
-								className='w-5 h-5 text-primaryColor min-w-[16px]'
+								className='w-5 h-5 text-primaryColor min-w-[16px] flex-shrink-0'
 								viewBox='0 0 20 20'
 								fill='currentColor'
 							>
@@ -162,7 +162,7 @@ const PlanCard = ({ plan }: PlanCardProps) => {
 							{plan.items.map((item: any, itemIndex: number) => {
 								const text = item[locale];
 								const truncatedText =
-									text.length > 45 ? `${text.slice(0, 45)}...` : text;
+									text.length > 145 ? `${text.slice(0, 145)}...` : text;
 
 								return (
 									<AccordionItem

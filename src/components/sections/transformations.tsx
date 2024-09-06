@@ -78,7 +78,7 @@ const TransformationDialog = ({
 	locale,
 }: any) => (
 	<Dialog open={isOpen} onOpenChange={onClose}>
-		<DialogContent className='sm:max-w-[700px] bg-white dark:bg-darkColor'>
+		<DialogContent className='sm:max-w-[700px] bg-white dark:bg-darkColor max-h-[90vh] sm:max-h-[100vh] overflow-y-auto'>
 			<DialogTitle className='sr-only'>Transformation Details</DialogTitle>
 			<DialogClose asChild />
 			<div className='grid gap-4 py-4'>
@@ -91,7 +91,7 @@ const TransformationDialog = ({
 							<Image
 								src={transformation?.beforeImage}
 								alt={`${transformation?.clientName[locale]} beforeImage`}
-								className='w-full md:w-96 h-80 object-cover rounded-md'
+								className='w-full md:w-96 h-60 sm:h-80 object-cover rounded-md'
 								width={80}
 								height={80}
 							/>
@@ -105,7 +105,7 @@ const TransformationDialog = ({
 							<Image
 								src={transformation?.afterImage}
 								alt={`${transformation?.clientName[locale]} {t("after")}`}
-								className='w-full md:w-96 h-80 object-cover rounded-md'
+								className='w-full md:w-96 h-60 sm:h-80 object-cover rounded-md'
 								width={80}
 								height={80}
 							/>

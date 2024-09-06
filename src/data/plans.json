@@ -6,9 +6,9 @@
             "pt": "Workout"
         },
         "description": {
-            "en": "This plan offers a comprehensive fitness approach with personalized training routines, nutritional guidance, and motivational support to help you achieve your fitness goals.",
-            "es": "Este plan ofrece un enfoque integral de fitness con rutinas de entrenamiento personalizadas, orientación nutricional y apoyo motivacional para ayudarte a alcanzar tus objetivos de fitness.",
-            "pt": "Este plano oferece uma abordagem completa de fitness com rotinas de treino personalizadas, orientação nutricional e apoio motivacional para ajudar você a alcançar seus objetivos de fitness."
+            "es": "Este plan ofrece un enfoque integral con rutinas personalizadas, orientación nutricional y el apoyo motivacional para ayudarte a alcanzar tus objetivos y hacerlos sostenibles en el tiempo.",
+            "en": "This plan offers a comprehensive approach with personalized routines, nutritional guidance and motivational support to help you achieve your goals and make them sustainable over time.",
+            "pt": "Este plano oferece uma abordagem abrangente com rotinas personalizadas, orientação nutricional e apoio motivacional para o ajudar a atingir os seus objetivos e torná-los sustentáveis ​​ao longo do tempo."
         },
         "items": [
             {
@@ -135,9 +135,9 @@
             "pt": "Workout Mind & Nutri"
         },
         "description": {
-            "en": "This advanced plan combines physical training with nutritional and psychological support, tailored to those who seek a holistic approach to health and wellness.",
-            "es": "Este plan avanzado combina entrenamiento físico con apoyo nutricional y psicológico, diseñado para aquellos que buscan un enfoque holístico de salud y bienestar.",
-            "pt": "Este plano avançado combina treino físico com suporte nutricional e psicológico, direcionado para aqueles que buscam uma abordagem holística para saúde e bem-estar."
+            "es": "Este plan PREMIUM está enfocado a combinar los entrenamientos con apoyo nutricional y psicológico con los mejores especialistas en la materia, diseñado para aquellos que buscan un enfoque holístico de salud y bienestar.",
+            "en": "This PREMIUM plan is focused on combining training with nutritional and psychological support from the best specialists in the field, designed for those seeking a holistic approach to health and well-being.",
+            "pt": "Este plano PREMIUM centra-se aliar a formação ao apoio nutricional e psicológico dos melhores especialistas na área, pensado para quem procura uma abordagem holística da saúde e do bem-estar."
         },
         "items": [
             {
