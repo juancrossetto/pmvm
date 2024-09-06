@@ -44,7 +44,7 @@ const Loading = ({ loading }: LoadingProps) => {
 					<AvatarImage
 						className='bg-white'
 						src={`/images/icon.webp`}
-						alt={"Pesá menos, viví más"}
+						alt={"Pesar Menos Vivir Más"}
 					/>
 					<AvatarFallback>PMVM</AvatarFallback>
 				</Avatar>

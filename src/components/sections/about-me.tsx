@@ -81,14 +81,14 @@ const AboutMe = () => {
 				/>
 				<div className='container px-4 md:px-6'>
 					<div className='relative min-h-[140px] flex items-center justify-center overflow-hidden'>
-						<div className='absolute w-full max-w-[360px] sm:max-w-[420px] md:max-w-[520px] mx-auto'>
-							<h3 className='absolute top-[-4px] left-4 text-[22px] sm:text-[26px] md:text-[32px] font-light'>
+						<div className='absolute w-full max-w-[400px] sm:max-w-[480px] md:max-w-[600px] mx-auto'>
+							<h3 className='absolute top-[-4px] left-4 text-[20px] sm:text-[26px] md:text-[32px] font-light'>
 								{t("title_1")}
 							</h3>
-							<h1 className='text-[32px] sm:text-[38px] md:text-[56px] font-bold text-left my-8 ml-6 md:ml-10 lg:ml-14 uppercase text-primaryColor'>
+							<h1 className='text-[32px] sm:text-[38px] md:text-[50px] font-bold text-left my-8 ml-6 md:ml-10 lg:ml-14 uppercase text-primaryColor'>
 								{t("title_2")}
 							</h1>
-							<h3 className='absolute bottom-[-4px] right-4 text-[22px] sm:text-[26px] md:text-[32px] font-light'>
+							<h3 className='absolute bottom-[-4px] right-4 text-[20px] sm:text-[26px] md:text-[32px] font-light'>
 								{t("title_3")}
 							</h3>
 						</div>
@@ -98,7 +98,7 @@ const AboutMe = () => {
 					{/* <h2 className='text-[32px] font-bold tracking-tighter sm:text-[38px] md:text-[50px] text-center mb-12 text-primaryColor'>
 						{tHeader("about")}
 					</h2> */}
-					<div className='grid grid-cols-1 md:grid-cols-2 gap-6 items-center'>
+					<div className='grid grid-cols-1 md:grid-cols-2 gap-4 items-center'>
 						<Parallax speed={10} className='space-y-4 order-2 md:order-1'>
 							<div className='max-w-[600px] bg-transparent rounded-[20px] flex flex-col justify-center items-start w-full p-5'>
 								{/* <Typewriter
@@ -111,7 +111,7 @@ const AboutMe = () => {
 									text={t("content_1")}
 									delay={5}
 									as='p'
-									className='relative text-[16px] sm:text-base my-5 mb-10 text-darkColor dark:text-lightColor'
+									className='relative text-[16px] sm:text-base  text-darkColor dark:text-lightColor'
 								/>
 							</div>
 						</Parallax>
@@ -153,7 +153,7 @@ const AboutMe = () => {
 									text={t("content_2")}
 									delay={5}
 									as='p'
-									className='relative text-[14px] sm:text-base my-5 mb-10 text-darkColor dark:text-lightColor'
+									className='relative text-[16px] sm:text-base  text-darkColor dark:text-lightColor'
 								/>
 							</div>
 						</Parallax>
@@ -171,7 +171,7 @@ const AboutMe = () => {
 									text={t("content_3")}
 									delay={5}
 									as='p'
-									className='relative text-[14px] sm:text-base my-5 mb-10 text-darkColor dark:text-lightColor'
+									className='relative text-[16px] sm:text-base  text-darkColor dark:text-lightColor'
 								/>
 							</div>
 						</Parallax>

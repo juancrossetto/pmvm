@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import {
 	// Inter,
-	//  Poppins,
-	Bebas_Neue,
+	 Poppins,
+	// Bebas_Neue,
 } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
@@ -20,21 +20,21 @@ import { Providers } from "./providers";
 // 	variable: "--font-body",
 // });
 
-// const poppins = Poppins({
-// 	subsets: ["latin"],
-// 	weight: ["400", "700"], // Puedes incluir otros pesos si lo necesitas
-// 	variable: "--font-poppins", // Define una variable CSS para la fuente
-// });
-
-const bebasNeue = Bebas_Neue({
+const poppins = Poppins({
 	subsets: ["latin"],
-	weight: ["400"],
-	variable: "--font-bebasNeue",
+	weight: ["400", "700"], // Puedes incluir otros pesos si lo necesitas
+	variable: "--font-poppins", // Define una variable CSS para la fuente
 });
+
+// const bebasNeue = Bebas_Neue({
+// 	subsets: ["latin"],
+// 	weight: ["400"],
+// 	variable: "--font-bebasNeue",
+// });
 
 export const metadata: Metadata = {
 	title: "PMVM",
-	description: "Pesá menos, viví más",
+	description: "Pesar Menos Vivir Más",
 	icons: {
 		icon: "/favico.ico",
 	},
@@ -52,7 +52,7 @@ export default function RootLayout({
 					"antialiased",
 					// fontHeading.variable,
 					// fontBody.variable,
-					bebasNeue.variable
+					poppins.variable
 				)}
 			>
 				<Providers>{children}</Providers>

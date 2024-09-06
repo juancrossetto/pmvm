@@ -48,7 +48,7 @@ const ParallaxText = ({ children, baseVelocity = 100 }: ParallaxProps) => {
 	return (
 		<div className='parallax overflow-hidden tracking-[-2px] leading-[0.8] m-0 whitespace-nowrap flex flex-nowrap'>
 			<motion.div
-				className='scroller font-semibold uppercase text-[50px] flex whitespace-nowrap flex-nowrap'
+				className='scroller font-semibold uppercase text-[44px] flex whitespace-nowrap flex-nowrap'
 				style={{ x }}
 			>
 				<Text>{children}</Text>
