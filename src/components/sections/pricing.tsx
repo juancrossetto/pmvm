@@ -77,7 +77,7 @@ const PlanCard = ({ plan }: PlanCardProps) => {
 	const locale = useLocale();
 	return (
 		<div
-			className='px-4 sm:px-4 py-2 sm:py-4 mx-4 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-95 border border-opacity-20 duration-1000 ease-in-out transform rounded-lg transition-transform max-w-[500px] cursor-pointer hover:bg-lightColor hover:bg-opacity-20 hover:scale-[1.005] 
+			className='px-4 sm:px-4 py-2 sm:py-4 mx-4 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-95 border border-opacity-20 duration-1000 ease-in-out transform rounded-lg transition-transform max-w-[500px] cursor-pointer hover:bg-lightColor hover:bg-opacity-20
 		bg-white dark:bg-darkColor hover:text-darkColor hover:dark:text-lightColor hover:opacity-100'
 		>
 			<div className='text-base sm:text-lg bg-primaryColor text-darkColor text-center rounded-md mb-3 uppercase'>
@@ -85,14 +85,14 @@ const PlanCard = ({ plan }: PlanCardProps) => {
 			</div>
 			<div className='text-2xl sm:text-4xl font-bold text-center'>
 				<p className='py-3'>{plan.title[locale]}</p>
-				<p className='text-sm opacity-50 sm:min-h-[5rem]'>
+				{/* <p className='text-sm opacity-50 sm:min-h-[5rem]'>
 					{plan.description[locale]}
-				</p>
+				</p> */}
 			</div>
 			{/* <h4 className='mt-2 text-lg sm:text-2xl font-semibold text-primaryColor text-center'>
 				{plan.price[locale]}
 			</h4> */}
-			<div className='mt-8 space-y-3.5 sm:space-y-4 sm:min-h-[32rem]'>
+			{/* <div className='mt-8 space-y-3.5 sm:space-y-4 sm:min-h-[32rem]'>
 				{plan.items.map((item: any, itemIndex: number) => {
 					const text = item[locale];
 					const truncatedText =
@@ -124,7 +124,53 @@ const PlanCard = ({ plan }: PlanCardProps) => {
 						</div>
 					);
 				})}
+			</div> */}
+
+			<div className='mb-4'>
+				<p className='text-darkColor dark:text-lightColor text-sm opacity-90 sm:min-h-[5rem]'>
+					{plan.description[locale]}
+				</p>
+				{/* <p className='text-xl font-bold mt-2'>{plan.price[locale]}</p> */}
 			</div>
+			<Accordion
+				type='single'
+				collapsible
+				className='w-full mb-6 sm:min-h-[720px]'
+			>
+				{plan.items.map((item: any, itemIndex: number) => {
+					const text = item[locale];
+					const truncatedText =
+						text.length > 145 ? `${text.slice(0, 145)}...` : text;
+
+					return (
+						<AccordionItem
+							value={`item-${itemIndex}`}
+							key={itemIndex}
+							className='border-primaryColor'
+						>
+							<AccordionTrigger className='hover:text-primaryColor'>
+								<span className='flex items-center'>
+									<DynamicIcon icon={item.icon} className='text-primaryColor' />
+									<TooltipProvider>
+										<Tooltip>
+											<TooltipTrigger asChild>
+												<span className='text-xs ml-2 text-darkColor dark:text-lightColor'>
+													{truncatedText}
+												</span>
+											</TooltipTrigger>
+											{text.length > 45 && (
+												<TooltipContent>{text}</TooltipContent>
+											)}
+										</Tooltip>
+									</TooltipProvider>
+								</span>
+							</AccordionTrigger>
+							<AccordionContent>{item.description[locale]}</AccordionContent>
+						</AccordionItem>
+					);
+				})}
+			</Accordion>
+
 			<div className='flex justify-center items-center gap-6 flex-col mt-8'>
 				<Link
 					href='https://form.jotform.com/242192994073362'
@@ -137,7 +183,13 @@ const PlanCard = ({ plan }: PlanCardProps) => {
 						{t("i_want_to_start")} <ArrowRightIcon />
 					</span>
 				</Link>
-				<Dialog>
+				<Link
+					href='#contact'
+					className='relative h-[50px] w-40 overflow-hidden border border-primaryColor bg-transparent text-gray-700 dark:text-primaryColor shadow-2xl transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-darkColor hover:before:w-2/4 hover:before:bg-lightColor hover:after:w-2/4 hover:after:bg-lightColor hover:border-darkColor rounded-lg inline-flex text-[13px] justify-center items-center'
+				>
+					<span className='relative z-10'>{t("view_detail")}</span>
+				</Link>
+				{/* <Dialog>
 					<DialogTrigger asChild>
 						<Button
 							variant='outline'
@@ -156,7 +208,7 @@ const PlanCard = ({ plan }: PlanCardProps) => {
 							<p className='text-sm text-muted-foreground'>
 								{plan.description[locale]}
 							</p>
-							{/* <p className='text-xl font-bold mt-2'>{plan.price[locale]}</p> */}
+							<p className='text-xl font-bold mt-2'>{plan.price[locale]}</p>
 						</div>
 						<Accordion type='single' collapsible className='w-full mb-6'>
 							{plan.items.map((item: any, itemIndex: number) => {
@@ -207,7 +259,7 @@ const PlanCard = ({ plan }: PlanCardProps) => {
 							</span>
 						</Button>
 					</DialogContent>
-				</Dialog>
+				</Dialog> */}
 			</div>
 		</div>
 	);

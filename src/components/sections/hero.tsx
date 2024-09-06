@@ -30,7 +30,7 @@ const Hero = () => {
 					style={{ scale: isMobile ? 1 : scale }}
 					// className='absolute top-0 w-full h-full flex items-center justify-center'
 				>
-					<Header />
+					{/* <Header /> */}
 					<section className='home'>
 						<Video
 							preload='auto'

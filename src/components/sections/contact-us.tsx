@@ -17,7 +17,7 @@ const ContactUs = () => {
 					<div className='w-full lg:w-1/2 mb-8 lg:mb-0 lg:pr-8'>
 						<Image
 							alt='Entrenamiento físico'
-							className='rounded-xl object-cover w-full h-full'
+							className='rounded-xl object-cover w-full h-full max-w-[700px] mx-auto'
 							height='800'
 							src='/placeholder.svg'
 							width='800'
