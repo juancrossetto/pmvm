@@ -151,14 +151,21 @@ export default function Transformations() {
 		<section className='py-16 bg-white dark:bg-darkColor'>
 			<div className='container mx-auto px-4'>
 				<motion.h2
-					className='text-3xl font-bold text-center mb-12 text-primaryColor'
+					className='text-4xl font-bold text-center mb-6 text-primaryColor'
 					initial={{ opacity: 0, y: -20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5 }}
 				>
 					{t("title")}
 				</motion.h2>
-
+				<motion.p
+					className='text-3xl text-center mb-6 text-darkColor dark:text-lightColor'
+					initial={{ opacity: 0, y: -20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.5 }}
+				>
+					{t("subtitle")}
+				</motion.p>
 				{/* Vista para móviles (carrusel) */}
 				<div className='md:hidden relative'>
 					<AnimatePresence mode='wait'>

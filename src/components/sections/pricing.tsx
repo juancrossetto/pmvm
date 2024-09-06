@@ -89,9 +89,9 @@ const PlanCard = ({ plan }: PlanCardProps) => {
 					{plan.description[locale]}
 				</p>
 			</div>
-			<h4 className='mt-2 text-lg sm:text-2xl font-semibold text-primaryColor text-center'>
+			{/* <h4 className='mt-2 text-lg sm:text-2xl font-semibold text-primaryColor text-center'>
 				{plan.price[locale]}
-			</h4>
+			</h4> */}
 			<div className='mt-8 space-y-3.5 sm:space-y-4 sm:min-h-[32rem]'>
 				{plan.items.map((item: any, itemIndex: number) => {
 					const text = item[locale];
@@ -156,7 +156,7 @@ const PlanCard = ({ plan }: PlanCardProps) => {
 							<p className='text-sm text-muted-foreground'>
 								{plan.description[locale]}
 							</p>
-							<p className='text-xl font-bold mt-2'>{plan.price[locale]}</p>
+							{/* <p className='text-xl font-bold mt-2'>{plan.price[locale]}</p> */}
 						</div>
 						<Accordion type='single' collapsible className='w-full mb-6'>
 							{plan.items.map((item: any, itemIndex: number) => {

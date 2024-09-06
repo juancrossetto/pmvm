@@ -15,13 +15,16 @@
 		"contact": "Contact",
 		"schedule-consultation": "Schedule your consultation",
 		"join_team_pmvm": "Join Team PMVM",
-		"start_your_change": "Start your change"
+		"start_your_change": "Start your change",
+		"start_now": "Start now",
+		"get_to_know_me": "Get to know me"
 	},
 	"hero": {
-		"title": "Weigh Less, Live More",
-		"subtitle": "Your journey to a healthier, more balanced life starts here.",
+		"title_1": "Weigh Less",
+		"title_2": "Live More",
+		"subtitle": "Every day is a new opportunity to change your life!",
+		"description": "Our personalized training plans will help you raise awareness about the importance of maintaining a healthy weight and adopting a balanced lifestyle, setting achievable goals and objectives.",
 		"about_me": "Head trainer and physical trainer",
-		"description": "Transform your life with a comprehensive approach to health and wellness. Our personalized training plans will help you achieve your goals and enjoy a lighter, fuller life.",
 		"start_now": "Start Now",
 		"learn_more": "Learn More"
 	},
@@ -45,9 +48,13 @@
 		"image_alt": "Fitness Expertise"
 	},
 	"about": {
-		"title": "About Me",
+		"title_1": "Meet",
+		"title_2": "Alejandro Gerez",
+		"title_3": "founder of the P-V+ program",
 		"greeting": "Hi, I'm Ale Gerez",
-		"content": "With over 10 years of experience in the fitness and health field, I am dedicated to helping my clients achieve their physical and mental goals. My approach is based on creating personalized plans that adapt to the unique needs and objectives of each individual.",
+		"content_1": "Since I was a child, by using food as an escape route, I accumulated weight until I reached 160 kg. I believed that a diet was the solution and I looked for the perfect combination of foods that would magically make me lose weight.",
+		"content_2": "I started my journey on the television program “Cuestión de Peso” and managed to lose 50 kg. However, after the program, I gained weight again because the change I had achieved was only physical, not mental. Over time, I understood that true transformation goes far beyond a simple before and after photo.",
+		"content_3": "Today, I can say that I transformed myself from a place of peace with food and with my body, leaving behind the struggle and suffering. This path not only included self-knowledge, but also therapy, which allowed me to truly heal and build a healthier and more loving relationship with myself.",
 		"title2": "Transform Your Life with 'Weigh Less, Live More'",
 		"content2": "At 'Weigh Less, Live More,' we believe that the path to a healthier life is not just about losing weight but gaining wellness, energy, and confidence. Our personalized training program is designed to fit your needs, goals, and lifestyle. With a holistic approach to physical and mental health, we offer effective exercise plans, nutritional guidance, and ongoing support to help you achieve your goals safely and sustainably. Join us and discover how you can live a fuller, more active, and happier life."
 	},
@@ -84,7 +91,8 @@
 		"send_message": "Send message"
 	},
 	"transformations": {
-		"title": "Incredible Transformations",
+		"title": "Transformations",
+		"subtitle": "some changes in my students",
 		"before": "Before",
 		"after": "After"
 	},

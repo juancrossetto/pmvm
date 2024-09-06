@@ -18,10 +18,11 @@
 		"start_your_change": "Inicie a sua alteração"
 	},
 	"hero": {
-		"title": "Pese Menos, Viva Mais",
-		"subtitle": "Sua jornada para uma vida mais saudável e equilibrada começa aqui.",
+		"title_1": "Pese Menos",
+		"title_2": "Viva Mais",
+		"subtitle": "Cada dia é uma nova oportunidade para mudar de vida!",
+		"description": "Os nossos planos de treino personalizados irão ajudá-lo a consciencializar sobre a importância de manter um peso saudável e adotar um estilo de vida equilibrado, estabelecendo metas e objetivos alcançáveis.",
 		"about_me": "Treinador principal e preparador físico",
-		"description": "Transforme sua vida com uma abordagem completa para a saúde e o bem-estar. Nossos planos de treinamento personalizados ajudarão você a atingir seus objetivos e a desfrutar de uma vida mais leve e plena.",
 		"start_now": "Comece Agora",
 		"learn_more": "Saiba Mais"
 	},
@@ -45,9 +46,13 @@
 		"image_alt": "Experiência em Fitness"
 	},
 	"about": {
-		"title": "Sobre Mim",
+		"title_1": "Conheça",
+		"title_2": "Alejandro Gerez",
+		"title_3": "fundador do programa P-V+",
 		"greeting": "Olá, eu sou o Ale Gerez",
-		"content": "Com mais de 10 anos de experiência na área de fitness e saúde, dedico-me a ajudar meus clientes a alcançar seus objetivos físicos e mentais. Minha abordagem é baseada na criação de planos personalizados que se adaptam às necessidades e objetivos únicos de cada indivíduo.",
+		"content_1": "Desde criança, usando a comida como escape, fui acumulando peso até atingir os 160 kg. Acreditava que uma dieta era a solução e procurava a combinação perfeita de alimentos que me fizessem perder peso por magia.",
+		"content_2": "Comecei o meu percurso no programa televisivo “A Cuestión de Peso” e consegui perder 50 kg. No entanto, depois do programa, voltei a engordar porque a mudança que fiz foi apenas física, não mental. Com o passar do tempo, fui compreendendo que a verdadeira transformação vai muito além de uma simples foto de antes e depois.",
+		"content_3": "Hoje posso dizer que me transformei de um lugar de paz com a comida e com o meu corpo, deixando a luta e o sofrimento para trás. Este caminho incluiu não só o autoconhecimento, mas também a terapia, o que me permitiu curar verdadeiramente e construir uma relação mais saudável e amorosa comigo mesma.",
 		"title2": "Transforme Sua Vida com 'Pese Menos, Viva Mais'",
 		"content2": "No 'Pese Menos, Viva Mais', acreditamos que o caminho para uma vida mais saudável não se trata apenas de perder peso, mas de ganhar bem-estar, energia e confiança. Nosso programa de treinamento personalizado é projetado para se adaptar às suas necessidades, objetivos e estilo de vida. Com uma abordagem holística à saúde física e mental, oferecemos planos de exercícios eficazes, orientação nutricional e apoio contínuo para ajudá-lo a alcançar seus objetivos de forma segura e sustentável. Junte-se a nós e descubra como você pode viver de forma mais plena, mais ativa e mais feliz."
 	},
@@ -84,7 +89,8 @@
 		"send_message": "Enviar mensagem"
 	},
 	"transformations": {
-		"title": "Transformações Incríveis",
+		"title": "Transformações",
+		"subtitle": "algumas alterações dos meus alunos",
 		"before": "Antes",
 		"after": "Depois"
 	},

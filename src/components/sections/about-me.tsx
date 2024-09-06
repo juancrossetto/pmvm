@@ -15,6 +15,7 @@ const AboutMe = () => {
 	const lessEmpty = useRef(null);
 	const image1 = useRef(null);
 	const image2 = useRef(null);
+	const image3 = useRef(null);
 
 	const tHeader = useTranslations("header");
 	const t = useTranslations("about");
@@ -63,7 +64,7 @@ const AboutMe = () => {
 				/>
 				<div
 					ref={lessEmpty}
-					className='absolute left-[30%] top-[95%] w-[100px] h-[25px] border-[3px] border-secondaryColor border-dashed rounded-lg rotate-6 z-10 opacity-20'
+					className='absolute left-[30%] top-[65%] w-[100px] h-[25px] border-[3px] border-secondaryColor border-dashed rounded-lg rotate-6 z-10 opacity-20'
 				/>
 				<Image
 					ref={plusEmpty}
@@ -76,32 +77,47 @@ const AboutMe = () => {
 				/>
 				<div
 					ref={less}
-					className='absolute right-[30%] top-[90%] w-[100px] h-[25px] border-[1px] border-secondaryColor bg-secondaryColor rounded-lg rotate-6 z-40 opacity-20'
+					className='absolute right-[30%] top-[60%] w-[100px] h-[25px] border-[1px] border-secondaryColor bg-secondaryColor rounded-lg rotate-6 z-40 opacity-20'
 				/>
 				<div className='container px-4 md:px-6'>
-					<h2 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12 text-primaryColor'>
+					<div className='relative min-h-[140px] flex items-center justify-center overflow-hidden'>
+						<div className='absolute w-full max-w-[360px] sm:max-w-[420px] md:max-w-[520px] mx-auto'>
+							<h3 className='absolute top-[-4px] left-4 text-[22px] sm:text-[26px] md:text-[32px] font-light'>
+								{t("title_1")}
+							</h3>
+							<h1 className='text-[32px] sm:text-[38px] md:text-[56px] font-bold text-left my-8 ml-6 md:ml-10 lg:ml-14 uppercase text-primaryColor'>
+								{t("title_2")}
+							</h1>
+							<h3 className='absolute bottom-[-4px] right-4 text-[22px] sm:text-[26px] md:text-[32px] font-light'>
+								{t("title_3")}
+							</h3>
+						</div>
+						{/* <div className='absolute top-0 right-0 w-[300px] h-[300px] border-4 border-primaryColor rounded-full transform translate-x-1/2 -translate-y-1/4'></div> */}
+					</div>
+
+					{/* <h2 className='text-[32px] font-bold tracking-tighter sm:text-[38px] md:text-[50px] text-center mb-12 text-primaryColor'>
 						{tHeader("about")}
-					</h2>
+					</h2> */}
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-6 items-center'>
-						<Parallax speed={10} className='space-y-4 md:order-1'>
+						<Parallax speed={10} className='space-y-4 order-2 md:order-1'>
 							<div className='max-w-[600px] bg-transparent rounded-[20px] flex flex-col justify-center items-start w-full p-5'>
-								<Typewriter
+								{/* <Typewriter
 									text={t("greeting")}
 									delay={100}
 									as='h1'
 									className='relative text-[28px] sm:text-[34px] font-bold leading-[1.2] text-secondaryColor'
-								/>
+								/> */}
 								<Typewriter
-									text={t("content")}
+									text={t("content_1")}
 									delay={5}
 									as='p'
-									className='relative text-[14px] sm:text-base my-5 mb-10 text-darkColor dark:text-lightColor'
+									className='relative text-[16px] sm:text-base my-5 mb-10 text-darkColor dark:text-lightColor'
 								/>
 							</div>
 						</Parallax>
 						<Parallax
 							scale={[0.5, 0.8]}
-							className='relative aspect-square md:order-2'
+							className='relative aspect-square order-1 md:order-2'
 						>
 							<Image
 								src='/placeholder.svg'
@@ -114,7 +130,7 @@ const AboutMe = () => {
 						</Parallax>
 						<Parallax
 							scale={[0.5, 0.8]}
-							className='relative aspect-square md:order-3'
+							className='relative aspect-square order-3 md:order-3'
 						>
 							<Image
 								src='/placeholder.svg'
@@ -125,21 +141,52 @@ const AboutMe = () => {
 								ref={image2}
 							/>
 						</Parallax>
-						<Parallax speed={10} className='space-y-4 md:order-4'>
+						<Parallax speed={10} className='space-y-4 order-4 md:order-4'>
 							<div className='max-w-[600px] bg-transparent rounded-[20px] flex flex-col justify-center items-start w-full p-5'>
-								<Typewriter
+								{/* <Typewriter
 									text={t("title2")}
 									delay={100}
 									as='h1'
 									className='relative text-[28px] sm:text-[34px] font-bold leading-[1.2] text-secondaryColor'
-								/>
+								/> */}
 								<Typewriter
-									text={t("content2")}
+									text={t("content_2")}
 									delay={5}
 									as='p'
 									className='relative text-[14px] sm:text-base my-5 mb-10 text-darkColor dark:text-lightColor'
 								/>
 							</div>
+						</Parallax>
+
+						{/* Tercer bloque: Texto e imagen (igual que el primero) */}
+						<Parallax speed={10} className='space-y-4 order-6 md:order-5'>
+							<div className='max-w-[600px] bg-transparent rounded-[20px] flex flex-col justify-center items-start w-full p-5'>
+								{/* <Typewriter
+									text={t("greeting")}
+									delay={100}
+									as='h1'
+									className='relative text-[28px] sm:text-[34px] font-bold leading-[1.2] text-secondaryColor'
+								/> */}
+								<Typewriter
+									text={t("content_3")}
+									delay={5}
+									as='p'
+									className='relative text-[14px] sm:text-base my-5 mb-10 text-darkColor dark:text-lightColor'
+								/>
+							</div>
+						</Parallax>
+						<Parallax
+							scale={[0.5, 0.8]}
+							className='relative aspect-square order-5 md:order-6'
+						>
+							<Image
+								src='/placeholder.svg'
+								alt='Foto profesional 3'
+								layout='fill'
+								objectFit='cover'
+								className='rounded-lg'
+								ref={image3}
+							/>
 						</Parallax>
 					</div>
 				</div>

@@ -26,9 +26,9 @@ const MyApp = () => {
 					<Hero />
 					<AboutMe />
 					<Metrics />
-					<Pricing />
-					<ParallaxMessage />
 					<Transformations />
+					<ParallaxMessage />
+					<Pricing />
 					{/* <Services />
 					<Testimonial /> */}
 					<ContactUs />
