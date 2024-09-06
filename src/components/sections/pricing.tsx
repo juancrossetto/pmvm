@@ -150,7 +150,7 @@ const PlanCard = ({ plan }: PlanCardProps) => {
 						>
 							<AccordionTrigger className='hover:text-primaryColor'>
 								<span className='flex items-center'>
-									<DynamicIcon icon={item.icon} className='text-primaryColor' />
+									<DynamicIcon icon={item.icon} className='text-primaryColor flex-shrink-0' />
 									<TooltipProvider>
 										<Tooltip>
 											<TooltipTrigger asChild>
