@@ -39,8 +39,8 @@ const Hero = () => {
 							fallbackImage='/images/bg-hero.webp'
 						/>
 						<div className='home-content'>
-							<h1>{t("title_1")}</h1>
-							<h1>{t("title_2")}</h1>
+							<h1 className="uppercase">{t("title_1")}</h1>
+							<h1 className="uppercase">{t("title_2")}</h1>
 							<h3>{t("subtitle")}</h3>
 							<p className='text-lightColor'>{t("description")}</p>
 							<div className='btn-box'>

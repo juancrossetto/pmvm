@@ -151,7 +151,7 @@ export default function Transformations() {
 		<section className='py-16 bg-white dark:bg-darkColor'>
 			<div className='container mx-auto px-4'>
 				<motion.h2
-					className='text-4xl font-bold text-center mb-6 text-primaryColor'
+					className='text-3xl sm:text-4xl font-bold text-center mb-2 sm:mb-6 text-primaryColor uppercase'
 					initial={{ opacity: 0, y: -20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5 }}
@@ -159,7 +159,7 @@ export default function Transformations() {
 					{t("title")}
 				</motion.h2>
 				<motion.p
-					className='text-3xl text-center mb-6 text-darkColor dark:text-lightColor'
+					className='text-xl sm:text-2xl text-center mb-2 sm:mb-6 text-darkColor dark:text-lightColor'
 					initial={{ opacity: 0, y: -20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5 }}

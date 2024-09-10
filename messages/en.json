@@ -16,8 +16,7 @@
 		"schedule-consultation": "Schedule your consultation",
 		"join_team_pmvm": "Join Team PMVM",
 		"start_your_change": "Start your change",
-		"start_now": "Start now",
-		"get_to_know_me": "Get to know me"
+		"start_now": "Start now"
 	},
 	"hero": {
 		"title_1": "Weigh Less",
@@ -26,7 +25,8 @@
 		"description": "Our personalized training plans will help you raise awareness about the importance of maintaining a healthy weight and adopting a balanced lifestyle, setting achievable goals and objectives.",
 		"about_me": "Head trainer and physical trainer",
 		"start_now": "Start Now",
-		"learn_more": "Learn More"
+		"learn_more": "Learn More",
+		"get_to_know_me": "Get to know me"
 	},
 	"services": {
 		"parallax_text_1": "Weigh less",
