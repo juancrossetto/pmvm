@@ -39,10 +39,10 @@ const TransformationCard = ({
 			<div className='relative'>
 				<Image
 					src={transformation.beforeImage}
-					alt={`${transformation.clientName[locale]} beforeImage`}
+					alt={`${transformation.clientName} beforeImage`}
 					className='w-full md:w-96 h-56 rounded-md'
-					width={56}
-					height={56}
+					width={400}  // 96 * 4
+					height={400} // 56 * 4
 				/>
 				<span className='absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-1 text-xs rounded'>
 					{t("before")}
@@ -51,10 +51,10 @@ const TransformationCard = ({
 			<div className='relative'>
 				<Image
 					src={transformation.afterImage}
-					alt={`${transformation.clientName[locale]} {t("after")}`}
+					alt={`${transformation.clientName} {t("after")}`}
 					className='w-full md:w-96 h-56 rounded-md'
-					width={56}
-					height={56}
+					width={400}  // 96 * 4
+					height={400} // 56 * 4
 				/>
 				<span className='absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 text-xs rounded'>
 					{t("after")}
@@ -62,7 +62,7 @@ const TransformationCard = ({
 			</div>
 		</div>
 		<h3 className='text-lg font-semibold mb-2'>
-			{transformation.clientName[locale]}
+			{transformation.clientName}
 		</h3>
 		<p className='text-sm text-muted-foreground text-center'>
 			{transformation.clientTestimonial[locale]}
@@ -83,17 +83,17 @@ const TransformationDialog = ({
 			<DialogClose asChild />
 			<div className='grid gap-4 py-4'>
 				<h2 className='text-2xl font-bold text-center'>
-					{transformation?.clientName[locale]}
+					{transformation?.clientName}
 				</h2>
 				<div className='flex flex-col md:flex-row justify-center items-center gap-4'>
 					{transformation?.beforeImage ? (
 						<div className='relative'>
 							<Image
 								src={transformation?.beforeImage}
-								alt={`${transformation?.clientName[locale]} beforeImage`}
+								alt={`${transformation?.clientName} beforeImage`}
 								className='w-full md:w-96 h-60 sm:h-80  rounded-md'
-								width={80}
-								height={80}
+								width={400}
+								height={400}
 							/>
 							<span className='absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-1 text-sm rounded'>
 								{t("before")}
@@ -104,10 +104,10 @@ const TransformationDialog = ({
 						<div className='relative'>
 							<Image
 								src={transformation?.afterImage}
-								alt={`${transformation?.clientName[locale]} {t("after")}`}
+								alt={`${transformation?.clientName} {t("after")}`}
 								className='w-full md:w-96 h-60 sm:h-80 rounded-md'
-								width={80}
-								height={80}
+								width={400}
+								height={400}
 							/>
 							<span className='absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 text-sm rounded'>
 								{t("after")}
