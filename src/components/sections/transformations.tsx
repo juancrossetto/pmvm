@@ -40,7 +40,7 @@ const TransformationCard = ({
 				<Image
 					src={transformation.beforeImage}
 					alt={`${transformation.clientName[locale]} beforeImage`}
-					className='w-full md:w-96 h-56 object-cover rounded-md'
+					className='w-full md:w-96 h-56 rounded-md'
 					width={56}
 					height={56}
 				/>
@@ -52,7 +52,7 @@ const TransformationCard = ({
 				<Image
 					src={transformation.afterImage}
 					alt={`${transformation.clientName[locale]} {t("after")}`}
-					className='w-full md:w-96 h-56 object-cover rounded-md'
+					className='w-full md:w-96 h-56 rounded-md'
 					width={56}
 					height={56}
 				/>
@@ -91,7 +91,7 @@ const TransformationDialog = ({
 							<Image
 								src={transformation?.beforeImage}
 								alt={`${transformation?.clientName[locale]} beforeImage`}
-								className='w-full md:w-96 h-60 sm:h-80 object-cover rounded-md'
+								className='w-full md:w-96 h-60 sm:h-80  rounded-md'
 								width={80}
 								height={80}
 							/>
@@ -105,7 +105,7 @@ const TransformationDialog = ({
 							<Image
 								src={transformation?.afterImage}
 								alt={`${transformation?.clientName[locale]} {t("after")}`}
-								className='w-full md:w-96 h-60 sm:h-80 object-cover rounded-md'
+								className='w-full md:w-96 h-60 sm:h-80 rounded-md'
 								width={80}
 								height={80}
 							/>

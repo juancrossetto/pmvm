@@ -1,77 +1,122 @@
 [
-    {
-      "clientName": "Juan Pérez",
-      "beforeImage": "/placeholder.svg",
-      "afterImage": "/placeholder.svg",
-      "clientTestimonial": {
-        "es": "Perdí 20 kg y gané mucha confianza. ¡Gracias al equipo!",
-        "pt": "Perdi 20 kg e ganhei muita confiança. Obrigado à equipe!",
-        "en": "I lost 20 kg and gained a lot of confidence. Thanks to the team!"
-      },
-      "clientDetail": {
-        "es": "Programa de 6 meses, enfocado en pérdida de peso y tonificación. Juan siguió una dieta balanceada y entrenó 4 veces por semana.",
-        "pt": "Programa de 6 meses, focado na perda de peso e tonificação. Juan seguiu uma dieta equilibrada e treinou 4 vezes por semana.",
-        "en": "6-month program focused on weight loss and toning. Juan followed a balanced diet and trained 4 times a week."
-      }
-    },
-    {
-      "clientName": "María García",
-      "beforeImage": "/placeholder.svg",
-      "afterImage": "/placeholder.svg",
-      "clientTestimonial": {
-        "es": "En 6 meses, logré el cuerpo que siempre soñé. Increíble experiencia.",
-        "pt": "Em 6 meses, consegui o corpo que sempre sonhei. Experiência incrível.",
-        "en": "In 6 months, I achieved the body I always dreamed of. Incredible experience."
-      },
-      "clientDetail": {
-        "es": "Programa de transformación corporal de 6 meses. María se enfocó en ganar masa muscular y definición, con 5 sesiones semanales de entrenamiento intensivo.",
-        "pt": "Programa de transformação corporal de 6 meses. Maria focou em ganhar massa muscular e definição, com 5 sessões semanais de treinamento intensivo.",
-        "en": "6-month body transformation program. María focused on gaining muscle mass and definition with 5 weekly sessions of intensive training."
-      }
-    },
-    {
-      "clientName": "Carlos Rodríguez",
-      "beforeImage": "/placeholder.svg",
-      "afterImage": "/placeholder.svg",
-      "clientTestimonial": {
-        "es": "Aumenté mi masa muscular y mejoré mi salud general. Altamente recomendado.",
-        "pt": "Aumentei minha massa muscular e melhorei minha saúde geral. Altamente recomendado.",
-        "en": "I increased my muscle mass and improved my overall health. Highly recommended."
-      },
-      "clientDetail": {
-        "es": "Programa de 8 meses para ganar masa muscular. Carlos siguió un plan de alimentación alto en proteínas y entrenó con pesas 3 veces por semana.",
-        "pt": "Programa de 8 meses para ganhar massa muscular. Carlos seguiu um plano alimentar rico em proteínas e treinou com pesos 3 vezes por semana.",
-        "en": "8-month program to gain muscle mass. Carlos followed a high-protein diet plan and trained with weights 3 times a week."
-      }
-    },
-    {
-      "clientName": "Ana Martínez",
-      "beforeImage": "/placeholder.svg",
-      "afterImage": "/placeholder.svg",
-      "clientTestimonial": {
-        "es": "Recuperé mi forma después del embarazo. Los entrenadores son excelentes.",
-        "pt": "Recuperei minha forma após a gravidez. Os treinadores são excelentes.",
-        "en": "I regained my shape after pregnancy. The trainers are excellent."
-      },
-      "clientDetail": {
-        "es": "Programa post-parto de 4 meses. Ana se enfocó en recuperar su fuerza core y tonificar su cuerpo con una combinación de ejercicios de bajo impacto y yoga.",
-        "pt": "Programa pós-parto de 4 meses. Ana se concentrou em recuperar sua força central e tonificar seu corpo com uma combinação de exercícios de baixo impacto e ioga.",
-        "en": "4-month post-pregnancy program. Ana focused on recovering her core strength and toning her body with a combination of low-impact exercises and yoga."
-      }
-    },
-    {
-      "clientName": "Luis Sánchez",
-      "beforeImage": "/placeholder.svg",
-      "afterImage": "/placeholder.svg",
-      "clientTestimonial": {
-        "es": "A los 50 años, estoy en la mejor forma de mi vida. Nunca es tarde para empezar.",
-        "pt": "Aos 50 anos, estou na melhor forma da minha vida. Nunca é tarde para começar.",
-        "en": "At 50, I am in the best shape of my life. It's never too late to start."
-      },
-      "clientDetail": {
-        "es": "Programa de acondicionamiento físico de 12 meses para adultos mayores. Luis mejoró su resistencia cardiovascular y fuerza muscular con entrenamientos adaptados a su edad.",
-        "pt": "Programa de condicionamento físico de 12 meses para idosos. Luis melhorou sua resistência cardiovascular e força muscular com treinos adaptados à sua idade.",
-        "en": "12-month fitness program for older adults. Luis improved his cardiovascular endurance and muscle strength with workouts adapted to his age."
-      }
-    }
-  ]
+	{
+		"clientName": "Diego",
+		"beforeImage": "/images/transformations/Diego/Diego1.jpg",
+		"afterImage": "/images/transformations/Diego/Diego2.jpg",
+		"clientTestimonial": {
+			"es": "Perdí 20 kg y gané mucha confianza. ¡Gracias al equipo!",
+			"pt": "Perdi 20 kg e ganhei muita confiança. Obrigado à equipe!",
+			"en": "I lost 20 kg and gained a lot of confidence. Thanks to the team!"
+		},
+		"clientDetail": {
+			"es": "Programa de 6 meses, enfocado en pérdida de peso y tonificación. Juan siguió una dieta balanceada y entrenó 4 veces por semana.",
+			"pt": "Programa de 6 meses, focado na perda de peso e tonificação. Juan seguiu uma dieta equilibrada e treinou 4 vezes por semana.",
+			"en": "6-month program focused on weight loss and toning. Juan followed a balanced diet and trained 4 times a week."
+		}
+	},
+	{
+		"clientName": "Joha",
+		"beforeImage": "/images/transformations/Joha/Joha1.jpg",
+		"afterImage": "/images/transformations/Joha/Joha2.jpg",
+		"clientTestimonial": {
+			"es": "En 6 meses, logré el cuerpo que siempre soñé. Increíble experiencia.",
+			"pt": "Em 6 meses, consegui o corpo que sempre sonhei. Experiência incrível.",
+			"en": "In 6 months, I achieved the body I always dreamed of. Incredible experience."
+		},
+		"clientDetail": {
+			"es": "Programa de transformación corporal de 6 meses. María se enfocó en ganar masa muscular y definición, con 5 sesiones semanales de entrenamiento intensivo.",
+			"pt": "Programa de transformação corporal de 6 meses. Maria focou em ganhar massa muscular e definição, com 5 sessões semanais de treinamento intensivo.",
+			"en": "6-month body transformation program. María focused on gaining muscle mass and definition with 5 weekly sessions of intensive training."
+		}
+	},
+	{
+		"clientName": "Laura",
+		"beforeImage": "/images/transformations/Laura/Laura1.jpg",
+		"afterImage": "/images/transformations/Laura/Laura2.jpg",
+		"clientTestimonial": {
+			"es": "Aumenté mi masa muscular y mejoré mi salud general. Altamente recomendado.",
+			"pt": "Aumentei minha massa muscular e melhorei minha saúde geral. Altamente recomendado.",
+			"en": "I increased my muscle mass and improved my overall health. Highly recommended."
+		},
+		"clientDetail": {
+			"es": "Programa de 8 meses para ganar masa muscular. Carlos siguió un plan de alimentación alto en proteínas y entrenó con pesas 3 veces por semana.",
+			"pt": "Programa de 8 meses para ganhar massa muscular. Carlos seguiu um plano alimentar rico em proteínas e treinou com pesos 3 vezes por semana.",
+			"en": "8-month program to gain muscle mass. Carlos followed a high-protein diet plan and trained with weights 3 times a week."
+		}
+	},
+	{
+		"clientName": "Laura 2",
+		"beforeImage": "/images/transformations/Laura2/Laura21.jpg",
+		"afterImage": "/images/transformations/Laura2/Laura22.jpg",
+		"clientTestimonial": {
+			"es": "Recuperé mi forma después del embarazo. Los entrenadores son excelentes.",
+			"pt": "Recuperei minha forma após a gravidez. Os treinadores são excelentes.",
+			"en": "I regained my shape after pregnancy. The trainers are excellent."
+		},
+		"clientDetail": {
+			"es": "Programa post-parto de 4 meses. Ana se enfocó en recuperar su fuerza core y tonificar su cuerpo con una combinación de ejercicios de bajo impacto y yoga.",
+			"pt": "Programa pós-parto de 4 meses. Ana se concentrou em recuperar sua força central e tonificar seu corpo com uma combinação de exercícios de baixo impacto e ioga.",
+			"en": "4-month post-pregnancy program. Ana focused on recovering her core strength and toning her body with a combination of low-impact exercises and yoga."
+		}
+	},
+	{
+		"clientName": "Manu",
+		"beforeImage": "/images/transformations/Manu/manu1.jpg",
+		"afterImage": "/images/transformations/Manu/manu2.jpg",
+		"clientTestimonial": {
+			"es": "A los 50 años, estoy en la mejor forma de mi vida. Nunca es tarde para empezar.",
+			"pt": "Aos 50 anos, estou na melhor forma da minha vida. Nunca é tarde para começar.",
+			"en": "At 50, I am in the best shape of my life. It's never too late to start."
+		},
+		"clientDetail": {
+			"es": "Programa de acondicionamiento físico de 12 meses para adultos mayores. Luis mejoró su resistencia cardiovascular y fuerza muscular con entrenamientos adaptados a su edad.",
+			"pt": "Programa de condicionamento físico de 12 meses para idosos. Luis melhorou sua resistência cardiovascular e força muscular com treinos adaptados à sua idade.",
+			"en": "12-month fitness program for older adults. Luis improved his cardiovascular endurance and muscle strength with workouts adapted to his age."
+		}
+	},
+	{
+		"clientName": "Matias",
+		"beforeImage": "/images/transformations/Matias/cambio1.jpg",
+		"afterImage": "/images/transformations/Matias/cambio2.jpg",
+		"clientTestimonial": {
+			"es": "A los 50 años, estoy en la mejor forma de mi vida. Nunca es tarde para empezar.",
+			"pt": "Aos 50 anos, estou na melhor forma da minha vida. Nunca é tarde para começar.",
+			"en": "At 50, I am in the best shape of my life. It's never too late to start."
+		},
+		"clientDetail": {
+			"es": "Programa de acondicionamiento físico de 12 meses para adultos mayores. Luis mejoró su resistencia cardiovascular y fuerza muscular con entrenamientos adaptados a su edad.",
+			"pt": "Programa de condicionamento físico de 12 meses para idosos. Luis melhorou sua resistência cardiovascular e força muscular com treinos adaptados à sua idade.",
+			"en": "12-month fitness program for older adults. Luis improved his cardiovascular endurance and muscle strength with workouts adapted to his age."
+		}
+	},
+	{
+		"clientName": "Romina",
+		"beforeImage": "/images/transformations/Romina/romi1.jpg",
+		"afterImage": "/images/transformations/Romina/romi2.jpg",
+		"clientTestimonial": {
+			"es": "A los 50 años, estoy en la mejor forma de mi vida. Nunca es tarde para empezar.",
+			"pt": "Aos 50 anos, estou na melhor forma da minha vida. Nunca é tarde para começar.",
+			"en": "At 50, I am in the best shape of my life. It's never too late to start."
+		},
+		"clientDetail": {
+			"es": "Programa de acondicionamiento físico de 12 meses para adultos mayores. Luis mejoró su resistencia cardiovascular y fuerza muscular con entrenamientos adaptados a su edad.",
+			"pt": "Programa de condicionamento físico de 12 meses para idosos. Luis melhorou sua resistência cardiovascular e força muscular com treinos adaptados à sua idade.",
+			"en": "12-month fitness program for older adults. Luis improved his cardiovascular endurance and muscle strength with workouts adapted to his age."
+		}
+	},
+	{
+		"clientName": "Victor",
+		"beforeImage": "/images/transformations/Victor/victor1.jpg",
+		"afterImage": "/images/transformations/Victor/victor2.jpg",
+		"clientTestimonial": {
+			"es": "A los 50 años, estoy en la mejor forma de mi vida. Nunca es tarde para empezar.",
+			"pt": "Aos 50 anos, estou na melhor forma da minha vida. Nunca é tarde para começar.",
+			"en": "At 50, I am in the best shape of my life. It's never too late to start."
+		},
+		"clientDetail": {
+			"es": "Programa de acondicionamiento físico de 12 meses para adultos mayores. Luis mejoró su resistencia cardiovascular y fuerza muscular con entrenamientos adaptados a su edad.",
+			"pt": "Programa de condicionamento físico de 12 meses para idosos. Luis melhorou sua resistência cardiovascular e força muscular com treinos adaptados à sua idade.",
+			"en": "12-month fitness program for older adults. Luis improved his cardiovascular endurance and muscle strength with workouts adapted to his age."
+		}
+	}
+]
