@@ -65,7 +65,7 @@ export const Navbar = () => {
 							<Link
 								key={item.name}
 								href={item.href}
-								className='px-3 py-2 rounded-md text-sm font-medium'
+								className='px-2 py-1 rounded-md text-xs font-medium'
 							>
 								{t(item.name)}
 							</Link>
@@ -90,7 +90,10 @@ export const Navbar = () => {
 									onClick={() => setIsOpen(!isOpen)}
 								>
 									<span className='sr-only'>Abrir menú principal</span>
-									<Menu className='h-6 w-6 text-lightColor' aria-hidden='true' />
+									<Menu
+										className='h-6 w-6 text-lightColor'
+										aria-hidden='true'
+									/>
 								</Button>
 							</SheetTrigger>
 							<SheetContent

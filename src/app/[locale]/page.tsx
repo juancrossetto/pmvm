@@ -16,6 +16,7 @@ import Header from "@/components/sections/header";
 import CookieConsent from "@/components/cookie-consent";
 import ParallaxMessage from "@/components/sections/parallax-message";
 import Transformations from "@/components/sections/transformations";
+import Transformations2 from "@/components/sections/transformations2";
 
 const MyApp = () => {
 	return (
@@ -27,6 +28,7 @@ const MyApp = () => {
 					<AboutMe />
 					<Metrics />
 					<Transformations />
+					<Transformations2 />
 					<ParallaxMessage />
 					<Pricing />
 					{/* <Services />

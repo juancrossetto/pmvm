@@ -40,8 +40,8 @@ const TransformationCard = ({
 				<Image
 					src={transformation.beforeImage}
 					alt={`${transformation.clientName} beforeImage`}
-					className='w-full md:w-96 h-56 rounded-md'
-					width={400}  // 96 * 4
+					className='w-full md:w-[400px] h-[300px] rounded-md'
+					width={400} // 96 * 4
 					height={400} // 56 * 4
 				/>
 				<span className='absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-1 text-xs rounded'>
@@ -52,8 +52,8 @@ const TransformationCard = ({
 				<Image
 					src={transformation.afterImage}
 					alt={`${transformation.clientName} {t("after")}`}
-					className='w-full md:w-96 h-56 rounded-md'
-					width={400}  // 96 * 4
+					className='w-full md:w-[400px] h-[300px] rounded-md'
+					width={400} // 96 * 4
 					height={400} // 56 * 4
 				/>
 				<span className='absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 text-xs rounded'>
@@ -61,9 +61,7 @@ const TransformationCard = ({
 				</span>
 			</div>
 		</div>
-		<h3 className='text-lg font-semibold mb-2'>
-			{transformation.clientName}
-		</h3>
+		<h3 className='text-lg font-semibold mb-2'>{transformation.clientName}</h3>
 		<p className='text-sm text-muted-foreground text-center'>
 			{transformation.clientTestimonial[locale]}
 		</p>
@@ -91,7 +89,7 @@ const TransformationDialog = ({
 							<Image
 								src={transformation?.beforeImage}
 								alt={`${transformation?.clientName} beforeImage`}
-								className='w-full md:w-96 h-60 sm:h-80  rounded-md'
+								className='w-full md:w-[400px] h-[340px] sm:h-[440px] rounded-md'
 								width={400}
 								height={400}
 							/>
@@ -105,7 +103,7 @@ const TransformationDialog = ({
 							<Image
 								src={transformation?.afterImage}
 								alt={`${transformation?.clientName} {t("after")}`}
-								className='w-full md:w-96 h-60 sm:h-80 rounded-md'
+								className='w-full  md:w-[400px] h-[340px] sm:h-[440px] rounded-md'
 								width={400}
 								height={400}
 							/>
@@ -159,7 +157,7 @@ export default function Transformations() {
 					{t("title")}
 				</motion.h2>
 				<motion.p
-					className='text-xl sm:text-2xl text-center mb-2 sm:mb-6 text-darkColor dark:text-lightColor'
+					className='text-xl text-center mb-2 sm:mb-6 text-darkColor dark:text-lightColor'
 					initial={{ opacity: 0, y: -20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5 }}
