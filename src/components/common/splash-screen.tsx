@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
 
 const CircleSvg = ({
 	size = "97.5",
@@ -91,7 +92,7 @@ const CircleSvg = ({
 	</svg>
 );
 
-const SplashScreen = ({ finishLoading }: any) => {
+const SplashScreen = ({ finishLoading, isMobile }: any) => {
 	return (
 		<motion.div
 			className='flex h-screen items-center justify-center bg-lightColor dark:bg-darkColor'
@@ -103,12 +104,12 @@ const SplashScreen = ({ finishLoading }: any) => {
 			}}
 			onAnimationComplete={finishLoading}
 		>
-			<CircleSvg size='50' strokeWidth='4' />
+			<CircleSvg size={'90'} strokeWidth='4' />
 			<motion.img
 				id='logoPreload'
 				src='/images/icon-yellow.png'
 				alt='Logo'
-				className='w-40 sm:w-50 h-30 absolute'
+				className='w-40 sm:w-60 h-30 absolute'
 			/>
 		</motion.div>
 	);
