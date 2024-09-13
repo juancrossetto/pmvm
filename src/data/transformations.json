@@ -1,9 +1,9 @@
 [
 	{
 		"clientName": "Diego",
-		"beforeImage": "/images/transformations/Diego/Diego1.jpg",
-		"afterImage": "/images/transformations/Diego/Diego2.jpg",
-		"combinedImage": "/images/transformations/Diego/Diego1.jpg",
+		"beforeImage": "/images/transformations/Diego/cambio1.jpg",
+		"afterImage": "/images/transformations/Diego/cambio2.jpg",
+		"combinedImage": "/images/transformations/Diego/combined.png",
 		"clientTestimonial": {
 			"es": "Perdí 20 kg y gané mucha confianza. ¡Gracias al equipo!",
 			"pt": "Perdi 20 kg e ganhei muita confiança. Obrigado à equipe!",
@@ -17,9 +17,9 @@
 	},
 	{
 		"clientName": "Joha",
-		"beforeImage": "/images/transformations/Joha/Joha1.jpg",
-		"afterImage": "/images/transformations/Joha/Joha2.jpg",
-		"combinedImage": "/images/transformations/Joha/Joha1.jpg",
+		"beforeImage": "/images/transformations/Joha/cambio1.jpg",
+		"afterImage": "/images/transformations/Joha/cambio2.jpg",
+		"combinedImage": "/images/transformations/Joha/combined.jpg",
 		"clientTestimonial": {
 			"es": "En 6 meses, logré el cuerpo que siempre soñé. Increíble experiencia.",
 			"pt": "Em 6 meses, consegui o corpo que sempre sonhei. Experiência incrível.",
@@ -33,9 +33,9 @@
 	},
 	{
 		"clientName": "Laura",
-		"beforeImage": "/images/transformations/Laura/Laura1.jpg",
-		"afterImage": "/images/transformations/Laura/Laura2.jpg",
-		"combinedImage": "/images/transformations/Laura/Laura1.jpg",
+		"beforeImage": "/images/transformations/Laura/cambio1.jpg",
+		"afterImage": "/images/transformations/Laura/cambio2.jpg",
+		"combinedImage": "/images/transformations/Laura/combined.jpg",
 		"clientTestimonial": {
 			"es": "Aumenté mi masa muscular y mejoré mi salud general. Altamente recomendado.",
 			"pt": "Aumentei minha massa muscular e melhorei minha saúde geral. Altamente recomendado.",
@@ -49,9 +49,9 @@
 	},
 	{
 		"clientName": "Laura 2",
-		"beforeImage": "/images/transformations/Laura2/Laura21.jpg",
-		"afterImage": "/images/transformations/Laura2/Laura22.jpg",
-		"combinedImage": "/images/transformations/Laura2/Laura21.jpg",
+		"beforeImage": "/images/transformations/Laura2/cambio1.jpg",
+		"afterImage": "/images/transformations/Laura2/cambio2.jpg",
+		"combinedImage": "/images/transformations/Laura2/combined.jpg",
 		"clientTestimonial": {
 			"es": "Recuperé mi forma después del embarazo. Los entrenadores son excelentes.",
 			"pt": "Recuperei minha forma após a gravidez. Os treinadores são excelentes.",
@@ -65,9 +65,9 @@
 	},
 	{
 		"clientName": "Manu",
-		"beforeImage": "/images/transformations/Manu/manu1.jpg",
-		"afterImage": "/images/transformations/Manu/manu2.jpg",
-		"combinedImage": "/images/transformations/Manu/manu1.jpg",
+		"beforeImage": "/images/transformations/Manu/cambio1.jpg",
+		"afterImage": "/images/transformations/Manu/cambio2.jpg",
+		"combinedImage": "/images/transformations/Manu/combined.jpg",
 		"clientTestimonial": {
 			"es": "A los 50 años, estoy en la mejor forma de mi vida. Nunca es tarde para empezar.",
 			"pt": "Aos 50 anos, estou na melhor forma da minha vida. Nunca é tarde para começar.",
@@ -80,10 +80,10 @@
 		}
 	},
 	{
-		"clientName": "Matias",
-		"beforeImage": "/images/transformations/Matias/cambio1.jpg",
-		"afterImage": "/images/transformations/Matias/cambio2.jpg",
-		"combinedImage": "/images/transformations/Matias/cambio1.jpg",
+		"clientName": "Jose",
+		"beforeImage": "/images/transformations/Jose/cambio1.jpg",
+		"afterImage": "/images/transformations/Jose/cambio2.jpg",
+		"combinedImage": "/images/transformations/Jose/combined.png",
 		"clientTestimonial": {
 			"es": "A los 50 años, estoy en la mejor forma de mi vida. Nunca es tarde para empezar.",
 			"pt": "Aos 50 anos, estou na melhor forma da minha vida. Nunca é tarde para começar.",
@@ -97,9 +97,9 @@
 	},
 	{
 		"clientName": "Romina",
-		"beforeImage": "/images/transformations/Romina/romi1.jpg",
-		"afterImage": "/images/transformations/Romina/romi2.jpg",
-		"combinedImage": "/images/transformations/Romina/romi1.jpg",
+		"beforeImage": "/images/transformations/Romina/cambio1.jpg",
+		"afterImage": "/images/transformations/Romina/cambio2.jpg",
+		"combinedImage": "/images/transformations/Romina/combined.jpg",
 		"clientTestimonial": {
 			"es": "A los 50 años, estoy en la mejor forma de mi vida. Nunca es tarde para empezar.",
 			"pt": "Aos 50 anos, estou na melhor forma da minha vida. Nunca é tarde para começar.",
@@ -113,9 +113,9 @@
 	},
 	{
 		"clientName": "Victor",
-		"beforeImage": "/images/transformations/Victor/victor1.jpg",
-		"afterImage": "/images/transformations/Victor/victor2.jpg",
-		"combinedImage": "/images/transformations/Victor/victor1.jpg",
+		"beforeImage": "/images/transformations/Victor/cambio1.jpg",
+		"afterImage": "/images/transformations/Victor/cambio2.jpg",
+		"combinedImage": "/images/transformations/Victor/combined.jpg",
 		"clientTestimonial": {
 			"es": "A los 50 años, estoy en la mejor forma de mi vida. Nunca es tarde para empezar.",
 			"pt": "Aos 50 anos, estou na melhor forma da minha vida. Nunca é tarde para começar.",

@@ -7,6 +7,57 @@ import Typewriter from "../common/type-writer";
 import Image from "next/image";
 import { Parallax } from "react-scroll-parallax";
 
+const RectangleLeft = ({
+	className,
+	skewX = "24",
+	ref,
+}: {
+	className?: string;
+	skewX?: string;
+	ref?: any;
+}) => (
+	<svg
+		className={`svg-component ${className}`}
+		ref={ref}
+		xmlns='http://www.w3.org/2000/svg'
+		version='1.1'
+		xmlnsXlink='http://www.w3.org/1999/xlink'
+		viewBox='0 0 800 800'
+		opacity='0.64'
+	>
+		<defs>
+			<linearGradient
+				gradientTransform='rotate(315 0.5 0.5)'
+				x1='50%'
+				y1='0%'
+				x2='50%'
+				y2='100%'
+				id='ppperspective-grad2'
+			>
+				<stop stop-color='#FAD02C' stop-opacity='1' offset='0%'></stop>
+				<stop stop-color='#FAD02C' stop-opacity='0' offset='100%'></stop>
+			</linearGradient>
+		</defs>
+		<g
+			fill='#fad02c'
+			shape-rendering='crispEdges'
+			transform={`skewX(${skewX}) skewY(-2)`}
+		>
+			<polygon
+				points='800,800 511,511 511,289 800,578'
+				fill='url(#ppperspective-grad2)'
+				opacity='0.17'
+			></polygon>
+			<polygon
+				points='800,800 511,511 289,511 578,800'
+				fill='url(#ppperspective-grad2)'
+				opacity='0.08'
+			></polygon>
+			<rect width='222' height='222' x='289' y='289'></rect>
+		</g>
+	</svg>
+);
+
 const AboutMe = () => {
 	const parallaxRef = useRef(null);
 	const plus = useRef(null);
@@ -17,7 +68,6 @@ const AboutMe = () => {
 	const image2 = useRef(null);
 	const image3 = useRef(null);
 
-	const tHeader = useTranslations("header");
 	const t = useTranslations("about");
 
 	useLayoutEffect(() => {
@@ -53,6 +103,7 @@ const AboutMe = () => {
 				className='flex items-center justify-between relative max-w-[1600px] mx-auto w-full py-12 md:py-16 bg-white dark:bg-darkColor'
 				// className='w-full py-12 md:py-24 lg:py-32 bg-background'
 			>
+				{/* <RectangleLeft className='absolute z-10 w-full h-[100vh]' skewX={skewX} /> */}
 				<Image
 					ref={plus}
 					className='absolute left-[20%] top-[15%] w-[100px] z-10 opacity-20'
@@ -79,6 +130,7 @@ const AboutMe = () => {
 					ref={less}
 					className='absolute right-[30%] top-[60%] w-[100px] h-[25px] border-[1px] border-secondaryColor bg-secondaryColor rounded-lg rotate-6 z-40 opacity-20'
 				/>
+				{/* <RectangleLeft className='absolute z-40 w-full h-40' skewX={skewX} /> */}
 				<div className='container px-4 md:px-6'>
 					<div className='relative min-h-[140px] flex items-center justify-center overflow-hidden'>
 						<div className='absolute w-full max-w-[400px] sm:max-w-[480px] md:max-w-[600px] mx-auto'>
@@ -99,7 +151,7 @@ const AboutMe = () => {
 						{tHeader("about")}
 					</h2> */}
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-4 items-center'>
-						<Parallax speed={10} className='space-y-4 order-2 md:order-1'>
+						<Parallax speed={10} className='space-y-4 order-2 md:order-1 z-20'>
 							<div className='max-w-[600px] bg-transparent rounded-[20px] flex flex-col justify-center items-start w-full p-5'>
 								{/* <Typewriter
 									text={t("greeting")}
@@ -117,10 +169,11 @@ const AboutMe = () => {
 						</Parallax>
 						<Parallax
 							scale={[0.5, 0.8]}
-							className='relative aspect-square order-1 md:order-2'
+							className='relative aspect-square order-1 md:order-2  z-20'
 						>
 							<Image
-								src='/placeholder.svg'
+								// src='/placeholder.svg'
+								src='/images/aboutme/imagen1.jpg'
 								alt='Foto profesional'
 								layout='fill'
 								objectFit='cover'
@@ -130,10 +183,10 @@ const AboutMe = () => {
 						</Parallax>
 						<Parallax
 							scale={[0.5, 0.8]}
-							className='relative aspect-square order-3 md:order-3'
+							className='relative aspect-square order-3 md:order-3 z-20'
 						>
 							<Image
-								src='/placeholder.svg'
+								src='/images/aboutme/imagen2.jpg'
 								alt='Foto profesional 2'
 								layout='fill'
 								objectFit='cover'
@@ -141,7 +194,7 @@ const AboutMe = () => {
 								ref={image2}
 							/>
 						</Parallax>
-						<Parallax speed={10} className='space-y-4 order-4 md:order-4'>
+						<Parallax speed={10} className='space-y-4 order-4 md:order-4 z-20'>
 							<div className='max-w-[600px] bg-transparent rounded-[20px] flex flex-col justify-center items-start w-full p-5'>
 								{/* <Typewriter
 									text={t("title2")}
@@ -159,7 +212,7 @@ const AboutMe = () => {
 						</Parallax>
 
 						{/* Tercer bloque: Texto e imagen (igual que el primero) */}
-						<Parallax speed={10} className='space-y-4 order-6 md:order-5'>
+						<Parallax speed={10} className='space-y-4 order-6 md:order-5 z-20'>
 							<div className='max-w-[600px] bg-transparent rounded-[20px] flex flex-col justify-center items-start w-full p-5'>
 								{/* <Typewriter
 									text={t("greeting")}
@@ -177,10 +230,11 @@ const AboutMe = () => {
 						</Parallax>
 						<Parallax
 							scale={[0.5, 0.8]}
-							className='relative aspect-square order-5 md:order-6'
+							className='relative aspect-square order-5 md:order-6 z-20'
 						>
 							<Image
-								src='/placeholder.svg'
+								// src='/placeholder.svg'
+								src='/images/aboutme/imagen3.jpg'
 								alt='Foto profesional 3'
 								layout='fill'
 								objectFit='cover'
