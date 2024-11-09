@@ -566,7 +566,7 @@ const Transformations2 = () => {
 						transition={{ duration: 0.5, delay: 0.3 }}
 						className='text-center'
 					>
-						<p className='text-darkColor dark:text-lightColor text-sm md:text-xl italic'>{`"${transformations[currentIndex].clientTestimonial[locale]}"`}</p>
+						<p className='text-darkColor dark:text-lightColor text-sm md:text-xl italic'>{`"${transformations[currentIndex].clientDetail[locale]}"`}</p>
 						<p className='text-darkColor dark:text-lightColor font-semibold mt-2'>
 							{transformations[currentIndex].clientName}
 						</p>
