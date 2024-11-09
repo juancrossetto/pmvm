@@ -249,7 +249,6 @@ const CurveSVGBackground = () => (
 			stroke='url(#oooscillate-grad)'
 			fill='none'
 			stroke-linecap='round'
-			
 		>
 			<path
 				d='M 0 572 Q 355.5 -100 711 400 Q 1066.5 900 1422 572'
@@ -474,7 +473,7 @@ const Transformations2 = () => {
 											alt={`${transformations[currentIndex].clientName} transformation`}
 											className='rounded-lg shadow-lg w-full h-[400px]'
 											width={300}
-											height={500}
+											height={400}
 										/>
 										<div className='absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-1 rounded text-xs'>
 											{t("before")}
@@ -487,7 +486,7 @@ const Transformations2 = () => {
 							) : (
 								<div className='flex gap-6 justify-center'>
 									<div
-										className='relative cursor-pointer'
+										className='relative cursor-pointer w-full h-full  rounded-l-lg shadow-lg'
 										onClick={() =>
 											openModal(
 												transformations[currentIndex].combinedImage,
@@ -496,19 +495,21 @@ const Transformations2 = () => {
 											)
 										}
 									>
-										<Image
-											src={transformations[currentIndex].beforeImage}
-											alt={`${transformations[currentIndex].clientName} before`}
-											className='rounded-lg shadow-lg w-full h-auto max-h-screen md:min-h-fit md:h-[500px] md:w-[300px] object-cover'
-											width={300}
-											height={500}
-										/>
+										<div className='w-[300px] h-[400px] flex-none'>
+											<Image
+												src={transformations[currentIndex].beforeImage}
+												alt={`${transformations[currentIndex].clientName} before`}
+												className='w-full h-full  rounded-lg shadow-lg'
+												width={300}
+												height={400}
+											/>
+										</div>
 										<div className='absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-1 rounded'>
 											{t("before")}
 										</div>
 									</div>
 									<div
-										className='relative cursor-pointer'
+										className='relative cursor-pointer w-full h-full  rounded-l-lg shadow-lg '
 										onClick={() =>
 											openModal(
 												transformations[currentIndex].combinedImage,
@@ -517,14 +518,16 @@ const Transformations2 = () => {
 											)
 										}
 									>
-										<Image
-											src={transformations[currentIndex].afterImage}
-											alt={`${transformations[currentIndex].clientName} after`}
-											className='rounded-lg shadow-lg w-full h-auto max-h-screen md:min-h-fit md:h-[500px] md:w-[300px] object-cover'
-											width={300}
-											height={500}
-										/>
-										<div className='absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 rounded'>
+										<div className='w-[300px] h-[400px] flex-none'>
+											<Image
+												src={transformations[currentIndex].afterImage}
+												alt={`${transformations[currentIndex].clientName} after`}
+												className='w-full h-full  rounded-lg shadow-lg'
+												width={300}
+												height={400}
+											/>
+										</div>
+										<div className='absolute top-2 right-8 bg-primary text-primary-foreground px-2 py-1 rounded'>
 											{t("after")}
 										</div>
 									</div>
@@ -602,9 +605,9 @@ const Transformations2 = () => {
 							<Image
 								src={modalImage}
 								alt='Transformation detail'
-								className='w-full h-auto mb-4 rounded-lg max-w-[500px] max-h-[600px] mx-auto pb-3'
+								className='w-full h-auto mb-4 rounded-lg max-w-[400px] max-h-[600px] mx-auto pb-3'
 								width={300}
-								height={500}
+								height={400}
 							/>
 							<p className='text-center'>{modalDescription}</p>
 						</motion.div>
@@ -616,3 +619,74 @@ const Transformations2 = () => {
 };
 
 export default Transformations2;
+
+interface SliderProps {
+	beforeImage: string;
+	afterImage: string;
+}
+
+const Slider: React.FC<SliderProps> = ({ beforeImage, afterImage }) => {
+	const [sliderPosition, setSliderPosition] = useState(50);
+	const [isDragging, setIsDragging] = useState(false);
+
+	const handleMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		if (!isDragging) return;
+
+		const rect = event.currentTarget.getBoundingClientRect();
+		const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width));
+		const percent = Math.max(0, Math.min((x / rect.width) * 100, 100));
+
+		setSliderPosition(percent);
+	};
+
+	const handleMouseDown = () => {
+		setIsDragging(true);
+	};
+
+	const handleMouseUp = () => {
+		setIsDragging(false);
+	};
+
+	return (
+		<div className='w-full relative' onMouseUp={handleMouseUp}>
+			<div
+				className='relative w-full max-w-[700px] aspect-[70/45] m-auto overflow-hidden select-none'
+				onMouseMove={handleMove}
+				onMouseDown={handleMouseDown}
+			>
+				{/* Imagen "antes" */}
+				<Image
+					alt='Imagen antes'
+					fill
+					draggable={false}
+					priority
+					src={beforeImage}
+				/>
+
+				{/* Imagen "después" con clipPath controlado por el slider */}
+				<div
+					className='absolute top-0 left-0 right-0 w-full max-w-[700px] aspect-[70/45] m-auto overflow-hidden select-none'
+					style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+				>
+					<Image
+						fill
+						priority
+						draggable={false}
+						alt='Imagen después'
+						src={afterImage}
+					/>
+				</div>
+
+				{/* Controlador de posición del slider */}
+				<div
+					className='absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize'
+					style={{
+						left: `calc(${sliderPosition}% - 1px)`,
+					}}
+				>
+					<div className='bg-white absolute rounded-full h-3 w-3 -left-1 top-[calc(50%-5px)]' />
+				</div>
+			</div>
+		</div>
+	);
+};

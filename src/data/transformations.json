@@ -10,9 +10,9 @@
 			"en": "I lost 20 kg and gained a lot of confidence. Thanks to the team!"
 		},
 		"clientDetail": {
-			"es": "Programa de 6 meses, enfocado en pérdida de peso y tonificación. Juan siguió una dieta balanceada y entrenó 4 veces por semana.",
-			"pt": "Programa de 6 meses, focado na perda de peso e tonificação. Juan seguiu uma dieta equilibrada e treinou 4 vezes por semana.",
-			"en": "6-month program focused on weight loss and toning. Juan followed a balanced diet and trained 4 times a week."
+			"es": "Perder peso cambió mi vida. Ahora puedo jugar con mis hijos sin cansarme y tengo una actitud positiva hacia los desafíos.",
+			"pt": "Perder peso mudou minha vida. Agora posso brincar com meus filhos sem me cansar e tenho uma atitude positiva diante dos desafios.",
+			"en": "Losing weight changed my life. I can now play with my children without getting tired and I have a positive attitude towards challenges."
 		}
 	},
 	{
@@ -26,9 +26,9 @@
 			"en": "In 6 months, I achieved the body I always dreamed of. Incredible experience."
 		},
 		"clientDetail": {
-			"es": "Programa de transformación corporal de 6 meses. María se enfocó en ganar masa muscular y definición, con 5 sesiones semanales de entrenamiento intensivo.",
-			"pt": "Programa de transformação corporal de 6 meses. Maria focou em ganhar massa muscular e definição, com 5 sessões semanais de treinamento intensivo.",
-			"en": "6-month body transformation program. María focused on gaining muscle mass and definition with 5 weekly sessions of intensive training."
+			"es": "Bajar de peso me enseñó que soy capaz de cualquier cosa que me proponga. Gané en salud y autoestima.",
+			"pt": "Perder peso me ensinou que sou capaz de qualquer coisa que me propuser. Ganhei saúde e autoestima.",
+			"en": "Losing weight taught me that I am capable of anything I set my mind to. I gained in health and self-esteem."
 		}
 	},
 	{
@@ -42,25 +42,25 @@
 			"en": "I increased my muscle mass and improved my overall health. Highly recommended."
 		},
 		"clientDetail": {
-			"es": "Programa de 8 meses para ganar masa muscular. Carlos siguió un plan de alimentación alto en proteínas y entrenó con pesas 3 veces por semana.",
-			"pt": "Programa de 8 meses para ganhar massa muscular. Carlos seguiu um plano alimentar rico em proteínas e treinou com pesos 3 vezes por semana.",
-			"en": "8-month program to gain muscle mass. Carlos followed a high-protein diet plan and trained with weights 3 times a week."
+			"es": "Mi transformación física fue el comienzo. Ahora mi estilo de vida es más activo y saludable, y me siento mejor que nunca.",
+			"pt": "Minha transformação física foi o começo. Agora meu estilo de vida é mais ativo e saudável e me sinto melhor do que nunca.",
+			"en": "My physical transformation was just the beginning. I now have a more active and healthy lifestyle, and I feel better than ever."
 		}
 	},
 	{
-		"clientName": "Laura 2",
-		"beforeImage": "/images/transformations/Laura2/cambio1.jpg",
-		"afterImage": "/images/transformations/Laura2/cambio2.jpg",
-		"combinedImage": "/images/transformations/Laura2/combined.jpg",
+		"clientName": "Ana",
+		"beforeImage": "/images/transformations/Ana/cambio1.jpg",
+		"afterImage": "/images/transformations/Ana/cambio2.jpg",
+		"combinedImage": "/images/transformations/Ana/combined.jpg",
 		"clientTestimonial": {
 			"es": "Recuperé mi forma después del embarazo. Los entrenadores son excelentes.",
 			"pt": "Recuperei minha forma após a gravidez. Os treinadores são excelentes.",
 			"en": "I regained my shape after pregnancy. The trainers are excellent."
 		},
 		"clientDetail": {
-			"es": "Programa post-parto de 4 meses. Ana se enfocó en recuperar su fuerza core y tonificar su cuerpo con una combinación de ejercicios de bajo impacto y yoga.",
-			"pt": "Programa pós-parto de 4 meses. Ana se concentrou em recuperar sua força central e tonificar seu corpo com uma combinação de exercícios de baixo impacto e ioga.",
-			"en": "4-month post-pregnancy program. Ana focused on recovering her core strength and toning her body with a combination of low-impact exercises and yoga."
+			"es": "El proceso fue duro, pero valió la pena. No solo cambié mi cuerpo, sino también mi mentalidad y mi manera de ver la vida.",
+			"pt": "O processo foi difícil, mas valeu a pena. Não mudei só o meu corpo, mas também a minha mentalidade e a minha forma de ver a vida.",
+			"en": "The process was hard, but it was worth it. I not only changed my body, but also my mentality and my way of seeing life."
 		}
 	},
 	{
@@ -74,9 +74,9 @@
 			"en": "At 50, I am in the best shape of my life. It's never too late to start."
 		},
 		"clientDetail": {
-			"es": "Programa de acondicionamiento físico de 12 meses para adultos mayores. Luis mejoró su resistencia cardiovascular y fuerza muscular con entrenamientos adaptados a su edad.",
-			"pt": "Programa de condicionamento físico de 12 meses para idosos. Luis melhorou sua resistência cardiovascular e força muscular com treinos adaptados à sua idade.",
-			"en": "12-month fitness program for older adults. Luis improved his cardiovascular endurance and muscle strength with workouts adapted to his age."
+			"es": "Perder peso no solo mejoró mi salud física, sino también mi bienestar emocional. Ahora vivo una vida más plena y feliz.",
+			"pt": "Perder peso não só melhorou minha saúde física, mas também meu bem-estar emocional. Agora vivo uma vida mais plena e feliz.",
+			"en": "Losing weight not only improved my physical health, but also my emotional well-being. I now live a fuller and happier life."
 		}
 	},
 	{
@@ -90,9 +90,9 @@
 			"en": "At 50, I am in the best shape of my life. It's never too late to start."
 		},
 		"clientDetail": {
-			"es": "Programa de acondicionamiento físico de 12 meses para adultos mayores. Luis mejoró su resistencia cardiovascular y fuerza muscular con entrenamientos adaptados a su edad.",
-			"pt": "Programa de condicionamento físico de 12 meses para idosos. Luis melhorou sua resistência cardiovascular e força muscular com treinos adaptados à sua idade.",
-			"en": "12-month fitness program for older adults. Luis improved his cardiovascular endurance and muscle strength with workouts adapted to his age."
+			"es": "Al adelgazar, me di cuenta de que el verdadero cambio no era solo físico. Me volví más seguro y motivado para alcanzar mis metas.",
+			"pt": "Quando perdi peso, percebi que a verdadeira mudança não era apenas física. Fiquei mais confiante e motivado para alcançar meus objetivos.",
+			"en": "As I lost weight, I realized that the real change was not just physical. I became more confident and motivated to achieve my goals."
 		}
 	},
 	{
@@ -106,9 +106,9 @@
 			"en": "At 50, I am in the best shape of my life. It's never too late to start."
 		},
 		"clientDetail": {
-			"es": "Programa de acondicionamiento físico de 12 meses para adultos mayores. Luis mejoró su resistencia cardiovascular y fuerza muscular con entrenamientos adaptados a su edad.",
-			"pt": "Programa de condicionamento físico de 12 meses para idosos. Luis melhorou sua resistência cardiovascular e força muscular com treinos adaptados à sua idade.",
-			"en": "12-month fitness program for older adults. Luis improved his cardiovascular endurance and muscle strength with workouts adapted to his age."
+			"es": "Ahora que he perdido peso, me siento libre y con más confianza. Aprendí a quererme y cuidarme.",
+			"pt": "Agora que perdi peso, me sinto livre e mais confiante. Aprendi a amar e cuidar de mim mesma.",
+			"en": "Now that I have lost weight, I feel free and more confident. I have learned to love and take care of myself."
 		}
 	},
 	{
@@ -122,9 +122,9 @@
 			"en": "At 50, I am in the best shape of my life. It's never too late to start."
 		},
 		"clientDetail": {
-			"es": "Programa de acondicionamiento físico de 12 meses para adultos mayores. Luis mejoró su resistencia cardiovascular y fuerza muscular con entrenamientos adaptados a su edad.",
-			"pt": "Programa de condicionamento físico de 12 meses para idosos. Luis melhorou sua resistência cardiovascular e força muscular com treinos adaptados à sua idade.",
-			"en": "12-month fitness program for older adults. Luis improved his cardiovascular endurance and muscle strength with workouts adapted to his age."
+			"es": "Perder peso me permitió redescubrirme. Ahora tengo más energía, me siento más feliz y estoy disfrutando más de cada día.",
+			"pt": "Perder peso me permitiu me redescobrir. Agora tenho mais energia, me sinto mais feliz e estou aproveitando cada dia mais.",
+			"en": "Losing weight allowed me to rediscover myself. I now have more energy, I feel happier and I am enjoying each day more."
 		}
 	}
 ]
