@@ -63,7 +63,7 @@ const TransformationCard = ({
 		</div>
 		<h3 className='text-lg font-semibold mb-2'>{transformation.clientName}</h3>
 		<p className='text-sm text-muted-foreground text-center'>
-			{transformation.clientTestimonial[locale]}
+			{transformation.clientDetail[locale]}
 		</p>
 	</motion.div>
 );
@@ -114,7 +114,7 @@ const TransformationDialog = ({
 					) : null}
 				</div>
 				<p className='text-lg text-center font-semibold'>
-					{transformation?.clientTestimonial[locale]}
+					{transformation?.clientDetail[locale]}
 				</p>
 				<p className='text-muted-foreground text-center'>
 					{transformation?.clientDetail[locale]}
