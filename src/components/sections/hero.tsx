@@ -35,7 +35,7 @@ const Hero = () => {
 						<Video
 							preload='auto'
 							className='absolute top-0 left-0 w-full h-full object-cover'
-							src='/videos/bg-hero.mp4'
+							src='/videos/bg-hero1.mp4'
 							fallbackImage='/images/bg-hero.webp'
 						/>
 						<div className='home-content'>
