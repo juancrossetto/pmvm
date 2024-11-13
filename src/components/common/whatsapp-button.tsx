@@ -9,6 +9,7 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
+import { PHONE_NUMBER } from "@/lib/data";
 
 const WhatsappButton = () => {
 	const isMobile = useClientMediaQuery("(max-width: 640px)");
@@ -16,7 +17,7 @@ const WhatsappButton = () => {
 		<TooltipProvider>
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<Link href='https://wa.me/5491170636497' passHref target='_blank'>
+					<Link href={`https://wa.me/${PHONE_NUMBER}`} passHref target='_blank'>
 						<div className='fixed bottom-4 right-3 z-50 cursor-pointer'>
 							<button
 								aria-label='Contact us on WhatsApp'
