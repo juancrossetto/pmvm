@@ -80,12 +80,12 @@
 		}
 	},
 	"contact": {
-		"title": "Get Started Today",
-		"description": "Fill out the form below to schedule your free consultation and take the first step towards your fitness goals.",
+		"title": "Get Started Now!",
+		"description": "Fill out the form to clear up any doubts you may have and start your change. We are here to help you!",
 		"name_placeholder": "Name",
 		"phone_placeholder": "Phone",
-		"email_placeholder": "Email",
-		"message_placeholder": "Tell me about your fitness goals",
+		"email_placeholder": "E-mail",
+		"message_placeholder": "How can we help you?",
 		"submit_button": "Schedule Consultation",
 		"calendar_link": "Add to Google Calendar",
 		"send_message": "Send message"

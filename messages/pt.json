@@ -79,12 +79,12 @@
 		}
 	},
 	"contact": {
-		"title": "Comece Hoje",
-		"description": "Preencha o formulário abaixo para agendar sua consulta gratuita e dar o primeiro passo em direção aos seus objetivos de fitness.",
+		"title": "Comece agora!",
+		"description": "Preencha o formulário para tirar todas as suas dúvidas e iniciar sua mudança. Estamos aqui para ajudá-lo!",
 		"name_placeholder": "Nome",
 		"phone_placeholder": "Telefone",
 		"email_placeholder": "E-mail",
-		"message_placeholder": "Conte-me sobre seus objetivos de fitness",
+		"message_placeholder": "Sua consulta",
 		"submit_button": "Agendar Consulta",
 		"calendar_link": "Adicionar ao Google Calendar",
 		"send_message": "Enviar mensagem"
