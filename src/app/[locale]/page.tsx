@@ -30,9 +30,9 @@ const MyApp = () => {
 					{/* <Transformations /> */}
 					<Transformations2 />
 					<ParallaxMessage />
-					<Pricing /> 
-					{/* <Services />
-					<Testimonial /> */}
+					<Pricing />
+					{/* <Services /> */}
+					{/* <Testimonial /> */}
 					<ContactUs />
 				</main>
 				<Footer />

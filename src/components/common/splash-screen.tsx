@@ -107,7 +107,8 @@ const SplashScreen = ({ finishLoading, isMobile }: any) => {
 			<CircleSvg size={'90'} strokeWidth='4' />
 			<motion.img
 				id='logoPreload'
-				src='/images/icon-yellow.png'
+				// src='/images/icon-yellow.png'
+				src='/images/icon-ama.png'
 				alt='Logo'
 				className='w-40 sm:w-60 h-30 absolute'
 			/>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -237,18 +237,19 @@ const CurveSVGBackground = () => (
 		xmlnsXlink='http://www.w3.org/1999/xlink'
 		viewBox='0 0 1422 800'
 		opacity='0.63'
+		preserveAspectRatio="none"
 	>
 		<defs>
 			<linearGradient x1='50%' y1='0%' x2='50%' y2='100%' id='oooscillate-grad'>
-				<stop stop-color='#ef8108' stop-opacity='0.5' offset='0%'></stop>
-				<stop stop-color='#FAD02C' stop-opacity='0.5' offset='100%'></stop>
+			<stop stop-color='#ef8108' stop-opacity='0.5' offset='0%'></stop>
+			<stop stop-color='#FAD02C' stop-opacity='0.5' offset='100%'></stop>
 			</linearGradient>
 		</defs>
 		<g
-			stroke-width='2'
+			strokeWidth='2'
 			stroke='url(#oooscillate-grad)'
 			fill='none'
-			stroke-linecap='round'
+			strokeLinecap='round'
 		>
 			<path
 				d='M 0 572 Q 355.5 -100 711 400 Q 1066.5 900 1422 572'
@@ -401,292 +402,211 @@ const Transformations2 = () => {
 	};
 
 	return (
-		<section
-			className={`relative overflow-hidden py-8 md:py-16 transition-colors duration-300 ease-in-out bg-white dark:bg-darkColor`}
-		>
-			{/* <section className={`py-8 md:py-16 transition-colors duration-300 ease-in-out relative overflow-hidden bg-gradient-to-r from-[#ffffff] to-[#F8EFE4] dark:from-[#000000] dark:to-[#171717]`}> */}
-			{/* <section
+			<section
+				className={`relative overflow-hidden py-8 md:py-16 transition-colors duration-300 ease-in-out bg-white dark:bg-darkColor`}
+			>
+				{/* <section className={`py-8 md:py-16 transition-colors duration-300 ease-in-out relative overflow-hidden bg-gradient-to-r from-[#ffffff] to-[#F8EFE4] dark:from-[#000000] dark:to-[#171717]`}> */}
+				{/* <section
 			className={`py-8 md:py-16 transition-colors duration-300 ease-in-out bg-white dark:bg-darkColor`}
 		> */}
-			<CircleSVGBackground />
-			<CurveSVGBackground />
-			{/* <RectangleLeft />
-			<MySvgComponent2 /> */}
-			{/* <WavyLines /> */}
-			<div className='container mx-auto px-4 relative z-20'>
-				<motion.h2
-					className='text-3xl sm:text-4xl font-bold text-center mb-2 sm:mb-6 text-primaryColor uppercase'
-					initial={{ opacity: 0, y: -20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5 }}
-				>
-					{t("title")}
-				</motion.h2>
-				<motion.p
-					className='text-xl text-center mb-2 sm:mb-6 text-darkColor dark:text-lightColor'
-					initial={{ opacity: 0, y: -20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5 }}
-				>
-					{t("subtitle")}
-				</motion.p>
-				<div className='flex flex-col items-center justify-center gap-4 md:gap-8'>
-					<div className='flex items-center justify-center w-full'>
-						<Button
-							variant='outline'
-							size='icon'
-							onClick={prevTransformation}
-							className='mr-2 md:mr-4 text-lightColor dark:text-darkColor bg-darkColor dark:bg-lightColor'
-						>
-							<ChevronLeft className='h-4 w-4' />
-						</Button>
-						<motion.div
-							key={currentIndex}
-							initial={{ opacity: 0, y: 50 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0, y: -50 }}
-							transition={{ duration: 0.5 }}
-							className='w-full max-w-md md:max-w-2xl'
-						>
-							{isMobile ? (
-								<>
-									{/* <div className='h-auto max-h-screen overflow-hidden md:min-h-fit md:h-[500px]'>
-									<ReactCompareImage
-										leftImage={transformations[currentIndex].beforeImage}
-										rightImage={transformations[currentIndex].afterImage}
-										sliderPositionPercentage={0.5}
-										handle={<div className='w-1 bg-white' />}
-									/>
-								</div> */}
-									<div
-										className='relative cursor-pointer'
-										onClick={() =>
-											openModal(
-												transformations[currentIndex].combinedImage,
-												transformations[currentIndex].clientDetail[locale],
-												transformations[currentIndex].clientName
-											)
-										}
-									>
-										<Image
-											src={transformations[currentIndex].combinedImage}
-											alt={`${transformations[currentIndex].clientName} transformation`}
-											className='rounded-lg shadow-lg w-full h-[400px]'
-											width={300}
-											height={400}
-										/>
-										<div className='absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-1 rounded text-xs'>
-											{t("before")}
-										</div>
-										<div className='absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 rounded text-xs'>
-											{t("after")}
-										</div>
-									</div>
-								</>
-							) : (
-								<div className='flex gap-6 justify-center'>
-									<div
-										className='relative cursor-pointer w-full h-full  rounded-l-lg shadow-lg'
-										onClick={() =>
-											openModal(
-												transformations[currentIndex].combinedImage,
-												transformations[currentIndex].clientDetail[locale],
-												transformations[currentIndex].clientName
-											)
-										}
-									>
-										<div className='w-[300px] h-[400px] flex-none'>
-											<Image
-												src={transformations[currentIndex].beforeImage}
-												alt={`${transformations[currentIndex].clientName} before`}
-												className='w-full h-full  rounded-lg shadow-lg'
-												width={300}
-												height={400}
-											/>
-										</div>
-										<div className='absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-1 rounded'>
-											{t("before")}
-										</div>
-									</div>
-									<div
-										className='relative cursor-pointer w-full h-full  rounded-l-lg shadow-lg '
-										onClick={() =>
-											openModal(
-												transformations[currentIndex].combinedImage,
-												transformations[currentIndex].clientDetail[locale],
-												transformations[currentIndex].clientName
-											)
-										}
-									>
-										<div className='w-[300px] h-[400px] flex-none'>
-											<Image
-												src={transformations[currentIndex].afterImage}
-												alt={`${transformations[currentIndex].clientName} after`}
-												className='w-full h-full  rounded-lg shadow-lg'
-												width={300}
-												height={400}
-											/>
-										</div>
-										<div className='absolute top-2 right-8 bg-primary text-primary-foreground px-2 py-1 rounded'>
-											{t("after")}
-										</div>
-									</div>
-								</div>
-							)}
-							<div className='flex justify-center mt-8'>
-								{transformations.map((_, index) => (
-									<motion.button
-										key={index}
-										onClick={() => setCurrentIndex(index)}
-										className={`w-3 h-3 rounded-full mx-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ${
-											index === currentIndex
-												? "bg-darkColor dark:bg-lightColor"
-												: "opacity-95 bg-grayColor dark:bg-primaryColor dark:opacity-30"
-										}`}
-										whileHover={{ scale: 1.2 }}
-										whileTap={{ scale: 0.8 }}
-										aria-label={`Ver transformación ${index + 1}`}
-									/>
-								))}
-							</div>
-						</motion.div>
-						<Button
-							variant='outline'
-							size='icon'
-							onClick={nextTransformation}
-							className='ml-2 md:ml-4 text-lightColor dark:text-darkColor bg-darkColor dark:bg-lightColor'
-						>
-							<ChevronRight className='h-4 w-4' />
-						</Button>
-					</div>
-					<motion.div
-						key={`testimonial-${currentIndex}`}
-						initial={{ opacity: 0, y: 20 }}
+				<CircleSVGBackground />
+				<CurveSVGBackground />
+				<div className='container mx-auto px-4 relative z-20 w-screen'>
+					<motion.h2
+						className='text-3xl sm:text-4xl font-bold text-center mb-2 sm:mb-6 text-primaryColor uppercase'
+						initial={{ opacity: 0, y: -20 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5, delay: 0.3 }}
-						className='text-center'
+						transition={{ duration: 0.5 }}
 					>
-						<p className='text-darkColor dark:text-lightColor text-sm md:text-xl italic'>{`"${transformations[currentIndex].clientDetail[locale]}"`}</p>
-						<p className='text-darkColor dark:text-lightColor font-semibold mt-2'>
-							{transformations[currentIndex].clientName}
-						</p>
-					</motion.div>
-				</div>
-			</div>
-
-			<AnimatePresence>
-				{isModalOpen && (
-					<motion.div
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}
-						className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50'
-						onClick={() => setIsModalOpen(false)}
+						{t("title")}
+					</motion.h2>
+					<motion.p
+						className='text-xl text-center mb-2 sm:mb-6 text-darkColor dark:text-lightColor'
+						initial={{ opacity: 0, y: -20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.5 }}
 					>
-						<motion.div
-							initial={{ scale: 0.9 }}
-							animate={{ scale: 1 }}
-							exit={{ scale: 0.9 }}
-							className='rounded-lg p-6 max-w-2xl w-full relative bg-lightColor dark:bg-darkColor text-darkColor dark:text-lightColor'
-							onClick={(e) => e.stopPropagation()}
-						>
+						{t("subtitle")}
+					</motion.p>
+					<div className='flex flex-col items-center justify-center gap-4 md:gap-8'>
+						<div className='flex items-center justify-center w-full'>
 							<Button
-								variant='ghost'
+								variant='outline'
 								size='icon'
-								className='absolute top-2 right-2'
-								onClick={() => setIsModalOpen(false)}
+								onClick={prevTransformation}
+								className='mr-2 md:mr-4 text-lightColor dark:text-darkColor bg-darkColor dark:bg-lightColor'
 							>
-								<X className='h-4 w-4' />
+								<ChevronLeft className='h-4 w-4' />
 							</Button>
-
-							<p className='text-darkColor dark:text-lightColor font-semibold mb-3 text-center'>
-								{modalName}
+							<motion.div
+								key={currentIndex}
+								initial={{ opacity: 0, y: 50 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -50 }}
+								transition={{ duration: 0.5 }}
+								className='w-full max-w-md md:max-w-2xl'
+							>
+								{isMobile ? (
+									<>
+										<div
+											className='relative cursor-pointer'
+											onClick={() =>
+												openModal(
+													transformations[currentIndex].combinedImage,
+													transformations[currentIndex].clientDetail[locale],
+													transformations[currentIndex].clientName
+												)
+											}
+										>
+											<Image
+												src={transformations[currentIndex].combinedImage}
+												alt={`${transformations[currentIndex].clientName} transformation`}
+												className='rounded-lg shadow-lg w-full h-[400px]'
+												width={300}
+												height={400}
+											/>
+											<div className='absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-1 rounded text-xs'>
+												{t("before")}
+											</div>
+											<div className='absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 rounded text-xs'>
+												{t("after")}
+											</div>
+										</div>
+									</>
+								) : (
+									<div className='flex gap-6 justify-center'>
+										<div
+											className='relative cursor-pointer w-full h-full  rounded-l-lg shadow-lg'
+											onClick={() =>
+												openModal(
+													transformations[currentIndex].combinedImage,
+													transformations[currentIndex].clientDetail[locale],
+													transformations[currentIndex].clientName
+												)
+											}
+										>
+											<div className='w-[300px] h-[400px] flex-none'>
+												<Image
+													src={transformations[currentIndex].beforeImage}
+													alt={`${transformations[currentIndex].clientName} before`}
+													className='w-full h-full  rounded-lg shadow-lg'
+													width={300}
+													height={400}
+												/>
+											</div>
+											<div className='absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-1 rounded'>
+												{t("before")}
+											</div>
+										</div>
+										<div
+											className='relative cursor-pointer w-full h-full  rounded-l-lg shadow-lg '
+											onClick={() =>
+												openModal(
+													transformations[currentIndex].combinedImage,
+													transformations[currentIndex].clientDetail[locale],
+													transformations[currentIndex].clientName
+												)
+											}
+										>
+											<div className='w-[300px] h-[400px] flex-none'>
+												<Image
+													src={transformations[currentIndex].afterImage}
+													alt={`${transformations[currentIndex].clientName} after`}
+													className='w-full h-full  rounded-lg shadow-lg'
+													width={300}
+													height={400}
+												/>
+											</div>
+											<div className='absolute top-2 right-8 bg-primary text-primary-foreground px-2 py-1 rounded'>
+												{t("after")}
+											</div>
+										</div>
+									</div>
+								)}
+								<div className='flex justify-center mt-8'>
+									{transformations.map((_, index) => (
+										<motion.button
+											key={index}
+											onClick={() => setCurrentIndex(index)}
+											className={`w-3 h-3 rounded-full mx-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ${
+												index === currentIndex
+													? "bg-darkColor dark:bg-lightColor"
+													: "opacity-95 bg-grayColor dark:bg-primaryColor dark:opacity-30"
+											}`}
+											whileHover={{ scale: 1.2 }}
+											whileTap={{ scale: 0.8 }}
+											aria-label={`Ver transformación ${index + 1}`}
+										/>
+									))}
+								</div>
+							</motion.div>
+							<Button
+								variant='outline'
+								size='icon'
+								onClick={nextTransformation}
+								className='ml-2 md:ml-4 text-lightColor dark:text-darkColor bg-darkColor dark:bg-lightColor'
+							>
+								<ChevronRight className='h-4 w-4' />
+							</Button>
+						</div>
+						<motion.div
+							key={`testimonial-${currentIndex}`}
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.5, delay: 0.3 }}
+							className='text-center'
+						>
+							<p className='text-darkColor dark:text-lightColor text-sm md:text-xl italic'>{`"${transformations[currentIndex].clientDetail[locale]}"`}</p>
+							<p className='text-darkColor dark:text-lightColor font-semibold mt-2'>
+								{transformations[currentIndex].clientName}
 							</p>
-							<Image
-								src={modalImage}
-								alt='Transformation detail'
-								className='w-full h-auto mb-4 rounded-lg max-w-[400px] max-h-[600px] mx-auto pb-3'
-								width={300}
-								height={400}
-							/>
-							<p className='text-center'>{modalDescription}</p>
 						</motion.div>
-					</motion.div>
-				)}
-			</AnimatePresence>
-		</section>
+					</div>
+				</div>
+
+				<AnimatePresence>
+					{isModalOpen && (
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50'
+							onClick={() => setIsModalOpen(false)}
+						>
+							<motion.div
+								initial={{ scale: 0.9 }}
+								animate={{ scale: 1 }}
+								exit={{ scale: 0.9 }}
+								className='rounded-lg p-6 max-w-2xl w-full relative bg-lightColor dark:bg-darkColor text-darkColor dark:text-lightColor'
+								onClick={(e) => e.stopPropagation()}
+							>
+								<Button
+									variant='ghost'
+									size='icon'
+									className='absolute top-2 right-2'
+									onClick={() => setIsModalOpen(false)}
+								>
+									<X className='h-4 w-4' />
+								</Button>
+
+								<p className='text-darkColor dark:text-lightColor font-semibold mb-3 text-center'>
+									{modalName}
+								</p>
+								<Image
+									src={modalImage}
+									alt='Transformation detail'
+									className='w-full h-auto mb-4 rounded-lg max-w-[400px] max-h-[600px] mx-auto pb-3'
+									width={300}
+									height={400}
+								/>
+								<p className='text-center'>{modalDescription}</p>
+							</motion.div>
+						</motion.div>
+					)}
+				</AnimatePresence>
+			</section>
 	);
 };
 
 export default Transformations2;
 
-interface SliderProps {
-	beforeImage: string;
-	afterImage: string;
-}
-
-const Slider: React.FC<SliderProps> = ({ beforeImage, afterImage }) => {
-	const [sliderPosition, setSliderPosition] = useState(50);
-	const [isDragging, setIsDragging] = useState(false);
-
-	const handleMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		if (!isDragging) return;
-
-		const rect = event.currentTarget.getBoundingClientRect();
-		const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width));
-		const percent = Math.max(0, Math.min((x / rect.width) * 100, 100));
-
-		setSliderPosition(percent);
-	};
-
-	const handleMouseDown = () => {
-		setIsDragging(true);
-	};
-
-	const handleMouseUp = () => {
-		setIsDragging(false);
-	};
-
-	return (
-		<div className='w-full relative' onMouseUp={handleMouseUp}>
-			<div
-				className='relative w-full max-w-[700px] aspect-[70/45] m-auto overflow-hidden select-none'
-				onMouseMove={handleMove}
-				onMouseDown={handleMouseDown}
-			>
-				{/* Imagen "antes" */}
-				<Image
-					alt='Imagen antes'
-					fill
-					draggable={false}
-					priority
-					src={beforeImage}
-				/>
-
-				{/* Imagen "después" con clipPath controlado por el slider */}
-				<div
-					className='absolute top-0 left-0 right-0 w-full max-w-[700px] aspect-[70/45] m-auto overflow-hidden select-none'
-					style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
-				>
-					<Image
-						fill
-						priority
-						draggable={false}
-						alt='Imagen después'
-						src={afterImage}
-					/>
-				</div>
-
-				{/* Controlador de posición del slider */}
-				<div
-					className='absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize'
-					style={{
-						left: `calc(${sliderPosition}% - 1px)`,
-					}}
-				>
-					<div className='bg-white absolute rounded-full h-3 w-3 -left-1 top-[calc(50%-5px)]' />
-				</div>
-			</div>
-		</div>
-	);
-};
