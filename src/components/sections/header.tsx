@@ -50,7 +50,7 @@ export const Navbar = () => {
 	const navItems = [
 		{ name: "about", href: "#about" },
 		{ name: "transformations", href: "#transformations" },
-		{ name: "start_your_change", href: "#contact" },
+		{ name: "start_your_change", href: "#pricing" },
 	];
 	return (
 		<nav className='navbar shadow-md'>

@@ -77,6 +77,7 @@ const PlanCard = ({ plan }: PlanCardProps) => {
 	const locale = useLocale();
 	return (
 		<div
+			id='pricing'
 			className='px-4 sm:px-4 py-2 sm:py-4 mx-4 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-95 border border-opacity-20 duration-1000 ease-in-out transform rounded-lg transition-transform max-w-[500px] cursor-pointer hover:bg-lightColor hover:bg-opacity-20
 		bg-white dark:bg-darkColor hover:text-darkColor hover:dark:text-lightColor hover:opacity-100'
 		>
@@ -150,7 +151,10 @@ const PlanCard = ({ plan }: PlanCardProps) => {
 						>
 							<AccordionTrigger className='hover:text-primaryColor'>
 								<span className='flex items-center'>
-									<DynamicIcon icon={item.icon} className='text-primaryColor flex-shrink-0' />
+									<DynamicIcon
+										icon={item.icon}
+										className='text-primaryColor flex-shrink-0'
+									/>
 									<TooltipProvider>
 										<Tooltip>
 											<TooltipTrigger asChild>
