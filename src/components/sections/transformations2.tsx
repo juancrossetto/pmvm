@@ -495,7 +495,7 @@ const Transformations2 = () => {
 													height={400}
 												/>
 											</div>
-											<div className='absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-1 rounded'>
+											<div className='absolute top-1 left-16 bg-primary text-primary-foreground px-2 py-1 rounded'>
 												{t("before")}
 											</div>
 										</div>
@@ -518,7 +518,7 @@ const Transformations2 = () => {
 													height={400}
 												/>
 											</div>
-											<div className='absolute top-2 right-8 bg-primary text-primary-foreground px-2 py-1 rounded'>
+											<div className='absolute top-1 right-20 bg-primary text-primary-foreground px-2 py-1 rounded'>
 												{t("after")}
 											</div>
 										</div>
