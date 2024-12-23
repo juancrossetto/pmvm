@@ -477,7 +477,7 @@ const Transformations2 = () => {
 								) : (
 									<div className='flex gap-6 justify-center'>
 										<div
-											className='relative cursor-pointer w-full h-full  rounded-l-lg shadow-lg'
+											className='relative cursor-pointer w-full h-full  rounded-l-lg'
 											onClick={() =>
 												openModal(
 													transformations[currentIndex].combinedImage,
@@ -490,7 +490,7 @@ const Transformations2 = () => {
 												<Image
 													src={transformations[currentIndex].beforeImage}
 													alt={`${transformations[currentIndex].clientName} before`}
-													className='w-full h-full  rounded-lg shadow-lg'
+													className='w-full h-full  rounded-lg'
 													width={300}
 													height={400}
 												/>
@@ -500,7 +500,7 @@ const Transformations2 = () => {
 											</div>
 										</div>
 										<div
-											className='relative cursor-pointer w-full h-full  rounded-l-lg shadow-lg '
+											className='relative cursor-pointer w-full h-full  rounded-l-lg'
 											onClick={() =>
 												openModal(
 													transformations[currentIndex].combinedImage,
@@ -513,7 +513,7 @@ const Transformations2 = () => {
 												<Image
 													src={transformations[currentIndex].afterImage}
 													alt={`${transformations[currentIndex].clientName} after`}
-													className='w-full h-full  rounded-lg shadow-lg'
+													className='w-full h-full  rounded-lg'
 													width={300}
 													height={400}
 												/>
