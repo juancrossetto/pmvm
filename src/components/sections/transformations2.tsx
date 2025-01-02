@@ -462,7 +462,7 @@ const Transformations2 = () => {
 											<Image
 												src={transformations[currentIndex].combinedImage}
 												alt={`${transformations[currentIndex].clientName} transformation`}
-												className='rounded-lg shadow-lg w-full h-[400px]'
+												className='rounded-lg shadow-lg w-full h-[350px]'
 												width={300}
 												height={400}
 											/>
@@ -475,9 +475,10 @@ const Transformations2 = () => {
 										</div>
 									</>
 								) : (
-									<div className='flex gap-6 justify-center'>
+									<div className='flex gap-2 justify-center'>
 										<div
-											className='relative cursor-pointer w-full h-full  rounded-l-lg'
+											// className='relative cursor-pointer w-full h-full  rounded-l-lg'
+											className='relative cursor-pointe h-full rounded-l-lg'
 											onClick={() =>
 												openModal(
 													transformations[currentIndex].combinedImage,
@@ -486,7 +487,7 @@ const Transformations2 = () => {
 												)
 											}
 										>
-											<div className='w-[300px] h-[400px] flex-none'>
+											<div className='w-[300px] h-[350px] flex-none'>
 												<Image
 													src={transformations[currentIndex].beforeImage}
 													alt={`${transformations[currentIndex].clientName} before`}
@@ -495,12 +496,13 @@ const Transformations2 = () => {
 													height={400}
 												/>
 											</div>
-											<div className='absolute top-1 left-16 bg-primary text-primary-foreground px-2 py-1 rounded'>
+											<div className='absolute top-1 left-14 bg-primary text-primary-foreground px-2 py-1 rounded'>
 												{t("before")}
 											</div>
 										</div>
 										<div
-											className='relative cursor-pointer w-full h-full  rounded-l-lg'
+											// className='relative cursor-pointer w-full h-full rounded-l-lg'
+											className='relative cursor-pointer h-full rounded-l-lg'
 											onClick={() =>
 												openModal(
 													transformations[currentIndex].combinedImage,
@@ -509,7 +511,7 @@ const Transformations2 = () => {
 												)
 											}
 										>
-											<div className='w-[300px] h-[400px] flex-none'>
+											<div className='w-[300px] h-[350px] flex-none'>
 												<Image
 													src={transformations[currentIndex].afterImage}
 													alt={`${transformations[currentIndex].clientName} after`}
@@ -518,7 +520,7 @@ const Transformations2 = () => {
 													height={400}
 												/>
 											</div>
-											<div className='absolute top-1 right-20 bg-primary text-primary-foreground px-2 py-1 rounded'>
+											<div className='absolute top-1 right-12 bg-primary text-primary-foreground px-2 py-1 rounded'>
 												{t("after")}
 											</div>
 										</div>
