@@ -462,7 +462,7 @@ const Transformations2 = () => {
 											<Image
 												src={transformations[currentIndex].combinedImage}
 												alt={`${transformations[currentIndex].clientName} transformation`}
-												className='rounded-lg shadow-lg w-full h-[280px] sm:h-[350px]'
+												className='rounded-lg shadow-lg w-full h-[260px] sm:h-[350px]'
 												width={300}
 												height={400}
 											/>
@@ -487,7 +487,7 @@ const Transformations2 = () => {
 												)
 											}
 										>
-											<div className='w-[300px] h-[280px] sm:h-[350px] flex-none'>
+											<div className='w-[300px] h-[260px] sm:h-[350px] flex-none'>
 												<Image
 													src={transformations[currentIndex].beforeImage}
 													alt={`${transformations[currentIndex].clientName} before`}
@@ -511,7 +511,7 @@ const Transformations2 = () => {
 												)
 											}
 										>
-											<div className='w-[300px] h-[280px] sm:h-[350px] flex-none'>
+											<div className='w-[300px] h-[260px] sm:h-[350px] flex-none'>
 												<Image
 													src={transformations[currentIndex].afterImage}
 													alt={`${transformations[currentIndex].clientName} after`}
@@ -520,7 +520,7 @@ const Transformations2 = () => {
 													height={400}
 												/>
 											</div>
-											<div className='absolute top-1 right-12 bg-primary text-primary-foreground px-2 py-1 rounded'>
+											<div className='absolute top-1 right-14 bg-primary text-primary-foreground px-2 py-1 rounded'>
 												{t("after")}
 											</div>
 										</div>
