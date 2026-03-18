@@ -56,12 +56,22 @@ const config = {
   			secondaryColor: '#ef8108',
   			grayColor: '#E6C2BF',
   			lightColor: '#F8EFE4',
-  			darkColor: '#171717'
+  			darkColor: '#171717',
+  			brand: {
+  				black: '#000000',
+  				dark: '#0a0a0a',
+  				gray: '#141414',
+  				accent: '#ffd11e',
+  				text: '#e5e5e5',
+  			},
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		fontFamily: {
+  			heading: ['var(--font-montserrat)', 'sans-serif'],
   		},
   		keyframes: {
   			'accordion-down': {
