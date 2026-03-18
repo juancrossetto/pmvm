@@ -21,16 +21,8 @@
 }
 
 .text-stroke {
-  -webkit-text-stroke: 1px rgba(255, 209, 30, 0.3);
-  color: transparent;
-}
-
-.gradient-overlay {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.4) 100%);
-}
-
-.video-overlay {
-  background: radial-gradient(circle, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.9) 100%);
+  -webkit-text-stroke: 1px rgba(255, 209, 30, 0.6);
+  color: rgba(255, 209, 30, 0.15);
 }
 
 .v2-page {

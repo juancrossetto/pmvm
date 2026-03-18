@@ -1,22 +1,18 @@
+"use client";
+
+import Video from "@/components/common/video";
+
 export default function V2Hero() {
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover grayscale opacity-40"
-          poster="https://lh3.googleusercontent.com/aida-public/AB6AXuDUBQWNGEVQ60LkMjWHsMM8c_lNAwPkbxDuJZMUQACXOz6FawCx0LyT0AvLjA5kCIKSG3cTnk6XxiLxcsaXE6TmdMuuY3fA0yD8FJq8QYCjRdJ_yz59fplyzAgCF7XEoi6gri3aAHc33Znp5jT6XLaTg19ZH6D8sRUTUFQwaFF8n7xH6BlrsTr47D51_KF9sfDBlahm7r_KMXR8DyXiJxzj5QxJsB5vySWXmkkFiFTpZDA0S4CVs5x2upArGK4uqawjfLhJs3cdruiS"
-        >
-          <source
-            src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <div className="absolute inset-0 video-overlay" />
-        <div className="absolute inset-0 gradient-overlay" />
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black">
+      <div className="absolute inset-0">
+        <Video
+          preload="auto"
+          className="w-full h-full object-cover"
+          src="/videos/bg-hero1.mp4"
+          fallbackImage="/images/bg-hero.webp"
+          poster="/images/bg-hero.webp"
+        />
       </div>
 
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">

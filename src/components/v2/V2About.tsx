@@ -1,6 +1,6 @@
 export default function V2About() {
   return (
-    <section className="py-32 bg-brand-black" id="about">
+    <section className="py-32 bg-brand-black scroll-mt-32" id="about">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-20 items-center">
           <div className="relative">
@@ -9,7 +9,7 @@ export default function V2About() {
               <img
                 alt="Alejandro Gerez Entrenamiento"
                 className="w-full grayscale group-hover:grayscale-0 transition-all duration-1000 transform group-hover:scale-105"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpHwk-0AtD2-47ZS50laxKT7kBALHw44DdQr69hy4WKTi6DGuZVbA6ppZvHMApoThmBLYG53OKPRuZFvvCw3RA5hLh1lh9uanAEtIMWqjUn09O5DWi8kgkIg03bRmSybF-Zx4pNKulOFAx6ryhj7CqGs3oS1ZasOI8SBqpovWOMyknnltZHA5dqJ03THDtP8pau9-PBaZuaw-ByOstyT_Luzx378BponJE4nVFDL2ENzBhhRjazE_gfs6g8yqG1q7LHKS46kI1D1_H"
+                src="/images/aboutme/imagen1.jpg"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 w-32 h-32 border-b border-r border-brand-accent/40 z-10" />

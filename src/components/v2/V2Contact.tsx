@@ -8,7 +8,10 @@ export default function V2Contact() {
   }
 
   return (
-    <section className="py-32 bg-brand-dark relative overflow-hidden" id="contact">
+    <section
+      className="py-32 bg-brand-dark relative overflow-hidden scroll-mt-32"
+      id="contact"
+    >
       <div className="absolute -right-20 top-0 text-[20rem] font-heading font-black text-white/[0.02] select-none pointer-events-none uppercase">
         PMVM
       </div>
@@ -62,7 +65,7 @@ export default function V2Contact() {
             className="w-full py-6 bg-brand-accent text-brand-black font-heading font-black uppercase tracking-[0.3em] text-lg hover:shadow-[0_0_50px_rgba(255,209,30,0.4)] transition-all transform hover:-translate-y-1"
             type="submit"
           >
-            Enviar Aplicación
+            Enviar Mensaje
           </button>
         </form>
       </div>

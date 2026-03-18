@@ -17,6 +17,7 @@ const Video: React.FC<VideoProps> = ({
   autoPlay = true,
   preload = "auto",
   fallbackImage,
+  poster,
   ...rest
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -27,6 +28,8 @@ const Video: React.FC<VideoProps> = ({
 
     if (videoElement) {
       videoElement.muted = true;
+
+      console.log("[Video] trying to autoplay", { src });
 
       const handlePlay = () => {
         videoElement.play().catch((error) => {
@@ -71,6 +74,7 @@ const Video: React.FC<VideoProps> = ({
       muted
       loop
       preload={preload}
+      poster={poster}
       {...rest}
     >
       <source src={src} type="video/mp4" />

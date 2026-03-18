@@ -7,7 +7,7 @@ const metrics = [
 
 export default function V2Metrics() {
   return (
-    <section className="py-24 bg-brand-black">
+    <section className="py-24 bg-brand-black scroll-mt-32">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-16 text-center">
         {metrics.map((metric) => (
           <div key={metric.label}>

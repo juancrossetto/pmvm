@@ -1,10 +1,10 @@
+import { Logo } from "@/components/v2/V2Nav";
+
 export default function V2Footer() {
   return (
     <footer className="py-20 bg-brand-black border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center space-y-12 md:space-y-0">
-        <div className="font-heading font-black text-4xl">
-          PM<span className="text-brand-accent">VM</span>
-        </div>
+        <Logo />
         <div className="text-xs text-brand-text/30 font-light tracking-widest uppercase">
           © 2023 Alejandro Gerez. Todos los derechos reservados.
         </div>
