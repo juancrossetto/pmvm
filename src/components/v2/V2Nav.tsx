@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export const Logo = () => (
   <Link href="#" className="flex items-center">
@@ -95,73 +98,87 @@ export default function V2Nav() {
               Empezar Ahora
             </button>
           </div>
-          <button
-            type="button"
-            onClick={() => setOpen((prev) => !prev)}
-            className="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-full border border-white/30 text-[10px] tracking-[0.25em] uppercase"
-          >
-            {open ? "Cerrar" : "Menú"}
-          </button>
-        </div>
-      </div>
-      {open && (
-        <div className="pointer-events-auto md:hidden fixed inset-0 z-40 bg-brand-black/95 backdrop-blur-xl">
-          <div className="max-w-7xl mx-auto h-full px-8 pt-24 pb-10 flex flex-col justify-between">
-            <div className="flex flex-col space-y-6 text-sm font-semibold uppercase tracking-[0.3em]">
-              <button
-                type="button"
-                className="text-left hover:text-brand-accent transition-colors"
-                onClick={() => {
-                  setOpen(false);
-                  handleNavClick("about");
-                }}
+          <div className="md:hidden pointer-events-auto">
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  className="inline-flex items-center justify-center w-12 h-12 rounded-full border-2 border-white/30 bg-brand-black/70 hover:bg-brand-black/90 backdrop-blur-md shadow-lg"
+                  aria-label="Abrir menú"
+                >
+                  <Menu className="h-7 w-7 text-white" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent
+                side="right"
+                className="w-screen sm:w-[520px] bg-brand-black text-brand-text border-white/10"
               >
-                Sobre Mí
-              </button>
-              <button
-                type="button"
-                className="text-left hover:text-brand-accent transition-colors"
-                onClick={() => {
-                  setOpen(false);
-                  handleNavClick("bio");
-                }}
-              >
-                Mi Historia
-              </button>
-              <button
-                type="button"
-                className="text-left hover:text-brand-accent transition-colors"
-                onClick={() => {
-                  setOpen(false);
-                  handleNavClick("success-stories");
-                }}
-              >
-                Testimonios
-              </button>
-              <button
-                type="button"
-                className="text-left hover:text-brand-accent transition-colors"
-                onClick={() => {
-                  setOpen(false);
-                  handleNavClick("pricing");
-                }}
-              >
-                Programas
-              </button>
-            </div>
-            <button
-              type="button"
-              className="bg-brand-accent text-brand-black px-6 py-3 rounded-sm text-center hover:bg-white transition-colors text-xs font-bold tracking-[0.3em] uppercase"
-              onClick={() => {
-                setOpen(false);
-                handleNavClick("contact");
-              }}
-            >
-              Empezar Ahora
-            </button>
+                <nav className="flex flex-col h-full pt-6">
+                  <div className="flex items-center justify-between mb-10">
+                    <Logo />
+                  </div>
+                  <div className="flex flex-col space-y-6">
+                    <button
+                      type="button"
+                      className="text-left text-base font-semibold tracking-[0.25em] uppercase hover:text-brand-accent transition-colors"
+                      onClick={() => {
+                        setOpen(false);
+                        handleNavClick("about");
+                      }}
+                    >
+                      Sobre Mí
+                    </button>
+                    <button
+                      type="button"
+                      className="text-left text-base font-semibold tracking-[0.25em] uppercase hover:text-brand-accent transition-colors"
+                      onClick={() => {
+                        setOpen(false);
+                        handleNavClick("bio");
+                      }}
+                    >
+                      Mi Historia
+                    </button>
+                    <button
+                      type="button"
+                      className="text-left text-base font-semibold tracking-[0.25em] uppercase hover:text-brand-accent transition-colors"
+                      onClick={() => {
+                        setOpen(false);
+                        handleNavClick("success-stories");
+                      }}
+                    >
+                      Testimonios
+                    </button>
+                    <button
+                      type="button"
+                      className="text-left text-base font-semibold tracking-[0.25em] uppercase hover:text-brand-accent transition-colors"
+                      onClick={() => {
+                        setOpen(false);
+                        handleNavClick("pricing");
+                      }}
+                    >
+                      Programas
+                    </button>
+                  </div>
+
+                  <div className="mt-auto pt-10">
+                    <button
+                      type="button"
+                      className="w-full bg-brand-accent text-brand-black px-6 py-4 rounded-sm text-center hover:bg-white transition-colors text-sm font-bold tracking-[0.3em] uppercase"
+                      onClick={() => {
+                        setOpen(false);
+                        handleNavClick("contact");
+                      }}
+                    >
+                      Empezar Ahora
+                    </button>
+                  </div>
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }

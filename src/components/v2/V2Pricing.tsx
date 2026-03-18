@@ -29,7 +29,7 @@ export default function V2Pricing() {
         <div
           className={`grid gap-10 ${
             plans.length === 2
-              ? "grid-cols-1 md:grid-cols-2 justify-items-center"
+              ? "grid-cols-1 md:grid-cols-2 justify-items-center items-stretch"
               : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
           }`}
         >
@@ -38,8 +38,8 @@ export default function V2Pricing() {
               key={plan.id}
               className={
                 plan.highlighted
-                  ? "bg-brand-gray p-12 border-t-4 border-brand-accent relative flex flex-col justify-between scale-105 z-10 shadow-[0_40px_80px_-15px_rgba(255,209,30,0.1)]"
-                  : "bg-brand-dark p-12 border border-white/5 relative flex flex-col justify-between hover:border-brand-accent/30 transition-all duration-500 group"
+                  ? "bg-brand-gray p-12 border-t-4 border-brand-accent relative flex flex-col justify-between z-10 shadow-[0_40px_80px_-15px_rgba(255,209,30,0.1)] h-full w-full max-w-[520px]"
+                  : "bg-brand-dark p-12 border border-white/5 relative flex flex-col justify-between hover:border-brand-accent/30 transition-all duration-500 group h-full w-full max-w-[520px]"
               }
             >
               {plan.highlighted && (
@@ -47,7 +47,7 @@ export default function V2Pricing() {
                   Más Popular
                 </div>
               )}
-              <div>
+              <div className="flex-1">
                 <h3
                   className={`text-xl font-heading font-bold uppercase mb-4 tracking-widest ${
                     plan.highlighted ? "text-brand-accent" : ""

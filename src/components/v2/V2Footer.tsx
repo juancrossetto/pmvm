@@ -11,7 +11,9 @@ export default function V2Footer() {
         <div className="flex space-x-8">
           <a
             className="text-white/40 hover:text-brand-accent transition-all transform hover:scale-110"
-            href="#"
+            href="https://www.instagram.com/alegerez/"
+            target="_blank"
+            rel="noreferrer"
           >
             <span className="sr-only">Instagram</span>
             <svg
@@ -24,15 +26,17 @@ export default function V2Footer() {
           </a>
           <a
             className="text-white/40 hover:text-brand-accent transition-all transform hover:scale-110"
-            href="#"
+            href="https://www.facebook.com/alejandro.gerezcdp/"
+            target="_blank"
+            rel="noreferrer"
           >
-            <span className="sr-only">YouTube</span>
+            <span className="sr-only">Facebook</span>
             <svg
               className="w-6 h-6"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
-              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+              <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24h11.495v-9.294H9.691V11.01h3.13V8.309c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.696h-3.12V24h6.116C23.403 24 24 23.403 24 22.674V1.326C24 .597 23.403 0 22.675 0z" />
             </svg>
           </a>
         </div>

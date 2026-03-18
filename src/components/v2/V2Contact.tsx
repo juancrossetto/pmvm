@@ -32,21 +32,21 @@ export default function V2Contact() {
           <div className="grid md:grid-cols-2 gap-10">
             <div>
               <label className="block text-[10px] uppercase font-bold tracking-[0.3em] mb-4 text-white/40">
-                Nombre Completo
+                Nombre y apellido
               </label>
               <input
                 className="w-full bg-brand-black border border-white/10 focus:border-brand-accent focus:ring-0 text-white p-5 transition-all text-sm outline-none"
-                placeholder="Juan Pérez"
+                placeholder="Nombre y apellido"
                 type="text"
               />
             </div>
             <div>
               <label className="block text-[10px] uppercase font-bold tracking-[0.3em] mb-4 text-white/40">
-                Email Profesional
+                Correo electrónico
               </label>
               <input
                 className="w-full bg-brand-black border border-white/10 focus:border-brand-accent focus:ring-0 text-white p-5 transition-all text-sm outline-none"
-                placeholder="juan@email.com"
+                placeholder="tu@correo.com"
                 type="email"
               />
             </div>
@@ -57,7 +57,7 @@ export default function V2Contact() {
             </label>
             <textarea
               className="w-full bg-brand-black border border-white/10 focus:border-brand-accent focus:ring-0 text-white p-5 transition-all text-sm resize-none outline-none"
-              placeholder="Cuéntame brevemente qué te impide lograr tu objetivo..."
+              placeholder="Contame en qué te gustaría que trabajemos juntos"
               rows={6}
             />
           </div>

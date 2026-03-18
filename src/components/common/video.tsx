@@ -22,6 +22,7 @@ const Video: React.FC<VideoProps> = ({
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showFallback, setShowFallback] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -29,14 +30,14 @@ const Video: React.FC<VideoProps> = ({
     if (videoElement) {
       videoElement.muted = true;
 
-      console.log("[Video] trying to autoplay", { src });
-
       const handlePlay = () => {
         videoElement.play().catch((error) => {
-          console.error("AutoPlay error:", error);
           setShowFallback(true); // Muestra la imagen si falla el autoplay
         });
       };
+
+      const handleError = () => setShowFallback(true);
+      const handlePlaying = () => setIsPlaying(true);
 
       // Intentar reproducir el video
       if (autoPlay) {
@@ -44,13 +45,13 @@ const Video: React.FC<VideoProps> = ({
       }
 
       // Listener para detectar si el video falla en reproducirse
-      videoElement.addEventListener("error", () => {
-        setShowFallback(true); // Mostrar imagen de fallback si hay error en la reproducción
-      });
+      videoElement.addEventListener("error", handleError);
+      videoElement.addEventListener("playing", handlePlaying);
 
       // Limpiar el listener al desmontar el componente
       return () => {
-        videoElement.removeEventListener("error", handlePlay);
+        videoElement.removeEventListener("error", handleError);
+        videoElement.removeEventListener("playing", handlePlaying);
       };
     }
   }, [src, autoPlay]);
@@ -66,6 +67,14 @@ const Video: React.FC<VideoProps> = ({
     );
   }
 
+  const className = [
+    rest.className,
+    "transition-opacity duration-700",
+    isPlaying ? "opacity-100" : "opacity-0",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
     <video
       ref={videoRef}
@@ -76,6 +85,7 @@ const Video: React.FC<VideoProps> = ({
       preload={preload}
       poster={poster}
       {...rest}
+      className={className}
     >
       <source src={src} type="video/mp4" />
       Your browser does not support the video tag.
