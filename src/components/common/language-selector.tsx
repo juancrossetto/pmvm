@@ -53,25 +53,31 @@ export default function LanguageSelector() {
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
 					<DropdownMenuItem onClick={() => changeLanguage("es")}>
-						<img
+						<Image
 							src='/flags/es.svg'
 							alt='Español'
+							width={16}
+							height={16}
 							className='inline-block w-4 h-4 mr-2'
 						/>
 						Español
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => changeLanguage("en")}>
-						<img
+						<Image
 							src='/flags/en.svg'
 							alt='English'
+							width={16}
+							height={16}
 							className='inline-block w-4 h-4 mr-2'
 						/>
 						English
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => changeLanguage("pt")}>
-						<img
+						<Image
 							src='/flags/pt.svg'
 							alt='Português'
+							width={16}
+							height={16}
 							className='inline-block w-4 h-4 mr-2'
 						/>
 						Português

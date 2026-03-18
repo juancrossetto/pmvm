@@ -15,7 +15,7 @@ function StoryCard({
 }: {
   story: {
     name: string;
-    result: string;
+    result?: string;
     quote: string;
     beforeImg: string;
     afterImg: string;
@@ -50,9 +50,11 @@ function StoryCard({
           <h4 className="text-2xl font-heading font-bold uppercase tracking-tight text-white">
             {story.name}
           </h4>
-          <p className="text-brand-accent font-heading font-black text-3xl">
-            {story.result}
-          </p>
+          {story.result ? (
+            <p className="text-brand-accent font-heading font-black text-3xl">
+              {story.result}
+            </p>
+          ) : null}
         </div>
         <blockquote className="text-brand-text/60 font-light italic text-base leading-relaxed">
           {story.quote}
@@ -62,11 +64,24 @@ function StoryCard({
   );
 }
 
+function extractKg(text?: string): string | undefined {
+  if (!text) return undefined;
+  const match = text.match(/(\d{1,3})\s*kg/i);
+  if (!match) return undefined;
+  return `${match[1]}kg`;
+}
+
+type LocaleKey = "es" | "en" | "pt";
+function toLocaleKey(locale: string): LocaleKey {
+  if (locale === "es" || locale === "en" || locale === "pt") return locale;
+  return "es";
+}
+
 export default function V2SuccessStories() {
-  const locale = useLocale();
+  const locale = toLocaleKey(useLocale());
   const localizedStories = transformations.map((item) => ({
     name: item.clientName,
-    result: item.weightLost ?? "",
+    result: extractKg(item.clientTestimonial?.[locale]),
     quote: item.clientDetail?.[locale] ?? "",
     beforeImg: item.beforeImage,
     afterImg: item.afterImage,

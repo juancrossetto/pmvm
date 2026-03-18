@@ -1,11 +1,28 @@
 import pricingData from "@/data/plans.json";
 
-const plans = (pricingData as any[]).map((plan, index) => ({
+type PlanJsonItem = { es: string };
+type PlanJson = {
+  title: { es: string };
+  price: { es: string };
+  items: PlanJsonItem[];
+};
+
+type V2Plan = {
+  id: number;
+  name: string;
+  price: string;
+  highlighted: boolean;
+  features: string[];
+  cta: string;
+  ctaClass: string;
+};
+
+const plans: V2Plan[] = (pricingData as PlanJson[]).map((plan, index) => ({
   id: index,
   name: plan.title.es,
   price: plan.price.es,
   highlighted: index === 1,
-  features: plan.items.map((item: any) => item.es),
+  features: plan.items.map((item) => item.es),
   cta: "Quiero empezar",
   ctaClass:
     index === 1
@@ -66,7 +83,7 @@ export default function V2Pricing() {
                     plan.highlighted ? "text-brand-text/80" : "text-brand-text/50"
                   }`}
                 >
-                  {plan.features.map((feature) => (
+                  {plan.features.map((feature: string) => (
                     <li key={feature} className="flex items-center">
                       <span className="text-brand-accent mr-4 text-lg">
                         ✓
