@@ -113,7 +113,11 @@
 			"program": "The Program",
 			"testimonials": "Testimonials",
 			"faq": "FAQ",
-			"cta": "Start now"
+			"cta": "Start now",
+			"login": "Sign in",
+			"register": "Sign up",
+			"dashboard": "My dashboard",
+			"logout": "Sign out"
 		},
 		"hero": {
 			"badge": "Physical transformation program",

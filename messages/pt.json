@@ -112,7 +112,11 @@
 			"program": "O Programa",
 			"testimonials": "Depoimentos",
 			"faq": "FAQ",
-			"cta": "Começar agora"
+			"cta": "Começar agora",
+			"login": "Entrar",
+			"register": "Cadastrar-se",
+			"dashboard": "Meu dashboard",
+			"logout": "Sair"
 		},
 		"hero": {
 			"badge": "Programa de transformação física",
