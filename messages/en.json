@@ -102,9 +102,106 @@
 		"privacy": "Privacy Policy"
 	},
 	"cookies": {
-		"title": "We use cookies",	
+		"title": "We use cookies",
 		"text": "We use cookies to improve your browsing experience, serve personalized ads or content and analyze our traffic. By clicking \"Accept All Cookies\", you consent to our use of cookies.",
 		"btn_accept": "Accept All Cookies",
 		"btn_cancel": "Decline"
+	},
+	"v3": {
+		"nav": {
+			"about": "About",
+			"program": "The Program",
+			"testimonials": "Testimonials",
+			"faq": "FAQ",
+			"cta": "Start now"
+		},
+		"hero": {
+			"badge": "Physical transformation program",
+			"stat1": "Years specialized in overweight and obesity",
+			"stat2": "Years of experience in the fitness world",
+			"stat3": "Lives transformed in team PMVM",
+			"stat4": "Health professionals working as a team",
+			"cta2": "See the program"
+		},
+		"program": {
+			"label": "The method",
+			"title": "The",
+			"highlight": "PMVM program",
+			"sub": "A comprehensive 3-pillar system that works together to achieve lasting results without sacrificing your quality of life.",
+			"pillar1_title": "Smart movement",
+			"pillar1_desc": "Personalized exercise plan based on your current fitness level, time availability and goals. No mandatory equipment, adaptable to any context.",
+			"pillar2_title": "Real nutrition",
+			"pillar2_desc": "Nutritional guidance based on your current habits. We don't eliminate foods, we reorganize them. You eat what you like, but intelligently.",
+			"pillar3_title": "Growth mindset",
+			"pillar3_desc": "We work on the thinking patterns that hold you back. 80% of success is in the mind. We give you the tools to maintain motivation over time.",
+			"step1_title": "Diagnosis",
+			"step1_desc": "Initial assessment of your physical condition and habits",
+			"step2_title": "Custom plan",
+			"step2_desc": "Routine and nutritional guide tailored to you",
+			"step3_title": "Follow-up",
+			"step3_desc": "Weekly support and continuous adjustments",
+			"step4_title": "Result",
+			"step4_desc": "Sustainable transformation and lifelong habits",
+			"step_prefix": "STEP"
+		},
+		"faq": {
+			"label": "FAQ",
+			"title": "Frequently",
+			"highlight": "asked",
+			"sub": "Have questions? Here are the most common ones. If you don't find yours, write to us.",
+			"q1": "Do I need prior exercise experience?",
+			"a1": "No. The program is designed from scratch for people who have never exercised or haven't moved in a long time. We start from where you are.",
+			"q2": "Does the program work online?",
+			"a2": "Yes, completely. You can do the program from anywhere in the world. Follow-up is done via video call, WhatsApp and digital platform.",
+			"q3": "How long does the program last?",
+			"a3": "The base program is 3 months. Many clients continue with maintenance plans to consolidate results and keep progressing.",
+			"q4": "Do I have to follow a strict diet?",
+			"a4": "No. The nutritional guidance adapts to your current habits. It's not about eliminating foods but about reorganizing and understanding what you eat.",
+			"q5": "How much time per day do I need?",
+			"a5": "30 to 45 minutes a day is enough. The program is designed for busy people.",
+			"q6": "What if I have a medical condition?",
+			"a6": "Before starting we do a full assessment. The program adapts to conditions like hypertension, type 2 diabetes and others. We coordinate with your doctor if needed."
+		},
+		"contact": {
+			"label": "Contact",
+			"title": "Ready to",
+			"highlight": "start?",
+			"sub": "Fill in the form and Alejandro will contact you within 24 hours for a free no-commitment consultation.",
+			"location": "Buenos Aires, Argentina (online worldwide)",
+			"form_name": "Your name",
+			"form_email": "Your email",
+			"form_phone": "WhatsApp / phone",
+			"form_goal": "What's your goal?",
+			"form_opt1": "Lose weight",
+			"form_opt2": "Improve my fitness",
+			"form_opt3": "Change my habits",
+			"form_opt4": "Other",
+			"form_message": "Tell me a bit about yourself and your goals...",
+			"form_submit": "Send inquiry",
+			"form_success": "Message sent! We'll contact you soon."
+		},
+		"about": {
+			"cred1": "Bachelor in Physical Education – UBA",
+			"cred2": "Specialist in obesity and overweight",
+			"cred3": "Based in Buenos Aires, Argentina",
+			"cred4": "In-person and online coaching"
+		},
+		"testi": {
+			"label": "Real cases",
+			"title": "They already",
+			"highlight": "made it"
+		},
+		"pricing": {
+			"label": "Plans",
+			"title": "Choose your",
+			"highlight": "program",
+			"popular": "Most popular",
+			"cta": "Start now",
+			"per_month": "/ month",
+			"all_from_basic": "Everything in Workout, plus:"
+		},
+		"footer": {
+			"rights": "All rights reserved"
+		}
 	}
 }

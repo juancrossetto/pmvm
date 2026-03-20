@@ -105,5 +105,102 @@
 		"text": "Utilizamos cookies para mejorar su experiencia de navegación, servir anuncios personalizados o contenido y analizar nuestro tráfico. Al hacer clic en \"Aceptar todas las cookies\", usted consiente nuestro uso de cookies.",
 		"btn_accept": "Aceptar todas las cookies",
 		"btn_cancel": "Rechazar"
+	},
+	"v3": {
+		"nav": {
+			"about": "Sobre Mí",
+			"program": "El Programa",
+			"testimonials": "Testimonios",
+			"faq": "FAQ",
+			"cta": "Empezá ahora"
+		},
+		"hero": {
+			"badge": "Programa de transformación física",
+			"stat1": "Años especializado en sobrepeso y obesidad",
+			"stat2": "Años de experiencia en el mundo fitness",
+			"stat3": "Vidas transformadas en el team PMVM",
+			"stat4": "Profesionales de la salud trabajando en equipo",
+			"cta2": "Ver el programa"
+		},
+		"program": {
+			"label": "El método",
+			"title": "El programa",
+			"highlight": "PMVM",
+			"sub": "Un sistema integral de 3 pilares que trabajan en conjunto para lograr resultados duraderos sin sacrificar tu calidad de vida.",
+			"pillar1_title": "Movimiento inteligente",
+			"pillar1_desc": "Plan de ejercicios personalizado según tu condición física actual, disponibilidad de tiempo y objetivos. Sin equipamiento obligatorio, adaptable a cualquier contexto.",
+			"pillar2_title": "Nutrición real",
+			"pillar2_desc": "Orientación nutricional basada en tus hábitos actuales. No eliminamos alimentos, los reorganizamos. Comés lo que te gusta, pero de manera inteligente.",
+			"pillar3_title": "Mentalidad de cambio",
+			"pillar3_desc": "Trabajamos los patrones de pensamiento que te frenan. El 80% del éxito está en la cabeza. Te damos las herramientas para mantener la motivación en el tiempo.",
+			"step1_title": "Diagnóstico",
+			"step1_desc": "Evaluación inicial de tu estado físico y hábitos",
+			"step2_title": "Plan personalizado",
+			"step2_desc": "Rutina y guía nutricional adaptada a vos",
+			"step3_title": "Seguimiento",
+			"step3_desc": "Acompañamiento semanal y ajustes continuos",
+			"step4_title": "Resultado",
+			"step4_desc": "Transformación sostenible y hábitos de por vida",
+			"step_prefix": "PASO"
+		},
+		"faq": {
+			"label": "FAQ",
+			"title": "Preguntas",
+			"highlight": "frecuentes",
+			"sub": "¿Tenés dudas? Acá respondemos las más comunes. Si no encontrás la tuya, escribinos.",
+			"q1": "¿Necesito tener experiencia previa en ejercicio?",
+			"a1": "No. El programa está diseñado desde cero para personas que nunca hicieron ejercicio o que llevan mucho tiempo sin moverse. Empezamos desde donde estás.",
+			"q2": "¿El programa funciona de forma online?",
+			"a2": "Sí, totalmente. Podés hacer el programa desde cualquier lugar del mundo. El seguimiento se realiza por videollamada, WhatsApp y plataforma digital.",
+			"q3": "¿Cuánto tiempo dura el programa?",
+			"a3": "El programa base es de 3 meses. Muchos clientes continúan con planes de mantenimiento para consolidar los resultados y seguir progresando.",
+			"q4": "¿Voy a tener que seguir una dieta estricta?",
+			"a4": "No. La orientación nutricional se adapta a tus hábitos actuales. No se trata de eliminar alimentos sino de reorganizar y entender qué comés.",
+			"q5": "¿Cuánto tiempo por día necesito dedicarle?",
+			"a5": "Con 30 a 45 minutos diarios es suficiente. El programa está diseñado para adaptarse a personas con agenda ocupada.",
+			"q6": "¿Qué pasa si tengo alguna condición médica?",
+			"a6": "Antes de empezar hacemos una evaluación completa. El programa se adapta a condiciones como hipertensión, diabetes tipo 2 u otras. Trabajamos en coordinación con tu médico si es necesario."
+		},
+		"contact": {
+			"label": "Contacto",
+			"title": "¿Listo para",
+			"highlight": "empezar?",
+			"sub": "Escribinos y Alejandro te contacta en menos de 24 horas para una consulta gratuita sin compromiso.",
+			"location": "Buenos Aires, Argentina (online worldwide)",
+			"form_name": "Tu nombre",
+			"form_email": "Tu email",
+			"form_phone": "WhatsApp / teléfono",
+			"form_goal": "¿Cuál es tu objetivo?",
+			"form_opt1": "Bajar de peso",
+			"form_opt2": "Mejorar mi condición física",
+			"form_opt3": "Cambiar mis hábitos",
+			"form_opt4": "Otro",
+			"form_message": "Contame un poco sobre vos y tus objetivos...",
+			"form_submit": "Enviar consulta",
+			"form_success": "¡Mensaje enviado! Te contactamos pronto."
+		},
+		"about": {
+			"cred1": "Licenciado en Educación Física – UBA",
+			"cred2": "Especialista en obesidad y sobrepeso",
+			"cred3": "Basado en Buenos Aires, Argentina",
+			"cred4": "Atención presencial y online"
+		},
+		"testi": {
+			"label": "Casos reales",
+			"title": "Ellos ya lo",
+			"highlight": "lograron"
+		},
+		"pricing": {
+			"label": "Planes",
+			"title": "Elegí tu",
+			"highlight": "programa",
+			"popular": "Más popular",
+			"cta": "Empezar ahora",
+			"per_month": "/ mes",
+			"all_from_basic": "Todo lo del plan Workout, más:"
+		},
+		"footer": {
+			"rights": "Todos los derechos reservados"
+		}
 	}
 }
