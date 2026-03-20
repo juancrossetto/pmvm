@@ -13,11 +13,8 @@
 import { createClient } from '@supabase/supabase-js'
 import { NextRequest, NextResponse } from 'next/server'
 
-// Usamos el service role para escribir sin restricciones de RLS
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SECRET_KEY!
-)
+// Force dynamic so Next.js never tries to statically analyse this route at build time
+export const dynamic = 'force-dynamic'
 
 export async function POST(request: NextRequest) {
   // Validar secret para que solo Zapier pueda llamar este endpoint
@@ -38,6 +35,12 @@ export async function POST(request: NextRequest) {
   if (!event || !email) {
     return NextResponse.json({ error: 'Missing event or email' }, { status: 400 })
   }
+
+  // Crear el cliente dentro del handler para que las env vars estén disponibles en runtime
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SECRET_KEY!
+  )
 
   // Buscar el cliente por email
   const { data: { users }, error: userError } = await supabase.auth.admin.listUsers()
