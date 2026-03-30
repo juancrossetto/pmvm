@@ -1,10 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import AdminSidebar from '@/components/admin/AdminSidebar'
-import { Bebas_Neue, Inter } from 'next/font/google'
-
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: ['400'], variable: '--font-bebas' })
-const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], variable: '--font-inter' })
 
 export default async function AdminLayout({
   children,
@@ -26,13 +22,10 @@ export default async function AdminLayout({
   if (profile?.role !== 'admin') redirect(`/${params.locale}/dashboard`)
 
   return (
-    <div
-      className={`${bebasNeue.variable} ${inter.variable} min-h-screen bg-[#0a0a0a] text-white`}
-      style={{ fontFamily: 'var(--font-inter), sans-serif' }}
-    >
+    <div className="min-h-screen bg-[#0e0e0e] text-white font-body">
       <div className="flex h-screen overflow-hidden">
         <AdminSidebar locale={params.locale} adminName={profile?.full_name ?? 'Admin'} />
-        <main className="flex-1 overflow-y-auto p-6 lg:p-8">
+        <main className="flex-1 overflow-y-auto hide-scrollbar">
           {children}
         </main>
       </div>

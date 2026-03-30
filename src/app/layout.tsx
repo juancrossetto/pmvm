@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import {
-	// Inter,
-	 Poppins,
-	// Bebas_Neue,
+	Poppins,
+	Space_Grotesk,
+	Manrope,
+	Lexend,
 } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
@@ -22,8 +23,26 @@ import { Providers } from "./providers";
 
 const poppins = Poppins({
 	subsets: ["latin"],
-	weight: ["400", "700"], // Puedes incluir otros pesos si lo necesitas
-	variable: "--font-poppins", // Define una variable CSS para la fuente
+	weight: ["400", "700"],
+	variable: "--font-poppins",
+});
+
+const spaceGrotesk = Space_Grotesk({
+	subsets: ["latin"],
+	weight: ["300", "400", "500", "600", "700"],
+	variable: "--font-space-grotesk",
+});
+
+const manrope = Manrope({
+	subsets: ["latin"],
+	weight: ["300", "400", "500", "600", "700", "800"],
+	variable: "--font-manrope",
+});
+
+const lexend = Lexend({
+	subsets: ["latin"],
+	weight: ["300", "400", "500", "600", "700"],
+	variable: "--font-lexend",
 });
 
 // const bebasNeue = Bebas_Neue({
@@ -50,9 +69,10 @@ export default function RootLayout({
 			<body
 				className={cn(
 					"antialiased",
-					// fontHeading.variable,
-					// fontBody.variable,
-					poppins.variable
+					poppins.variable,
+					spaceGrotesk.variable,
+					manrope.variable,
+					lexend.variable,
 				)}
 			>
 				<Providers>{children}</Providers>

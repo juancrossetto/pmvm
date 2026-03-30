@@ -4,7 +4,6 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import Image from 'next/image'
 
 interface AdminSidebarProps {
   locale: string
@@ -12,9 +11,9 @@ interface AdminSidebarProps {
 }
 
 const navItems = [
-  { href: 'admin',          label: 'Overview',   icon: '📊' },
-  { href: 'admin/clients',  label: 'Clientes',   icon: '👥' },
-  { href: 'admin/messages', label: 'Mensajes',   icon: '💬' },
+  { href: 'admin',          label: 'Dashboard',  icon: 'dashboard' },
+  { href: 'admin/clients',  label: 'Clientes',   icon: 'group' },
+  { href: 'admin/messages', label: 'Mensajes',   icon: 'chat' },
 ]
 
 export default function AdminSidebar({ locale, adminName }: AdminSidebarProps) {
@@ -30,35 +29,27 @@ export default function AdminSidebar({ locale, adminName }: AdminSidebarProps) {
   }
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full">
-      {/* Logo */}
-      <div className="px-6 py-5 border-b border-white/10">
-        <Link href={`/${locale}/v3`} className="flex items-center gap-3">
-          <Image src="/images/icon-yellow.png" alt="Logo" width={32} height={32} className="object-contain" />
-          <div>
-            <span className="text-xl text-white block" style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.03em' }}>
-              PMVM
-            </span>
-            <span className="text-[10px] text-[#ffd11e] tracking-widest uppercase -mt-1 block">Admin</span>
-          </div>
+    <div className="flex flex-col h-full bg-[#0e0e0e] border-r border-white/5">
+      <div className="px-6 pt-8 pb-4">
+        <Link href={`/${locale}/v4`} className="block">
+          <span className="text-xl font-black text-[#D1FF26] font-headline tracking-[-0.04em] uppercase italic">
+            METODO R3SET
+          </span>
         </Link>
+        <p className="text-[10px] text-white/25 font-label tracking-widest uppercase mt-1">Admin Portal</p>
       </div>
 
-      {/* Admin info */}
-      <div className="px-6 py-4 border-b border-white/10">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-[#ffd11e] flex items-center justify-center text-black font-bold text-sm flex-shrink-0">
-            {adminName[0].toUpperCase()}
-          </div>
-          <div>
-            <p className="text-white text-sm font-medium">{adminName}</p>
-            <p className="text-[#ffd11e] text-xs">Entrenador</p>
-          </div>
+      <div className="px-6 pb-8 flex items-center gap-3">
+        <div className="w-10 h-10 bg-[#cefc22] flex items-center justify-center text-[#3b4a00] font-black text-sm flex-shrink-0 font-headline">
+          {adminName[0]?.toUpperCase()}
+        </div>
+        <div>
+          <p className="text-sm font-headline font-bold text-white uppercase tracking-tight">{adminName}</p>
+          <p className="text-[10px] text-[#c1ed00] font-label uppercase tracking-widest">Entrenador</p>
         </div>
       </div>
 
-      {/* Nav */}
-      <nav className="flex-1 px-3 py-4 space-y-1">
+      <nav className="flex-1 px-2 space-y-0.5">
         {navItems.map((item) => {
           const href = `/${locale}/${item.href}`
           const isActive = pathname === href || (item.href !== 'admin' && pathname.startsWith(href))
@@ -67,58 +58,58 @@ export default function AdminSidebar({ locale, adminName }: AdminSidebarProps) {
               key={item.href}
               href={href}
               onClick={() => setMobileOpen(false)}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
+              className={`flex items-center gap-3 px-4 py-3 transition-all duration-200 font-headline font-bold text-sm tracking-tight uppercase ${
                 isActive
-                  ? 'bg-[#ffd11e]/10 text-[#ffd11e] font-medium'
-                  : 'text-white/60 hover:text-white hover:bg-white/5'
+                  ? 'bg-[#cefc22] text-[#3b4a00]'
+                  : 'text-white/40 hover:text-white hover:bg-white/5'
               }`}
             >
-              <span>{item.icon}</span>
+              <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
               <span>{item.label}</span>
             </Link>
           )
         })}
       </nav>
 
-      {/* Links utiles */}
-      <div className="px-3 pb-2 space-y-1">
-        <Link
-          href={`/${locale}/dashboard`}
-          className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white/40 hover:text-white/70 hover:bg-white/5 transition-colors"
-        >
-          <span>👤</span>
+      <div className="px-2 pb-2 space-y-0.5">
+        <Link href={`/${locale}/dashboard`} onClick={() => setMobileOpen(false)}
+          className="flex items-center gap-3 px-4 py-3 text-white/25 hover:text-white/60 hover:bg-white/5 transition-all font-headline font-bold text-xs tracking-tight uppercase">
+          <span className="material-symbols-outlined text-[20px]">person</span>
           <span>Ver como cliente</span>
+        </Link>
+        <Link href={`/${locale}/v4`} onClick={() => setMobileOpen(false)}
+          className="flex items-center gap-3 px-4 py-3 text-white/25 hover:text-white/60 hover:bg-white/5 transition-all font-headline font-bold text-xs tracking-tight uppercase">
+          <span className="material-symbols-outlined text-[20px]">public</span>
+          <span>Ver landing</span>
         </Link>
       </div>
 
-      {/* Logout */}
-      <div className="px-3 py-4 border-t border-white/10">
-        <button
-          onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white/60 hover:text-red-400 hover:bg-red-400/5 transition-colors"
-        >
-          <span>🚪</span>
+      <div className="px-2 py-4 border-t border-white/5">
+        <button onClick={handleLogout}
+          className="w-full flex items-center gap-3 px-4 py-3 text-white/25 hover:text-red-400 hover:bg-red-400/5 transition-all font-headline font-bold text-xs tracking-tight uppercase">
+          <span className="material-symbols-outlined text-[20px]">logout</span>
           <span>Cerrar sesión</span>
         </button>
+        <p className="px-4 mt-3 text-[10px] text-white/15 font-label tracking-widest uppercase">v2.0 · R3SET</p>
       </div>
     </div>
   )
 
   return (
     <>
-      <aside className="hidden lg:flex w-64 flex-col bg-[#111111] border-r border-white/10 flex-shrink-0">
+      <aside className="hidden lg:flex w-72 flex-col flex-shrink-0 h-screen sticky top-0">
         <SidebarContent />
       </aside>
 
       <div className="lg:hidden">
-        <div className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-3 bg-[#111111] border-b border-white/10">
-          <span className="text-white font-semibold">Panel Admin</span>
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-white/60 hover:text-white p-1">
-            {mobileOpen ? '✕' : '☰'}
+        <div className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 h-14 bg-[#0e0e0e] border-b border-white/5">
+          <span className="text-[#D1FF26] font-headline font-black text-lg uppercase italic tracking-tighter">R3SET Admin</span>
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-white/60 hover:text-white p-1 transition-colors">
+            <span className="material-symbols-outlined">{mobileOpen ? 'close' : 'menu'}</span>
           </button>
         </div>
-        {mobileOpen && <div className="fixed inset-0 z-30 bg-black/60" onClick={() => setMobileOpen(false)} />}
-        <aside className={`fixed top-0 left-0 z-40 w-64 h-full bg-[#111111] border-r border-white/10 transform transition-transform duration-300 ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        {mobileOpen && <div className="fixed inset-0 z-30 bg-black/70 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />}
+        <aside className={`fixed top-0 left-0 z-40 w-72 h-full transform transition-transform duration-300 ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}`}>
           <SidebarContent />
         </aside>
         <div className="h-14" />
