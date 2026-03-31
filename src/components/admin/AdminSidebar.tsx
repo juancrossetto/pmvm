@@ -11,9 +11,10 @@ interface AdminSidebarProps {
 }
 
 const navItems = [
-  { href: 'admin',          label: 'Dashboard',  icon: 'dashboard' },
-  { href: 'admin/clients',  label: 'Clientes',   icon: 'group' },
-  { href: 'admin/messages', label: 'Mensajes',   icon: 'chat' },
+  { href: 'admin',                 label: 'Dashboard',  icon: 'dashboard' },
+  { href: 'admin/routines',        label: 'Rutinas',    icon: 'fitness_center' },
+  { href: 'admin/clients',         label: 'Clientes',   icon: 'group' },
+  { href: 'admin/messages',        label: 'Mensajes',   icon: 'chat' },
 ]
 
 export default function AdminSidebar({ locale, adminName }: AdminSidebarProps) {
@@ -71,7 +72,19 @@ export default function AdminSidebar({ locale, adminName }: AdminSidebarProps) {
         })}
       </nav>
 
-      <div className="px-2 pb-2 space-y-0.5">
+      {/* New Workout CTA */}
+      <div className="px-4 pb-4">
+        <Link
+          href={`/${locale}/admin/routines`}
+          onClick={() => setMobileOpen(false)}
+          className="flex items-center justify-center gap-2 w-full py-3.5 bg-[#cefc22] text-[#3b4a00] font-headline font-black text-xs tracking-widest uppercase hover:opacity-90 active:scale-[0.98] transition-all"
+        >
+          <span className="material-symbols-outlined text-[18px]">add</span>
+          New Workout
+        </Link>
+      </div>
+
+      <div className="px-2 pb-2 space-y-0.5 border-t border-white/5 pt-2">
         <Link href={`/${locale}/dashboard`} onClick={() => setMobileOpen(false)}
           className="flex items-center gap-3 px-4 py-3 text-white/25 hover:text-white/60 hover:bg-white/5 transition-all font-headline font-bold text-xs tracking-tight uppercase">
           <span className="material-symbols-outlined text-[20px]">person</span>
