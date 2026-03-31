@@ -1,19 +1,7 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import DashboardSidebar from '@/components/dashboard/DashboardSidebar'
-import { Bebas_Neue, Inter } from 'next/font/google'
-
-const bebasNeue = Bebas_Neue({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-bebas',
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-inter',
-})
+import ClientSidebar from '@/components/dashboard/ClientSidebar'
+import AdminPageTransition from '@/components/admin/AdminPageTransition'
 
 export default async function DashboardLayout({
   children,
@@ -24,12 +12,8 @@ export default async function DashboardLayout({
 }) {
   const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect(`/${params.locale}/login`)
 
-  if (!user) {
-    redirect(`/${params.locale}/login`)
-  }
-
-  // Obtener perfil del usuario
   const { data: profile } = await supabase
     .from('profiles')
     .select('*')
@@ -37,14 +21,17 @@ export default async function DashboardLayout({
     .single()
 
   return (
-    <div
-      className={`${bebasNeue.variable} ${inter.variable} min-h-screen bg-[#0a0a0a] text-white`}
-      style={{ fontFamily: 'var(--font-inter), sans-serif' }}
-    >
+    <div className="min-h-screen bg-[#0e0e0e] text-white font-body">
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+      />
       <div className="flex h-screen overflow-hidden">
-        <DashboardSidebar locale={params.locale} user={user} profile={profile} />
-        <main className="flex-1 overflow-y-auto p-6 lg:p-8">
-          {children}
+        <ClientSidebar locale={params.locale} profile={profile} userEmail={user.email ?? ''} />
+        <main className="flex-1 overflow-y-auto hide-scrollbar">
+          <AdminPageTransition>
+            {children}
+          </AdminPageTransition>
         </main>
       </div>
     </div>
