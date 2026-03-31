@@ -394,21 +394,25 @@ export default function V4Page() {
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <motion.div
-              className="w-full md:w-1/2 aspect-[4/5] bg-surface-container relative flex-shrink-0 overflow-hidden"
+              className="w-full md:w-1/2 flex-shrink-0 relative"
               variants={fadeLeft}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
             >
-              <motion.img
-                src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=800&q=80&auto=format&fit=crop"
-                alt="Alejandro Gerez - Head Coach"
-                className="w-full h-full object-cover"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.8 }}
-              />
+              {/* Image wrapper with overflow-hidden so scale hover stays clipped */}
+              <div className="aspect-[4/5] bg-surface-container overflow-hidden">
+                <motion.img
+                  src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=800&q=80&auto=format&fit=crop"
+                  alt="Alejandro Gerez - Head Coach"
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.8 }}
+                />
+              </div>
+              {/* Badge OUTSIDE the overflow-hidden wrapper so it's fully visible */}
               <motion.div
-                className="absolute -bottom-5 -right-5 bg-[#00e3fd] text-[#003a42] px-5 py-3 font-headline font-black text-sm uppercase tracking-tighter"
+                className="absolute -bottom-5 -right-5 bg-[#00e3fd] text-[#003a42] px-5 py-3 font-headline font-black text-sm uppercase tracking-tighter z-10"
                 initial={{ x: 60, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
