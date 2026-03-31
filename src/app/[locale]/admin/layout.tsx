@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import AdminSidebar from '@/components/admin/AdminSidebar'
+import AdminPageTransition from '@/components/admin/AdminPageTransition'
 
 export default async function AdminLayout({
   children,
@@ -23,10 +24,17 @@ export default async function AdminLayout({
 
   return (
     <div className="min-h-screen bg-[#0e0e0e] text-white font-body">
+      {/* Material Symbols — loaded via link for guaranteed icon rendering */}
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+      />
       <div className="flex h-screen overflow-hidden">
         <AdminSidebar locale={params.locale} adminName={profile?.full_name ?? 'Admin'} />
         <main className="flex-1 overflow-y-auto hide-scrollbar">
-          {children}
+          <AdminPageTransition>
+            {children}
+          </AdminPageTransition>
         </main>
       </div>
     </div>
