@@ -1,8 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+
+interface ClientOption { id: string; full_name: string | null; email: string }
 
 interface Exercise {
   id: string
@@ -40,6 +42,16 @@ export default function RoutineArchitectPage() {
   const [saved, setSaved] = useState(false)
   const [error, setError] = useState('')
 
+  // Client assignment for Trainerize sync
+  const [clients, setClients] = useState<ClientOption[]>([])
+  const [selectedClientId, setSelectedClientId] = useState('')
+  const [zapierStatus, setZapierStatus] = useState<'idle' | 'syncing' | 'synced' | 'error'>('idle')
+
+  useEffect(() => {
+    supabase.from('profiles').select('id, full_name').eq('role', 'client').order('full_name')
+      .then(({ data }) => setClients(data ?? []))
+  }, [])
+
   const addExercise = () => setExercises((prev) => [...prev, EMPTY_EXERCISE()])
 
   const removeExercise = (id: string) =>
@@ -63,6 +75,7 @@ export default function RoutineArchitectPage() {
       .insert({
         name: titleEs || titleEn,
         description: `${category}${mindset ? ` — ${mindset}` : ''}`,
+        ...(selectedClientId ? { client_id: selectedClientId } : {}),
       })
       .select()
       .single()
@@ -99,7 +112,31 @@ export default function RoutineArchitectPage() {
 
     setSaved(true)
     setSaving(false)
-    setTimeout(() => router.push('../admin/clients'), 1500)
+
+    // Sync to Trainerize via Zapier if a client is selected
+    if (selectedClientId) {
+      const selectedClient = clients.find((c) => c.id === selectedClientId)
+      if (selectedClient) {
+        setZapierStatus('syncing')
+        try {
+          const res = await fetch('/api/zapier/assign-routine', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              client_email: (selectedClient as any).email || '',
+              client_name: selectedClient.full_name,
+              routine_name: titleEs || titleEn,
+              routine_id: routine.id,
+              category,
+              exercises: exercises.filter((e) => e.name.trim()),
+            }),
+          })
+          setZapierStatus(res.ok ? 'synced' : 'error')
+        } catch { setZapierStatus('error') }
+      }
+    }
+
+    setTimeout(() => router.push('../admin/clients'), 2000)
   }
 
   return (
@@ -130,25 +167,37 @@ export default function RoutineArchitectPage() {
             >
               Descartar
             </button>
-            <button
-              onClick={handlePublish}
-              disabled={saving || saved}
-              className="px-8 py-2.5 bg-white text-black font-headline font-bold uppercase tracking-widest text-xs hover:bg-[#c1ed00] transition-colors disabled:opacity-50 flex items-center gap-2"
-            >
-              {saving ? (
-                <>
-                  <span className="material-symbols-outlined text-sm animate-spin">refresh</span>
-                  Guardando...
-                </>
-              ) : saved ? (
-                <>
-                  <span className="material-symbols-outlined text-sm">check_circle</span>
-                  Publicada ✓
-                </>
-              ) : (
-                'Publicar Rutina'
+            <div className="flex flex-col items-end gap-2">
+              <button
+                onClick={handlePublish}
+                disabled={saving || saved}
+                className="px-8 py-2.5 bg-white text-black font-headline font-bold uppercase tracking-widest text-xs hover:bg-[#c1ed00] transition-colors disabled:opacity-50 flex items-center gap-2"
+              >
+                {saving ? (
+                  <><span className="material-symbols-outlined text-sm animate-spin">refresh</span>Guardando...</>
+                ) : saved ? (
+                  <><span className="material-symbols-outlined text-sm">check_circle</span>Publicada ✓</>
+                ) : (
+                  <><span className="material-symbols-outlined text-sm">publish</span>Publicar Rutina</>
+                )}
+              </button>
+              {/* Zapier sync status */}
+              {zapierStatus === 'syncing' && (
+                <span className="font-label text-[9px] uppercase tracking-widest text-[#00e3fd] flex items-center gap-1">
+                  <span className="material-symbols-outlined text-sm animate-spin">sync</span>Sincronizando con Trainerize...
+                </span>
               )}
-            </button>
+              {zapierStatus === 'synced' && (
+                <span className="font-label text-[9px] uppercase tracking-widest text-[#00e3fd] flex items-center gap-1">
+                  <span className="material-symbols-outlined text-sm">check_circle</span>Enviado a Trainerize ✓
+                </span>
+              )}
+              {zapierStatus === 'error' && (
+                <span className="font-label text-[9px] uppercase tracking-widest text-[#ff734a] flex items-center gap-1">
+                  <span className="material-symbols-outlined text-sm">warning</span>Error al sincronizar con Trainerize
+                </span>
+              )}
+            </div>
           </div>
         </header>
 
@@ -163,6 +212,41 @@ export default function RoutineArchitectPage() {
 
           {/* Left column */}
           <div className="lg:col-span-4 space-y-8">
+
+            {/* 00 — Assign to Client (Trainerize) */}
+            <section className="bg-surface-container-low p-7 lg:p-8 relative overflow-hidden border border-[#00e3fd]/20">
+              <div className="absolute top-0 left-0 w-1 h-full bg-[#00e3fd]" />
+              <div className="flex items-center justify-between mb-5">
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-label text-[#00e3fd] border border-[#00e3fd]/30 px-2 py-0.5">00</span>
+                  <h2 className="font-headline font-bold text-lg uppercase tracking-tighter text-white">Asignar a Cliente</h2>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00e3fd] animate-pulse" />
+                  <span className="font-label text-[9px] uppercase tracking-widest text-[#00e3fd]">Trainerize Sync</span>
+                </div>
+              </div>
+              <div>
+                <label className="block text-[10px] font-label text-white/30 uppercase tracking-[0.2em] mb-2">
+                  Cliente (opcional — sincroniza con Trainerize)
+                </label>
+                <select
+                  value={selectedClientId}
+                  onChange={(e) => setSelectedClientId(e.target.value)}
+                  className="w-full bg-surface-container-highest border-none text-white font-label text-sm focus:ring-1 focus:ring-[#00e3fd] py-3 px-4"
+                >
+                  <option value="">— Sin asignar (borrador) —</option>
+                  {clients.map((c) => (
+                    <option key={c.id} value={c.id}>{c.full_name ?? 'Sin nombre'}</option>
+                  ))}
+                </select>
+                {selectedClientId && (
+                  <p className="mt-2 font-label text-[10px] text-[#00e3fd] uppercase tracking-widest">
+                    ✓ Al publicar, se enviará a Trainerize vía Zapier
+                  </p>
+                )}
+              </div>
+            </section>
 
             {/* 01 — Core Identity */}
             <section className="bg-surface-container-low p-7 lg:p-8 relative overflow-hidden">
