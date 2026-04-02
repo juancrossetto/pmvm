@@ -4,7 +4,12 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 
-interface ClientOption { id: string; full_name: string | null; email: string }
+interface ClientOption {
+  id: string
+  full_name: string | null
+  /** Si existe en `profiles` o se agrega al select; Zapier usa fallback vacío */
+  email?: string
+}
 
 interface Exercise {
   id: string
@@ -48,8 +53,19 @@ export default function RoutineArchitectPage() {
   const [zapierStatus, setZapierStatus] = useState<'idle' | 'syncing' | 'synced' | 'error'>('idle')
 
   useEffect(() => {
-    supabase.from('profiles').select('id, full_name').eq('role', 'client').order('full_name')
-      .then(({ data }) => setClients(data ?? []))
+    void supabase
+      .from('profiles')
+      .select('id, full_name')
+      .eq('role', 'client')
+      .order('full_name')
+      .then(({ data }) =>
+        setClients(
+          (data ?? []).map((row) => ({
+            id: row.id,
+            full_name: row.full_name,
+          }))
+        )
+      )
   }, [])
 
   const addExercise = () => setExercises((prev) => [...prev, EMPTY_EXERCISE()])
@@ -123,7 +139,7 @@ export default function RoutineArchitectPage() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              client_email: (selectedClient as any).email || '',
+              client_email: selectedClient.email ?? '',
               client_name: selectedClient.full_name,
               routine_name: titleEs || titleEn,
               routine_id: routine.id,
