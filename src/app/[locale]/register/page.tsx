@@ -2,33 +2,25 @@
 
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { Bebas_Neue, Inter } from 'next/font/google'
-import Image from 'next/image'
 import Link from 'next/link'
-
-const bebasNeue = Bebas_Neue({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-bebas',
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-inter',
-})
+import { CheckCircle } from 'lucide-react'
 
 const texts = {
   es: {
-    title: 'Crear cuenta',
+    title: 'CREAR',
+    titleAccent: 'CUENTA.',
     subtitle: 'Registrate para acceder a tu área de cliente.',
     name: 'Nombre completo',
     email: 'Email',
+    phone: 'WhatsApp / Teléfono',
+    phonePlaceholder: '+54 9 11 1234 5678',
+    phoneHint: 'Para recibir confirmaciones y novedades por WhatsApp',
     password: 'Contraseña',
     passwordHint: 'Mínimo 8 caracteres',
-    button: 'Crear cuenta',
+    button: 'CREAR CUENTA',
     loading: 'Creando cuenta...',
-    successTitle: '¡Revisá tu email!',
+    successTitle: 'REVISÁ TU',
+    successAccent: 'EMAIL.',
     successText: (email: string) =>
       `Te enviamos un link de confirmación a ${email}. Hacé click en el link para activar tu cuenta.`,
     errorGeneric: 'Ocurrió un error. Intentá de nuevo.',
@@ -39,15 +31,20 @@ const texts = {
     back: 'Volver al inicio',
   },
   en: {
-    title: 'Create account',
+    title: 'CREATE',
+    titleAccent: 'ACCOUNT.',
     subtitle: 'Sign up to access your client area.',
     name: 'Full name',
     email: 'Email',
+    phone: 'WhatsApp / Phone',
+    phonePlaceholder: '+1 555 123 4567',
+    phoneHint: 'To receive confirmations and updates via WhatsApp',
     password: 'Password',
     passwordHint: 'At least 8 characters',
-    button: 'Create account',
+    button: 'CREATE ACCOUNT',
     loading: 'Creating account...',
-    successTitle: 'Check your email!',
+    successTitle: 'CHECK YOUR',
+    successAccent: 'EMAIL.',
     successText: (email: string) =>
       `We sent a confirmation link to ${email}. Click the link to activate your account.`,
     errorGeneric: 'An error occurred. Please try again.',
@@ -58,15 +55,20 @@ const texts = {
     back: 'Back to home',
   },
   pt: {
-    title: 'Criar conta',
+    title: 'CRIAR',
+    titleAccent: 'CONTA.',
     subtitle: 'Cadastre-se para acessar sua área de cliente.',
     name: 'Nome completo',
     email: 'Email',
+    phone: 'WhatsApp / Telefone',
+    phonePlaceholder: '+55 11 91234-5678',
+    phoneHint: 'Para receber confirmações e novidades via WhatsApp',
     password: 'Senha',
     passwordHint: 'Mínimo 8 caracteres',
-    button: 'Criar conta',
+    button: 'CRIAR CONTA',
     loading: 'Criando conta...',
-    successTitle: 'Verifique seu email!',
+    successTitle: 'VERIFIQUE SEU',
+    successAccent: 'EMAIL.',
     successText: (email: string) =>
       `Enviamos um link de confirmação para ${email}. Clique no link para ativar sua conta.`,
     errorGeneric: 'Ocorreu um erro. Tente novamente.',
@@ -83,6 +85,7 @@ export default function RegisterPage({ params }: { params: { locale: string } })
 
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -104,7 +107,7 @@ export default function RegisterPage({ params }: { params: { locale: string } })
       email,
       password,
       options: {
-        data: { full_name: fullName },
+        data: { full_name: fullName, phone: phone.trim() || null },
         emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/${params.locale}/auth/confirm`,
       },
     })
@@ -119,114 +122,124 @@ export default function RegisterPage({ params }: { params: { locale: string } })
       return
     }
 
-    // Notificar a Zapier para crear el cliente en Trainerize (fire & forget)
-    fetch('/api/zapier/new-client', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ full_name: fullName, email }),
-    }).catch(() => {/* silencioso si falla */})
-
     setSuccess(true)
     setLoading(false)
   }
 
   return (
-    <div
-      className={`${bebasNeue.variable} ${inter.variable} min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4`}
-      style={{ fontFamily: 'var(--font-inter), sans-serif' }}
-    >
-      {/* Grid background */}
-      <div
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,209,30,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,209,30,0.03) 1px, transparent 1px)',
-          backgroundSize: '64px 64px',
-        }}
-      />
+    <div className="min-h-screen bg-[#0e0e0e] flex items-center justify-center px-4 relative overflow-hidden">
+      {/* Ambient glows */}
+      <div className="fixed top-0 left-1/2 w-[500px] h-[500px] bg-[#c1ed00]/[0.04] blur-[160px] rounded-full -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+      <div className="fixed bottom-0 right-0 w-[400px] h-[400px] bg-[#ff734a]/[0.03] blur-[140px] rounded-full translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
       <div className="w-full max-w-md relative z-10">
         {/* Logo */}
-        <div className="flex justify-center mb-8">
-          <Image
-            src="/images/icon-yellow.png"
-            alt="Logo"
-            width={64}
-            height={64}
-            className="object-contain"
-          />
+        <div className="text-center mb-10">
+          <p className="text-xs font-black tracking-[0.3em] text-[#c1ed00] mb-4">R3SET</p>
+
+          {success ? (
+            <>
+              <div className="flex justify-center mb-5">
+                <div className="w-16 h-16 rounded-full bg-[#c1ed00]/10 flex items-center justify-center">
+                  <CheckCircle className="w-8 h-8 text-[#c1ed00]" />
+                </div>
+              </div>
+              <h1 className="text-5xl font-black tracking-tighter text-white leading-none">
+                {t.successTitle}<br />
+                <span className="text-[#c1ed00] italic">{t.successAccent}</span>
+              </h1>
+            </>
+          ) : (
+            <h1 className="text-5xl font-black tracking-tighter text-white leading-none">
+              {t.title}<br />
+              <span className="text-[#c1ed00] italic">{t.titleAccent}</span>
+            </h1>
+          )}
+
+          <p className="text-white/40 text-sm mt-3">
+            {success ? t.successText(email) : t.subtitle}
+          </p>
         </div>
 
         {success ? (
-          /* Success state */
-          <div className="bg-[#141414] border border-green-500/30 rounded-2xl p-8 text-center">
-            <div className="text-5xl mb-4">📬</div>
-            <h2
-              className="text-3xl text-white mb-3"
-              style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.03em' }}
+          /* Success — link to login */
+          <div className="text-center">
+            <Link
+              href={`/${params.locale}/login`}
+              className="inline-block px-8 py-3.5 bg-[#c1ed00] text-[#0e0e0e] font-black text-sm tracking-widest rounded-xl hover:bg-[#d4ff00] transition-colors"
             >
-              {t.successTitle}
-            </h2>
-            <p className="text-white/60 text-sm leading-relaxed">
-              {t.successText(email)}
-            </p>
+              IR A INICIAR SESIÓN
+            </Link>
           </div>
         ) : (
           /* Form */
-          <div className="bg-[#141414] border border-white/10 rounded-2xl p-8">
-            <h1
-              className="text-4xl text-white mb-1"
-              style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.03em' }}
-            >
-              {t.title}
-            </h1>
-            <p className="text-white/50 text-sm mb-8">{t.subtitle}</p>
-
-            <form onSubmit={handleRegister} className="space-y-4">
+          <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-8 backdrop-blur-sm">
+            <form onSubmit={handleRegister} className="space-y-5">
               {/* Name */}
               <div>
-                <label className="block text-white/70 text-sm mb-1.5">{t.name}</label>
+                <label className="block text-[10px] uppercase tracking-widest text-white/40 mb-2 font-bold">
+                  {t.name}
+                </label>
                 <input
                   type="text"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   required
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#ffd11e] transition-colors"
+                  className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/20 focus:outline-none focus:border-[#c1ed00]/50 transition-colors"
                   placeholder="Juan Pérez"
                 />
               </div>
 
               {/* Email */}
               <div>
-                <label className="block text-white/70 text-sm mb-1.5">{t.email}</label>
+                <label className="block text-[10px] uppercase tracking-widest text-white/40 mb-2 font-bold">
+                  {t.email}
+                </label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#ffd11e] transition-colors"
+                  className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/20 focus:outline-none focus:border-[#c1ed00]/50 transition-colors"
                   placeholder="tu@email.com"
                 />
               </div>
 
+              {/* Phone */}
+              <div>
+                <label className="block text-[10px] uppercase tracking-widest text-white/40 mb-2 font-bold">
+                  {t.phone}
+                </label>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/20 focus:outline-none focus:border-[#c1ed00]/50 transition-colors"
+                  placeholder={t.phonePlaceholder}
+                />
+                <p className="text-white/20 text-xs mt-1.5 px-1">{t.phoneHint}</p>
+              </div>
+
               {/* Password */}
               <div>
-                <label className="block text-white/70 text-sm mb-1.5">{t.password}</label>
+                <label className="block text-[10px] uppercase tracking-widest text-white/40 mb-2 font-bold">
+                  {t.password}
+                </label>
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={8}
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#ffd11e] transition-colors"
+                  className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/20 focus:outline-none focus:border-[#c1ed00]/50 transition-colors"
                   placeholder="••••••••"
                 />
-                <p className="text-white/30 text-xs mt-1.5 px-1">{t.passwordHint}</p>
+                <p className="text-white/20 text-xs mt-1.5 px-1">{t.passwordHint}</p>
               </div>
 
               {/* Error */}
               {error && (
-                <p className="text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-2">
+                <p className="text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-xl px-4 py-2.5">
                   {error}
                 </p>
               )}
@@ -235,19 +248,23 @@ export default function RegisterPage({ params }: { params: { locale: string } })
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#ffd11e] text-black font-semibold py-3 rounded-lg hover:bg-[#e6bc1a] transition-colors disabled:opacity-60 disabled:cursor-not-allowed mt-2"
+                className="w-full bg-[#c1ed00] text-[#0e0e0e] font-black py-3.5 rounded-xl hover:bg-[#d4ff00] transition-colors disabled:opacity-60 disabled:cursor-not-allowed text-sm tracking-widest mt-1"
               >
                 {loading ? t.loading : t.button}
               </button>
             </form>
 
-            {/* Already have account */}
-            <p className="text-center text-white/40 text-sm mt-6">
+            {/* Divider */}
+            <div className="flex items-center gap-3 my-6">
+              <div className="flex-1 h-px bg-white/8" />
+              <span className="text-[10px] text-white/20 uppercase tracking-widest">o</span>
+              <div className="flex-1 h-px bg-white/8" />
+            </div>
+
+            {/* Login link */}
+            <p className="text-center text-white/40 text-sm">
               {t.hasAccount}{' '}
-              <Link
-                href={`/${params.locale}/login`}
-                className="text-[#ffd11e] hover:underline"
-              >
+              <Link href={`/${params.locale}/login`} className="text-[#c1ed00] font-bold hover:underline">
                 {t.login}
               </Link>
             </p>
@@ -255,10 +272,10 @@ export default function RegisterPage({ params }: { params: { locale: string } })
         )}
 
         {/* Back link */}
-        <div className="text-center mt-6">
+        <div className="text-center mt-8">
           <Link
-            href={`/${params.locale}/v3`}
-            className="text-white/40 text-sm hover:text-white/70 transition-colors"
+            href={`/${params.locale}`}
+            className="text-white/25 text-sm hover:text-white/50 transition-colors"
           >
             ← {t.back}
           </Link>

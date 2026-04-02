@@ -20,6 +20,11 @@
   vertical-align: middle;
 }
 
+/* Smooth scrolling global */
+html {
+  scroll-behavior: smooth;
+}
+
 /* R3SET v4 utilities */
 .flat-monolith-depth {
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);

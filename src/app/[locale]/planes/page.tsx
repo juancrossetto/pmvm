@@ -69,7 +69,7 @@ function PlanCard({ plan, locale }: { plan: typeof plans[0]; locale: string }) {
       const res = await fetch('/api/mp/create-preference', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ planId: plan.id }),
+        body: JSON.stringify({ planId: plan.id, locale }),
       })
       const data = await res.json()
       if (!res.ok) {

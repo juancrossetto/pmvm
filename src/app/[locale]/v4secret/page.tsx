@@ -1,10 +1,77 @@
 'use client'
 
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { createBrowserClient } from '@supabase/ssr'
 import { useEffect, useState, useRef } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+
+/* ── Pricing Card ──────────────────────────────────────────── */
+function PricingCard({ plan, locale }: { plan: any; locale: string }) {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const router = useRouter()
+
+  const handleBuy = async () => {
+    setLoading(true)
+    setError('')
+    try {
+      const res = await fetch('/api/mp/create-preference', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ planId: plan.id, locale }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        if (res.status === 401) { router.push(`/${locale}/login?redirect=/#pricing`); return }
+        setError(data.error || 'Error al procesar el pago')
+        return
+      }
+      const url = process.env.NODE_ENV === 'production' ? data.initPoint : data.sandboxInitPoint
+      window.location.href = url || data.initPoint
+    } catch {
+      setError('Error de conexión. Intentá de nuevo.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div className={`relative flex flex-col rounded-none p-6 lg:p-8 border transition-all duration-300 hover:-translate-y-1 ${
+      plan.badge === 'MÁS POPULAR'
+        ? 'border-[#c1ed00]/40 bg-[#c1ed00]/[0.04] shadow-[0_0_50px_rgba(193,237,0,0.08)] scale-[1.02]'
+        : 'border-white/10 bg-surface-container hover:border-white/20'
+    }`}>
+      {plan.badge && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 text-[10px] font-black tracking-widest font-label uppercase"
+          style={{ backgroundColor: plan.color, color: '#0e0e0e' }}>
+          {plan.badge}
+        </div>
+      )}
+      <p className="font-label text-xs font-bold tracking-widest uppercase mb-2" style={{ color: plan.color }}>{plan.days} días</p>
+      <h3 className="font-headline text-2xl font-black mb-3">{plan.name}</h3>
+      <div className="flex items-baseline gap-1 mb-3">
+        <span className="text-sm text-white/40 font-label">ARS</span>
+        <span className="font-headline text-4xl font-black">${plan.price.toLocaleString('es-AR')}</span>
+      </div>
+      <p className="text-on-surface-variant text-sm leading-relaxed mb-6 font-body">{plan.desc}</p>
+      <ul className="space-y-2.5 mb-8 flex-1">
+        {plan.features.map((f: string, i: number) => (
+          <li key={i} className="flex items-start gap-3 text-sm text-on-surface-variant font-body">
+            <span className="material-symbols-outlined text-[16px] mt-0.5 flex-shrink-0" style={{ color: plan.color }}>check</span>
+            {f}
+          </li>
+        ))}
+      </ul>
+      {error && <p className="text-red-400 text-xs mb-3 text-center bg-red-400/10 rounded py-2 px-3 font-label">{error}</p>}
+      <button onClick={handleBuy} disabled={loading}
+        className="w-full py-3.5 font-headline font-black text-sm tracking-widest uppercase transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+        style={{ backgroundColor: loading ? '#333' : plan.color, color: '#0e0e0e' }}>
+        {loading ? 'PROCESANDO...' : 'COMPRAR AHORA'}
+      </button>
+    </div>
+  )
+}
 
 /* ── Animation variants ────────────────────────────────────── */
 const fadeUp = {
@@ -99,6 +166,14 @@ export default function V4Page() {
     return unsub
   }, [scrollY])
 
+  const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const href = e.currentTarget.getAttribute('href')
+    if (!href?.startsWith('#')) return
+    e.preventDefault()
+    const el = document.querySelector(href)
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   return (
     <>
       {/* ── Top Nav ───────────────────────────────────────────────── */}
@@ -118,9 +193,9 @@ export default function V4Page() {
         </div>
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-8 mr-6">
-            <a href="#method" className="font-label text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-300">Método</a>
-            <a href="#coach" className="font-label text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-300">Coach</a>
-            <a href="#cta" className="font-label text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-300">Programas</a>
+            <a href="#method" onClick={smoothScroll} className="font-label text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-300">Método</a>
+            <a href="#coach" onClick={smoothScroll} className="font-label text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-300">Coach</a>
+            <a href="#pricing" onClick={smoothScroll} className="font-label text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-300">Programas</a>
           </div>
           {session ? (
             <Link href={`/${locale}/dashboard`} className="bg-[#cefc22] text-[#3b4a00] px-5 py-2 font-headline font-bold text-xs tracking-widest uppercase hover:opacity-90 active:scale-95 transition-all">
@@ -478,6 +553,62 @@ export default function V4Page() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* ── Pricing ───────────────────────────────────────────────── */}
+      <section id="pricing" className="py-24 px-6 bg-[#0e0e0e] relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#c1ed00]/[0.03] blur-[160px] rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+        <div className="container mx-auto max-w-6xl relative z-10">
+          {/* Header */}
+          <div className="mb-16">
+            <p className="font-label text-[10px] uppercase tracking-[0.3em] text-white/30 mb-3">Elegí tu plan</p>
+            <h2 className="font-headline text-4xl lg:text-6xl font-black tracking-tighter uppercase mb-4">
+              EMPEZÁ TU<br /><span className="text-[#c1ed00] italic">TRANSFORMACIÓN.</span>
+            </h2>
+            <p className="text-on-surface-variant max-w-lg text-base leading-relaxed font-body">
+              Entrenamiento personalizado, seguimiento real y un coach que te acompaña. Elegí el plan que mejor se adapte a tus objetivos.
+            </p>
+          </div>
+
+          {/* Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
+            {[
+              {
+                id: 'monthly', name: 'Plan Mensual', price: 10000, days: 30, badge: null, color: '#00e3fd',
+                desc: 'Perfecto para empezar. Un mes de entrenamiento personalizado.',
+                features: ['Rutina personalizada en Trainerize', 'Seguimiento semanal de progreso', 'Chat directo con tu coach', 'Acceso al dashboard personal'],
+              },
+              {
+                id: 'quarterly', name: 'Plan Trimestral', price: 20000, days: 90, badge: 'MÁS POPULAR', color: '#c1ed00',
+                desc: '3 meses para construir hábitos reales. Ahorrás $10.000.',
+                features: ['Todo lo del plan mensual', 'Actualizaciones de rutina c/4 semanas', 'Análisis de progreso mensual', 'Prioridad de respuesta del coach'],
+              },
+              {
+                id: 'semiannual', name: 'Plan Semestral', price: 30000, days: 180, badge: 'MEJOR VALOR', color: '#ff734a',
+                desc: '6 meses de transformación completa. El camino definitivo.',
+                features: ['Todo lo del plan trimestral', 'Plan nutricional básico incluido', 'Check-in quincenal por videollamada', 'Comunidad privada de alumnos'],
+              },
+            ].map((plan) => (
+              <PricingCard key={plan.id} plan={plan} locale={locale} />
+            ))}
+          </div>
+
+          {/* Trust */}
+          <div className="flex flex-wrap justify-center gap-8 text-white/30 text-xs font-label uppercase tracking-widest">
+            <span className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-[16px] text-[#c1ed00]">bolt</span>
+              Acceso inmediato al pagar
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-[16px] text-[#00e3fd]">shield</span>
+              Pago seguro con Mercado Pago
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-[16px] text-[#ff734a]">chat</span>
+              Soporte por WhatsApp incluido
+            </span>
+          </div>
         </div>
       </section>
 

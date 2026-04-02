@@ -9,12 +9,117 @@ const PLAN_DAYS: Record<string, number> = {
   semiannual: 180,
 }
 
+// ── i18n strings ─────────────────────────────────────────────────────────────
+const t = {
+  es: {
+    planNames: { monthly: 'Plan Mensual', quarterly: 'Plan Trimestral', semiannual: 'Plan Semestral' },
+    email: {
+      subjectNew: (plan: string) => `✅ ¡Tu ${plan} R3SET está activo!`,
+      subjectRenew: (plan: string) => `🔄 Renovación exitosa — ${plan} R3SET`,
+      greeting: (name: string) => `¡Hola, ${name}!`,
+      taglineNew: 'Tu acceso está activo. Es hora de empezar.',
+      taglineRenew: 'Tu plan fue renovado. Seguí con todo.',
+      status: 'Estado',
+      statusValue: '✓ Activo',
+      duration: 'Duración',
+      days: (n: number) => `${n} días`,
+      expires: 'Vence el',
+      ctaNew: 'Configurar mi cuenta →',
+      ctaRenew: 'Ir a mi Dashboard →',
+      stepsTitle: 'Cómo empezar en Trainerize',
+      steps: (email: string) => [
+        'Descargá la app <strong>ABC Trainerize</strong> desde el App Store o Google Play',
+        `Tocá <strong>"Sign up"</strong> e ingresá tu email: <strong>${email}</strong>`,
+        'Seguí los pasos para configurar tu contraseña',
+        '¡Listo! En breve tu coach va a cargar tus rutinas',
+      ],
+      renewNote: 'Ya tenés tu cuenta en Trainerize. Seguí usando tus credenciales habituales — tus rutinas actualizadas ya están disponibles.',
+      coachNote: 'Tu coach va a revisar tu progreso y asignarte el plan para este período.',
+      footer: 'Si tenés alguna duda, respondé este email.',
+    },
+    wa: {
+      new: (name: string, plan: string) =>
+        `¡Hola ${name}! 🎉\n\nTu *${plan} R3SET* ya está activo.\n\n*Para empezar:*\n1️⃣ Descargá la app *ABC Trainerize*\n2️⃣ Registrate con tu email\n3️⃣ Tu coach va a cargar tus rutinas en breve\n\n¡Vamos con todo! 💪`,
+      renew: (name: string, plan: string) =>
+        `¡Hola ${name}! 🔄\n\nTu *${plan} R3SET* fue renovado exitosamente.\n\nSeguí usando *ABC Trainerize* con tus credenciales habituales — tu plan ya fue actualizado.\n\n¡Seguimos! 💪`,
+    },
+  },
+  en: {
+    planNames: { monthly: 'Monthly Plan', quarterly: 'Quarterly Plan', semiannual: 'Semi-annual Plan' },
+    email: {
+      subjectNew: (plan: string) => `✅ Your ${plan} R3SET is active!`,
+      subjectRenew: (plan: string) => `🔄 Renewal successful — ${plan} R3SET`,
+      greeting: (name: string) => `Hi, ${name}!`,
+      taglineNew: 'Your access is active. Time to get started.',
+      taglineRenew: 'Your plan has been renewed. Keep going strong.',
+      status: 'Status',
+      statusValue: '✓ Active',
+      duration: 'Duration',
+      days: (n: number) => `${n} days`,
+      expires: 'Expires on',
+      ctaNew: 'Set up my account →',
+      ctaRenew: 'Go to my Dashboard →',
+      stepsTitle: 'How to get started with Trainerize',
+      steps: (email: string) => [
+        'Download the <strong>ABC Trainerize</strong> app from the App Store or Google Play',
+        `Tap <strong>"Sign up"</strong> and enter your email: <strong>${email}</strong>`,
+        'Follow the steps to set up your password',
+        'Done! Your coach will load your routines shortly',
+      ],
+      renewNote: 'You already have your Trainerize account. Keep using your usual credentials — your updated routines are already available.',
+      coachNote: 'Your coach will review your progress and assign your plan for this period.',
+      footer: 'If you have any questions, just reply to this email.',
+    },
+    wa: {
+      new: (name: string, plan: string) =>
+        `Hi ${name}! 🎉\n\nYour *${plan} R3SET* is now active.\n\n*To get started:*\n1️⃣ Download the *ABC Trainerize* app\n2️⃣ Sign up with your email\n3️⃣ Your coach will load your routines shortly\n\nLet's go! 💪`,
+      renew: (name: string, plan: string) =>
+        `Hi ${name}! 🔄\n\nYour *${plan} R3SET* was successfully renewed.\n\nKeep using *ABC Trainerize* with your usual credentials — your plan has been updated.\n\nKeep it up! 💪`,
+    },
+  },
+  pt: {
+    planNames: { monthly: 'Plano Mensal', quarterly: 'Plano Trimestral', semiannual: 'Plano Semestral' },
+    email: {
+      subjectNew: (plan: string) => `✅ Seu ${plan} R3SET está ativo!`,
+      subjectRenew: (plan: string) => `🔄 Renovação bem-sucedida — ${plan} R3SET`,
+      greeting: (name: string) => `Olá, ${name}!`,
+      taglineNew: 'Seu acesso está ativo. Hora de começar.',
+      taglineRenew: 'Seu plano foi renovado. Continue forte.',
+      status: 'Status',
+      statusValue: '✓ Ativo',
+      duration: 'Duração',
+      days: (n: number) => `${n} dias`,
+      expires: 'Expira em',
+      ctaNew: 'Configurar minha conta →',
+      ctaRenew: 'Ir para o meu Dashboard →',
+      stepsTitle: 'Como começar no Trainerize',
+      steps: (email: string) => [
+        'Baixe o app <strong>ABC Trainerize</strong> na App Store ou Google Play',
+        `Toque em <strong>"Sign up"</strong> e insira seu email: <strong>${email}</strong>`,
+        'Siga os passos para configurar sua senha',
+        'Pronto! Em breve seu coach vai carregar suas rotinas',
+      ],
+      renewNote: 'Você já tem sua conta no Trainerize. Continue usando suas credenciais habituais — suas rotinas atualizadas já estão disponíveis.',
+      coachNote: 'Seu coach vai revisar seu progresso e atribuir seu plano para este período.',
+      footer: 'Se tiver alguma dúvida, responda este email.',
+    },
+    wa: {
+      new: (name: string, plan: string) =>
+        `Olá ${name}! 🎉\n\nSeu *${plan} R3SET* já está ativo.\n\n*Para começar:*\n1️⃣ Baixe o app *ABC Trainerize*\n2️⃣ Cadastre-se com seu email\n3️⃣ Seu coach vai carregar suas rotinas em breve\n\nVamos nessa! 💪`,
+      renew: (name: string, plan: string) =>
+        `Olá ${name}! 🔄\n\nSeu *${plan} R3SET* foi renovado com sucesso.\n\nContinue usando o *ABC Trainerize* com suas credenciais habituais — seu plano já foi atualizado.\n\nContinue assim! 💪`,
+    },
+  },
+}
+
+type Locale = keyof typeof t
+
+// ── Main handler ──────────────────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
     console.log('MP Webhook recibido:', JSON.stringify(body))
 
-    // MP envía type=payment cuando se aprueba un pago
     if (body.type !== 'payment' || !body.data?.id) {
       return NextResponse.json({ ok: true })
     }
@@ -22,7 +127,6 @@ export async function POST(req: NextRequest) {
     const paymentId = body.data.id
     const mpAccessToken = process.env.MP_ACCESS_TOKEN
 
-    // Obtener detalles del pago desde MP
     const paymentRes = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
       headers: { Authorization: `Bearer ${mpAccessToken}` },
     })
@@ -35,7 +139,6 @@ export async function POST(req: NextRequest) {
     const payment = await paymentRes.json()
     console.log('MP Payment status:', payment.status, 'external_ref:', payment.external_reference)
 
-    // Solo procesar pagos aprobados
     if (payment.status !== 'approved') {
       return NextResponse.json({ ok: true, skipped: `status=${payment.status}` })
     }
@@ -48,7 +151,7 @@ export async function POST(req: NextRequest) {
 
     const supabase = createClient()
 
-    // Obtener la suscripción
+    // Obtener la suscripción actual
     const { data: sub, error: subError } = await supabase
       .from('subscriptions')
       .select('*, plans(duration_days)')
@@ -77,118 +180,171 @@ export async function POST(req: NextRequest) {
       })
       .eq('id', subscriptionId)
 
-    // Obtener datos del usuario para notificaciones
+    // Detectar si es cliente nuevo o recurrente
+    // (tiene otras suscripciones previas activas/expiradas, excluyendo la actual)
+    const { count: prevCount } = await supabase
+      .from('subscriptions')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', sub.user_id)
+      .neq('id', subscriptionId)
+      .in('status', ['active', 'expired'])
+
+    const isReturning = (prevCount ?? 0) > 0
+
+    // Obtener datos del usuario
     const { data: { user } } = await supabase.auth.admin.getUserById(sub.user_id)
     const userEmail = user?.email ?? payment.payer?.email ?? ''
-    const userName = user?.user_metadata?.full_name ?? userEmail.split('@')[0]
+    const userMeta = user?.user_metadata ?? {}
 
-    // Obtener teléfono del perfil
     const { data: profile } = await supabase
       .from('profiles')
       .select('full_name, phone')
       .eq('id', sub.user_id)
       .single()
 
-    const displayName = profile?.full_name ?? userName
+    const displayName = profile?.full_name ?? userMeta.full_name ?? userEmail.split('@')[0]
     const phone = profile?.phone ?? ''
 
-    const planNames: Record<string, string> = {
-      monthly: 'Plan Mensual',
-      quarterly: 'Plan Trimestral',
-      semiannual: 'Plan Semestral',
-    }
-    const planName = planNames[sub.plan_id] ?? sub.plan_id
+    // Locale guardado al crear la preferencia, o 'es' por defecto
+    const locale: Locale = (sub.locale ?? 'es') as Locale
+    const strings = t[locale] ?? t.es
+    const planName = strings.planNames[sub.plan_id as keyof typeof strings.planNames] ?? sub.plan_id
 
-    // Disparar notificaciones en paralelo (fire-and-forget)
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
+    // Disparar notificaciones
     Promise.all([
-      // Email
-      sendEmail({ userEmail, displayName, planName, days, expiresAt }),
-      // WhatsApp (solo si tiene teléfono)
-      phone ? sendWhatsApp({ phone, displayName, planName, days }) : Promise.resolve(),
+      sendEmail({ userEmail, displayName, planName, days, expiresAt, isReturning, locale, strings, siteUrl }),
+      phone ? sendWhatsApp({ phone, displayName, planName, isReturning, strings }) : Promise.resolve(),
     ]).catch(err => console.error('Error en notificaciones:', err))
 
-    return NextResponse.json({ ok: true, activated: subscriptionId })
+    console.log(`Suscripción activada: ${subscriptionId} | ${isReturning ? 'RECURRENTE' : 'NUEVO'} | locale: ${locale}`)
+    return NextResponse.json({ ok: true, activated: subscriptionId, isReturning })
+
   } catch (error) {
     console.error('Webhook error:', error)
     return NextResponse.json({ error: 'Error interno' }, { status: 500 })
   }
 }
 
-// ── Email via Resend ─────────────────────────────────────────────────
+// ── Email via Resend ──────────────────────────────────────────────────────────
 async function sendEmail({
-  userEmail,
-  displayName,
-  planName,
-  days,
-  expiresAt,
+  userEmail, displayName, planName, days, expiresAt,
+  isReturning, locale, strings, siteUrl,
 }: {
   userEmail: string
   displayName: string
   planName: string
   days: number
   expiresAt: Date
+  isReturning: boolean
+  locale: string
+  strings: typeof t['es']
+  siteUrl: string
 }) {
   const resendKey = process.env.RESEND_API_KEY
   if (!resendKey) { console.warn('RESEND_API_KEY no configurado'); return }
 
-  const expiresFormatted = expiresAt.toLocaleDateString('es-AR', {
-    day: 'numeric', month: 'long', year: 'numeric',
-  })
+  const expiresFormatted = expiresAt.toLocaleDateString(
+    locale === 'pt' ? 'pt-BR' : locale === 'en' ? 'en-US' : 'es-AR',
+    { day: 'numeric', month: 'long', year: 'numeric' }
+  )
+
+  const subject = isReturning
+    ? strings.email.subjectRenew(planName)
+    : strings.email.subjectNew(planName)
+
+  const ctaHref = isReturning
+    ? `${siteUrl}/${locale}/dashboard`
+    : `${siteUrl}/${locale}/dashboard`
+
+  const stepsHtml = !isReturning
+    ? `
+    <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:16px;padding:28px;margin-bottom:24px;">
+      <p style="font-size:11px;font-weight:700;color:#c1ed00;text-transform:uppercase;letter-spacing:2px;margin:0 0 20px">${strings.email.stepsTitle}</p>
+      ${strings.email.steps(userEmail).map((step, i) => `
+        <div style="display:flex;gap:14px;margin-bottom:16px;align-items:flex-start;">
+          <div style="background:#c1ed00;color:#0e0e0e;font-weight:900;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;line-height:26px;text-align:center;">${i + 1}</div>
+          <p style="margin:0;font-size:14px;color:#c8c5c5;line-height:1.6;">${step}</p>
+        </div>
+      `).join('')}
+    </div>`
+    : `
+    <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-left:3px solid #c1ed00;border-radius:0 16px 16px 0;padding:20px 24px;margin-bottom:24px;">
+      <p style="margin:0 0 8px;font-size:14px;color:#c8c5c5;line-height:1.6;">${strings.email.renewNote}</p>
+      <p style="margin:0;font-size:13px;color:#888;">${strings.email.coachNote}</p>
+    </div>`
 
   const html = `
 <!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><style>
-  body { font-family: -apple-system, sans-serif; background: #0e0e0e; color: #fff; margin: 0; padding: 0; }
-  .container { max-width: 560px; margin: 0 auto; padding: 40px 24px; }
-  .logo { font-size: 28px; font-weight: 900; letter-spacing: -1px; color: #c1ed00; margin-bottom: 32px; }
-  .title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
-  .subtitle { color: #aaa; font-size: 15px; margin-bottom: 32px; }
-  .card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 16px; padding: 24px; margin-bottom: 24px; }
-  .plan-badge { display: inline-block; background: #c1ed00; color: #0e0e0e; font-weight: 700; font-size: 13px; padding: 4px 12px; border-radius: 100px; margin-bottom: 16px; }
-  .info-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #2a2a2a; font-size: 14px; }
-  .info-row:last-child { border-bottom: none; }
-  .info-label { color: #888; }
-  .info-value { color: #fff; font-weight: 600; }
-  .cta { display: block; background: #c1ed00; color: #0e0e0e; text-align: center; padding: 14px 24px; border-radius: 12px; font-weight: 700; font-size: 16px; text-decoration: none; margin: 24px 0; }
-  .section-title { font-size: 13px; font-weight: 700; color: #c1ed00; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
-  .step { display: flex; gap: 12px; margin-bottom: 16px; font-size: 14px; color: #ccc; }
-  .step-num { background: #c1ed00; color: #0e0e0e; font-weight: 700; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
-  .footer { color: #555; font-size: 12px; text-align: center; margin-top: 32px; }
-</style></head>
-<body>
-<div class="container">
-  <div class="logo">R3SET</div>
-  <div class="title">¡Bienvenido, ${displayName}! 🎉</div>
-  <div class="subtitle">Tu acceso está activo. Es hora de transformarte.</div>
+<html lang="${locale}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${subject}</title>
+</head>
+<body style="margin:0;padding:0;background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#fff;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a;padding:40px 16px;">
+    <tr><td align="center">
+      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
 
-  <div class="card">
-    <div class="plan-badge">${planName}</div>
-    <div class="info-row"><span class="info-label">Estado</span><span class="info-value" style="color:#c1ed00">✓ Activo</span></div>
-    <div class="info-row"><span class="info-label">Duración</span><span class="info-value">${days} días</span></div>
-    <div class="info-row"><span class="info-label">Vence el</span><span class="info-value">${expiresFormatted}</span></div>
-  </div>
+        <!-- Logo -->
+        <tr><td style="padding-bottom:32px;">
+          <p style="margin:0;font-size:26px;font-weight:900;color:#c1ed00;letter-spacing:-1px;text-transform:uppercase;">R3SET</p>
+          <p style="margin:4px 0 0;font-size:11px;color:#444;text-transform:uppercase;letter-spacing:3px;">MÉTODO R3SET</p>
+        </td></tr>
 
-  <a href="${process.env.NEXT_PUBLIC_SITE_URL}/es/dashboard" class="cta">Acceder a mi Dashboard →</a>
+        <!-- Heading -->
+        <tr><td style="padding-bottom:8px;">
+          <p style="margin:0;font-size:28px;font-weight:800;line-height:1.2;">${strings.email.greeting(displayName)}</p>
+        </td></tr>
+        <tr><td style="padding-bottom:32px;">
+          <p style="margin:0;font-size:15px;color:#888;">${isReturning ? strings.email.taglineRenew : strings.email.taglineNew}</p>
+        </td></tr>
 
-  <div class="card">
-    <div class="section-title">Cómo empezar en Trainerize</div>
-    <div class="step"><div class="step-num">1</div><div>Descargá la app <strong>Trainerize</strong> en tu teléfono (iOS o Android)</div></div>
-    <div class="step"><div class="step-num">2</div><div>Ingresá con el email con el que compraste: <strong>${userEmail}</strong></div></div>
-    <div class="step"><div class="step-num">3</div><div>Tu contraseña inicial es: <strong>R3SET2024</strong> (cambiala en tu primer ingreso)</div></div>
-    <div class="step"><div class="step-num">4</div><div>¡Listo! Ya podés ver tus rutinas personalizadas</div></div>
-  </div>
+        <!-- Plan card -->
+        <tr><td style="padding-bottom:24px;">
+          <div style="background:#141414;border:1px solid #2a2a2a;border-radius:16px;padding:24px;overflow:hidden;">
+            <div style="display:inline-block;background:#c1ed00;color:#0e0e0e;font-weight:800;font-size:12px;padding:4px 14px;border-radius:100px;margin-bottom:20px;text-transform:uppercase;letter-spacing:1px;">${planName}</div>
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#888;">${strings.email.status}</td>
+                <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#c1ed00;font-weight:700;text-align:right;">${strings.email.statusValue}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#888;">${strings.email.duration}</td>
+                <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#fff;font-weight:600;text-align:right;">${strings.email.days(days)}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;font-size:13px;color:#888;">${strings.email.expires}</td>
+                <td style="padding:10px 0;font-size:13px;color:#fff;font-weight:600;text-align:right;">${expiresFormatted}</td>
+              </tr>
+            </table>
+          </div>
+        </td></tr>
 
-  <div class="footer">
-    Pesar Menos Vivir Más · R3SET Program<br>
-    Si tenés alguna duda, respondé este email.
-  </div>
-</div>
+        <!-- CTA button -->
+        <tr><td style="padding-bottom:28px;text-align:center;">
+          <a href="${ctaHref}"
+            style="display:inline-block;background:#c1ed00;color:#0e0e0e;font-weight:800;font-size:15px;padding:16px 36px;border-radius:12px;text-decoration:none;letter-spacing:-0.3px;">
+            ${isReturning ? strings.email.ctaRenew : strings.email.ctaNew}
+          </a>
+        </td></tr>
+
+        <!-- Steps / note -->
+        <tr><td>${stepsHtml}</td></tr>
+
+        <!-- Divider -->
+        <tr><td style="border-top:1px solid #1a1a1a;padding-top:24px;text-align:center;">
+          <p style="margin:0;font-size:12px;color:#444;">${strings.email.footer}</p>
+          <p style="margin:8px 0 0;font-size:11px;color:#333;">© R3SET · Pesar Menos Vivir Más</p>
+        </td></tr>
+
+      </table>
+    </td></tr>
+  </table>
 </body>
-</html>
-  `
+</html>`
 
   await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -199,49 +355,36 @@ async function sendEmail({
     body: JSON.stringify({
       from: 'R3SET <hola@pesarmenosvivirmas.com>',
       to: [userEmail],
-      subject: `✅ ¡Tu ${planName} R3SET está activo!`,
+      subject,
       html,
     }),
   })
 
-  console.log('Email enviado a:', userEmail)
+  console.log(`Email enviado a: ${userEmail} | ${isReturning ? 'renovación' : 'nuevo'}`)
 }
 
-// ── WhatsApp via Twilio ──────────────────────────────────────────────
+// ── WhatsApp via Twilio ───────────────────────────────────────────────────────
 async function sendWhatsApp({
-  phone,
-  displayName,
-  planName,
-  days,
+  phone, displayName, planName, isReturning, strings,
 }: {
   phone: string
   displayName: string
   planName: string
-  days: number
+  isReturning: boolean
+  strings: typeof t['es']
 }) {
   const accountSid = process.env.TWILIO_ACCOUNT_SID
   const authToken = process.env.TWILIO_AUTH_TOKEN
-  const fromNumber = process.env.TWILIO_WHATSAPP_FROM // 'whatsapp:+14155238886'
+  const fromNumber = process.env.TWILIO_WHATSAPP_FROM
   if (!accountSid || !authToken || !fromNumber) {
     console.warn('Twilio no configurado, saltando WhatsApp')
     return
   }
 
-  // Normalizar número (asegurar formato internacional)
   const toNumber = phone.startsWith('+') ? phone : `+54${phone.replace(/^0/, '')}`
-
-  const message = `¡Hola ${displayName}! 🎉
-
-Tu *${planName} R3SET* ya está activo.
-
-Para empezar:
-1. Descargá la app *Trainerize*
-2. Ingresá con tu email
-3. Contraseña inicial: *R3SET2024*
-
-Tu dashboard: ${process.env.NEXT_PUBLIC_SITE_URL}/es/dashboard
-
-¡Vamos! 💪`
+  const message = isReturning
+    ? strings.wa.renew(displayName, planName)
+    : strings.wa.new(displayName, planName)
 
   const credentials = Buffer.from(`${accountSid}:${authToken}`).toString('base64')
 
@@ -261,5 +404,5 @@ Tu dashboard: ${process.env.NEXT_PUBLIC_SITE_URL}/es/dashboard
     }
   )
 
-  console.log('WhatsApp enviado a:', toNumber)
+  console.log(`WhatsApp enviado a: ${toNumber} | ${isReturning ? 'renovación' : 'nuevo'}`)
 }

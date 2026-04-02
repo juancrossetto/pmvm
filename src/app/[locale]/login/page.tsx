@@ -3,26 +3,14 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { Bebas_Neue, Inter } from 'next/font/google'
-import Image from 'next/image'
 import Link from 'next/link'
-
-const bebasNeue = Bebas_Neue({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-bebas',
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-inter',
-})
 
 export default function LoginPage({
   params,
+  searchParams,
 }: {
   params: { locale: string }
+  searchParams: { redirect?: string }
 }) {
   const router = useRouter()
   const [email, setEmail] = useState('')
@@ -32,11 +20,12 @@ export default function LoginPage({
 
   const texts = {
     es: {
-      title: 'Bienvenido',
+      title: 'BIENVENIDO',
+      titleAccent: 'DE VUELTA.',
       subtitle: 'Ingresá a tu área de cliente',
       email: 'Email',
       password: 'Contraseña',
-      button: 'Ingresar',
+      button: 'INGRESAR',
       loading: 'Ingresando...',
       errorInvalid: 'Email o contraseña incorrectos.',
       errorGeneric: 'Ocurrió un error. Intentá de nuevo.',
@@ -45,11 +34,12 @@ export default function LoginPage({
       register: 'Registrarse',
     },
     en: {
-      title: 'Welcome',
+      title: 'WELCOME',
+      titleAccent: 'BACK.',
       subtitle: 'Sign in to your client area',
       email: 'Email',
       password: 'Password',
-      button: 'Sign In',
+      button: 'SIGN IN',
       loading: 'Signing in...',
       errorInvalid: 'Invalid email or password.',
       errorGeneric: 'An error occurred. Please try again.',
@@ -58,11 +48,12 @@ export default function LoginPage({
       register: 'Sign up',
     },
     pt: {
-      title: 'Bem-vindo',
+      title: 'BEM-VINDO',
+      titleAccent: 'DE VOLTA.',
       subtitle: 'Acesse sua área de cliente',
       email: 'Email',
       password: 'Senha',
-      button: 'Entrar',
+      button: 'ENTRAR',
       loading: 'Entrando...',
       errorInvalid: 'Email ou senha incorretos.',
       errorGeneric: 'Ocorreu um erro. Tente novamente.',
@@ -83,84 +74,69 @@ export default function LoginPage({
     const { error } = await supabase.auth.signInWithPassword({ email, password })
 
     if (error) {
-      setError(
-        error.message.includes('Invalid') ? t.errorInvalid : t.errorGeneric
-      )
+      setError(error.message.includes('Invalid') ? t.errorInvalid : t.errorGeneric)
       setLoading(false)
       return
     }
 
-    router.push(`/${params.locale}/dashboard`)
+    const redirectTo = searchParams?.redirect || `/${params.locale}/dashboard`
+    router.push(redirectTo)
     router.refresh()
   }
 
   return (
-    <div
-      className={`${bebasNeue.variable} ${inter.variable} min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4`}
-      style={{ fontFamily: 'var(--font-inter), sans-serif' }}
-    >
-      {/* Grid background */}
-      <div
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,209,30,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,209,30,0.03) 1px, transparent 1px)',
-          backgroundSize: '64px 64px',
-        }}
-      />
+    <div className="min-h-screen bg-[#0e0e0e] flex items-center justify-center px-4 relative overflow-hidden">
+      {/* Ambient glows */}
+      <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-[#c1ed00]/[0.04] blur-[160px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+      <div className="fixed bottom-0 left-0 w-[400px] h-[400px] bg-[#00e3fd]/[0.03] blur-[140px] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
       <div className="w-full max-w-md relative z-10">
         {/* Logo */}
-        <div className="flex justify-center mb-8">
-          <Image
-            src="/images/icon-yellow.png"
-            alt="Logo"
-            width={64}
-            height={64}
-            className="object-contain"
-          />
+        <div className="text-center mb-10">
+          <p className="text-xs font-black tracking-[0.3em] text-[#c1ed00] mb-4">R3SET</p>
+          <h1 className="text-5xl font-black tracking-tighter text-white leading-none">
+            {t.title}<br />
+            <span className="text-[#c1ed00] italic">{t.titleAccent}</span>
+          </h1>
+          <p className="text-white/40 text-sm mt-3">{t.subtitle}</p>
         </div>
 
         {/* Card */}
-        <div className="bg-[#141414] border border-white/10 rounded-2xl p-8">
-          <h1
-            className="text-4xl text-white mb-1"
-            style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.03em' }}
-          >
-            {t.title}
-          </h1>
-          <p className="text-white/50 text-sm mb-8">{t.subtitle}</p>
-
-          <form onSubmit={handleLogin} className="space-y-4">
+        <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-8 backdrop-blur-sm">
+          <form onSubmit={handleLogin} className="space-y-5">
             {/* Email */}
             <div>
-              <label className="block text-white/70 text-sm mb-1.5">{t.email}</label>
+              <label className="block text-[10px] uppercase tracking-widest text-white/40 mb-2 font-bold">
+                {t.email}
+              </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#ffd11e] transition-colors"
+                className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/20 focus:outline-none focus:border-[#c1ed00]/50 transition-colors"
                 placeholder="tu@email.com"
               />
             </div>
 
             {/* Password */}
             <div>
-              <label className="block text-white/70 text-sm mb-1.5">{t.password}</label>
+              <label className="block text-[10px] uppercase tracking-widest text-white/40 mb-2 font-bold">
+                {t.password}
+              </label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#ffd11e] transition-colors"
+                className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/20 focus:outline-none focus:border-[#c1ed00]/50 transition-colors"
                 placeholder="••••••••"
               />
             </div>
 
             {/* Error */}
             {error && (
-              <p className="text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-2">
+              <p className="text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-xl px-4 py-2.5">
                 {error}
               </p>
             )}
@@ -169,26 +145,33 @@ export default function LoginPage({
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#ffd11e] text-black font-semibold py-3 rounded-lg hover:bg-[#e6bc1a] transition-colors disabled:opacity-60 disabled:cursor-not-allowed mt-2"
+              className="w-full bg-[#c1ed00] text-[#0e0e0e] font-black py-3.5 rounded-xl hover:bg-[#d4ff00] transition-colors disabled:opacity-60 disabled:cursor-not-allowed text-sm tracking-widest mt-1"
             >
               {loading ? t.loading : t.button}
             </button>
           </form>
 
+          {/* Divider */}
+          <div className="flex items-center gap-3 my-6">
+            <div className="flex-1 h-px bg-white/8" />
+            <span className="text-[10px] text-white/20 uppercase tracking-widest">o</span>
+            <div className="flex-1 h-px bg-white/8" />
+          </div>
+
           {/* Register link */}
-          <p className="text-center text-white/40 text-sm mt-6">
+          <p className="text-center text-white/40 text-sm">
             {t.noAccount}{' '}
-            <Link href={`/${params.locale}/register`} className="text-[#ffd11e] hover:underline">
+            <Link href={`/${params.locale}/register`} className="text-[#c1ed00] font-bold hover:underline">
               {t.register}
             </Link>
           </p>
         </div>
 
         {/* Back link */}
-        <div className="text-center mt-6">
+        <div className="text-center mt-8">
           <Link
-            href={`/${params.locale}/v3`}
-            className="text-white/40 text-sm hover:text-white/70 transition-colors"
+            href={`/${params.locale}`}
+            className="text-white/25 text-sm hover:text-white/50 transition-colors"
           >
             ← {t.back}
           </Link>

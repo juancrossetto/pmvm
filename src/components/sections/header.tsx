@@ -4,6 +4,7 @@ import Link from "next/link";
 import { DumbbellIcon, Menu, X } from "lucide-react";
 import LanguageSelector from "../common/language-selector";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
@@ -47,6 +48,7 @@ export default Header;
 export const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const t = useTranslations("header");
+	const locale = useLocale();
 	const navItems = [
 		{ name: "about", href: "#about" },
 		{ name: "transformations", href: "#transformations" },
@@ -70,6 +72,16 @@ export const Navbar = () => {
 								{t(item.name)}
 							</Link>
 						))}
+					</div>
+
+					{/* Botón Planes — desktop */}
+					<div className='hidden sm:flex sm:items-center sm:mr-2'>
+						<Link
+							href={`/${locale}/planes`}
+							className='px-4 py-2 rounded-lg bg-primaryColor text-darkColor text-xs font-black uppercase tracking-wider hover:opacity-90 transition-opacity'
+						>
+							Ver planes
+						</Link>
 					</div>
 
 					<div className='hidden sm:flex sm:items-center'>
@@ -115,6 +127,14 @@ export const Navbar = () => {
 												{t(item.name)}
 											</Link>
 										))}
+										{/* Botón Planes — mobile */}
+										<Link
+											href={`/${locale}/planes`}
+											onClick={() => setIsOpen(false)}
+											className='w-40 text-center px-4 py-3 rounded-lg bg-primaryColor text-darkColor text-sm font-black uppercase tracking-wider hover:opacity-90 transition-opacity'
+										>
+											Ver planes →
+										</Link>
 									</div>
 									<div className='mt-auto mb-8 flex justify-around items-center'>
 										<ThemeSelector />

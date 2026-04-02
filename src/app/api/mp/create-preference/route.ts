@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return NextResponse.json({ error: 'No autenticado' }, { status: 401 })
 
-    const { planId } = await req.json()
+    const { planId, locale } = await req.json()
     const plan = PLANS[planId]
     if (!plan) return NextResponse.json({ error: 'Plan inválido' }, { status: 400 })
 
@@ -33,6 +33,7 @@ export async function POST(req: NextRequest) {
         user_id: user.id,
         plan_id: planId,
         status: 'pending',
+        locale: locale ?? 'es',
       })
       .select()
       .single()

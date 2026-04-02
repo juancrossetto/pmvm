@@ -29,7 +29,7 @@ const config = {
   			'surface-bright': '#2c2c2c',
   			'surface-variant': '#262626',
   			'on-surface': '#ffffff',
-  			'on-surface-variant': '#adaaaa',
+  			'on-surface-variant': '#c8c5c5',
   			'on-background': '#ffffff',
   			'outline-variant': '#484847',
   			'primary-dim': '#c1ed00',
