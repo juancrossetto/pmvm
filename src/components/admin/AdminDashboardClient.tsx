@@ -274,7 +274,7 @@ export default function AdminDashboardClient({
               </motion.div>
             )}
             <motion.div
-              className="mt-6"
+              className="mt-6 flex flex-col gap-3"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
@@ -285,6 +285,13 @@ export default function AdminDashboardClient({
               >
                 <span className="material-symbols-outlined text-sm">group_add</span>
                 Ver todos los clientes
+              </Link>
+              <Link
+                href={`/${locale}/admin/subscriptions`}
+                className="w-full flex items-center justify-center gap-2 border border-[#c1ed00]/30 text-[#c1ed00] py-3 font-headline font-bold text-xs uppercase tracking-widest hover:bg-[#c1ed00]/5 transition-all duration-200"
+              >
+                <span className="material-symbols-outlined text-sm">payments</span>
+                Ver suscripciones y pagos
               </Link>
             </motion.div>
           </motion.div>

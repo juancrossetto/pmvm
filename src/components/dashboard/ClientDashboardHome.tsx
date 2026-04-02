@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { Zap } from 'lucide-react'
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -17,6 +18,14 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.5, delay, ease: [0.25, 0.46, 0.45, 0.94] },
 })
 
+interface ActiveSub {
+  id: string
+  plan_id: string
+  started_at: string | null
+  expires_at: string | null
+  plans: { name: string; duration_days: number } | null
+}
+
 interface Props {
   locale: string
   displayName: string
@@ -24,10 +33,11 @@ interface Props {
   unreadMessages: number
   progressCount: number
   recentProgress: any[]
+  activeSub: ActiveSub | null
 }
 
 export default function ClientDashboardHome({
-  locale, displayName, routinesCount, unreadMessages, progressCount, recentProgress,
+  locale, displayName, routinesCount, unreadMessages, progressCount, recentProgress, activeSub,
 }: Props) {
   const stats = [
     { icon: 'fitness_center', color: '#c1ed00', label: 'Rutinas Activas',   value: routinesCount,   href: `/${locale}/dashboard/routines` },
@@ -65,6 +75,29 @@ export default function ClientDashboardHome({
             transition={{ delay: 0.5, duration: 0.8 }}
           />
         </div>
+
+        {/* Subscription card */}
+        {activeSub ? (
+          <SubscriptionCard sub={activeSub} locale={locale} />
+        ) : (
+          <motion.div
+            className="mb-8 p-4 border border-dashed border-white/15 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.4 }}
+          >
+            <div>
+              <p className="font-label text-[10px] uppercase tracking-widest text-white/30 mb-1">Sin plan activo</p>
+              <p className="text-white/60 text-sm">Adquirí un plan para acceder a tus rutinas personalizadas</p>
+            </div>
+            <Link
+              href={`/${locale}/planes`}
+              className="flex-shrink-0 px-5 py-2.5 bg-[#c1ed00] text-[#0e0e0e] font-black text-xs uppercase tracking-widest rounded-lg hover:bg-[#d4ff00] transition-colors"
+            >
+              Ver planes →
+            </Link>
+          </motion.div>
+        )}
 
         {/* Stats */}
         <motion.div
@@ -192,5 +225,84 @@ export default function ClientDashboardHome({
 
       </div>
     </div>
+  )
+}
+
+// ── Subscription card ──────────────────────────────────────────────────────
+function SubscriptionCard({ sub, locale }: { sub: ActiveSub; locale: string }) {
+  const now = new Date()
+  const expiresAt = sub.expires_at ? new Date(sub.expires_at) : null
+  const startedAt = sub.started_at ? new Date(sub.started_at) : null
+  const totalDays = sub.plans?.duration_days ?? 30
+
+  const daysRemaining = expiresAt
+    ? Math.max(0, Math.ceil((expiresAt.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)))
+    : 0
+
+  const progress = totalDays > 0 ? Math.round(((totalDays - daysRemaining) / totalDays) * 100) : 0
+
+  const expiresFormatted = expiresAt?.toLocaleDateString('es-AR', {
+    day: 'numeric', month: 'long', year: 'numeric',
+  }) ?? '—'
+
+  // Color urgency
+  const urgencyColor = daysRemaining <= 7 ? '#ff734a' : daysRemaining <= 14 ? '#ffcc00' : '#c1ed00'
+
+  return (
+    <motion.div
+      className="mb-8 p-5 rounded-2xl border border-[#c1ed00]/20 bg-[#c1ed00]/3 relative overflow-hidden"
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.35, duration: 0.4 }}
+    >
+      {/* Ambient glow */}
+      <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#c1ed00]/8 blur-3xl rounded-full pointer-events-none" />
+
+      <div className="relative">
+        <div className="flex items-start justify-between mb-4 flex-wrap gap-3">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <Zap className="w-3.5 h-3.5 text-[#c1ed00]" />
+              <p className="text-[10px] font-black uppercase tracking-widest text-[#c1ed00]">Plan activo</p>
+            </div>
+            <p className="font-black text-xl text-white">{sub.plans?.name ?? sub.plan_id}</p>
+          </div>
+          <div className="text-right">
+            <p className="text-[10px] text-white/30 uppercase tracking-wider mb-0.5">Días restantes</p>
+            <p className="font-black text-3xl leading-none" style={{ color: urgencyColor }}>
+              {daysRemaining}
+            </p>
+          </div>
+        </div>
+
+        {/* Progress bar */}
+        <div className="mb-4">
+          <div className="flex justify-between text-[10px] text-white/30 mb-1.5">
+            <span>Inicio</span>
+            <span>{progress}% completado</span>
+            <span>Vence el {expiresFormatted}</span>
+          </div>
+          <div className="h-1.5 bg-white/8 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full rounded-full"
+              style={{ backgroundColor: urgencyColor }}
+              initial={{ width: 0 }}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
+            />
+          </div>
+        </div>
+
+        {/* Renewal CTA (show when <= 14 days remaining) */}
+        {daysRemaining <= 14 && (
+          <Link
+            href={`/${locale}/planes`}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-[#c1ed00] text-[#0e0e0e] font-black text-xs uppercase tracking-widest rounded-lg hover:bg-[#d4ff00] transition-colors"
+          >
+            Renovar plan →
+          </Link>
+        )}
+      </div>
+    </motion.div>
   )
 }
