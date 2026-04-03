@@ -1,98 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Confirmá tu cuenta — PMVM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirmá tu cuenta — R3SET</title>
 </head>
-<body style="margin:0;padding:0;background-color:#0a0a0a;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+<body style="margin:0;padding:0;background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#ffffff;">
 
-  <!-- Wrapper -->
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#0a0a0a;padding:40px 16px;">
-    <tr>
-      <td align="center">
-        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a;padding:48px 16px;">
+    <tr><td align="center">
+      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:540px;">
 
-          <!-- Header / Logo -->
-          <tr>
-            <td align="center" style="padding-bottom:32px;">
-              <table cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="background-color:#ffd11e;width:48px;height:48px;border-radius:12px;text-align:center;vertical-align:middle;">
-                    <span style="font-size:24px;font-weight:900;color:#0a0a0a;letter-spacing:-1px;">P</span>
-                  </td>
-                  <td style="padding-left:12px;vertical-align:middle;">
-                    <span style="font-size:22px;font-weight:900;color:#ffffff;letter-spacing:4px;">PMVM</span>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
+        <!-- Logo -->
+        <tr><td style="padding-bottom:40px;">
+          <p style="margin:0;font-size:24px;font-weight:900;color:#c1ed00;letter-spacing:-0.5px;text-transform:uppercase;line-height:1;">R3SET</p>
+          <p style="margin:4px 0 0;font-size:10px;color:#444;text-transform:uppercase;letter-spacing:3px;">MÉTODO R3SET</p>
+        </td></tr>
 
-          <!-- Card -->
-          <tr>
-            <td style="background-color:#141414;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:48px 40px;">
+        <!-- Hero -->
+        <tr><td style="padding-bottom:8px;">
+          <p style="margin:0;font-size:32px;font-weight:800;line-height:1.15;letter-spacing:-0.5px;">
+            Un paso más<br>
+            <span style="color:#c1ed00;">para empezar.</span>
+          </p>
+        </td></tr>
+        <tr><td style="padding-bottom:36px;">
+          <p style="margin:0;font-size:15px;color:#666;line-height:1.6;">
+            Confirmá tu dirección de email para activar tu cuenta y acceder al área de clientes.
+          </p>
+        </td></tr>
 
-              <!-- Icon -->
-              <table width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td align="center" style="padding-bottom:24px;">
-                    <div style="display:inline-block;background-color:rgba(255,209,30,0.1);border-radius:50%;width:64px;height:64px;text-align:center;line-height:64px;font-size:32px;">
-                      ✉️
-                    </div>
-                  </td>
-                </tr>
-              </table>
+        <!-- CTA -->
+        <tr><td style="padding-bottom:36px;">
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="border-radius:12px;background:#c1ed00;">
+                <a href="{{ .ConfirmationURL }}"
+                  style="display:inline-block;padding:17px 40px;font-size:15px;font-weight:800;color:#0e0e0e;text-decoration:none;letter-spacing:-0.2px;border-radius:12px;">
+                  Confirmar mi cuenta →
+                </a>
+              </td>
+            </tr>
+          </table>
+        </td></tr>
 
-              <!-- Title -->
-              <h1 style="margin:0 0 12px;font-size:28px;font-weight:900;color:#ffffff;text-align:center;letter-spacing:1px;">
-                Confirmá tu cuenta
-              </h1>
-
-              <!-- Subtitle -->
-              <p style="margin:0 0 32px;font-size:15px;color:rgba(255,255,255,0.55);text-align:center;line-height:1.6;">
-                Ya casi estás. Hacé click en el botón de abajo para activar tu cuenta y acceder a tu área personal.
+        <!-- Info box -->
+        <tr><td style="padding-bottom:36px;">
+          <table width="100%" cellpadding="0" cellspacing="0" style="background:#141414;border:1px solid #222;border-left:3px solid #c1ed00;border-radius:0 12px 12px 0;">
+            <tr><td style="padding:18px 20px;">
+              <p style="margin:0 0 6px;font-size:11px;font-weight:700;color:#c1ed00;text-transform:uppercase;letter-spacing:2px;">¿Qué sigue?</p>
+              <p style="margin:0;font-size:13px;color:#888;line-height:1.7;">
+                Una vez confirmado tu email, podrás iniciar sesión y ver tu dashboard.<br>
+                Ahí vas a encontrar tus rutinas, progreso y mensajes con tu coach.
               </p>
+            </td></tr>
+          </table>
+        </td></tr>
 
-              <!-- CTA Button -->
-              <table width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td align="center" style="padding-bottom:32px;">
-                    <a href="{{ .ConfirmationURL }}"
-                       style="display:inline-block;background-color:#ffd11e;color:#0a0a0a;font-size:14px;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:16px 40px;border-radius:10px;">
-                      Confirmar mi cuenta
-                    </a>
-                  </td>
-                </tr>
-              </table>
-
-              <!-- Divider -->
-              <table width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="border-top:1px solid rgba(255,255,255,0.07);padding-top:28px;">
-                    <p style="margin:0;font-size:12px;color:rgba(255,255,255,0.3);text-align:center;line-height:1.7;">
-                      Si no creaste una cuenta en PMVM, podés ignorar este email.<br/>
-                      El link expira en 24 horas.
-                    </p>
-                  </td>
-                </tr>
-              </table>
-
-            </td>
-          </tr>
-
-          <!-- Footer -->
-          <tr>
-            <td align="center" style="padding-top:28px;">
-              <p style="margin:0;font-size:12px;color:rgba(255,255,255,0.2);">
-                © 2025 PMVM · Pesar Menos Vivir Más
+        <!-- Security note -->
+        <tr><td style="padding-bottom:36px;">
+          <table width="100%" cellpadding="0" cellspacing="0" style="background:#111;border:1px solid #1e1e1e;border-radius:12px;">
+            <tr><td style="padding:16px 20px;">
+              <p style="margin:0;font-size:12px;color:#555;line-height:1.6;">
+                🔒 Si no creaste una cuenta en R3SET, podés ignorar este email de forma segura. El enlace vence en 24 horas.
               </p>
-            </td>
-          </tr>
+            </td></tr>
+          </table>
+        </td></tr>
 
-        </table>
-      </td>
-    </tr>
+        <!-- Footer -->
+        <tr><td style="border-top:1px solid #1a1a1a;padding-top:28px;">
+          <p style="margin:0 0 8px;font-size:12px;color:#333;line-height:1.6;">
+            Si el botón no funciona, copiá este enlace en tu navegador:<br>
+            <a href="{{ .ConfirmationURL }}" style="color:#555;font-size:11px;word-break:break-all;text-decoration:none;">{{ .ConfirmationURL }}</a>
+          </p>
+          <p style="margin:16px 0 0;font-size:11px;color:#2a2a2a;">© R3SET · Pesar Menos Vivir Más</p>
+        </td></tr>
+
+      </table>
+    </td></tr>
   </table>
 
 </body>
