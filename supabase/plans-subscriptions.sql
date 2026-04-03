@@ -15,10 +15,11 @@ create table if not exists public.plans (
 );
 
 -- Insertar los 3 planes
+-- Precios bajos para pruebas reales en prod; actualizar cuando termine el testeo.
 insert into public.plans (id, name, description, price_ars, duration_days) values
-  ('monthly',    'Plan Mensual',   'Acceso completo por 30 días. Rutinas personalizadas + seguimiento.',    10000, 30),
-  ('quarterly',  'Plan Trimestral','Acceso completo por 90 días. Ahorrás $10.000 vs. mes a mes.',           20000, 90),
-  ('semiannual', 'Plan Semestral', 'Acceso completo por 180 días. El mejor valor para tu transformación.', 30000, 180)
+  ('monthly',    'Plan Mensual',   'Acceso completo por 30 días. Rutinas personalizadas + seguimiento.',    100, 30),
+  ('quarterly',  'Plan Trimestral','Acceso completo por 90 días. (Precio de prueba.)',                       150, 90),
+  ('semiannual', 'Plan Semestral', 'Acceso completo por 180 días. (Precio de prueba.)',                      200, 180)
 on conflict (id) do update set
   price_ars = excluded.price_ars,
   duration_days = excluded.duration_days,

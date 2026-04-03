@@ -3,10 +3,11 @@ import { createClient } from '@/lib/supabase/server'
 
 export const dynamic = 'force-dynamic'
 
+// Precios en ARS — montos bajos para pruebas en prod; subirlos cuando cierres el testeo.
 const PLANS: Record<string, { name: string; price: number; days: number }> = {
-  monthly:    { name: 'Plan Mensual R3SET',   price: 10000, days: 30  },
-  quarterly:  { name: 'Plan Trimestral R3SET', price: 20000, days: 90  },
-  semiannual: { name: 'Plan Semestral R3SET',  price: 30000, days: 180 },
+  monthly:    { name: 'Plan Mensual R3SET',   price: 100, days: 30  },
+  quarterly:  { name: 'Plan Trimestral R3SET', price: 150, days: 90  },
+  semiannual: { name: 'Plan Semestral R3SET',  price: 200, days: 180 },
 }
 
 export async function POST(req: NextRequest) {

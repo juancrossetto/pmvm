@@ -8,7 +8,7 @@ const plans = [
   {
     id: "monthly",
     name: "Plan Mensual",
-    price: 10000,
+    price: 100,
     days: 30,
     badge: null,
     color: "#00e3fd",
@@ -25,35 +25,35 @@ const plans = [
   {
     id: "quarterly",
     name: "Plan Trimestral",
-    price: 20000,
+    price: 150,
     days: 90,
     badge: "MÁS POPULAR",
     color: "#c1ed00",
     description:
-      "3 meses para construir hábitos reales. Ahorrás $10.000 vs. mes a mes.",
+      "3 meses para construir hábitos reales. (Precio de prueba en producción.)",
     features: [
       "Todo lo del plan mensual",
       "Actualizaciones de rutina cada 4 semanas",
       "Análisis de progreso mensual",
       "Prioridad de respuesta del coach",
-      "Ahorrás un mes gratis",
+      "Mejor relación costo/duración que el mensual",
     ],
   },
   {
     id: "semiannual",
     name: "Plan Semestral",
-    price: 30000,
+    price: 200,
     days: 180,
     badge: "MEJOR VALOR",
     color: "#ff734a",
     description:
-      "6 meses de transformación completa. El camino para resultados duraderos.",
+      "6 meses de transformación completa. (Precio de prueba en producción.)",
     features: [
       "Todo lo del plan trimestral",
       "Plan nutricional básico incluido",
       "Check-in quincenal por videollamada",
       "Comunidad privada de alumnos",
-      "Ahorrás $30.000 vs. mes a mes",
+      "Máxima continuidad para resultados duraderos",
     ],
   },
 ];

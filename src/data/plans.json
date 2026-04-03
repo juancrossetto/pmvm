@@ -123,9 +123,9 @@
 			}
 		],
 		"price": {
-			"en": "$19USD / Month",
-			"es": "$20.000 / Mes",
-			"pt": "$150 / Mês"
+			"en": "$100 ARS / Month (test)",
+			"es": "$100 / Mes (prueba)",
+			"pt": "$100 ARS / Mês (teste)"
 		}
 	},
 	{
@@ -274,9 +274,9 @@
 			}
 		],
 		"price": {
-			"en": "$30USD / Month",
-			"es": "$30.000 / Mes",
-			"pt": "$200 / Mês"
+			"en": "$150 ARS / Month (test)",
+			"es": "$150 / Mes (prueba)",
+			"pt": "$150 ARS / Mês (teste)"
 		}
 	}
 ]

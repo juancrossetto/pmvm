@@ -575,17 +575,17 @@ export default function V4Page() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
             {[
               {
-                id: 'monthly', name: 'Plan Mensual', price: 10000, days: 30, badge: null, color: '#00e3fd',
+                id: 'monthly', name: 'Plan Mensual', price: 100, days: 30, badge: null, color: '#00e3fd',
                 desc: 'Perfecto para empezar. Un mes de entrenamiento personalizado.',
                 features: ['Rutina personalizada en Trainerize', 'Seguimiento semanal de progreso', 'Chat directo con tu coach', 'Acceso al dashboard personal'],
               },
               {
-                id: 'quarterly', name: 'Plan Trimestral', price: 20000, days: 90, badge: 'MÁS POPULAR', color: '#c1ed00',
+                id: 'quarterly', name: 'Plan Trimestral', price: 150, days: 90, badge: 'MÁS POPULAR', color: '#c1ed00',
                 desc: '3 meses para construir hábitos reales. Ahorrás $10.000.',
                 features: ['Todo lo del plan mensual', 'Actualizaciones de rutina c/4 semanas', 'Análisis de progreso mensual', 'Prioridad de respuesta del coach'],
               },
               {
-                id: 'semiannual', name: 'Plan Semestral', price: 30000, days: 180, badge: 'MEJOR VALOR', color: '#ff734a',
+                id: 'semiannual', name: 'Plan Semestral', price: 200, days: 180, badge: 'MEJOR VALOR', color: '#ff734a',
                 desc: '6 meses de transformación completa. El camino definitivo.',
                 features: ['Todo lo del plan trimestral', 'Plan nutricional básico incluido', 'Check-in quincenal por videollamada', 'Comunidad privada de alumnos'],
               },
