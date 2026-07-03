@@ -364,6 +364,8 @@ async function handleOneTimePayment(paymentId: string) {
     return NextResponse.json({ error: 'Suscripción no encontrada' }, { status: 404 })
   }
 
+  const wasPending = sub.status === 'pending'
+
   const startedAt = new Date()
   const days = PLAN_DAYS[sub.plan_id] ?? 30
   const expiresAt = new Date(startedAt.getTime() + days * 24 * 60 * 60 * 1000)
@@ -377,7 +379,11 @@ async function handleOneTimePayment(paymentId: string) {
   }).eq('id', subscriptionId)
 
   const admin = getAdminClient()
-  await sendActivationNotifications(admin, sub, false, payment.transaction_amount)
+  if (wasPending) {
+    await sendActivationNotifications(admin, sub, false, payment.transaction_amount)
+  } else {
+    console.log(`Pago único: suscripción ${subscriptionId} ya estaba ${sub.status}, saltando notificaciones`)
+  }
 
   console.log(`Pago único activado: ${subscriptionId}`)
   return NextResponse.json({ ok: true, activated: subscriptionId })
