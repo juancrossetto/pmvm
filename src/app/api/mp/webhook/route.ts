@@ -278,11 +278,27 @@ async function processPreapprovalStatus(
     updateData.expires_at = expiresAt.toISOString()
   }
 
-  await admin.from('subscriptions').update(updateData).eq('id', sub.id)
+  let activatedByUs = false
+
+  if (mpStatus === 'authorized') {
+    const { data: updated } = await admin
+      .from('subscriptions')
+      .update(updateData)
+      .eq('id', sub.id)
+      .eq('status', 'pending')
+      .select()
+    activatedByUs = !!(updated && updated.length > 0)
+    if (!activatedByUs) {
+      console.log(`Preapproval: suscripción ${sub.id} ya activada por otro evento`)
+    }
+  } else {
+    await admin.from('subscriptions').update(updateData).eq('id', sub.id)
+  }
+
   console.log(`Preapproval → subscription ${sub.id} status: ${sub.status} → ${newStatus}`)
 
   // Send notifications only on first activation (pending → active)
-  if (mpStatus === 'authorized' && sub.status === 'pending') {
+  if (mpStatus === 'authorized' && activatedByUs) {
     await sendActivationNotifications(admin, sub, false, preapproval.auto_recurring?.transaction_amount)
   }
 
@@ -364,25 +380,28 @@ async function handleOneTimePayment(paymentId: string) {
     return NextResponse.json({ error: 'Suscripción no encontrada' }, { status: 404 })
   }
 
-  const wasPending = sub.status === 'pending'
-
   const startedAt = new Date()
   const days = PLAN_DAYS[sub.plan_id] ?? 30
   const expiresAt = new Date(startedAt.getTime() + days * 24 * 60 * 60 * 1000)
 
-  await supabase.from('subscriptions').update({
-    status: 'active',
-    mp_payment_id: String(paymentId),
-    mp_status: payment.status,
-    started_at: startedAt.toISOString(),
-    expires_at: expiresAt.toISOString(),
-  }).eq('id', subscriptionId)
+  const { data: updated } = await supabase
+    .from('subscriptions')
+    .update({
+      status: 'active',
+      mp_payment_id: String(paymentId),
+      mp_status: payment.status,
+      started_at: startedAt.toISOString(),
+      expires_at: expiresAt.toISOString(),
+    })
+    .eq('id', subscriptionId)
+    .eq('status', 'pending')
+    .select()
 
   const admin = getAdminClient()
-  if (wasPending) {
+  if (updated && updated.length > 0) {
     await sendActivationNotifications(admin, sub, false, payment.transaction_amount)
   } else {
-    console.log(`Pago único: suscripción ${subscriptionId} ya estaba ${sub.status}, saltando notificaciones`)
+    console.log(`Pago único: suscripción ${subscriptionId} ya activada por otro evento`)
   }
 
   console.log(`Pago único activado: ${subscriptionId}`)
@@ -471,14 +490,17 @@ async function sendEmail({
     const coachPhoneDisplay = process.env.NEXT_PUBLIC_COACH_PHONE_DISPLAY ?? ''
     subject = `✅ ¡Bienvenido a R3SET, ${displayName}! Tu lugar está confirmado`
     html = `<!DOCTYPE html>
-<html lang="${locale}">
+<html lang="${locale}" style="color-scheme:dark;">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="supported-color-schemes" content="dark">
   <title>${subject}</title>
+  <style>:root,body{color-scheme:dark}</style>
 </head>
-<body style="margin:0;padding:0;background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#fff;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a;padding:40px 16px;">
+<body style="margin:0;padding:0;background:#0a0a0a !important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#fff !important;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a !important;padding:40px 16px;">
     <tr><td align="center">
       <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
 
@@ -578,14 +600,17 @@ async function sendEmail({
 
     html = `
 <!DOCTYPE html>
-<html lang="${locale}">
+<html lang="${locale}" style="color-scheme:dark;">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="supported-color-schemes" content="dark">
   <title>${subject}</title>
+  <style>:root,body{color-scheme:dark}</style>
 </head>
-<body style="margin:0;padding:0;background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#fff;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a;padding:40px 16px;">
+<body style="margin:0;padding:0;background:#0a0a0a !important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#fff !important;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a !important;padding:40px 16px;">
     <tr><td align="center">
       <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
 
@@ -742,8 +767,8 @@ async function notifyCoach({
 <!DOCTYPE html>
 <html lang="es">
 <head><meta charset="utf-8"><title>${subject}</title></head>
-<body style="margin:0;padding:0;background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#fff;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a;padding:40px 16px;">
+<body style="margin:0;padding:0;background:#0a0a0a !important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#fff !important;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a !important;padding:40px 16px;">
     <tr><td align="center">
       <table width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;">
 
