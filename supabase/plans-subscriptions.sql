@@ -55,11 +55,11 @@ create policy "plans_public_read" on public.plans
 create policy "subscriptions_select" on public.subscriptions
   for select using (auth.uid() = user_id);
 
--- El service_role (server-side) puede insertar/actualizar (para el webhook de MP)
+-- Solo el service_role (server-side) puede insertar/actualizar (webhook de MP usa SUPABASE_SECRET_KEY)
 create policy "subscriptions_service_insert" on public.subscriptions
-  for insert with check (true);
+  for insert with check (auth.role() = 'service_role');
 create policy "subscriptions_service_update" on public.subscriptions
-  for update using (true);
+  for update using (auth.role() = 'service_role');
 
 
 -- 4. Función para verificar si un usuario tiene suscripción activa
