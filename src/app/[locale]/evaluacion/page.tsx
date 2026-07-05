@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import PhonePrefixSelect from '@/components/PhonePrefixSelect'
+import CountryCitySelect from '@/components/CountryCitySelect'
 
 export default function EvaluacionPage({
   params,
@@ -10,10 +12,15 @@ export default function EvaluacionPage({
 }) {
   const router = useRouter()
 
-  const [nombre, setNombre] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName]   = useState('')
   const [email, setEmail] = useState('')
-  const [whatsapp, setWhatsapp] = useState('')
-  const [ciudad, setCiudad] = useState('')
+  const [emailError, setEmailError] = useState<string | null>(null)
+  const [phonePrefix, setPhonePrefix] = useState('+54')
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [paisISO, setPaisISO]       = useState('AR')
+  const [paisNombre, setPaisNombre] = useState('Argentina')
+  const [ciudadNombre, setCiudadNombre] = useState('')
   const [peso, setPeso] = useState('')
   const [altura, setAltura] = useState('')
   const [sexo, setSexo] = useState('')
@@ -57,28 +64,53 @@ export default function EvaluacionPage({
             <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-3 lg:p-8">
               <div className="flex flex-col gap-2 lg:gap-5">
 
-                {/* Nombre */}
-                <div>
-                  <label className={labelClass}>Nombre completo</label>
-                  <input type="text" value={nombre} onChange={e => setNombre(e.target.value)} placeholder="Tu nombre" className={inputClass} />
+                {/* Nombre / Apellido */}
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className={labelClass}>Nombre *</label>
+                    <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)}
+                      placeholder="Nombre" autoComplete="given-name" className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass}>Apellido *</label>
+                    <input type="text" value={lastName} onChange={e => setLastName(e.target.value)}
+                      placeholder="Apellido" autoComplete="family-name" className={inputClass} />
+                  </div>
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label className={labelClass}>Email</label>
-                  <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="tu@email.com" className={inputClass} />
+                  <label className={labelClass}>Email *</label>
+                  <input type="email" value={email}
+                    onChange={e => { setEmail(e.target.value); setEmailError(null) }}
+                    onBlur={() => { if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) setEmailError('Formato de email inválido') }}
+                    placeholder="tu@email.com"
+                    autoComplete="email"
+                    className={`${inputClass} ${emailError ? 'border-red-500/50' : ''}`} />
+                  {emailError && <p className="mt-1 text-[11px] text-red-400">{emailError}</p>}
                 </div>
 
-                {/* WhatsApp */}
+                {/* WhatsApp / Teléfono */}
                 <div>
-                  <label className={labelClass}>WhatsApp / Teléfono</label>
-                  <input type="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} placeholder="+54 9 11 1234 5678" className={inputClass} />
+                  <PhonePrefixSelect
+                    prefix={phonePrefix}
+                    onPrefixChange={setPhonePrefix}
+                    phoneNumber={phoneNumber}
+                    onPhoneNumberChange={setPhoneNumber}
+                    phonePlaceholder="9 11 1234-5678"
+                    inputClassName="rounded-lg lg:rounded-xl"
+                  />
                 </div>
 
-                {/* Ciudad */}
+                {/* Ciudad / País */}
                 <div>
-                  <label className={labelClass}>¿Desde qué ciudad y país escribís?</label>
-                  <input type="text" value={ciudad} onChange={e => setCiudad(e.target.value)} placeholder="Ej: Buenos Aires, Argentina" className={inputClass} />
+                  <CountryCitySelect
+                    countryCode={paisISO}
+                    countryName={paisNombre}
+                    onCountryChange={(iso, name) => { setPaisISO(iso); setPaisNombre(name) }}
+                    city={ciudadNombre}
+                    onCityChange={setCiudadNombre}
+                  />
                 </div>
 
                 {/* Sexo */}
@@ -210,8 +242,19 @@ export default function EvaluacionPage({
                   onClick={async () => {
                     if (!termsAccepted || loading) return
                     setError(null)
+                    if (!firstName.trim() || !lastName.trim() || !email.trim()) {
+                      setError('Nombre, apellido y email son obligatorios.')
+                      return
+                    }
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                      setError('Formato de email inválido.')
+                      return
+                    }
                     setLoading(true)
                     try {
+                      const nombre  = `${firstName.trim()} ${lastName.trim()}`.trim()
+                      const whatsapp = `${phonePrefix} ${phoneNumber}`.trim()
+                      const ciudad   = ciudadNombre ? `${ciudadNombre}, ${paisNombre}` : paisNombre
                       const res = await fetch('/api/evaluacion', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },

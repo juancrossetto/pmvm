@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { useTranslations } from 'next-intl'
 import { CheckCircle2, ChevronRight, Lock, Sparkles, X } from 'lucide-react'
+import PhonePrefixSelect from '@/components/PhonePrefixSelect'
 
 /* ── Plan catalog (matches API route + Supabase) ── */
 const PLANS = {
@@ -81,8 +82,11 @@ const i18n = {
     create_account: 'Registrate',
     name_label: 'Nombre completo',
     name_placeholder: 'Tu nombre',
+    firstName_label: 'Nombre',
+    lastName_label: 'Apellido',
     email_label: 'Email',
     email_placeholder: 'tu@email.com',
+    email_error_format: 'Formato de email inválido',
     phone_label: 'WhatsApp / Teléfono',
     phone_placeholder: '+54 9 11 1234-5678',
     password_label: 'Contraseña',
@@ -118,8 +122,11 @@ const i18n = {
     create_account: 'Create one',
     name_label: 'Full name',
     name_placeholder: 'Your name',
+    firstName_label: 'First name',
+    lastName_label: 'Last name',
     email_label: 'Email',
     email_placeholder: 'you@email.com',
+    email_error_format: 'Invalid email format',
     phone_label: 'WhatsApp / Phone',
     phone_placeholder: '+1 555 123 4567',
     password_label: 'Password',
@@ -155,8 +162,11 @@ const i18n = {
     create_account: 'Crie uma',
     name_label: 'Nome completo',
     name_placeholder: 'Seu nome',
+    firstName_label: 'Nome',
+    lastName_label: 'Sobrenome',
     email_label: 'Email',
     email_placeholder: 'voce@email.com',
+    email_error_format: 'Formato de email inválido',
     phone_label: 'WhatsApp / Telefone',
     phone_placeholder: '+55 11 91234-5678',
     password_label: 'Senha',
@@ -197,10 +207,12 @@ export default function CheckoutPage({ params }: { params: { locale: string } })
   const [mode, setMode] = useState<'register' | 'login'>('register')
 
   // Form fields — pre-populated from sessionStorage if user came back from MP
-  const [fullName, setFullName] = useState(() => typeof window !== 'undefined' ? sessionStorage.getItem('checkout_fullName') || '' : '')
+  const [firstName, setFirstName] = useState(() => typeof window !== 'undefined' ? sessionStorage.getItem('checkout_firstName') || '' : '')
+  const [lastName, setLastName]   = useState(() => typeof window !== 'undefined' ? sessionStorage.getItem('checkout_lastName')  || '' : '')
+  const [emailError, setEmailError] = useState<string | null>(null)
   const [email, setEmail] = useState(() => typeof window !== 'undefined' ? sessionStorage.getItem('checkout_email') || '' : '')
   const [phone, setPhone] = useState(() => typeof window !== 'undefined' ? sessionStorage.getItem('checkout_phone') || '' : '')
-  const [phonePrefix, setPhonePrefix] = useState(() => typeof window !== 'undefined' ? sessionStorage.getItem('checkout_phonePrefix') || '' : '')
+  const [phonePrefix, setPhonePrefix] = useState(() => typeof window !== 'undefined' ? sessionStorage.getItem('checkout_phonePrefix') || '+54' : '+54')
   const [phoneNumber, setPhoneNumber] = useState(() => typeof window !== 'undefined' ? sessionStorage.getItem('checkout_phoneNumber') || '' : '')
   const [password, setPassword] = useState('')
   const [acceptTerms, setAcceptTerms] = useState(false)
@@ -231,7 +243,11 @@ export default function CheckoutPage({ params }: { params: { locale: string } })
         // fetch name from profile
         supabase.from('profiles').select('full_name, phone').eq('id', user.id).single()
           .then(({ data }) => {
-            if (data?.full_name) setFullName(data.full_name)
+            if (data?.full_name) {
+              const parts = data.full_name.trim().split(/\s+/)
+              setFirstName(parts[0] ?? '')
+              setLastName(parts.slice(1).join(' ') ?? '')
+            }
             if (data?.phone) setPhone(data.phone)
           })
       }
@@ -241,22 +257,28 @@ export default function CheckoutPage({ params }: { params: { locale: string } })
 
   const plan = PLANS[selectedPlan]
 
+  const isValidEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+
   const handleSubmit = async () => {
     setError(null)
+    const fullName = `${firstName.trim()} ${lastName.trim()}`.trim()
 
     if (!acceptTerms) { setError(t.error_terms); return }
 
     if (!user) {
       if (mode === 'register') {
-        if (!fullName.trim() || !email.trim() || (cuentaHabilitada && !password)) { setError(t.error_required); return }
+        if (!firstName.trim() || !lastName.trim() || !email.trim() || (cuentaHabilitada && !password)) { setError(t.error_required); return }
+        if (email && !isValidEmail(email)) { setError(t.email_error_format); return }
         if (cuentaHabilitada && password.length < 8) { setError(t.error_password); return }
       } else {
         if (!email.trim() || !password) { setError(t.error_required); return }
+        if (email && !isValidEmail(email)) { setError(t.email_error_format); return }
       }
     }
 
     // Persist form data so it survives back-navigation from MP
-    sessionStorage.setItem('checkout_fullName', fullName)
+    sessionStorage.setItem('checkout_firstName', firstName)
+    sessionStorage.setItem('checkout_lastName', lastName)
     sessionStorage.setItem('checkout_email', email)
     sessionStorage.setItem('checkout_phone', phone)
     sessionStorage.setItem('checkout_phonePrefix', phonePrefix)
@@ -314,7 +336,7 @@ export default function CheckoutPage({ params }: { params: { locale: string } })
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           planId: selectedPlan, locale, email, fullName, phone,
-          ...(cuentaHabilitada ? { password } : { skipAccount: true }),
+          ...(cuentaHabilitada ? { password } : { skipAccount: true }), // fullName computed above
         }),
       })
       const data = await res.json()
@@ -356,7 +378,8 @@ export default function CheckoutPage({ params }: { params: { locale: string } })
   const handleLogout = async () => {
     await supabase.auth.signOut()
     setUser(null)
-    setFullName('')
+    setFirstName('')
+    setLastName('')
     setEmail('')
     setPhone('')
     setMode('register')
@@ -418,7 +441,7 @@ export default function CheckoutPage({ params }: { params: { locale: string } })
                   <div className="flex items-center justify-between bg-white/5 rounded-xl p-4">
                     <div>
                       <p className="text-[10px] text-white/40 uppercase tracking-widest mb-1">{t.logged_as}</p>
-                      <p className="text-white font-bold">{fullName || user.email}</p>
+                      <p className="text-white font-bold">{(`${firstName} ${lastName}`).trim() || user.email}</p>
                       <p className="text-white/40 text-sm">{user.email}</p>
                     </div>
                     <button onClick={handleLogout} className="text-[10px] uppercase tracking-widest text-white/30 hover:text-white transition-colors">
@@ -429,44 +452,40 @@ export default function CheckoutPage({ params }: { params: { locale: string } })
               ) : (mode === 'register' || !cuentaHabilitada) ? (
                 /* ── Registration form ── */
                 <div className="space-y-3 mb-4 lg:space-y-4 lg:mb-6">
-                  <div>
-                    <label className="font-label text-[10px] uppercase tracking-widest text-white/40 block mb-1">{t.name_label} *</label>
-                    <input type="text" value={fullName} onChange={e => setFullName(e.target.value)}
-                      placeholder="Tu nombre completo"
-                      autoComplete="name"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 lg:py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#c8f73a]/50 transition-all" />
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="font-label text-[10px] uppercase tracking-widest text-white/40 block mb-1">{t.firstName_label} *</label>
+                      <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)}
+                        placeholder="Nombre"
+                        autoComplete="given-name"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 lg:py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#c8f73a]/50 transition-all" />
+                    </div>
+                    <div>
+                      <label className="font-label text-[10px] uppercase tracking-widest text-white/40 block mb-1">{t.lastName_label} *</label>
+                      <input type="text" value={lastName} onChange={e => setLastName(e.target.value)}
+                        placeholder="Apellido"
+                        autoComplete="family-name"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 lg:py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#c8f73a]/50 transition-all" />
+                    </div>
                   </div>
                   <div>
                     <label className="font-label text-[10px] uppercase tracking-widest text-white/40 block mb-1">{t.email_label} *</label>
-                    <input type="email" value={email} onChange={e => setEmail(e.target.value)}
+                    <input type="email" value={email}
+                      onChange={e => { setEmail(e.target.value); setEmailError(null) }}
+                      onBlur={() => { if (email && !isValidEmail(email)) setEmailError(t.email_error_format) }}
                       placeholder={t.email_placeholder}
                       autoComplete="email"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 lg:py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#c8f73a]/50 transition-all" />
+                      className={`w-full bg-white/5 border rounded-xl px-4 py-2 lg:py-3 text-sm text-white placeholder:text-white/20 focus:outline-none transition-all ${emailError ? 'border-red-500/50' : 'border-white/10 focus:border-[#c8f73a]/50'}`} />
+                    {emailError && <p className="mt-1 text-[11px] text-red-400">{emailError}</p>}
                   </div>
-                  <div className="flex gap-2">
-                    <div className="flex-shrink-0 w-20">
-                      <label className="font-label text-[10px] uppercase tracking-widest text-white/40 block mb-1">Cod. País</label>
-                      <input
-                        type="tel"
-                        value={phonePrefix}
-                        onChange={e => { const raw = e.target.value.replace(/[^\d+]/g, ''); const val = raw && !raw.startsWith('+') ? '+' + raw : raw; setPhonePrefix(val); setPhone(`${val} ${phoneNumber}`.trim()) }}
-                        placeholder="+54"
-                        maxLength={6}
-                        autoComplete="tel-country-code"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 lg:py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-[#c8f73a]/50 transition-all text-center text-sm font-label"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <label className="font-label text-[10px] uppercase tracking-widest text-white/40 block mb-1">WhatsApp / Teléfono</label>
-                      <input
-                        type="tel"
-                        value={phoneNumber}
-                        onChange={e => { const val = e.target.value.replace(/[^\d\s\-]/g, ''); setPhoneNumber(val); setPhone(`${phonePrefix} ${val}`.trim()) }}
-                        placeholder="11 1234 5678"
-                        autoComplete="tel-national"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 lg:py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#c8f73a]/50 transition-all"
-                      />
-                    </div>
+                  <div>
+                    <PhonePrefixSelect
+                      prefix={phonePrefix}
+                      onPrefixChange={p => { setPhonePrefix(p); setPhone(`${p} ${phoneNumber}`.trim()) }}
+                      phoneNumber={phoneNumber}
+                      onPhoneNumberChange={n => { setPhoneNumber(n); setPhone(`${phonePrefix} ${n}`.trim()) }}
+                      phonePlaceholder="9 11 1234-5678"
+                    />
                   </div>
                   {cuentaHabilitada && (
                     <div>
