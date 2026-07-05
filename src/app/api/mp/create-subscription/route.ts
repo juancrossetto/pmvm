@@ -256,7 +256,12 @@ async function createRecurringPreapproval({
     const errText = await mpRes.text()
     console.error('─── MP preapproval error ───────────────────────')
     console.error('HTTP status:', mpRes.status, mpRes.statusText)
-    console.error('Body enviado a MP:', JSON.stringify(preapprovalBody, null, 2))
+    console.error('MP preapproval debug:', {
+      external_reference: preapprovalBody.external_reference,
+      plan_id: planId,
+      frequency: preapprovalBody.auto_recurring.frequency,
+      frequency_type: preapprovalBody.auto_recurring.frequency_type,
+    })
     try { console.error('Respuesta de MP:', JSON.parse(errText)) } catch { console.error('Respuesta de MP (raw):', errText) }
     console.error('────────────────────────────────────────────────')
     return NextResponse.json({ error: 'Error al crear suscripción en Mercado Pago' }, { status: 500 })
