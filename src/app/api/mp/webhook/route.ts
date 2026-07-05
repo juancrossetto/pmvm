@@ -801,6 +801,15 @@ async function sendWhatsApp({
   console.log(`WhatsApp enviado a: ${toNumber} | ${isReturning ? 'renovación' : 'nuevo'}`)
 }
 
+function normalizePhoneForWaMe(raw: string): string {
+  let d = raw.replace(/\D/g, '')
+  if (!d) return ''
+  if (d.startsWith('0')) d = d.slice(1)
+  d = d.replace(/^(\d{2,3})15(\d{7,8})$/, '$19$2')
+  if (!d.startsWith('54')) d = '54' + d
+  return d
+}
+
 // ── Notificación al coach ─────────────────────────────────────────────────────
 async function notifyCoach({
   displayName, userEmail, phone, planName, amount, expiresAt, isReturning,
@@ -878,7 +887,7 @@ async function notifyCoach({
               </tr>
               <tr>
                 <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#888;">📱 Teléfono</td>
-                <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#fff;">${telDisplay}</td>
+                <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#fff;">${phone ? `<a href="https://wa.me/${normalizePhoneForWaMe(phone)}" style="color:#c1ed00;text-decoration:none;">${telDisplay}</a>` : telDisplay}</td>
               </tr>
               <tr>
                 <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#888;">📋 Plan</td>

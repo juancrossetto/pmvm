@@ -4,6 +4,15 @@ import { sendWhatsAppMessage } from '@/lib/whatsapp'
 
 export const dynamic = 'force-dynamic'
 
+function normalizePhoneForWaMe(raw: string): string {
+  let d = raw.replace(/\D/g, '')
+  if (!d) return ''
+  if (d.startsWith('0')) d = d.slice(1)
+  d = d.replace(/^(\d{2,3})15(\d{7,8})$/, '$19$2')
+  if (!d.startsWith('54')) d = '54' + d
+  return d
+}
+
 const OBJETIVO_LABELS: Record<string, string> = {
   bajar:    'Bajar de peso',
   muscular: 'Ganar masa muscular',
@@ -140,7 +149,7 @@ async function notifyCoach({
               </tr>
               <tr>
                 <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#888;">📱 WhatsApp</td>
-                <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#fff;">${whatsapp}</td>
+                <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#fff;"><a href="https://wa.me/${normalizePhoneForWaMe(whatsapp)}" style="color:#c1ed00;text-decoration:none;">${whatsapp}</a></td>
               </tr>
               <tr>
                 <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#888;">📍 Ciudad</td>
