@@ -67,7 +67,7 @@ export default function ClientSidebar({ locale, profile, userEmail }: Props) {
 
       {/* Brand */}
       <div className="px-5 pt-7 pb-5 border-b border-white/5">
-        <Link href={`/${locale}/v4secret`}>
+        <Link href={`/${locale}`}>
           <span className="text-lg font-black font-headline text-[#c1ed00] tracking-[-0.04em] uppercase italic leading-none">
             METODO R3SET
           </span>
@@ -133,7 +133,7 @@ export default function ClientSidebar({ locale, profile, userEmail }: Props) {
       {/* Bottom */}
       <div className="px-3 pb-6 space-y-1 border-t border-white/5 pt-4">
         <Link
-          href={`/${locale}/v4secret`}
+          href={`/${locale}`}
           className="flex items-center gap-3 px-3 py-2.5 font-label text-[11px] uppercase tracking-widest text-white/25 hover:text-white transition-colors"
         >
           <span className="material-symbols-outlined text-[18px]">public</span>

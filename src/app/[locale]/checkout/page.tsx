@@ -402,7 +402,7 @@ export default function CheckoutPage({ params }: { params: { locale: string } })
         {/* Top bar */}
         <div className="flex items-start justify-between mb-4 lg:mb-10">
           <div>
-            <Link href={`/${locale}/v4secret#pricing`} className="flex items-center gap-1 text-white/40 text-[11px] uppercase tracking-widest hover:text-white transition-colors mb-3">
+            <Link href={`/${locale}#pricing`} className="flex items-center gap-1 text-white/40 text-[11px] uppercase tracking-widest hover:text-white transition-colors mb-3">
               ← Volver a planes
             </Link>
             <Link href={`/${locale}`}>

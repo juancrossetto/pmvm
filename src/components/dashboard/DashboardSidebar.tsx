@@ -62,7 +62,7 @@ export default function DashboardSidebar({ locale, user, profile }: SidebarProps
     <div className="flex flex-col h-full">
       {/* Logo */}
       <div className="px-6 py-5 border-b border-white/10">
-        <Link href={`/${locale}/v3`} className="flex items-center gap-3">
+        <Link href={`/${locale}`} className="flex items-center gap-3">
           <Image src="/images/icon-yellow.png" alt="Logo" width={32} height={32} className="object-contain" />
           <span
             className="text-xl text-white"
@@ -132,7 +132,7 @@ export default function DashboardSidebar({ locale, user, profile }: SidebarProps
       {/* Mobile: top bar + drawer */}
       <div className="lg:hidden">
         <div className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-3 bg-[#111111] border-b border-white/10">
-          <Link href={`/${locale}/v3`} className="flex items-center gap-2">
+          <Link href={`/${locale}`} className="flex items-center gap-2">
             <Image src="/images/icon-yellow.png" alt="Logo" width={28} height={28} className="object-contain" />
             <span
               className="text-lg text-white"
