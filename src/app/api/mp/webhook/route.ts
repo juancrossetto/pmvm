@@ -485,10 +485,11 @@ async function sendEmail({
   let subject: string
   let html: string
 
+  const coachPhoneDisplay = process.env.NEXT_PUBLIC_COACH_PHONE_DISPLAY ?? ''
+  const coachWaNumber = process.env.NEXT_PUBLIC_COACH_WHATSAPP ?? ''
+
   if (!cuentaHabilitada && !isReturning) {
     // ── WhatsApp-first: sin dashboard ni login ────────────────────────────────
-    const coachPhoneDisplay = process.env.NEXT_PUBLIC_COACH_PHONE_DISPLAY ?? ''
-    const coachWaNumber = process.env.NEXT_PUBLIC_COACH_WHATSAPP ?? ''
     subject = `✅ ¡Bienvenido a R3SET, ${displayName}! Tu lugar está confirmado`
     html = `<!DOCTYPE html>
 <html lang="${locale}" style="color-scheme:dark;">
@@ -572,8 +573,89 @@ async function sendEmail({
 </body>
 </html>`
 
+  } else if (!cuentaHabilitada && isReturning) {
+    // ── Renovación sin dashboard (CUENTA_HABILITADA=false) ───────────────────
+    subject = strings.email.subjectRenew(planName)
+    html = `<!DOCTYPE html>
+<html lang="${locale}" style="color-scheme:dark;">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="supported-color-schemes" content="dark">
+  <title>${subject}</title>
+  <style>:root,body{color-scheme:dark}</style>
+</head>
+<body style="margin:0;padding:0;background:#0a0a0a !important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#fff !important;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a !important;padding:40px 16px;">
+    <tr><td align="center">
+      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
+
+        <!-- Logo -->
+        <tr><td style="padding-bottom:32px;">
+          <p style="margin:0;font-size:26px;font-weight:900;color:#c1ed00;letter-spacing:-1px;text-transform:uppercase;">R3SET</p>
+          <p style="margin:4px 0 0;font-size:11px;color:#444;text-transform:uppercase;letter-spacing:3px;">MÉTODO R3SET</p>
+        </td></tr>
+
+        <!-- Heading -->
+        <tr><td style="padding-bottom:8px;">
+          <p style="margin:0;font-size:28px;font-weight:800;line-height:1.2;">¡Hola, ${displayName}!</p>
+        </td></tr>
+        <tr><td style="padding-bottom:32px;">
+          <p style="margin:0;font-size:15px;color:#888;">Tu renovación se procesó correctamente. Seguís dentro de R3SET.</p>
+        </td></tr>
+
+        <!-- Plan card -->
+        <tr><td style="padding-bottom:28px;">
+          <div style="background:#141414;border:1px solid #2a2a2a;border-radius:16px;padding:24px;overflow:hidden;">
+            <div style="display:inline-block;background:#c1ed00;color:#0e0e0e;font-weight:800;font-size:12px;padding:4px 14px;border-radius:100px;margin-bottom:20px;text-transform:uppercase;letter-spacing:1px;">${planName}</div>
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#888;">Estado</td>
+                <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#c1ed00;font-weight:700;text-align:right;">✓ Activo</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#888;">Duración</td>
+                <td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:13px;color:#fff;font-weight:600;text-align:right;">${days} días</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;font-size:13px;color:#888;">Vence el</td>
+                <td style="padding:10px 0;font-size:13px;color:#fff;font-weight:600;text-align:right;">${expiresFormatted}</td>
+              </tr>
+            </table>
+          </div>
+        </td></tr>
+
+        <!-- Coach contact block -->
+        <tr><td style="padding-bottom:28px;">
+          <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-left:3px solid #c1ed00;border-radius:0 16px 16px 0;padding:24px;">
+            <p style="margin:0 0 12px;font-size:14px;font-weight:700;color:#fff;">¿Necesitás algo?</p>
+            <p style="margin:0;font-size:14px;color:#c8c5c5;line-height:1.6;">
+              Estoy disponible por WhatsApp para lo que necesites.${coachPhoneDisplay ? ` Escribime al <a href="https://wa.me/${coachWaNumber}" style="color:#c1ed00;text-decoration:none;font-weight:700;">${coachPhoneDisplay}</a>.` : ''}
+            </p>
+          </div>
+        </td></tr>
+
+        <!-- Sign-off -->
+        <tr><td style="padding-bottom:32px;">
+          <p style="margin:0;font-size:15px;color:#fff;font-weight:600;">¡Seguimos!</p>
+          <p style="margin:8px 0 0;font-size:14px;color:#888;">Ale Gerez · Método R3SET</p>
+        </td></tr>
+
+        <!-- Footer -->
+        <tr><td style="border-top:1px solid #1a1a1a;padding-top:24px;text-align:center;">
+          <p style="margin:0;font-size:12px;color:#444;">Si tenés alguna duda, respondé este email.</p>
+          <p style="margin:8px 0 0;font-size:11px;color:#333;">© R3SET · Pesar Menos Vivir Más</p>
+        </td></tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`
+
   } else {
-    // ── Original: con dashboard/login (CUENTA_HABILITADA=true o renovación) ───
+    // ── Original: con dashboard/login (solo cuando CUENTA_HABILITADA=true) ────
     subject = isReturning
       ? strings.email.subjectRenew(planName)
       : strings.email.subjectNew(planName)
@@ -596,7 +678,8 @@ async function sendEmail({
       : `
     <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-left:3px solid #c1ed00;border-radius:0 16px 16px 0;padding:20px 24px;margin-bottom:24px;">
       <p style="margin:0 0 8px;font-size:14px;color:#c8c5c5;line-height:1.6;">${strings.email.renewNote}</p>
-      <p style="margin:0;font-size:13px;color:#888;">${strings.email.coachNote}</p>
+      <p style="margin:0 0 8px;font-size:13px;color:#888;">${strings.email.coachNote}</p>
+      ${coachPhoneDisplay ? `<p style="margin:8px 0 0;font-size:13px;color:#888;">Cualquier cosa, escribinos por WhatsApp: <a href="https://wa.me/${coachWaNumber}" style="color:#c1ed00;text-decoration:none;font-weight:700;">${coachPhoneDisplay}</a>.</p>` : ''}
     </div>`
 
     html = `
