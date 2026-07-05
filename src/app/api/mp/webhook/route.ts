@@ -488,6 +488,7 @@ async function sendEmail({
   if (!cuentaHabilitada && !isReturning) {
     // ── WhatsApp-first: sin dashboard ni login ────────────────────────────────
     const coachPhoneDisplay = process.env.NEXT_PUBLIC_COACH_PHONE_DISPLAY ?? ''
+    const coachWaNumber = process.env.NEXT_PUBLIC_COACH_WHATSAPP ?? ''
     subject = `✅ ¡Bienvenido a R3SET, ${displayName}! Tu lugar está confirmado`
     html = `<!DOCTYPE html>
 <html lang="${locale}" style="color-scheme:dark;">
@@ -548,7 +549,7 @@ async function sendEmail({
               entender tus objetivos y armar tu plan personalizado.
             </p>
             <p style="margin:0;font-size:14px;color:#c8c5c5;line-height:1.6;">
-              No necesitás hacer nada más por ahora — yo te escribo.${coachPhoneDisplay ? ` Si querés adelantarme algo, escribime directo por WhatsApp al <strong style="color:#fff;">${coachPhoneDisplay}</strong>.` : ''}
+              No necesitás hacer nada más por ahora — yo te escribo.${coachPhoneDisplay ? ` Si querés adelantarme algo, escribime directo por WhatsApp al <a href="https://wa.me/${coachWaNumber}" style="color:#c1ed00;text-decoration:none;font-weight:700;">${coachPhoneDisplay}</a>.` : ''}
             </p>
           </div>
         </td></tr>
