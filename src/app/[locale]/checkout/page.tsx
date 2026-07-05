@@ -9,19 +9,6 @@ import { CheckCircle2, ChevronRight, Lock, Sparkles, X } from 'lucide-react'
 
 /* ── Plan catalog (matches API route + Supabase) ── */
 const PLANS = {
-  test: {
-    id: 'test',
-    name: { es: 'Test', en: 'Test', pt: 'Test' },
-    price: 15,
-    isRecurring: true,
-    period: { es: '1 día de acceso', en: '1 day of access', pt: '1 dia de acesso' },
-    frequency: { es: 'Suscripción mensual · prueba interna', en: 'Monthly subscription · internal test', pt: 'Assinatura mensal · teste interno' },
-    features: {
-      es: ['Plan de prueba interno'],
-      en: ['Internal test plan'],
-      pt: ['Plano de teste interno'],
-    },
-  },
   monthly: {
     id: 'monthly',
     name: { es: 'Mensual', en: 'Monthly', pt: 'Mensal' },
@@ -64,7 +51,6 @@ const PLANS = {
 } as const
 
 const DISPLAY_PRICES: Record<string, { monthly: string; total: string | null; savings: string | null }> = {
-  test:       { monthly: '$15',     total: null,       savings: null },
   monthly:    { monthly: '$44.999', total: null,       savings: null },
   quarterly:  { monthly: '$39.999', total: '$119.999', savings: '11% off' },
   semiannual: { monthly: '$36.666', total: '$219.999', savings: '18% off' },
