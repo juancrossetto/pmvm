@@ -119,7 +119,7 @@ function PricingCard({ plan, locale, activeSub }: { plan: any; locale: string; a
             const hide = pastComplementa
             return typeof f === 'object' && f.section ? (
               <li key={i} className="pt-1.5 pb-0.5">
-                <span className="text-[10px] font-black uppercase tracking-widest text-white/60 font-label">{f.section}</span>
+                <span className="text-[10px] font-black uppercase tracking-widest font-label" style={{ color: plan.color }}>{f.section}</span>
               </li>
             ) : (
               <li key={i} className="flex items-start gap-2 md:gap-3 text-xs md:text-sm font-body">
@@ -127,7 +127,7 @@ function PricingCard({ plan, locale, activeSub }: { plan: any; locale: string; a
                 <span className={typeof f === 'object' && f.bold ? 'font-bold text-white' : 'text-on-surface-variant'}>
                   {typeof f === 'object' ? f.text : f}
                   {typeof f === 'object' && f.sub && (
-                    <><br /><span className="whitespace-nowrap">{f.sub}</span></>
+                    <>{' '}<br className="md:hidden" /><span className="whitespace-nowrap">{f.sub}</span></>
                   )}
                 </span>
               </li>
@@ -193,7 +193,7 @@ function TransformationCarouselContent({ locale }: { locale: string }) {
               }`}
             >
               <div className="flex flex-col h-full">
-                <div className="grid grid-cols-2 gap-1 mb-3 md:mb-6 group overflow-hidden md:cursor-default cursor-pointer" onClick={() => setModalItem(item)}>
+                <div className="grid grid-cols-2 gap-1 mb-3 md:mb-6 group overflow-hidden cursor-pointer" onClick={() => setModalItem(item)}>
                   <div className="relative overflow-hidden aspect-[2/3] md:aspect-[4/5] bg-surface-container">
                     <Image
                       alt={`${item.clientName} - Antes`}
@@ -220,10 +220,10 @@ function TransformationCarouselContent({ locale }: { locale: string }) {
                   </div>
                 </div>
                 <div className="border-l-2 border-[#c1ed00] pl-4 md:pl-6 py-1 md:py-2 flex-1">
-                  <h4 className="font-headline text-lg md:text-2xl font-bold uppercase tracking-tight text-white mb-1 md:mb-2 md:cursor-default cursor-pointer" onClick={() => setModalItem(item)}>
+                  <h4 className="font-headline text-lg md:text-2xl font-bold uppercase tracking-tight text-white mb-1 md:mb-2 cursor-pointer" onClick={() => setModalItem(item)}>
                     {item.clientName}
                   </h4>
-                  <blockquote className="font-body text-on-surface-variant italic text-xs md:text-sm leading-relaxed line-clamp-2 md:line-clamp-none md:cursor-default cursor-pointer" onClick={() => setModalItem(item)}>
+                  <blockquote className="font-body text-on-surface-variant italic text-xs md:text-sm leading-relaxed line-clamp-2 md:line-clamp-none cursor-pointer" onClick={() => setModalItem(item)}>
                     {quote}
                   </blockquote>
                   <button
@@ -263,18 +263,18 @@ function TransformationCarouselContent({ locale }: { locale: string }) {
         </button>
       </div>
 
-      {/* Modal — solo mobile */}
+      {/* Modal — mobile y desktop */}
       <AnimatePresence>
         {modalItem && (
           <motion.div
-            className="md:hidden fixed inset-0 z-50 flex items-center justify-center bg-black/85 px-5"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 px-5"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setModalItem(null)}
           >
             <motion.div
-              className="relative bg-[#0e0e0e] border border-white/10 w-full max-w-sm max-h-[88vh] overflow-y-auto"
+              className="relative bg-[#0e0e0e] border border-white/10 w-full max-w-sm md:max-w-2xl max-h-[88vh] overflow-y-auto"
               initial={{ scale: 0.82, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.82, opacity: 0 }}
@@ -1200,7 +1200,7 @@ export default function V4Page() {
                 id: 'monthly', name: 'PLAN BASE', price: 44999, days: 30, badge: null, color: '#c1ed00',
                 desc: 'La forma más simple de empezar tu transformación.',
                 features: [
-                  'Rutina personalizada (gimnasio - hogar)',
+                  { text: 'Rutina personalizada', sub: '(gimnasio - hogar)' },
                   'App exclusiva Android e iPhone',
                   'Videos explicativos de cada ejercicio',
                   'Seguimiento semanal',
