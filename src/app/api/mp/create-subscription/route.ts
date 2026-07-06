@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient, createAdminClient } from '@/lib/supabase/server'
+import { ratelimit, getIp } from '@/lib/rate-limit'
 
 export const dynamic = 'force-dynamic'
 
@@ -27,7 +28,19 @@ const PLANS: Record<string, {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { planId, locale = 'es', email, fullName, phone, password, skipAccount } = body
+    const { planId, locale = 'es', email, fullName, phone, password, skipAccount, _hp } = body
+
+    // ── Honeypot: bot detectado — respuesta silenciosa ──
+    if (_hp) return NextResponse.json({ ok: true })
+
+    // ── Rate limiting: 5 intentos por IP cada 10 minutos ──
+    const { success } = await ratelimit.limit(`subscription:${getIp(req)}`)
+    if (!success) {
+      return NextResponse.json(
+        { error: 'Demasiados intentos. Esperá unos minutos e intentá de nuevo.' },
+        { status: 429 }
+      )
+    }
 
     const plan = PLANS[planId]
     if (!plan) return NextResponse.json({ error: 'Plan inválido' }, { status: 400 })

@@ -29,6 +29,7 @@ export default function EvaluacionPage({
   const [objetivo, setObjetivo] = useState('')
   const [situacion, setSituacion] = useState('')
   const [termsAccepted, setTermsAccepted] = useState(false)
+  const [honeypot, setHoneypot] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -227,6 +228,17 @@ export default function EvaluacionPage({
                   </span>
                 </label>
 
+                {/* Honeypot — oculto para humanos, visible para bots */}
+                <input
+                  type="text"
+                  value={honeypot}
+                  onChange={e => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ position: 'absolute', opacity: 0, top: -9999, left: -9999, height: 0, width: 0 }}
+                />
+
                 {/* Error */}
                 {error && (
                   <div className="bg-red-500/10 border border-red-500/30 rounded-xl px-5 py-4 flex items-start gap-3">
@@ -258,7 +270,7 @@ export default function EvaluacionPage({
                       const res = await fetch('/api/evaluacion', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ nombre, email, whatsapp, ciudad, sexo: sexo === 'Otro' ? sexoOtro || 'Otro' : sexo, peso, altura, skipMedidas, objetivo, situacion }),
+                        body: JSON.stringify({ nombre, email, whatsapp, ciudad, sexo: sexo === 'Otro' ? sexoOtro || 'Otro' : sexo, peso, altura, skipMedidas, objetivo, situacion, _hp: honeypot }),
                       })
                       const data = await res.json()
                       if (!res.ok) {

@@ -218,6 +218,7 @@ export default function CheckoutPage({ params }: { params: { locale: string } })
   const [acceptTerms, setAcceptTerms] = useState(false)
 
   // State
+  const [honeypot, setHoneypot] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [showPlanPicker, setShowPlanPicker] = useState(false)
@@ -303,7 +304,7 @@ export default function CheckoutPage({ params }: { params: { locale: string } })
         const res = await fetch('/api/mp/create-subscription', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ planId: selectedPlan, locale }),
+          body: JSON.stringify({ planId: selectedPlan, locale, _hp: honeypot }),
         })
         const data = await res.json()
         if (!res.ok) { setError(data.error ?? 'Error inesperado'); setSubmitting(false); return }
@@ -319,7 +320,7 @@ export default function CheckoutPage({ params }: { params: { locale: string } })
         const res = await fetch('/api/mp/create-subscription', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ planId: selectedPlan, locale }),
+          body: JSON.stringify({ planId: selectedPlan, locale, _hp: honeypot }),
         })
         const data = await res.json()
         if (!res.ok) { setError(data.error ?? 'Error inesperado'); setSubmitting(false); return }
@@ -336,7 +337,8 @@ export default function CheckoutPage({ params }: { params: { locale: string } })
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           planId: selectedPlan, locale, email, fullName, phone,
-          ...(cuentaHabilitada ? { password } : { skipAccount: true }), // fullName computed above
+          ...(cuentaHabilitada ? { password } : { skipAccount: true }),
+          _hp: honeypot,
         }),
       })
       const data = await res.json()
@@ -552,6 +554,17 @@ export default function CheckoutPage({ params }: { params: { locale: string } })
                   </div>
                 </div>
               </Link>
+
+              {/* Honeypot — oculto para humanos, visible para bots */}
+              <input
+                type="text"
+                value={honeypot}
+                onChange={e => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ position: 'absolute', opacity: 0, top: -9999, left: -9999, height: 0, width: 0 }}
+              />
 
               {/* T&C + CTA + Secure — solo desktop */}
               <div className="hidden lg:block">

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/server'
 import { sendWhatsAppMessage } from '@/lib/whatsapp'
+import { ratelimit, getIp } from '@/lib/rate-limit'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,7 +25,19 @@ const OBJETIVO_LABELS: Record<string, string> = {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { nombre, email, whatsapp, ciudad, peso, altura, skipMedidas, objetivo, situacion } = body
+    const { nombre, email, whatsapp, ciudad, peso, altura, skipMedidas, objetivo, situacion, _hp } = body
+
+    // ── Honeypot: bot detectado — respuesta silenciosa ──
+    if (_hp) return NextResponse.json({ ok: true })
+
+    // ── Rate limiting: 5 intentos por IP cada 10 minutos ──
+    const { success } = await ratelimit.limit(`evaluacion:${getIp(req)}`)
+    if (!success) {
+      return NextResponse.json(
+        { error: 'Demasiados intentos. Esperá unos minutos e intentá de nuevo.' },
+        { status: 429 }
+      )
+    }
 
     if (!nombre?.trim() || !email?.trim() || !whatsapp?.trim()) {
       return NextResponse.json(
