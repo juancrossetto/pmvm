@@ -1407,7 +1407,7 @@ export default function V4Page() {
               WhatsApp
             </motion.a>
             <motion.a
-              href="mailto:alegerezcoach@gmail.com?subject=Consulta%20Metodo%20R3SET"
+              href="mailto:info@alegerezcoach.com?subject=Consulta%20Metodo%20R3SET"
               className="flex items-center justify-center gap-3 py-5 px-6 border border-white/15 text-white/70 font-headline font-black text-sm uppercase tracking-widest hover:border-white/30 hover:text-white active:scale-95 transition-all duration-200"
               variants={staggerItem}
               whileHover={{ scale: 1.02 }}
