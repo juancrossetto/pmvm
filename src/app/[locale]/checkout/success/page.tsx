@@ -1,7 +1,12 @@
+import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import Image from 'next/image'
 import { CheckCircle, Clock, Lock, MessageCircle, User, Play, TrendingUp, Heart, Globe } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: '¡Pago Confirmado! | Método R3SET',
+}
 
 export default async function CheckoutSuccessPage({
   params,

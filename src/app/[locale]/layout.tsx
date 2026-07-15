@@ -4,23 +4,23 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
 export const metadata: Metadata = {
-  title: 'METODO R3SET — Transformá tus hábitos, no solo tu peso',
-  description: 'Programa de transformación integral basado en 3 pilares: Psicología, Entrenamiento y Nutrición. Coach certificado. Seguimiento real. Acceso inmediato.',
+  title: 'Entrenador Personal Online en Argentina | Método R3SET',
+  description: 'Rutinas de entrenamiento y mentoría fitness 1 a 1 con acompañamiento real. Ganá masa muscular y cambiá tu alimentación con seguimiento personalizado.',
   keywords: ['fitness', 'coach', 'entrenamiento', 'nutrición', 'transformación', 'hábitos', 'metodo r3set'],
   authors: [{ name: 'Alejandro Gerez' }],
   openGraph: {
-    title: 'METODO R3SET — Transformá tus hábitos, no solo tu peso',
-    description: 'Programa de transformación integral. Psicología, Entrenamiento y Nutrición. Coach certificado con 12+ años de experiencia.',
+    title: 'Entrenador Personal Online en Argentina | Método R3SET',
+    description: 'Rutinas de entrenamiento y mentoría fitness 1 a 1 con acompañamiento real. Ganá masa muscular y cambiá tu alimentación con seguimiento personalizado.',
     type: 'website',
     locale: 'es_AR',
     siteName: 'Metodo R3SET',
-    images: [{ url: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=1200&q=80&auto=format&fit=crop', width: 1200, height: 630, alt: 'Metodo R3SET — Transformación' }],
+    images: [{ url: `${process.env.NEXT_PUBLIC_SITE_URL}/images/hero/hero2.webp`, width: 1200, height: 630, alt: 'Metodo R3SET — Transformación' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'METODO R3SET — Transformá tus hábitos, no solo tu peso',
-    description: 'Programa de transformación integral. Coach certificado. 3 pilares: Psicología, Entrenamiento y Nutrición.',
-    images: ['https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=1200&q=80&auto=format&fit=crop'],
+    title: 'Entrenador Personal Online en Argentina | Método R3SET',
+    description: 'Rutinas de entrenamiento y mentoría fitness 1 a 1 con acompañamiento real. Ganá masa muscular y cambiá tu alimentación con seguimiento personalizado.',
+    images: [`${process.env.NEXT_PUBLIC_SITE_URL}/images/hero/hero2.webp`],
   },
   robots: { index: true, follow: true },
 }

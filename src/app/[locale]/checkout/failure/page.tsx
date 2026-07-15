@@ -1,6 +1,11 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { AlertCircle, Lock, Shield, CreditCard, Wallet, Wifi, RefreshCw, Heart, MessageCircle } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Pago no Procesado | Método R3SET',
+}
 
 export default function CheckoutFailurePage({
   params,
