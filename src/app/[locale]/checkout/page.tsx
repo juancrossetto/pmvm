@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useMemo } from 'react'
+import { use, useState, useEffect, useRef, useMemo } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
@@ -186,12 +186,13 @@ const i18n = {
   },
 }
 
-export default function CheckoutPage({ params }: { params: { locale: string } }) {
+export default function CheckoutPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: paramLocale } = use(params)
   const searchParams = useSearchParams()
   const router = useRouter()
   const supabase = useMemo(() => createClient(), [])
 
-  const locale = (params.locale as Locale) || 'es'
+  const locale = (paramLocale as Locale) || 'es'
   const t = i18n[locale] ?? i18n.es
   const cuentaHabilitada = process.env.NEXT_PUBLIC_CUENTA_HABILITADA === 'true'
 

@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
-  const supabase = createClient()
+  const supabase = await createClient()
   await supabase.auth.signOut()
 
   // Detectar locale del path de la URL de referencia (agnóstico al dominio)

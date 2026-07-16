@@ -1,12 +1,13 @@
 'use client'
 
-import { useState, useEffect, useRef, useMemo } from 'react'
+import { use, useState, useEffect, useRef, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { createClient } from '@/lib/supabase/client'
 
-export default function AdminProfilePage({ params }: { params: { locale: string } }) {
+export default function AdminProfilePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: paramLocale } = use(params)
   const router = useRouter()
   const supabase = useMemo(() => createClient(), [])
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -22,13 +23,13 @@ export default function AdminProfilePage({ params }: { params: { locale: string 
   const [fullName, setFullName] = useState('')
   const [phone, setPhone] = useState('')
   const [sex, setSex] = useState<'male' | 'female' | 'other' | ''>('')
-  const [locale, setLocaleVal] = useState(params.locale)
+  const [locale, setLocaleVal] = useState(paramLocale)
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
 
   useEffect(() => {
     const load = async () => {
       const { data: { user } } = await supabase.auth.getUser()
-      if (!user) { router.push(`/${params.locale}/login`); return }
+      if (!user) { router.push(`/${paramLocale}/login`); return }
       setUserId(user.id)
       const { data } = await supabase
         .from('profiles')
@@ -39,13 +40,13 @@ export default function AdminProfilePage({ params }: { params: { locale: string 
         setFullName(data.full_name ?? '')
         setPhone(data.phone ?? '')
         setSex((data.sex as any) ?? '')
-        setLocaleVal(data.locale ?? params.locale)
+        setLocaleVal(data.locale ?? paramLocale)
         setAvatarUrl(data.avatar_url ?? null)
       }
       setLoading(false)
     }
     load()
-  }, [params.locale, router, supabase])
+  }, [paramLocale, router, supabase])
 
   const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -80,7 +81,7 @@ export default function AdminProfilePage({ params }: { params: { locale: string 
     } else {
       setSuccess(true)
       // Si cambió el idioma, redirigir al nuevo locale para aplicar traducciones
-      if (locale !== params.locale) {
+      if (locale !== paramLocale) {
         setTimeout(() => router.push(`/${locale}/admin/profile`), 800)
       } else {
         setTimeout(() => setSuccess(false), 3000)

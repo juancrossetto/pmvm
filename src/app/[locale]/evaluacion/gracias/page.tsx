@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import { MessageCircle, Calendar, MessageSquare, Rocket, Heart, Home } from 'lucide-react'
 
-export default function EvaluacionGraciasPage({
+export default async function EvaluacionGraciasPage({
   params,
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = await params
   return (
     <div className="bg-[#0e0e0e] min-h-screen text-white px-4 flex flex-col lg:block lg:py-12">
       <style>{`
@@ -151,7 +152,7 @@ export default function EvaluacionGraciasPage({
         {/* Botón */}
         <div className="flex justify-center">
           <Link
-            href={`/${params.locale}`}
+            href={`/${locale}`}
             className="flex items-center justify-center gap-2 lg:w-full px-8 py-2.5 lg:py-4 rounded-xl font-headline font-black text-sm lg:bg-[#c1ed00] lg:text-[#0e0e0e] border border-[#c1ed00]/50 text-[#c1ed00]/70 lg:border-0 hover:border-[#c1ed00] hover:text-[#c1ed00] lg:hover:bg-[#d4ff00] transition-colors uppercase tracking-wider"
           >
             <Home size={14} />

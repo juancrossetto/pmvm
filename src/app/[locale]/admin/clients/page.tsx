@@ -1,7 +1,8 @@
 import { createAdminClient } from '@/lib/supabase/server'
 import AdminClientsClient from '@/components/admin/AdminClientsClient'
 
-export default async function AdminClientsPage({ params }: { params: { locale: string } }) {
+export default async function AdminClientsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
   const adminClient = createAdminClient()
 
   const [
@@ -43,5 +44,5 @@ export default async function AdminClientsPage({ params }: { params: { locale: s
     avatar_url: userMeta[c.id]?.avatar_url ?? null,
   }))
 
-  return <AdminClientsClient locale={params.locale} clients={clientsWithEmail} trainers={trainers ?? []} />
+  return <AdminClientsClient locale={locale} clients={clientsWithEmail} trainers={trainers ?? []} />
 }

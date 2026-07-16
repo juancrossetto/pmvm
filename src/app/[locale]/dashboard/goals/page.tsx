@@ -15,10 +15,11 @@ function todayLabel() {
   })
 }
 
-export default async function DashboardGoalsPage({ params }: { params: { locale: string } }) {
-  const supabase = createClient()
+export default async function DashboardGoalsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) redirect(`/${params.locale}/login`)
+  if (!user) redirect(`/${locale}/login`)
 
   const dateStr = todayISO()
 

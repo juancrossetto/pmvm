@@ -7,13 +7,14 @@ export const metadata: Metadata = {
   title: 'Pago no Procesado | Método R3SET',
 }
 
-export default function CheckoutFailurePage({
+export default async function CheckoutFailurePage({
   params,
   searchParams,
 }: {
-  params: { locale: string }
-  searchParams: { sub?: string }
+  params: Promise<{ locale: string }>
+  searchParams: Promise<{ sub?: string }>
 }) {
+  const { locale } = await params
   return (
     <div className="bg-[#0e0e0e] min-h-screen text-white flex flex-col lg:block">
       {/* Ambient */}
@@ -166,14 +167,14 @@ export default function CheckoutFailurePage({
         {/* Botones */}
         <div className="flex flex-col items-center gap-3 max-w-lg mx-auto">
           <Link
-            href={`/${params.locale}/checkout`}
+            href={`/${locale}/checkout`}
             className="flex items-center justify-center gap-2 w-full py-3 lg:py-4 rounded-xl font-headline font-black text-xs lg:text-sm bg-[#c1ed00] text-[#0e0e0e] hover:bg-[#d4ff00] transition-colors uppercase tracking-normal px-6"
           >
             <RefreshCw size={16} />
             Volver a intentar
           </Link>
           <Link
-            href={`/${params.locale}`}
+            href={`/${locale}`}
             className="text-[10px] text-white/25 hover:text-white/50 transition-colors"
           >
             ← Volver a la web

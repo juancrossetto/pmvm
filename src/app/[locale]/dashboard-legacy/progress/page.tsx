@@ -39,9 +39,10 @@ const texts = {
   },
 }
 
-export default async function ProgressPage({ params }: { params: { locale: string } }) {
-  const t = texts[params.locale as keyof typeof texts] ?? texts.es
-  const supabase = createClient()
+export default async function ProgressPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = texts[locale as keyof typeof texts] ?? texts.es
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
   const { data: records } = await supabase
@@ -109,7 +110,7 @@ export default async function ProgressPage({ params }: { params: { locale: strin
                 {records.map((r) => (
                   <tr key={r.id} className="border-b border-white/5 last:border-0 hover:bg-white/2">
                     <td className="px-5 py-3 text-white/70">
-                      {new Date(r.created_at).toLocaleDateString(params.locale, {
+                      {new Date(r.created_at).toLocaleDateString(locale, {
                         day: '2-digit',
                         month: 'short',
                         year: 'numeric',

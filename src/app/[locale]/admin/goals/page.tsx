@@ -3,8 +3,8 @@ import GoalsClient, { type GoalAssignment, type GoalTemplate, type UserOption } 
 
 export const dynamic = 'force-dynamic'
 
-export default async function AdminGoalsPage({ params }: { params: { locale: string } }) {
-  const supabase = createClient()
+export default async function AdminGoalsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const supabase = await createClient()
 
   const [
     { data: assignments, error: assignErr },

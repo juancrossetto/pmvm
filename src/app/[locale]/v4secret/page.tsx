@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 
-export default function V4SecretRedirect({ params }: { params: { locale: string } }) {
-  redirect(`/${params.locale}`)
+export default async function V4SecretRedirect({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  redirect(`/${locale}`)
 }

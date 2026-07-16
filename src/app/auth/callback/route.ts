@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   const acceptLanguage = request.headers.get('accept-language') ?? ''
   const locale = acceptLanguage.startsWith('en') ? 'en' : acceptLanguage.startsWith('pt') ? 'pt' : 'es'
 
-  const cookieStore = cookies()
+  const cookieStore = await cookies()
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,

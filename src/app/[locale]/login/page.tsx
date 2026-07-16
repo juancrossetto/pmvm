@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { use, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
@@ -9,9 +9,11 @@ export default function LoginPage({
   params,
   searchParams,
 }: {
-  params: { locale: string }
-  searchParams: { redirect?: string }
+  params: Promise<{ locale: string }>
+  searchParams: Promise<{ redirect?: string }>
 }) {
+  const { locale } = use(params)
+  const { redirect: redirectParam } = use(searchParams)
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -74,7 +76,7 @@ export default function LoginPage({
     },
   }
 
-  const t = texts[params.locale as keyof typeof texts] ?? texts.es
+  const t = texts[locale as keyof typeof texts] ?? texts.es
 
   const handleOAuth = async (provider: 'google' | 'apple') => {
     setOauthLoading(provider)
@@ -103,7 +105,7 @@ export default function LoginPage({
     }
 
     // Check role to redirect admin → /admin, client → /dashboard
-    let redirectTo = searchParams?.redirect || `/${params.locale}/dashboard`
+    let redirectTo = redirectParam || `/${locale}/dashboard`
     if (authData?.user) {
       const { data: profile } = await supabase
         .from('profiles')
@@ -112,7 +114,7 @@ export default function LoginPage({
         .single()
 
       if (profile?.role === 'admin') {
-        redirectTo = `/${params.locale}/admin`
+        redirectTo = `/${locale}/admin`
       }
     }
 
@@ -239,7 +241,7 @@ export default function LoginPage({
           {/* Register link */}
           <p className="text-center text-white/40 text-sm mt-4">
             {t.noAccount}{' '}
-            <Link href={`/${params.locale}/register`} className="text-[#c1ed00] font-bold hover:underline">
+            <Link href={`/${locale}/register`} className="text-[#c1ed00] font-bold hover:underline">
               {t.register}
             </Link>
           </p>
@@ -248,7 +250,7 @@ export default function LoginPage({
         {/* Back link */}
         <div className="text-center mt-8">
           <Link
-            href={`/${params.locale}`}
+            href={`/${locale}`}
             className="text-white/25 text-sm hover:text-white/50 transition-colors"
           >
             ← {t.back}
