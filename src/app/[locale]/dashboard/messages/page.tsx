@@ -40,11 +40,12 @@ const texts = {
   },
 }
 
-export default async function DashboardMessagesPage({ params }: { params: { locale: string } }) {
-  const t = texts[params.locale as keyof typeof texts] ?? texts.es
-  const supabase = createClient()
+export default async function DashboardMessagesPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = texts[locale as keyof typeof texts] ?? texts.es
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) redirect(`/${params.locale}/login`)
+  if (!user) redirect(`/${locale}/login`)
 
   // Obtener trainer_id del cliente
   const { data: profile } = await supabase

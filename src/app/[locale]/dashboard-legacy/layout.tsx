@@ -20,13 +20,14 @@ export default async function DashboardLayout({
   params,
 }: {
   children: React.ReactNode
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
-  const supabase = createClient()
+  const { locale } = await params
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect(`/${params.locale}/login`)
+    redirect(`/${locale}/login`)
   }
 
   // Obtener perfil del usuario
@@ -42,7 +43,7 @@ export default async function DashboardLayout({
       style={{ fontFamily: 'var(--font-inter), sans-serif' }}
     >
       <div className="flex h-screen overflow-hidden">
-        <DashboardSidebar locale={params.locale} user={user} profile={profile} />
+        <DashboardSidebar locale={locale} user={user} profile={profile} />
         <main className="flex-1 overflow-y-auto p-6 lg:p-8">
           {children}
         </main>

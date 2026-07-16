@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { use, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
 import { CheckCircle } from 'lucide-react'
@@ -96,8 +96,9 @@ const texts = {
   },
 }
 
-export default function RegisterPage({ params }: { params: { locale: string } }) {
-  const t = texts[params.locale as keyof typeof texts] ?? texts.es
+export default function RegisterPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = use(params)
+  const t = texts[locale as keyof typeof texts] ?? texts.es
 
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
@@ -137,7 +138,7 @@ export default function RegisterPage({ params }: { params: { locale: string } })
       password,
       options: {
         data: { full_name: fullName, phone: phone.trim() || null },
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/${params.locale}/auth/confirm`,
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/auth/confirm`,
       },
     })
 
@@ -194,7 +195,7 @@ export default function RegisterPage({ params }: { params: { locale: string } })
           /* Success — link to login */
           <div className="text-center">
             <Link
-              href={`/${params.locale}/login`}
+              href={`/${locale}/login`}
               className="inline-block px-8 py-3.5 bg-[#c1ed00] text-[#0e0e0e] font-black text-sm tracking-widest rounded-xl hover:bg-[#d4ff00] transition-colors"
             >
               IR A INICIAR SESIÓN
@@ -321,7 +322,7 @@ export default function RegisterPage({ params }: { params: { locale: string } })
             {/* Login link */}
             <p className="text-center text-white/40 text-sm mt-5">
               {t.hasAccount}{' '}
-              <Link href={`/${params.locale}/login`} className="text-[#c1ed00] font-bold hover:underline">
+              <Link href={`/${locale}/login`} className="text-[#c1ed00] font-bold hover:underline">
                 {t.login}
               </Link>
             </p>
@@ -331,7 +332,7 @@ export default function RegisterPage({ params }: { params: { locale: string } })
         {/* Back link */}
         <div className="text-center mt-8">
           <Link
-            href={`/${params.locale}`}
+            href={`/${locale}`}
             className="text-white/25 text-sm hover:text-white/50 transition-colors"
           >
             ← {t.back}

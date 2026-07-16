@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { use, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 
@@ -64,15 +64,16 @@ const languages = [
 export default function OnboardingPage({
   params,
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
+  const { locale: paramLocale } = use(params)
   const router = useRouter()
   const supabase = createClient()
-  const t = texts[params.locale as keyof typeof texts] ?? texts.es
+  const t = texts[paramLocale as keyof typeof texts] ?? texts.es
 
   const [phone, setPhone] = useState('')
   const [sex, setSex] = useState<'male' | 'female' | 'other' | null>(null)
-  const [language, setLanguage] = useState(params.locale)
+  const [language, setLanguage] = useState(paramLocale)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -82,7 +83,7 @@ export default function OnboardingPage({
 
     try {
       const { data: { user } } = await supabase.auth.getUser()
-      if (!user) { router.push(`/${params.locale}/login`); return }
+      if (!user) { router.push(`/${paramLocale}/login`); return }
 
       const updates: Record<string, unknown> = { onboarding_completed: true }
       if (!skip) {
@@ -99,7 +100,7 @@ export default function OnboardingPage({
       if (updateError) throw updateError
 
       // Redirigir al dashboard con el locale seleccionado
-      const targetLocale = !skip && language ? language : params.locale
+      const targetLocale = !skip && language ? language : paramLocale
       router.push(`/${targetLocale}/dashboard`)
     } catch (e) {
       console.error('[onboarding] error:', e)

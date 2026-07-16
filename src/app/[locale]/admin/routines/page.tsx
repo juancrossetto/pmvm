@@ -3,7 +3,8 @@ import RoutinesClient, { type Routine, type RoutineAssignment, type UserOption }
 
 export const dynamic = 'force-dynamic'
 
-export default async function AdminRoutinesPage({ params }: { params: { locale: string } }) {
+export default async function AdminRoutinesPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
   const admin = createAdminClient()
 
   const [
@@ -48,7 +49,7 @@ export default async function AdminRoutinesPage({ params }: { params: { locale: 
 
   return (
     <RoutinesClient
-      locale={params.locale}
+      locale={locale}
       routines={routines}
       assignments={(assignments ?? []) as RoutineAssignment[]}
       users={(profiles ?? []) as UserOption[]}

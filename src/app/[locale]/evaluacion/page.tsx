@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { use, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import PhonePrefixSelect from '@/components/PhonePrefixSelect'
 import CountryCitySelect from '@/components/CountryCitySelect'
@@ -8,8 +8,9 @@ import CountryCitySelect from '@/components/CountryCitySelect'
 export default function EvaluacionPage({
   params,
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = use(params)
   const router = useRouter()
 
   const [firstName, setFirstName] = useState('')
@@ -222,7 +223,7 @@ export default function EvaluacionPage({
                   </div>
                   <span className="text-xs lg:text-sm text-white/50 leading-snug group-hover:text-white/70 transition-colors">
                     He leído y acepto los{' '}
-                    <a href={`/${params.locale}`} className="text-[#c1ed00] underline hover:text-white transition-colors">
+                    <a href={`/${locale}`} className="text-[#c1ed00] underline hover:text-white transition-colors">
                       términos y condiciones
                     </a>
                   </span>
@@ -278,7 +279,7 @@ export default function EvaluacionPage({
                         setLoading(false)
                         return
                       }
-                      router.push(`/${params.locale}/evaluacion/gracias`)
+                      router.push(`/${locale}/evaluacion/gracias`)
                     } catch {
                       setError('Error de conexión. Verificá tu internet e intentá de nuevo.')
                       setLoading(false)

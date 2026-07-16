@@ -6,9 +6,10 @@ import Link from 'next/link'
 export default async function AdminClientDetailPage({
   params,
 }: {
-  params: { locale: string; id: string }
+  params: Promise<{ locale: string; id: string }>
 }) {
-  const supabase = createClient()
+  const { locale, id } = await params
+  const supabase = await createClient()
 
   const [
     { data: profile },
@@ -17,22 +18,22 @@ export default async function AdminClientDetailPage({
     { data: messages },
     { data: { users } },
   ] = await Promise.all([
-    supabase.from('profiles').select('*').eq('id', params.id).single(),
-    supabase.from('routines').select('*, routine_exercises(*)').eq('client_id', params.id).order('created_at', { ascending: false }),
-    supabase.from('progress').select('*').eq('client_id', params.id).order('created_at', { ascending: false }),
-    supabase.from('messages').select('*').eq('client_id', params.id).order('created_at', { ascending: true }),
+    supabase.from('profiles').select('*').eq('id', id).single(),
+    supabase.from('routines').select('*, routine_exercises(*)').eq('client_id', id).order('created_at', { ascending: false }),
+    supabase.from('progress').select('*').eq('client_id', id).order('created_at', { ascending: false }),
+    supabase.from('messages').select('*').eq('client_id', id).order('created_at', { ascending: true }),
     createAdminClient().auth.admin.listUsers(),
   ])
 
   if (!profile) notFound()
 
-  const clientEmail = users?.find((u) => u.id === params.id)?.email ?? ''
+  const clientEmail = users?.find((u) => u.id === id)?.email ?? ''
 
   // Marcar mensajes del cliente como leídos
   await supabase
     .from('messages')
     .update({ read: true })
-    .eq('client_id', params.id)
+    .eq('client_id', id)
     .eq('sender_role', 'client')
     .eq('read', false)
 
@@ -42,7 +43,7 @@ export default async function AdminClientDetailPage({
     <div className="bg-[#0e0e0e] min-h-screen px-6 lg:px-12 py-10 max-w-5xl mx-auto space-y-8">
       {/* Back */}
       <Link
-        href={`/${params.locale}/admin/clients`}
+        href={`/${locale}/admin/clients`}
         className="inline-flex items-center gap-2 font-label text-[10px] uppercase tracking-widest text-white/30 hover:text-white transition-colors"
       >
         <span className="material-symbols-outlined text-sm">arrow_back</span>
@@ -67,8 +68,8 @@ export default async function AdminClientDetailPage({
 
       {/* Tabs con toda la gestión */}
       <AdminClientTabs
-        clientId={params.id}
-        locale={params.locale}
+        clientId={id}
+        locale={locale}
         routines={routines ?? []}
         progress={progress ?? []}
         messages={messages ?? []}

@@ -8,11 +8,12 @@ export default async function AdminLayout({
   params,
 }: {
   children: React.ReactNode
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
-  const supabase = createClient()
+  const { locale } = await params
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) redirect(`/${params.locale}/login`)
+  if (!user) redirect(`/${locale}/login`)
 
   // Use admin client to bypass RLS when reading the profile role
   const { data: profile } = await createAdminClient()
@@ -21,19 +22,19 @@ export default async function AdminLayout({
     .eq('id', user.id)
     .single()
 
-  if (profile?.role !== 'admin') redirect(`/${params.locale}/dashboard`)
+  if (profile?.role !== 'admin') redirect(`/${locale}/dashboard`)
 
   // Corregir locale de URL si no coincide con la preferencia del perfil
   const validLocales = ['es', 'en', 'pt']
   const profileLocale = profile?.locale && validLocales.includes(profile.locale) ? profile.locale : null
-  if (profileLocale && profileLocale !== params.locale) {
+  if (profileLocale && profileLocale !== locale) {
     redirect(`/${profileLocale}/admin`)
   }
 
   return (
     <div className="min-h-screen bg-[#0e0e0e] text-white font-body">
       <div className="flex h-screen overflow-hidden">
-        <AdminSidebar locale={params.locale} adminName={profile?.full_name ?? 'Admin'} adminAvatarUrl={profile?.avatar_url} />
+        <AdminSidebar locale={locale} adminName={profile?.full_name ?? 'Admin'} adminAvatarUrl={profile?.avatar_url} />
         {/* pt-14 compensa el header fijo del mobile (h-14); en desktop no aplica */}
         <main className="flex-1 overflow-y-auto hide-scrollbar pt-14 lg:pt-0">
           <AdminPageTransition>

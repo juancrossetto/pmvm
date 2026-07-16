@@ -12,16 +12,17 @@ export default async function CheckoutSuccessPage({
   params,
   searchParams,
 }: {
-  params: { locale: string }
-  searchParams: { sub?: string; status?: string }
+  params: Promise<{ locale: string }>
+  searchParams: Promise<{ sub?: string; status?: string }>
 }) {
-  const subId = searchParams.sub
-  const isPending = searchParams.status === 'pending'
+  const { locale } = await params
+  const { sub: subId, status } = await searchParams
+  const isPending = status === 'pending'
 
   let sub: any = null
 
   if (subId) {
-    const supabase = createClient()
+    const supabase = await createClient()
     const { data } = await supabase
       .from('subscriptions')
       .select('*, plans(name, duration_days)')
@@ -207,7 +208,7 @@ export default async function CheckoutSuccessPage({
         {/* Botón único */}
         <div className="flex justify-center">
           <Link
-            href={`/${params.locale}`}
+            href={`/${locale}`}
             className="flex items-center justify-center gap-2 lg:w-full px-8 py-2.5 lg:py-4 rounded-xl font-headline font-black text-sm lg:bg-[#c1ed00] lg:text-[#0e0e0e] border border-[#c1ed00]/50 text-[#c1ed00]/70 lg:border-0 hover:border-[#c1ed00] hover:text-[#c1ed00] lg:hover:bg-[#d4ff00] transition-colors uppercase tracking-wider"
           >
             <Globe size={14} />

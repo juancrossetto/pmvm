@@ -1,8 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import ClientDashboardHome from '@/components/dashboard/ClientDashboardHome'
 
-export default async function DashboardPage({ params }: { params: { locale: string } }) {
-  const supabase = createClient()
+export default async function DashboardPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
   const [
@@ -26,7 +27,7 @@ export default async function DashboardPage({ params }: { params: { locale: stri
 
   return (
     <ClientDashboardHome
-      locale={params.locale}
+      locale={locale}
       displayName={profile?.full_name ?? user!.email?.split('@')[0] ?? 'Atleta'}
       routinesCount={routines?.length ?? 0}
       unreadMessages={0}

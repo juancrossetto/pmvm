@@ -10,7 +10,7 @@ function formatWhatsAppUrl(phone: string | null, name: string): string | null {
   return `https://wa.me/${digits}?text=${message}`
 }
 
-export default async function AdminMessagesPage({ params }: { params: { locale: string } }) {
+export default async function AdminMessagesPage({ params }: { params: Promise<{ locale: string }> }) {
   const admin = createAdminClient()
 
   const { data: clients } = await admin

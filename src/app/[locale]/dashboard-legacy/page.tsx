@@ -42,9 +42,10 @@ const texts = {
   },
 }
 
-export default async function DashboardPage({ params }: { params: { locale: string } }) {
-  const t = texts[params.locale as keyof typeof texts] ?? texts.es
-  const supabase = createClient()
+export default async function DashboardPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = texts[locale as keyof typeof texts] ?? texts.es
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
   const { data: profile } = await supabase
@@ -154,7 +155,7 @@ export default async function DashboardPage({ params }: { params: { locale: stri
               >
                 <span className="text-[#ffd11e]">📈</span>
                 <span>
-                  {new Date(p.created_at).toLocaleDateString(params.locale, {
+                  {new Date(p.created_at).toLocaleDateString(locale, {
                     day: '2-digit',
                     month: 'long',
                     year: 'numeric',

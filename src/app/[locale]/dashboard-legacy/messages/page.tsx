@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, useMemo } from 'react'
+import { use, useEffect, useRef, useState, useMemo } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
 
@@ -42,8 +42,9 @@ const texts = {
   },
 }
 
-export default function MessagesPage({ params }: { params: { locale: string } }) {
-  const t = texts[params.locale as keyof typeof texts] ?? texts.es
+export default function MessagesPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = use(params)
+  const t = texts[locale as keyof typeof texts] ?? texts.es
   const [messages, setMessages] = useState<Message[]>([])
   const [newMessage, setNewMessage] = useState('')
   const [user, setUser] = useState<User | null>(null)
@@ -169,7 +170,7 @@ export default function MessagesPage({ params }: { params: { locale: string } })
                       {msg.content}
                     </div>
                     <span className="text-white/20 text-xs px-1">
-                      {new Date(msg.created_at).toLocaleTimeString(params.locale, {
+                      {new Date(msg.created_at).toLocaleTimeString(locale, {
                         hour: '2-digit',
                         minute: '2-digit',
                       })}

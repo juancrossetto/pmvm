@@ -2,9 +2,9 @@ import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import AdminDashboardClient from '@/components/admin/AdminDashboardClient'
 
-export default async function AdminPage({ params }: { params: { locale: string } }) {
-  const supabase = createClient()
-  const locale = params.locale
+export default async function AdminPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const supabase = await createClient()
 
   const [
     { count: totalClients },

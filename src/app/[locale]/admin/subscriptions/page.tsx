@@ -3,8 +3,9 @@ import Link from 'next/link'
 
 export const dynamic = 'force-dynamic'
 
-export default async function AdminSubscriptionsPage({ params }: { params: { locale: string } }) {
-  const supabase = createClient()
+export default async function AdminSubscriptionsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const supabase = await createClient()
 
   // Traer todas las suscripciones con info del usuario y plan
   const { data: subs } = await supabase
@@ -49,7 +50,7 @@ export default async function AdminSubscriptionsPage({ params }: { params: { loc
       <div className="mb-10 flex items-center justify-between flex-wrap gap-4">
         <div>
           <Link
-            href={`/${params.locale}/admin`}
+            href={`/${locale}/admin`}
             className="text-white/30 hover:text-white text-xs transition-colors mb-3 inline-block"
           >
             ← Admin

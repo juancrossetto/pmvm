@@ -23,8 +23,9 @@ const texts = {
   },
 }
 
-export default function ConfirmPage({ params }: { params: { locale: string } }) {
-  const t = texts[params.locale as keyof typeof texts] ?? texts.es
+export default async function ConfirmPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = texts[locale as keyof typeof texts] ?? texts.es
 
   return (
     <div
@@ -53,7 +54,7 @@ export default function ConfirmPage({ params }: { params: { locale: string } }) 
           </h1>
           <p className="text-white/60 text-sm mb-6">{t.subtitle}</p>
           <Link
-            href={`/${params.locale}/login`}
+            href={`/${locale}/login`}
             className="inline-block bg-[#ffd11e] text-black font-semibold py-3 px-8 rounded-lg hover:bg-[#e6bc1a] transition-colors"
           >
             {t.button}
