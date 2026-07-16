@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     images: [`${process.env.NEXT_PUBLIC_SITE_URL}/images/hero/hero2.webp`],
   },
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/es`,
+  },
 }
 
 interface RootLayoutProps {
