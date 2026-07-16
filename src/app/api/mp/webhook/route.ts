@@ -848,7 +848,7 @@ async function notifyCoach({
         to: coachNumber,
         body: message,
         template: process.env.META_TEMPLATE_AVISO_PAGO ?? 'aviso_pago_r3set',
-        templateParams: [displayName, userEmail, telDisplay, planName, monto, vence, tipo],
+        templateParams: [displayName, planName, telDisplay, userEmail],
       })
       console.log(`Notificación WhatsApp enviada al coach: ${coachNumber}`)
     }

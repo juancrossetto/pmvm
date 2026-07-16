@@ -118,7 +118,7 @@ async function notifyCoach({
         to: coachNumber,
         body: message,
         template: process.env.META_TEMPLATE_AVISO_EVALUACION ?? 'aviso_evaluacion_r3set',
-        templateParams: [nombre, email, whatsapp, ciudad || 'No especificada', medidas, objetivoLabel, situacion || 'No especificada'],
+        templateParams: [nombre, whatsapp],
       })
       console.log(`WhatsApp de evaluación enviado al coach: ${coachNumber}`)
     } catch (twErr) {
