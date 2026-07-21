@@ -1,0 +1,551 @@
+// No hay clave 'pt' todavía: t = landingI18n[locale] ?? landingI18n.es hace que portugués caiga en español, igual que hoy.
+export const landingI18n = {
+  es: {
+    nav: {
+      method: "Método",
+      coach: "Coach",
+      transformations: "Transformaciones",
+      programs: "Programas",
+      activePlan: "Plan activo",
+      dashboard: "Mi Dashboard",
+      logout: "Cerrar sesión",
+      getStarted: "Comenzar",
+      viewPlans: "Ver planes",
+    },
+    hero: {
+      titleBefore: "TRANSFORMA TUS",
+      titleHighlight: "HÁBITOS",
+      titleAfter: ", NO SOLO TU PESO.",
+      breakCycle: "Rompé el Ciclo",
+      description:
+        "Un sistema diseñado para cambiar tu cuerpo y tu mentalidad de forma sostenible. Sin extremos. Sin culpa. Con resultados reales.",
+      cta: "¡EMPEZÁ AHORA!",
+    },
+    pillars: {
+      title: "LOS TRES PILARES",
+      intro:
+        "No se trata de hacer dieta ni entrenar más fuerte. Se trata de construir un sistema que puedas sostener para siempre.",
+      psychology: {
+        title: "Psicología",
+        descMobile:
+          "Trabajamos tu mentalidad y tu relación con la comida. Hábitos reales sin autosabotaje.",
+        descDesktop:
+          "Dejás de autosabotearte y empezás a sostener hábitos reales. Trabajamos tu mentalidad, tu relación con la comida y los patrones que hoy te frenan.",
+        tags: ["Constancia", "Control de Impulsos", "Aceptación"],
+      },
+      training: {
+        title: "Entrenamiento",
+        descMobile:
+          "Sesiones adaptadas a tu nivel para mejorar tu cuerpo. Resultados reales sin perder tiempo.",
+        descDesktop:
+          "Sabés exactamente qué hacer para ver resultados sin perder tiempo. Sesiones adaptadas a tu nivel para mejorar tu cuerpo de forma inteligente y progresiva.",
+        tags: ["Fuerza", "Movilidad"],
+      },
+      nutrition: {
+        title: "Nutrición",
+        descMobile:
+          "Sin dietas extremas ni restricciones. Resultados reales con hábitos sostenibles a largo plazo.",
+        descDesktop:
+          "La diferencia no está en hacer más, sino en hacerlo sostenible. Nuestro enfoque elimina los extremos y prioriza resultados reales a largo plazo.",
+        tags: ["Perder Grasa", "Ganar Músculo"],
+        stats: [
+          { value: "0%", label: "Dietas Restrictivas" },
+          { value: "100%", label: "Hábitos Sostenibles" },
+        ],
+      },
+    },
+    coach: {
+      label: "Tu Head Coach",
+      badge: "+12 años ayudando a transformar cuerpos y mentalidades",
+      bioMobile: [
+        "Usé la comida como escape y llegué a pesar **160 kg**. Probé todo, sin resultados duraderos.",
+        "**Bajé 70 kg**. Participé del reality show ++Cuestión de Peso++, pero recuperé varios kilos, porque el cambio había sido físico, **NO MENTAL**.",
+        "Hoy no vivo en lucha. Vivo en equilibrio. Ese es el método que hoy **enseño y practico.**",
+      ],
+      bioDesktop: [
+        "Durante años usé la comida como escape y llegué a pesar **160 kg**. Probé dietas, buscando la fórmula perfecta que me hiciera cambiar de una vez.",
+        "**Bajé 70 kg** en total, participando en el programa televisivo ++Cuestión de Peso++, pero con el tiempo volví al mismo lugar. Porque el cambio había sido físico, **NO MENTAL.**",
+        "Ahí entendí algo clave: la verdadera transformación no es una foto del antes y después, es lo que pasa **cuando nadie está mirando.**",
+        "Empecé a trabajar en mi mentalidad, mi relación con la comida y conmigo mismo.",
+        "Hoy no vivo en lucha. Vivo en equilibrio.",
+        "Y ese es el método que hoy **enseño y practico.**",
+      ],
+      highlights: [
+        "Psicología aplicada al cambio de hábitos",
+        "Nutrición enfocada en resultados sostenibles",
+        "Entrenamientos pensados para resultados reales que puedas mantener",
+      ],
+      certificationsLabel: "Certificaciones",
+      certifications: {
+        personalTrainer: "Personal Fitness Trainer",
+        personalTrainerOrg: "IFBB Federation",
+        personalTrainerId: "IFBB-C/64123",
+        obesity: "Obesidad y Recomposición Corporal",
+        obesityOrg: "IFBB Federation",
+        physicalInstructor: "Profesor de Preparación Física",
+        physicalInstructorOrg: "IPEF - Instituto Privado de Educación Física",
+      },
+      beforeAfterLabel: "ANTES → DESPUÉS",
+    },
+    marquee: [
+      "AMOR PROPIO",
+      "CONSTANCIA",
+      "DISCIPLINA",
+      "PROPÓSITO",
+      "RESILIENCIA",
+      "CONFIANZA",
+      "SEGURIDAD",
+      "FORTALEZA",
+    ],
+    pricing: {
+      chooseYourPlan: "Elegí tu plan",
+      titleBefore: "EMPEZÁ TU",
+      titleHighlight: "TRANSFORMACIÓN.",
+      intro:
+        "Entrenamiento personalizado, seguimiento real y un coach que te acompaña. Elegí el plan que mejor se adapte a tus objetivos.",
+      base: {
+        name: "PLAN BASE",
+        desc: "La forma más simple de empezar tu transformación.",
+        features: {
+          routine: "Rutina personalizada",
+          routineSub: "(gimnasio - hogar)",
+          app: "App exclusiva Android e iPhone",
+          videos: "Videos explicativos de cada ejercicio",
+          weeklyFollowUp: "Seguimiento semanal",
+          platformSupport: "Soporte en plataforma",
+          community: "Comunidad privada de alumnos",
+          noCommitment: "Sin permanencia — cancelá cuando quieras",
+          complementSection: "Complementá tu proceso con:",
+          nutritionConsults:
+            "Consultas nutricionales con profesionales especializados",
+          psychSupport:
+            "Acompañamiento psicológico para fortalecer hábitos y emociones",
+        },
+        priceNote: "Ahorrá en los planes de 3 y 6 meses",
+      },
+      mentoria: {
+        name: "MENTORÍA 1 A 1",
+        badge: "CUPOS LIMITADOS",
+        desc: "Trabajá directamente conmigo y construyamos juntos un cambio que puedas sostener para toda la vida.",
+        features: {
+          directComm: "Comunicación directa conmigo",
+          fullTraining: "Entrenamiento personalizado 100%",
+          fullTrainingSub: "(gimnasio - hogar)",
+          nutritionStrategy: "Estrategia alimentaria adaptada",
+          mealTracking: "Seguimiento y análisis de todas tus comidas",
+          adjustments: "Ajustes permanentes",
+          app: "Aplicación exclusiva para Android e iPhone",
+          sessions: "Sesiones 1-1 conmigo",
+          community: "Comunidad privada de alumnos",
+          priority: "Prioridad absoluta en la respuesta",
+          complementSection: "Complementá tu proceso con:",
+          nutritionConsults:
+            "Consultas nutricionales con profesionales especializados",
+          psychSupport:
+            "Acompañamiento psicológico para fortalecer hábitos y emociones",
+        },
+      },
+      trust: {
+        instantAccess: "Acceso inmediato al pagar",
+        instantAccessShort: "Acceso inmediato",
+        securePayment: "Pago seguro con Mercado Pago",
+        securePaymentShort: "Pago seguro",
+        whatsappSupport: "Soporte por WhatsApp incluido",
+        whatsappSupportShort: "Soporte WhatsApp",
+      },
+    },
+    pricingCard: {
+      currentPlan: "TU PLAN ACTUAL",
+      personalizedSupport: "ACOMPAÑAMIENTO PERSONALIZADO",
+      immediateAccess: "ACCESO INMEDIATO",
+      hundredPercent: "100%",
+      personalized: "personalizado",
+      designedForYou: "Diseñado exclusivamente para vos.",
+      highestLevel: "Mi nivel más alto de acompañamiento.",
+      fromArs: "Desde ARS",
+      perMonth: "/mes",
+      includesBasePlus: "Incluye lo del Plan Base y además:",
+      basePlanIncludes: "El Plan Base incluye:",
+      firstStep: "El primer paso es el más importante.",
+      processing: "PROCESANDO...",
+      requestEvaluation: "SOLICITAR EVALUACIÓN",
+      renewPlan: "RENOVAR PLAN",
+      startToday: "EMPEZAR HOY",
+    },
+    transformations: {
+      label: "Testimonios R3SET",
+      titleBefore: "TRANSFORMACIONES",
+      titleHighlight: "REALES",
+      titleAfter: "",
+      intro:
+        "Esto no es teoría. Son personas que ya hicieron el proceso y hoy viven distinto.",
+      ctaTextBefore: "¡Vos podés ser el",
+      ctaTextHighlight: "próximo caso!",
+      ctaButton: "¡EMPEZÁ AHORA!",
+      before: "Antes",
+      after: "Después",
+      seeMore: "Ver más →",
+    },
+    faq: {
+      label: "Preguntas frecuentes",
+      items: [
+        {
+          q: "¿Necesito experiencia previa para empezar?",
+          a: "No. Nuestros programas están diseñados tanto para personas que recién comienzan como para quienes ya tienen experiencia entrenando. Adaptamos el entrenamiento a tu nivel actual y progresamos paso a paso.",
+        },
+        {
+          q: "¿Cómo funciona el seguimiento?",
+          a: "A través de nuestra aplicación registrás tus entrenamientos, progreso y hábitos. Además, realizamos seguimientos periódicos para ajustar el plan según tu evolución.",
+        },
+        {
+          q: "¿Qué incluye el acompañamiento nutricional y psicológico?",
+          a: "Contarás con la posibilidad de ser atendido por profesionales especializados que te ayudarán a mejorar tu alimentación, fortalecer hábitos y trabajar los aspectos emocionales que muchas veces dificultan sostener el cambio.",
+        },
+        {
+          q: "¿Cuál es la diferencia entre el Plan Base y la Mentoría 1 a 1?",
+          a: "El Plan Base incluye entrenamiento personalizado, aplicación, seguimiento y acompañamiento profesional. La Mentoría 1 a 1 incluye todo lo anterior, más comunicación directa con Ale Gerez, seguimiento personalizado de alimentación y hábitos, sesiones individuales y ajustes permanentes según tu evolución.",
+        },
+        {
+          q: "¿Cuándo obtengo acceso después de inscribirme?",
+          a: "Los alumnos del Plan Base reciben acceso a la plataforma una vez confirmado el pago. En el caso de la Mentoría 1 a 1, primero deberás completar una solicitud de evaluación. Revisará personalmente tu caso y, si considera que puede ayudarte, se pondrá en contacto dentro de las próximas 24 horas hábiles para coordinar una videollamada.",
+        },
+        {
+          q: "¿Puedo cancelar mi suscripción en cualquier momento?",
+          a: "Sí. Podés cancelar tu suscripción cuando lo desees y seguirás teniendo acceso hasta finalizar el período ya abonado. No existen permanencias ni penalizaciones.",
+        },
+        {
+          q: "¿Por qué este programa es diferente?",
+          a: "Porque fue creado desde la experiencia real. Ale Gerez llegó a pesar más de 160 kg y atravesó personalmente el proceso de transformación que hoy ayuda a recorrer a otras personas. El programa combina entrenamiento, nutrición y trabajo de hábitos para lograr cambios sostenibles en el tiempo.",
+        },
+        {
+          q: "¿Cómo sé qué plan es el adecuado para mí?",
+          a: "Si estás comenzando o buscás una guía estructurada, el Plan Base suele ser la mejor opción. Si necesitás un acompañamiento más cercano y personalizado, podés solicitar una evaluación para la Mentoría 1 a 1.",
+        },
+      ],
+    },
+    contact: {
+      question: "¿Tenés dudas?",
+      title: "HABLEMOS.",
+      whatsappMessage: "Hola! Tengo una consulta sobre el Metodo R3SET",
+      whatsapp: "WhatsApp",
+      emailSubject: "Consulta Metodo R3SET",
+      email: "Email",
+      responseNote: "Respondemos dentro de las 24 hs · Sin compromiso",
+    },
+    ctaFinal: {
+      titleBefore: "¿LISTO PARA",
+      titleHighlight: "TRANSFORMAR",
+      titleAfter: "TU CUERPO Y MENTE?",
+      subtitleBefore: "Es momento de",
+      subtitleHighlight: "recodificar",
+      subtitleAfter: "tus hábitos.",
+      description:
+        "Sumate a la mentoría 1-1 del método R3SET y empezá a construir resultados que sí puedas sostener.",
+      button: "SOLICITAR EVALUACIÓN",
+      tagsMain: "Cupos limitados • Acceso online",
+      tagsExtra: "• Empezá ya",
+    },
+    footer: {
+      rights: "TODOS LOS DERECHOS RESERVADOS.",
+      privacy: "Privacidad",
+      terms: "Términos",
+      contact: "Contacto",
+    },
+    mobileNav: {
+      method: "Método",
+      coach: "Coach",
+      transform: "Transform.",
+      plans: "Planes",
+      myArea: "Mi Área",
+      join: "Unirse",
+    },
+    alt: {
+      heroTraining: "Entrenamiento de alto rendimiento",
+      coachBody: "Alejandro Gerez — transformación corporal",
+      coachBeforeAfter: "Alejandro Gerez — antes y después",
+      coachPortrait: "Alejandro Gerez — coach",
+      before: "Antes",
+      after: "Después",
+    },
+    planNames: {
+      monthly: "Plan Base",
+      quarterly: "Plan Trimestral",
+      semiannual: "Plan Semestral",
+      mentoria: "Mentoría 1 a 1",
+    },
+  },
+  en: {
+    nav: {
+      method: "Method",
+      coach: "Coach",
+      transformations: "Transformations",
+      programs: "Programs",
+      activePlan: "Active plan",
+      dashboard: "My Dashboard",
+      logout: "Log Out",
+      getStarted: "Get Started",
+      viewPlans: "View Plans",
+    },
+    hero: {
+      titleBefore: "TRANSFORM YOUR",
+      titleHighlight: "HABITS",
+      titleAfter: ", NOT JUST YOUR WEIGHT.",
+      breakCycle: "Break the Cycle",
+      description:
+        "A system designed to change your body and mindset, sustainably. No extremes. No guilt. Real results.",
+      cta: "START NOW!",
+    },
+    pillars: {
+      title: "THE THREE PILLARS",
+      intro:
+        "It's not about dieting or training harder. It's about building a system you can sustain forever.",
+      psychology: {
+        title: "Psychology",
+        descMobile:
+          "We work on your mindset and your relationship with food. Real habits, no self-sabotage.",
+        descDesktop:
+          "You stop self-sabotaging and start building habits that last. We work on your mindset, your relationship with food, and the patterns holding you back today.",
+        tags: ["Consistency", "Impulse Control", "Acceptance"],
+      },
+      training: {
+        title: "Training",
+        descMobile:
+          "Sessions tailored to your level to transform your body. Real results, no wasted time.",
+        descDesktop:
+          "You'll know exactly what to do to see results without wasting time. Sessions tailored to your level, built to improve your body smartly and progressively.",
+        tags: ["Strength", "Mobility"],
+      },
+      nutrition: {
+        title: "Nutrition",
+        descMobile:
+          "No extreme diets, no restrictions. Real results through sustainable, long-term habits.",
+        descDesktop:
+          "The difference isn't doing more — it's making it sustainable. Our approach cuts out the extremes and prioritizes real, long-term results.",
+        tags: ["Lose Fat", "Build Muscle"],
+        stats: [
+          { value: "0%", label: "Restrictive Diets" },
+          { value: "100%", label: "Sustainable Habits" },
+        ],
+      },
+    },
+    coach: {
+      label: "Your Head Coach",
+      badge: "+12 years helping transform bodies and mindsets",
+      bioMobile: [
+        "I used food as a coping mechanism and reached **160 kg**. I tried everything, with no lasting results.",
+        "**I lost 70 kg**. I was on the reality show ++Cuestión de Peso++, but I gained much of it back — because the change had been physical, **NOT MENTAL**.",
+        "Today I don't live in struggle. I live in balance. That's the method I now **teach and practice.**",
+      ],
+      bioDesktop: [
+        "For years, I used food as an escape and reached **160 kg**. I tried diet after diet, searching for the perfect formula that would finally change me for good.",
+        "**I lost 70 kg** in total while taking part in the TV show ++Cuestión de Peso++, but over time I ended up back where I started. Because the change had been physical, **NOT MENTAL.**",
+        "That's when I understood something key: real transformation isn't a before-and-after photo — it's what happens **when no one's watching.**",
+        "I started working on my mindset, my relationship with food, and with myself.",
+        "Today I don't live in struggle. I live in balance.",
+        "And that's the method I now **teach and practice.**",
+      ],
+      highlights: [
+        "Psychology applied to habit change",
+        "Nutrition focused on sustainable results",
+        "Training designed for real results you can maintain",
+      ],
+      certificationsLabel: "Certifications",
+      certifications: {
+        personalTrainer: "Personal Fitness Trainer",
+        personalTrainerOrg: "IFBB Federation",
+        personalTrainerId: "IFBB-C/64123",
+        obesity: "Obesity and Body Recomposition",
+        obesityOrg: "IFBB Federation",
+        physicalInstructor: "Physical Training Instructor",
+        physicalInstructorOrg: "IPEF - Instituto Privado de Educación Física",
+      },
+      beforeAfterLabel: "BEFORE → AFTER",
+    },
+    marquee: [
+      "SELF-LOVE",
+      "CONSISTENCY",
+      "DISCIPLINE",
+      "PURPOSE",
+      "RESILIENCE",
+      "CONFIDENCE",
+      "SELF-ASSURANCE",
+      "STRENGTH",
+    ],
+    pricing: {
+      chooseYourPlan: "Choose your plan",
+      titleBefore: "START YOUR",
+      titleHighlight: "TRANSFORMATION.",
+      intro:
+        "Personalized training, real tracking, and a coach by your side. Choose the plan that best fits your goals.",
+      base: {
+        name: "BASE PLAN",
+        desc: "The simplest way to start your transformation.",
+        features: {
+          routine: "Personalized routine",
+          routineSub: "(gym - home)",
+          app: "Exclusive Android & iPhone app",
+          videos: "Instructional videos for every exercise",
+          weeklyFollowUp: "Weekly follow-up",
+          platformSupport: "In-app support",
+          community: "Private community of members",
+          noCommitment: "No commitment — cancel anytime",
+          complementSection: "Complement your process with:",
+          nutritionConsults:
+            "Nutrition consultations with specialized professionals",
+          psychSupport:
+            "Psychological support to strengthen habits and emotions",
+        },
+        priceNote: "Save with the 3- and 6-month plans",
+      },
+      mentoria: {
+        name: "1-ON-1 MENTORSHIP",
+        badge: "LIMITED SPOTS",
+        desc: "Work directly with me, and let's build a change together that lasts a lifetime.",
+        features: {
+          directComm: "Direct communication with me",
+          fullTraining: "100% personalized training",
+          fullTrainingSub: "(gym - home)",
+          nutritionStrategy: "Tailored nutrition strategy",
+          mealTracking: "Tracking and analysis of every meal",
+          adjustments: "Ongoing adjustments",
+          app: "Exclusive Android & iPhone app",
+          sessions: "1-on-1 sessions with me",
+          community: "Private community of members",
+          priority: "Top priority response",
+          complementSection: "Complement your process with:",
+          nutritionConsults:
+            "Nutrition consultations with specialized professionals",
+          psychSupport:
+            "Psychological support to strengthen habits and emotions",
+        },
+      },
+      trust: {
+        instantAccess: "Instant access after payment",
+        instantAccessShort: "Instant access",
+        securePayment: "Secure payment with Mercado Pago",
+        securePaymentShort: "Secure payment",
+        whatsappSupport: "WhatsApp support included",
+        whatsappSupportShort: "WhatsApp support",
+      },
+    },
+    pricingCard: {
+      currentPlan: "YOUR CURRENT PLAN",
+      personalizedSupport: "PERSONALIZED SUPPORT",
+      immediateAccess: "IMMEDIATE ACCESS",
+      hundredPercent: "100%",
+      personalized: "personalized",
+      designedForYou: "Designed exclusively for you.",
+      highestLevel: "My highest level of support.",
+      fromArs: "From ARS",
+      perMonth: "/month",
+      includesBasePlus: "Includes everything in the Base Plan, plus:",
+      basePlanIncludes: "The Base Plan includes:",
+      firstStep: "The first step is the most important one.",
+      processing: "PROCESSING...",
+      requestEvaluation: "REQUEST EVALUATION",
+      renewPlan: "RENEW PLAN",
+      startToday: "START TODAY",
+    },
+    transformations: {
+      label: "R3SET Testimonials",
+      titleBefore: "",
+      titleHighlight: "REAL",
+      titleAfter: "TRANSFORMATIONS",
+      intro:
+        "This isn't theory. These are real people who went through the process and live differently today.",
+      ctaTextBefore: "You could be the next",
+      ctaTextHighlight: "success story!",
+      ctaButton: "START NOW!",
+      before: "Before",
+      after: "After",
+      seeMore: "See more →",
+    },
+    faq: {
+      label: "Frequently Asked Questions",
+      items: [
+        {
+          q: "Do I need previous experience to start?",
+          a: "No. Our programs are designed for both beginners and people who already have training experience. We adapt the training to your current level and progress step by step.",
+        },
+        {
+          q: "How does the follow-up work?",
+          a: "Through our app, you log your workouts, progress, and habits. We also run periodic check-ins to adjust your plan based on how you're progressing.",
+        },
+        {
+          q: "What does the nutritional and psychological support include?",
+          a: "You'll have access to specialized professionals who'll help you improve your diet, strengthen your habits, and work through the emotional factors that often make it hard to sustain change.",
+        },
+        {
+          q: "What's the difference between the Base Plan and the 1-on-1 Mentorship?",
+          a: "The Base Plan includes personalized training, the app, follow-up, and professional support. The 1-on-1 Mentorship includes all of that, plus direct communication with Ale Gerez, personalized tracking of your diet and habits, individual sessions, and ongoing adjustments based on your progress.",
+        },
+        {
+          q: "When do I get access after signing up?",
+          a: "Base Plan members get access to the platform as soon as payment is confirmed. For the 1-on-1 Mentorship, you'll first need to complete an evaluation request. Ale will personally review your case and, if he believes he can help you, will reach out within the next 24 business hours to schedule a video call.",
+        },
+        {
+          q: "Can I cancel my subscription at any time?",
+          a: "Yes. You can cancel your subscription whenever you want, and you'll keep access until the end of the period you've already paid for. There are no lock-in periods or penalties.",
+        },
+        {
+          q: "Why is this program different?",
+          a: "Because it was built from real experience. Ale Gerez once weighed over 160 kg and personally went through the transformation process he now helps others go through. The program combines training, nutrition, and habit work to achieve changes that actually last.",
+        },
+        {
+          q: "How do I know which plan is right for me?",
+          a: "If you're just starting out or looking for structured guidance, the Base Plan is usually the best fit. If you need closer, more personalized support, you can request an evaluation for the 1-on-1 Mentorship.",
+        },
+      ],
+    },
+    contact: {
+      question: "Got questions?",
+      title: "LET'S TALK.",
+      whatsappMessage: "Hi! I have a question about Método R3SET",
+      whatsapp: "WhatsApp",
+      emailSubject: "Método R3SET Inquiry",
+      email: "Email",
+      responseNote: "We respond within 24 hours · No commitment",
+    },
+    ctaFinal: {
+      titleBefore: "READY TO",
+      titleHighlight: "TRANSFORM",
+      titleAfter: "YOUR BODY AND MIND?",
+      subtitleBefore: "It's time to",
+      subtitleHighlight: "rewire",
+      subtitleAfter: "your habits.",
+      description:
+        "Join the R3SET 1-on-1 mentorship and start building results you can actually sustain.",
+      button: "REQUEST EVALUATION",
+      tagsMain: "Limited spots • Online access",
+      tagsExtra: "• Start now",
+    },
+    footer: {
+      rights: "ALL RIGHTS RESERVED.",
+      privacy: "Privacy",
+      terms: "Terms",
+      contact: "Contact",
+    },
+    mobileNav: {
+      method: "Method",
+      coach: "Coach",
+      transform: "Transform.",
+      plans: "Plans",
+      myArea: "My Area",
+      join: "Join",
+    },
+    alt: {
+      heroTraining: "High-performance training",
+      coachBody: "Alejandro Gerez — body transformation",
+      coachBeforeAfter: "Alejandro Gerez — before and after",
+      coachPortrait: "Alejandro Gerez — coach",
+      before: "Before",
+      after: "After",
+    },
+    planNames: {
+      monthly: "Base Plan",
+      quarterly: "Quarterly Plan",
+      semiannual: "Semiannual Plan",
+      mentoria: "1-on-1 Mentorship",
+    },
+  },
+}

@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams, usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState, useMemo, useRef } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import V4SplashManager from '@/components/v4/V4SplashScreen'
@@ -11,6 +11,7 @@ import { PHONE_NUMBER } from '@/lib/data'
 import { createClient } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
 import transformations from '@/data/transformations.json'
+import { landingI18n } from '@/data/landing-i18n'
 import {
   Carousel,
   CarouselItem,
@@ -22,11 +23,46 @@ import {
 
 interface ActiveSub { plan_id: string }
 
+/* ── Bold parser: **texto** → blanco, ++texto++ → cyan ──────── */
+function renderBold(text: string) {
+  return text.split(/(\*\*.*?\*\*|\+\+.*?\+\+)/g).map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={i} className="font-black text-white">{part.slice(2, -2)}</strong>
+    }
+    if (part.startsWith('++') && part.endsWith('++')) {
+      return <strong key={i} className="font-black text-[#00e3fd]">{part.slice(2, -2)}</strong>
+    }
+    return part
+  })
+}
+
+/* ── Language Switcher ────────────────────────────────────────── */
+function LangSwitcher({ locale, pathname, compact }: { locale: string; pathname: string; compact?: boolean }) {
+  const switchTo = (target: 'es' | 'en') => pathname.replace(/^\/(es|en|pt)/, `/${target}`)
+
+  return (
+    <div className={`flex border border-white/15 overflow-hidden ${compact ? 'text-[10px]' : 'text-xs'}`} role="group" aria-label="Idioma">
+      {(['es', 'en'] as const).map((l) => (
+        <Link
+          key={l}
+          href={switchTo(l)}
+          className={`px-2.5 py-1 font-label font-bold uppercase tracking-wider transition-colors ${
+            locale === l ? 'bg-[#c1ed00] text-[#0e0e0e]' : 'text-white/40 hover:text-white/70'
+          }`}
+        >
+          {l.toUpperCase()}
+        </Link>
+      ))}
+    </div>
+  )
+}
+
 /* ── Pricing Card ──────────────────────────────────────────── */
 function PricingCard({ plan, locale, activeSub }: { plan: any; locale: string; activeSub: ActiveSub | null }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const router = useRouter()
+  const t = (landingI18n[locale as keyof typeof landingI18n] ?? landingI18n.es).pricingCard
 
   const isMentoria = plan.id === 'mentoria'
   const isCurrent = activeSub?.plan_id === plan.id
@@ -51,7 +87,7 @@ function PricingCard({ plan, locale, activeSub }: { plan: any; locale: string; a
       {/* Badge */}
       {isCurrent ? (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 text-[10px] font-black tracking-widest font-label uppercase bg-white text-[#0e0e0e] whitespace-nowrap">
-          TU PLAN ACTUAL
+          {t.currentPlan}
         </div>
       ) : plan.badge ? (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-5 py-1.5 text-xs font-black tracking-widest font-label uppercase whitespace-nowrap overflow-visible z-10"
@@ -62,33 +98,33 @@ function PricingCard({ plan, locale, activeSub }: { plan: any; locale: string; a
 
       {/* Label */}
       <p className="font-label text-[10px] md:text-xs font-bold tracking-widest uppercase mb-1 md:mb-2" style={{ color: plan.color }}>
-        {isMentoria ? 'ACOMPAÑAMIENTO PERSONALIZADO' : 'ACCESO INMEDIATO'}
+        {isMentoria ? t.personalizedSupport : t.immediateAccess}
       </p>
       <h3 className="font-headline text-xl md:text-2xl font-black mb-1 md:mb-3">{plan.name}</h3>
 
       {isMentoria && (
         <div className="flex items-baseline gap-2 mb-1">
-          <span className="font-headline text-3xl md:text-4xl font-black text-white leading-none">100%</span>
-          <span className="font-headline text-lg md:text-xl font-black text-white/40 tracking-tight">personalizado</span>
+          <span className="font-headline text-3xl md:text-4xl font-black text-white leading-none">{t.hundredPercent}</span>
+          <span className="font-headline text-lg md:text-xl font-black text-white/40 tracking-tight">{t.personalized}</span>
         </div>
       )}
 
       {isMentoria && (
         <p className="hidden md:block text-[11px] text-white/30 font-label uppercase tracking-widest mb-3">
-          Diseñado exclusivamente para vos.
+          {t.designedForYou}
         </p>
       )}
 
       {isMentoria && (
-        <p className="md:block text-xs md:text-sm leading-relaxed mb-0 md:mb-6 font-body font-bold text-on-surface-variant whitespace-nowrap">Mi nivel más alto de acompañamiento.</p>
+        <p className="md:block text-xs md:text-sm leading-relaxed mb-0 md:mb-6 font-body font-bold text-on-surface-variant whitespace-nowrap">{t.highestLevel}</p>
       )}
 
       {/* Price */}
       {!isMentoria && (
         <div className="flex items-baseline gap-1 mb-1">
-          <span className="text-xs md:text-sm text-white/40 font-label">Desde ARS</span>
+          <span className="text-xs md:text-sm text-white/40 font-label">{t.fromArs}</span>
           <span className="font-headline text-3xl md:text-4xl font-black">${plan.price.toLocaleString('es-AR')}</span>
-          <span className="text-xs md:text-sm text-white/40 font-label">/mes</span>
+          <span className="text-xs md:text-sm text-white/40 font-label">{t.perMonth}</span>
         </div>
       )}
       {plan.priceNote && (
@@ -102,11 +138,11 @@ function PricingCard({ plan, locale, activeSub }: { plan: any; locale: string; a
       <div className="min-h-[1.5rem] mt-1.5 md:mt-0 mb-1">
         {isMentoria ? (
           <p className="text-[10px] md:text-[11px] font-black font-label uppercase tracking-widest text-[#ff734a]">
-            Incluye lo del Plan Base y además:
+            {t.includesBasePlus}
           </p>
         ) : (
           <p className="text-[10px] md:text-[11px] font-black font-label uppercase tracking-widest" style={{ color: plan.color }}>
-            El Plan Base incluye:
+            {t.basePlanIncludes}
           </p>
         )}
       </div>
@@ -138,7 +174,7 @@ function PricingCard({ plan, locale, activeSub }: { plan: any; locale: string; a
 
       {!isMentoria && (
         <p className="hidden md:block text-[11px] font-black font-label uppercase tracking-widest mb-4 px-3 py-2 bg-[#c1ed00]/15 text-[#c1ed00] border border-[#c1ed00]/40 text-center">
-          El primer paso es el más importante.
+          {t.firstStep}
         </p>
       )}
 
@@ -154,7 +190,7 @@ function PricingCard({ plan, locale, activeSub }: { plan: any; locale: string; a
           color: '#0e0e0e',
           boxShadow: loading ? 'none' : isMentoria ? '0 0 20px rgba(255,115,74,0.5)' : '0 0 20px rgba(193,237,0,0.5)',
         }}>
-        {loading ? 'PROCESANDO...' : isMentoria ? 'SOLICITAR EVALUACIÓN' : isCurrent ? 'RENOVAR PLAN' : 'EMPEZAR HOY'}
+        {loading ? t.processing : isMentoria ? t.requestEvaluation : isCurrent ? t.renewPlan : t.startToday}
       </button>
     </div>
   )
@@ -165,11 +201,12 @@ function TransformationCarouselContent({ locale }: { locale: string }) {
   const { api } = useCarousel()
   const [current, setCurrent] = useState(0)
   const [modalItem, setModalItem] = useState<typeof transformations[0] | null>(null)
+  const t = landingI18n[locale as keyof typeof landingI18n] ?? landingI18n.es
 
   useEffect(() => {
     if (!api) return
     if (window.innerWidth < 768) {
-      const rominaIndex = transformations.findIndex(t => t.clientName === 'Romina')
+      const rominaIndex = transformations.findIndex((item) => item.clientName === 'Romina')
       if (rominaIndex > 0) api.scrollTo(rominaIndex, true)
     }
     setCurrent(api.selectedScrollSnap())
@@ -196,26 +233,26 @@ function TransformationCarouselContent({ locale }: { locale: string }) {
                 <div className="grid grid-cols-2 gap-1 mb-3 md:mb-6 group overflow-hidden cursor-pointer" onClick={() => setModalItem(item)}>
                   <div className="relative overflow-hidden aspect-[2/3] md:aspect-[4/5] bg-surface-container">
                     <Image
-                      alt={`${item.clientName} - Antes`}
+                      alt={`${item.clientName} - ${t.alt.before}`}
                       className={`object-cover opacity-90 group-hover:opacity-100 transition-all duration-700 ${needsZoom ? 'scale-125' : ''}`}
                       src={item.beforeImage}
                       fill
                       sizes="(max-width: 768px) 50vw, 33vw"
                     />
                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[#0e0e0e]/85 px-3 py-0.5 text-[8px] font-bold uppercase tracking-widest border-t border-white/10 font-label whitespace-nowrap">
-                      Antes
+                      {t.transformations.before}
                     </div>
                   </div>
                   <div className="relative overflow-hidden aspect-[2/3] md:aspect-[4/5] bg-surface-container">
                     <Image
-                      alt={`${item.clientName} - Después`}
+                      alt={`${item.clientName} - ${t.alt.after}`}
                       className={`object-cover ${needsZoom ? 'scale-125' : ''}`}
                       src={item.afterImage}
                       fill
                       sizes="(max-width: 768px) 50vw, 33vw"
                     />
                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[#c1ed00] text-[#0e0e0e] px-3 py-0.5 text-[8px] font-bold uppercase tracking-widest font-label whitespace-nowrap">
-                      Después
+                      {t.transformations.after}
                     </div>
                   </div>
                 </div>
@@ -230,7 +267,7 @@ function TransformationCarouselContent({ locale }: { locale: string }) {
                     onClick={() => setModalItem(item)}
                     className="md:hidden mt-1 text-[#c1ed00] text-[8px] font-label font-bold uppercase tracking-widest"
                   >
-                    Ver más →
+                    {t.transformations.seeMore}
                   </button>
                 </div>
               </div>
@@ -284,12 +321,12 @@ function TransformationCarouselContent({ locale }: { locale: string }) {
               {/* Fotos */}
               <div className="grid grid-cols-2 gap-1">
                 <div className="relative aspect-[3/4]">
-                  <Image src={modalItem.beforeImage} alt="Antes" fill className={`object-cover ${['Romina','Joha','Laura','Ana','Manu','Jose','Victor'].includes(modalItem.clientName) ? 'scale-125' : ''}`} />
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[#0e0e0e]/85 px-3 py-0.5 text-[8px] font-bold uppercase tracking-widest border-t border-white/10 font-label whitespace-nowrap">Antes</div>
+                  <Image src={modalItem.beforeImage} alt={t.alt.before} fill className={`object-cover ${['Romina','Joha','Laura','Ana','Manu','Jose','Victor'].includes(modalItem.clientName) ? 'scale-125' : ''}`} />
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[#0e0e0e]/85 px-3 py-0.5 text-[8px] font-bold uppercase tracking-widest border-t border-white/10 font-label whitespace-nowrap">{t.transformations.before}</div>
                 </div>
                 <div className="relative aspect-[3/4]">
-                  <Image src={modalItem.afterImage} alt="Después" fill className={`object-cover ${['Romina','Joha','Laura','Ana','Manu','Jose','Victor'].includes(modalItem.clientName) ? 'scale-125' : ''}`} />
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[#c1ed00] text-[#0e0e0e] px-3 py-0.5 text-[8px] font-bold uppercase tracking-widest font-label whitespace-nowrap">Después</div>
+                  <Image src={modalItem.afterImage} alt={t.alt.after} fill className={`object-cover ${['Romina','Joha','Laura','Ana','Manu','Jose','Victor'].includes(modalItem.clientName) ? 'scale-125' : ''}`} />
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[#c1ed00] text-[#0e0e0e] px-3 py-0.5 text-[8px] font-bold uppercase tracking-widest font-label whitespace-nowrap">{t.transformations.after}</div>
                 </div>
               </div>
               {/* Texto */}
@@ -354,12 +391,6 @@ const staggerItem = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 }
 
-const PLAN_NAMES: Record<string, string> = {
-  monthly:    'Plan Base',
-  quarterly:  'Plan Trimestral',
-  semiannual: 'Plan Semestral',
-  mentoria:   'Mentoría 1 a 1',
-}
 
 /* ── FAQ Item ──────────────────────────────────────────────── */
 function FAQItem({ question, answer }: { question: string; answer: string }) {
@@ -397,14 +428,17 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 }
 
 const COACH_PHOTOS = [
-  { src: '/images/ale/ale-cuerpo.jpg', alt: 'Alejandro Gerez — transformación corporal' },
-  { src: '/images/ale/ale-cara.jpg', alt: 'Alejandro Gerez — antes y después' },
-  { src: '/images/ale/ale-vida.jpg', alt: 'Alejandro Gerez — coach' },
+  { src: '/images/ale/ale-cuerpo.jpg' },
+  { src: '/images/ale/ale-cara.jpg' },
+  { src: '/images/ale/ale-vida.jpg' },
 ]
 
 export default function V4Page() {
   const params = useParams()
   const locale = (params?.locale as string) ?? 'es'
+  const pathname = usePathname()
+  const t = landingI18n[locale as keyof typeof landingI18n] ?? landingI18n.es
+  const planNames = t.planNames
   const router = useRouter()
   const supabase = useMemo(() => createClient(), [])
 
@@ -568,14 +602,15 @@ export default function V4Page() {
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#method" onClick={smoothScroll} className="font-label text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-300">Método</a>
-            <a href="#coach" onClick={smoothScroll} className="font-label text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-300">Coach</a>
-            <a href="#transformations" onClick={smoothScroll} className="font-label text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-300">Transformaciones</a>
-            <a href="#pricing" onClick={smoothScroll} className="font-label text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-300">Programas</a>
+            <a href="#method" onClick={smoothScroll} className="font-label text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-300">{t.nav.method}</a>
+            <a href="#coach" onClick={smoothScroll} className="font-label text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-300">{t.nav.coach}</a>
+            <a href="#transformations" onClick={smoothScroll} className="font-label text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-300">{t.nav.transformations}</a>
+            <a href="#pricing" onClick={smoothScroll} className="font-label text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-300">{t.nav.programs}</a>
           </div>
 
           {/* Desktop auth */}
           <div className="hidden md:flex items-center gap-3">
+            <LangSwitcher locale={locale} pathname={pathname} />
             {!authLoading && (
               user ? (
                 <div className="relative">
@@ -602,18 +637,18 @@ export default function V4Page() {
                         >
                           {activeSub && (
                             <div className="px-4 py-2 border-b border-white/8">
-                              <p className="text-[9px] uppercase tracking-widest text-white/30 font-bold">Plan activo</p>
-                              <p className="text-xs text-[#c1ed00] font-bold">{PLAN_NAMES[activeSub.plan_id] ?? activeSub.plan_id}</p>
+                              <p className="text-[9px] uppercase tracking-widest text-white/30 font-bold">{t.nav.activePlan}</p>
+                              <p className="text-xs text-[#c1ed00] font-bold">{planNames[activeSub.plan_id as keyof typeof planNames] ?? activeSub.plan_id}</p>
                             </div>
                           )}
                           <Link href={`/${locale}/dashboard`} onClick={() => setUserMenuOpen(false)}
                             className="flex items-center gap-2.5 px-4 py-3 text-sm text-white/60 hover:text-white hover:bg-white/5 transition-colors">
-                            <LayoutDashboard className="w-4 h-4" /> Mi Dashboard
+                            <LayoutDashboard className="w-4 h-4" /> {t.nav.dashboard}
                           </Link>
                           <div className="border-t border-white/8" />
                           <button onClick={handleLogout}
                             className="w-full flex items-center gap-2.5 px-4 py-3 text-sm text-red-400/60 hover:text-red-400 hover:bg-red-400/5 transition-colors">
-                            <LogOut className="w-4 h-4" /> Cerrar sesión
+                            <LogOut className="w-4 h-4" /> {t.nav.logout}
                           </button>
                         </motion.div>
                       </>
@@ -623,7 +658,7 @@ export default function V4Page() {
               ) : (
                 <a href="#pricing" onClick={smoothScroll}
                   className="bg-[#cefc22] text-[#3b4a00] px-5 py-2 font-headline font-bold text-xs tracking-widest uppercase hover:scale-[1.05] hover:shadow-[0_0_20px_rgba(193,237,0,0.5)] active:scale-[0.98] transition-all duration-300">
-                  Comenzar
+                  {t.nav.getStarted}
                 </a>
               )
             )}
@@ -655,16 +690,18 @@ export default function V4Page() {
               <div className="px-6 py-4 flex flex-col gap-3">
                 {/* Nav links */}
                 {[
-                  { href: '#method', label: 'Método' },
-                  { href: '#coach', label: 'Coach' },
-                  { href: '#transformations', label: 'Transformaciones' },
-                  { href: '#pricing', label: 'Programas' },
+                  { href: '#method', label: t.nav.method },
+                  { href: '#coach', label: t.nav.coach },
+                  { href: '#transformations', label: t.nav.transformations },
+                  { href: '#pricing', label: t.nav.programs },
                 ].map(({ href, label }) => (
                   <a key={href} href={href} onClick={smoothScroll}
                     className="text-xs font-bold tracking-[0.2em] uppercase text-white/60 hover:text-[#c1ed00] transition-colors py-1">
                     {label}
                   </a>
                 ))}
+
+                <LangSwitcher locale={locale} pathname={pathname} compact />
 
                 <div className="border-t border-white/8 pt-3">
                   {!authLoading && (
@@ -677,23 +714,23 @@ export default function V4Page() {
                           <div>
                             <p className="text-white text-xs font-bold truncate max-w-[180px]">{displayName}</p>
                             {activeSub && (
-                              <p className="text-[9px] text-[#c1ed00]/70 uppercase tracking-widest">{PLAN_NAMES[activeSub.plan_id] ?? activeSub.plan_id} activo</p>
+                              <p className="text-[9px] text-[#c1ed00]/70 uppercase tracking-widest">{planNames[activeSub.plan_id as keyof typeof planNames] ?? activeSub.plan_id} {t.nav.activePlan.toLowerCase()}</p>
                             )}
                           </div>
                         </div>
                         <Link href={`/${locale}/dashboard`} onClick={() => setMobileMenuOpen(false)}
                           className="flex items-center justify-center gap-2 py-2 border border-white/15 text-xs font-bold tracking-widest uppercase text-white/70 hover:text-white rounded">
-                          <LayoutDashboard className="w-3.5 h-3.5" /> Mi Dashboard
+                          <LayoutDashboard className="w-3.5 h-3.5" /> {t.nav.dashboard}
                         </Link>
                         <button onClick={handleLogout}
                           className="flex items-center justify-center gap-2 py-2 border border-red-400/20 text-xs font-bold tracking-widest uppercase text-red-400/60 hover:text-red-400 rounded">
-                          <LogOut className="w-3.5 h-3.5" /> Cerrar sesión
+                          <LogOut className="w-3.5 h-3.5" /> {t.nav.logout}
                         </button>
                       </div>
                     ) : (
                       <a href="#pricing" onClick={smoothScroll}
                         className="block text-center py-2.5 bg-[#c1ed00] text-[#0e0e0e] text-xs font-black tracking-widest uppercase">
-                        Ver planes
+                        {t.nav.viewPlans}
                       </a>
                     )
                   )}
@@ -711,7 +748,7 @@ export default function V4Page() {
             {/* URL original de respaldo: https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=1600&q=80&auto=format&fit=crop */}
             <Image
               src="/images/hero/hero2-mobile.webp"
-              alt="Entrenamiento de alto rendimiento"
+              alt={t.alt.heroTraining}
               fill
               priority
               sizes="100vw"
@@ -719,7 +756,7 @@ export default function V4Page() {
             />
             <Image
               src="/images/hero/hero2.webp"
-              alt="Entrenamiento de alto rendimiento"
+              alt={t.alt.heroTraining}
               fill
               priority
               sizes="100vw"
@@ -737,7 +774,7 @@ export default function V4Page() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            TRANSFORMA TUS <span className="text-[#c1ed00] italic">HÁBITOS</span>,<br className="hidden md:block" /> NO SOLO<br />TU PESO.
+            {t.hero.titleBefore} <span className="text-[#c1ed00] italic">{t.hero.titleHighlight}</span>{t.hero.titleAfter}
           </motion.h1>
           <motion.span
             className="font-label text-[#c1ed00] tracking-[0.3em] text-[10px] uppercase block"
@@ -745,7 +782,7 @@ export default function V4Page() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Rompé el Ciclo
+            {t.hero.breakCycle}
           </motion.span>
           <motion.p
             className="font-body text-on-surface-variant text-base md:text-lg max-w-md leading-relaxed border-l-4 border-[#c1ed00] pl-3 md:pl-5"
@@ -753,7 +790,7 @@ export default function V4Page() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
           >
-            Un sistema diseñado para cambiar tu cuerpo y tu mentalidad de forma sostenible. <br className="md:hidden" />Sin extremos. <br className="hidden md:block" />Sin culpa. <br className="md:hidden" />Con resultados reales.
+            {t.hero.description}
           </motion.p>
           <motion.div
             className="pt-2"
@@ -766,7 +803,7 @@ export default function V4Page() {
               onClick={smoothScroll}
               className="inline-flex items-center gap-3 bg-[#cefc22] text-[#3b4a00] font-headline font-extrabold px-8 py-4 text-base lg:text-lg tracking-tight hover:scale-[1.05] hover:shadow-[0_0_30px_rgba(193,237,0,0.5)] active:scale-[0.98] transition-all duration-300 uppercase"
             >
-              ¡EMPEZÁ AHORA!
+              {t.hero.cta}
               <ArrowRight className="w-5 h-5" />
             </a>
           </motion.div>
@@ -800,10 +837,10 @@ export default function V4Page() {
             variants={fadeUp}
             custom={0}
           >
-            <h2 className="font-headline text-3xl lg:text-5xl font-bold tracking-tighter uppercase italic">LOS TRES PILARES</h2>
+            <h2 className="font-headline text-3xl lg:text-5xl font-bold tracking-tighter uppercase italic">{t.pillars.title}</h2>
             <div className="w-12 h-1 bg-[#00e3fd]" />
             <p className="hidden md:block text-on-surface-variant text-sm max-w-lg mt-3">
-              No se trata de hacer dieta ni entrenar más fuerte. Se trata de construir un sistema que puedas sostener para siempre.
+              {t.pillars.intro}
             </p>
           </motion.div>
 
@@ -839,15 +876,15 @@ export default function V4Page() {
               </div>
               <div className="relative z-10">
                 <Brain className="w-10 h-10 text-[#ff734a] mb-4" />
-                <h3 className="font-headline text-2xl font-bold uppercase mb-4 md:mb-2">Psicología</h3>
+                <h3 className="font-headline text-2xl font-bold uppercase mb-4 md:mb-2">{t.pillars.psychology.title}</h3>
                 <p className="text-on-surface-variant text-sm leading-relaxed max-w-md">
-                  <span className="md:hidden">Trabajamos tu mentalidad y tu relación con la comida. <strong className="font-black text-[#ff734a]">Hábitos reales sin autosabotaje.</strong></span>
-                  <span className="hidden md:inline">Dejás de autosabotearte y empezás a sostener hábitos reales. <strong className="font-black text-[#ff734a]">Trabajamos tu mentalidad, tu relación con la comida</strong> y los patrones que hoy te frenan.</span>
+                  <span className="md:hidden">{t.pillars.psychology.descMobile}</span>
+                  <span className="hidden md:inline">{t.pillars.psychology.descDesktop}</span>
                 </p>
                 <div className="mt-6 flex flex-row gap-2">
-                  <span className="px-3 py-1 bg-[#ff5722]/20 text-[#ff9475] font-label text-[10px] uppercase tracking-widest">Constancia</span>
-                  <span className="hidden md:inline px-3 py-1 bg-[#ff5722]/20 text-[#ff9475] font-label text-[10px] uppercase tracking-widest">Control de Impulsos</span>
-                  <span className="px-3 py-1 bg-[#ff5722]/20 text-[#ff9475] font-label text-[10px] uppercase tracking-widest">Aceptación</span>
+                  <span className="px-3 py-1 bg-[#ff5722]/20 text-[#ff9475] font-label text-[10px] uppercase tracking-widest">{t.pillars.psychology.tags[0]}</span>
+                  <span className="hidden md:inline px-3 py-1 bg-[#ff5722]/20 text-[#ff9475] font-label text-[10px] uppercase tracking-widest">{t.pillars.psychology.tags[1]}</span>
+                  <span className="px-3 py-1 bg-[#ff5722]/20 text-[#ff9475] font-label text-[10px] uppercase tracking-widest">{t.pillars.psychology.tags[2]}</span>
                 </div>
               </div>
             </motion.div>
@@ -870,13 +907,13 @@ export default function V4Page() {
               </div>
               <div className="relative z-10">
                 <Dumbbell className="w-10 h-10 text-[#c1ed00] mb-4" />
-                <h3 className="font-headline text-xl font-bold uppercase mb-4 md:mb-2">Entrenamiento</h3>
+                <h3 className="font-headline text-xl font-bold uppercase mb-4 md:mb-2">{t.pillars.training.title}</h3>
                 <p className="text-on-surface-variant text-sm leading-relaxed">
-                  <span className="md:hidden">Sesiones <strong className="font-black text-[#c1ed00]">adaptadas a tu nivel</strong> para mejorar tu cuerpo. Resultados reales sin perder tiempo.</span>
-                  <span className="hidden md:inline">Sabés exactamente qué hacer para ver resultados sin perder tiempo. Sesiones <strong className="font-black text-[#c1ed00]">adaptadas a tu nivel</strong> para mejorar tu cuerpo de forma inteligente y progresiva.</span>
+                  <span className="md:hidden">{t.pillars.training.descMobile}</span>
+                  <span className="hidden md:inline">{t.pillars.training.descDesktop}</span>
                 </p>
                 <div className="mt-6 flex flex-row gap-2">
-                  {['Fuerza', 'Movilidad'].map((tag) => (
+                  {t.pillars.training.tags.map((tag) => (
                     <span key={tag} className="px-3 py-1 bg-[#c1ed00]/15 text-[#c1ed00] font-label text-[10px] uppercase tracking-widest">{tag}</span>
                   ))}
                 </div>
@@ -903,24 +940,24 @@ export default function V4Page() {
                 <Utensils className="w-10 h-10 text-[#00e3fd]" />
               </div>
               <div className="relative z-10 flex-1">
-                <h3 className="font-headline text-xl font-bold uppercase mb-4 md:mb-2">Nutrición</h3>
+                <h3 className="font-headline text-xl font-bold uppercase mb-4 md:mb-2">{t.pillars.nutrition.title}</h3>
                 <p className="text-on-surface-variant text-sm leading-relaxed max-w-lg">
-                  <span className="md:hidden">Sin dietas extremas ni restricciones. Resultados reales con <strong className="font-black text-[#00e3fd]">hábitos sostenibles a largo plazo.</strong></span>
-                  <span className="hidden md:inline">La diferencia no está en hacer más, sino en <strong className="font-black text-[#00e3fd]">hacerlo sostenible</strong>. Nuestro enfoque elimina los extremos y prioriza resultados reales <strong className="font-black text-[#00e3fd]">a largo plazo</strong>.</span>
+                  <span className="md:hidden">{t.pillars.nutrition.descMobile}</span>
+                  <span className="hidden md:inline">{t.pillars.nutrition.descDesktop}</span>
                 </p>
                 <div className="flex flex-row gap-2 mt-6 md:hidden">
-                  <span className="px-3 py-1 bg-[#00e3fd]/15 text-[#00e3fd] font-label text-[10px] uppercase tracking-widest">Perder Grasa</span>
-                  <span className="px-3 py-1 bg-[#00e3fd]/15 text-[#00e3fd] font-label text-[10px] uppercase tracking-widest">Ganar Músculo</span>
+                  <span className="px-3 py-1 bg-[#00e3fd]/15 text-[#00e3fd] font-label text-[10px] uppercase tracking-widest">{t.pillars.nutrition.tags[0]}</span>
+                  <span className="px-3 py-1 bg-[#00e3fd]/15 text-[#00e3fd] font-label text-[10px] uppercase tracking-widest">{t.pillars.nutrition.tags[1]}</span>
                 </div>
               </div>
               <div className="relative z-10 hidden md:flex gap-8 flex-shrink-0 mt-4 md:mt-0 lg:gap-12">
                 <div className="text-center">
-                  <span className="font-headline text-2xl lg:text-3xl font-black text-[#00e3fd] block">0%</span>
-                  <span className="font-label text-[9px] uppercase tracking-widest text-white/40">Dietas Restrictivas</span>
+                  <span className="font-headline text-2xl lg:text-3xl font-black text-[#00e3fd] block">{t.pillars.nutrition.stats[0].value}</span>
+                  <span className="font-label text-[9px] uppercase tracking-widest text-white/40">{t.pillars.nutrition.stats[0].label}</span>
                 </div>
                 <div className="text-center">
-                  <span className="font-headline text-2xl lg:text-3xl font-black text-[#00e3fd] block">100%</span>
-                  <span className="font-label text-[9px] uppercase tracking-widest text-white/40">Hábitos Sostenibles</span>
+                  <span className="font-headline text-2xl lg:text-3xl font-black text-[#00e3fd] block">{t.pillars.nutrition.stats[1].value}</span>
+                  <span className="font-label text-[9px] uppercase tracking-widest text-white/40">{t.pillars.nutrition.stats[1].label}</span>
                 </div>
               </div>
             </motion.div>
@@ -953,7 +990,7 @@ export default function V4Page() {
             >
               {/* Etiqueta ANTES → DESPUÉS */}
               <span className="self-center mb-0.5 px-2 py-0.5 bg-[#c1ed00] text-[#1a2400] font-label font-black text-[9px] uppercase tracking-[0.2em]">
-                ANTES → DESPUÉS
+                {t.coach.beforeAfterLabel}
               </span>
 
               {/* Mobile: carrusel auto-play + swipe */}
@@ -971,7 +1008,7 @@ export default function V4Page() {
                   <motion.img
                     key={coachSlide}
                     src={COACH_PHOTOS[coachSlide].src}
-                    alt={COACH_PHOTOS[coachSlide].alt}
+                    alt={[t.alt.coachBody, t.alt.coachBeforeAfter, t.alt.coachPortrait][coachSlide]}
                     custom={coachDir}
                     variants={{
                       enter: (d: number) => ({ x: d > 0 ? '100%' : '-100%', opacity: 0 }),
@@ -997,7 +1034,7 @@ export default function V4Page() {
               <div className="hidden md:block overflow-hidden mb-1.5 flex-1 min-h-0">
                 <motion.img
                   src="/images/ale/ale-cuerpo.jpg"
-                  alt="Alejandro Gerez — transformación corporal"
+                  alt={t.alt.coachBody}
                   className="w-full h-full object-cover object-center"
                   whileHover={{ scale: 1.03 }}
                   transition={{ duration: 0.6 }}
@@ -1009,7 +1046,7 @@ export default function V4Page() {
                 <div className="overflow-hidden">
                   <motion.img
                     src="/images/ale/ale-cara.jpg"
-                    alt="Alejandro Gerez — antes y después"
+                    alt={t.alt.coachBeforeAfter}
                     className="w-full h-48 object-cover object-center"
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.6 }}
@@ -1018,7 +1055,7 @@ export default function V4Page() {
                 <div className="overflow-hidden">
                   <motion.img
                     src="/images/ale/ale-vida.jpg"
-                    alt="Alejandro Gerez — coach"
+                    alt={t.alt.coachPortrait}
                     className="w-full h-48 object-cover object-center"
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.6 }}
@@ -1034,7 +1071,7 @@ export default function V4Page() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.5, type: 'spring' }}
               >
-                +12 años ayudando a transformar<br />cuerpos y mentalidades
+                {t.coach.badge}
               </motion.div>
             </motion.div>
             <motion.div
@@ -1044,46 +1081,25 @@ export default function V4Page() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
             >
-              <p className="font-label text-[10px] uppercase tracking-[0.25em] text-white/30">Tu Head Coach</p>
+              <p className="font-label text-[10px] uppercase tracking-[0.25em] text-white/30">{t.coach.label}</p>
               <h2 className="font-headline text-[8vw] md:text-4xl lg:text-5xl font-bold tracking-tighter leading-none uppercase">
                 <span className="text-[#c1ed00] italic">ALEJANDRO GEREZ</span>
               </h2>
               {/* Bio mobile — versión corta */}
               <div className="md:hidden font-body text-white text-sm leading-relaxed space-y-3 hyphens-none [word-break:normal]">
-                <p>
-                  Usé la comida como escape y llegué a pesar <strong className="font-black text-[#c1ed00]">160 kg</strong>. Probé todo, sin resultados duraderos.
-                </p>
-                <p>
-                  <strong className="font-black text-[#c1ed00]">Bajé 70 kg</strong>. Participé del reality show <strong className="font-black text-[#00e3fd]">Cuestión de Peso</strong>, pero recuperé varios kilos, porque el cambio había sido físico, <strong className="font-black text-white whitespace-nowrap uppercase">NO MENTAL</strong>.
-                </p>
-                <p className="text-white">
-                  Hoy no vivo en lucha. <span className="text-white">Vivo en equilibrio.</span><br />Ese es el método que hoy<br /><strong className="font-black text-white">enseño y practico.</strong>
-                </p>
+                <p>{renderBold(t.coach.bioMobile[0])}</p>
+                <p>{renderBold(t.coach.bioMobile[1])}</p>
+                <p className="text-white">{renderBold(t.coach.bioMobile[2])}</p>
               </div>
 
               {/* Bio desktop — versión completa */}
               <div className="hidden md:block font-body text-on-surface-variant leading-relaxed space-y-4">
-                <p>
-                  Durante años usé la comida como escape y llegué a pesar <strong className="font-black text-[#c1ed00]">160 kg</strong>.
-                  Probé dietas, buscando la fórmula perfecta que me hiciera cambiar de una vez.
-                </p>
-                <p>
-                  <strong className="font-black text-[#c1ed00]">Bajé 70 kg</strong> en total, participando en el programa televisivo <em className="font-black text-[#00e3fd]">Cuestión de Peso</em>, pero con el tiempo volví al mismo lugar.<br />
-                  Porque el cambio había sido físico, <strong className="font-black text-white uppercase">NO MENTAL.</strong>
-                </p>
-                <p>
-                  Ahí entendí algo clave: la verdadera transformación no es una foto del antes y después,
-                  es lo que pasa <strong className="font-black text-white">cuando nadie está mirando.</strong>
-                </p>
-                <p>
-                  Empecé a trabajar en mi mentalidad, mi relación con la comida y conmigo mismo.
-                </p>
-                <p className="text-white">
-                  Hoy no vivo en lucha. <span className="text-white">Vivo en equilibrio.</span>
-                </p>
-                <p>
-                  Y ese es el método que <span className="text-white">hoy enseño y practico.</span>
-                </p>
+                <p>{renderBold(t.coach.bioDesktop[0])}</p>
+                <p>{renderBold(t.coach.bioDesktop[1])}</p>
+                <p>{renderBold(t.coach.bioDesktop[2])}</p>
+                <p>{renderBold(t.coach.bioDesktop[3])}</p>
+                <p className="text-white">{renderBold(t.coach.bioDesktop[4])}</p>
+                <p>{renderBold(t.coach.bioDesktop[5])}</p>
               </div>
               <motion.ul
                 className="hidden md:block space-y-2 md:space-y-3 font-body text-sm text-white/70 hyphens-none [word-break:normal]"
@@ -1092,11 +1108,7 @@ export default function V4Page() {
                 whileInView="visible"
                 viewport={{ once: true }}
               >
-                {[
-                  'Psicología aplicada al cambio de hábitos',
-                  'Nutrición enfocada en resultados sostenibles',
-                  'Entrenamientos pensados para resultados reales que puedas mantener',
-                ].map((item) => (
+                {t.coach.highlights.map((item) => (
                   <motion.li key={item} className="flex items-start gap-3" variants={staggerItem}>
                     <span className="w-1.5 h-1.5 bg-[#c1ed00] flex-shrink-0 mt-2" />
                     {item}
@@ -1106,11 +1118,11 @@ export default function V4Page() {
 
               {/* Certificaciones */}
               <div>
-                <p className="text-[10px] uppercase tracking-widest text-[#c1ed00] font-label font-bold mt-6 mb-3">Certificaciones</p>
+                <p className="text-[10px] uppercase tracking-widest text-[#c1ed00] font-label font-bold mt-6 mb-3">{t.coach.certificationsLabel}</p>
 
                 {/* Mobile: chips compactos */}
                 <div className="flex md:hidden flex-wrap gap-2">
-                  {['Personal Fitness Trainer', 'Obesidad y Recomposición Corporal', 'Profesor de Preparación Física'].map((cert) => (
+                  {[t.coach.certifications.personalTrainer, t.coach.certifications.obesity, t.coach.certifications.physicalInstructor].map((cert) => (
                     <span key={cert} className="border border-white/10 bg-white/5 rounded-full px-3 py-1.5 flex items-center gap-1.5">
                       <Award className="w-3 h-3 text-[#c1ed00] flex-shrink-0" />
                       <span className="text-[10px] uppercase tracking-wide text-white/70 font-label">{cert}</span>
@@ -1123,23 +1135,23 @@ export default function V4Page() {
                   <div className="border border-white/10 bg-white/5 px-4 py-3 rounded-sm flex items-start gap-3">
                     <Award className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#c1ed00]" />
                     <div>
-                      <p className="uppercase text-[11px] font-bold text-white font-label tracking-wide">Personal Fitness Trainer</p>
-                      <p className="text-[10px] text-white/50 font-body mt-0.5">IFBB Federation</p>
-                      <p className="text-[10px] text-[#c1ed00] font-body mt-0.5">IFBB-C/64123</p>
+                      <p className="uppercase text-[11px] font-bold text-white font-label tracking-wide">{t.coach.certifications.personalTrainer}</p>
+                      <p className="text-[10px] text-white/50 font-body mt-0.5">{t.coach.certifications.personalTrainerOrg}</p>
+                      <p className="text-[10px] text-[#c1ed00] font-body mt-0.5">{t.coach.certifications.personalTrainerId}</p>
                     </div>
                   </div>
                   <div className="border border-white/10 bg-white/5 px-4 py-3 rounded-sm flex items-start gap-3">
                     <Award className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#c1ed00]" />
                     <div>
-                      <p className="uppercase text-[11px] font-bold text-white font-label tracking-wide">Obesidad y Recomposición Corporal</p>
-                      <p className="text-[10px] text-white/50 font-body mt-0.5">IFBB Federation</p>
+                      <p className="uppercase text-[11px] font-bold text-white font-label tracking-wide">{t.coach.certifications.obesity}</p>
+                      <p className="text-[10px] text-white/50 font-body mt-0.5">{t.coach.certifications.obesityOrg}</p>
                     </div>
                   </div>
                   <div className="border border-white/10 bg-white/5 px-4 py-3 rounded-sm flex items-start gap-3">
                     <Award className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#c1ed00]" />
                     <div>
-                      <p className="uppercase text-[11px] font-bold text-white font-label tracking-wide">Profesor de Preparación Física</p>
-                      <p className="text-[10px] text-white/50 font-body mt-0.5">IPEF - Instituto Privado de Educación Física</p>
+                      <p className="uppercase text-[11px] font-bold text-white font-label tracking-wide">{t.coach.certifications.physicalInstructor}</p>
+                      <p className="text-[10px] text-white/50 font-body mt-0.5">{t.coach.certifications.physicalInstructorOrg}</p>
                     </div>
                   </div>
                 </div>
@@ -1152,24 +1164,14 @@ export default function V4Page() {
       {/* ── Marquee Mantra ────────────────────────────────────────── */}
       <section aria-hidden="true" className="bg-[#000000] py-10 lg:py-14 border-y border-white/5 overflow-hidden select-none">
         <div className="r3set-marquee-left whitespace-nowrap mb-4 lg:mb-6">
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase r3set-text-stroke italic">AMOR PROPIO ·</span>
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase text-[#c1ed00] italic">CONSTANCIA ·</span>
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase r3set-text-stroke italic">DISCIPLINA ·</span>
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase text-[#c1ed00] italic">PROPÓSITO ·</span>
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase r3set-text-stroke italic">AMOR PROPIO ·</span>
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase text-[#c1ed00] italic">CONSTANCIA ·</span>
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase r3set-text-stroke italic">DISCIPLINA ·</span>
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase text-[#c1ed00] italic">PROPÓSITO ·</span>
+          {[...t.marquee.slice(0, 4), ...t.marquee.slice(0, 4)].map((word, i) => (
+            <span key={i} className={`font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase italic ${i % 2 === 0 ? 'r3set-text-stroke' : 'text-[#c1ed00]'}`}>{word} ·</span>
+          ))}
         </div>
         <div className="r3set-marquee-right whitespace-nowrap">
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase r3set-text-stroke italic">RESILIENCIA ·</span>
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase text-white/10 italic">CONFIANZA ·</span>
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase r3set-text-stroke italic">SEGURIDAD ·</span>
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase text-white/10 italic">FORTALEZA ·</span>
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase r3set-text-stroke italic">RESILIENCIA ·</span>
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase text-white/10 italic">CONFIANZA ·</span>
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase r3set-text-stroke italic">SEGURIDAD ·</span>
-          <span className="font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase text-white/10 italic">FORTALEZA ·</span>
+          {[...t.marquee.slice(4, 8), ...t.marquee.slice(4, 8)].map((word, i) => (
+            <span key={i} className={`font-headline text-5xl md:text-7xl lg:text-8xl font-black px-6 uppercase italic ${i % 2 === 0 ? 'r3set-text-stroke' : 'text-white/10'}`}>{word} ·</span>
+          ))}
         </div>
       </section>
 
@@ -1179,12 +1181,12 @@ export default function V4Page() {
         <div className="container mx-auto max-w-6xl relative z-10">
           {/* Header */}
           <div className="-mb-3 md:mb-16">
-            <p className="font-label text-[10px] uppercase tracking-[0.3em] text-white/30 mb-3">Elegí tu plan</p>
+            <p className="font-label text-[10px] uppercase tracking-[0.3em] text-white/30 mb-3">{t.pricing.chooseYourPlan}</p>
             <h2 className="font-headline text-4xl lg:text-6xl font-black tracking-tighter uppercase mb-4">
-              EMPEZÁ TU<br /><span className="text-[#c1ed00] italic">TRANSFORMACIÓN.</span>
+              {t.pricing.titleBefore}<br /><span className="text-[#c1ed00] italic">{t.pricing.titleHighlight}</span>
             </h2>
             <p className="hidden md:block text-on-surface-variant max-w-lg text-base leading-relaxed font-body">
-              Entrenamiento personalizado, seguimiento real y un coach<br />que te acompaña. Elegí el plan que mejor se adapte a tus objetivos.
+              {t.pricing.intro}
             </p>
           </div>
 
@@ -1197,38 +1199,38 @@ export default function V4Page() {
           >
             {[
               {
-                id: 'monthly', name: 'PLAN BASE', price: 44999, days: 30, badge: null, color: '#c1ed00',
-                desc: 'La forma más simple de empezar tu transformación.',
+                id: 'monthly', name: t.pricing.base.name, price: 44999, days: 30, badge: null, color: '#c1ed00',
+                desc: t.pricing.base.desc,
                 features: [
-                  { text: 'Rutina personalizada', sub: '(gimnasio - hogar)' },
-                  'App exclusiva Android e iPhone',
-                  'Videos explicativos de cada ejercicio',
-                  'Seguimiento semanal',
-                  'Soporte en plataforma',
-                  'Comunidad privada de alumnos',
-                  'Sin permanencia — cancelá cuando quieras',
-                  { section: 'Complementá tu proceso con:' },
-                  'Consultas nutricionales con profesionales especializados',
-                  'Acompañamiento psicológico para fortalecer hábitos y emociones',
+                  { text: t.pricing.base.features.routine, sub: t.pricing.base.features.routineSub },
+                  t.pricing.base.features.app,
+                  t.pricing.base.features.videos,
+                  t.pricing.base.features.weeklyFollowUp,
+                  t.pricing.base.features.platformSupport,
+                  t.pricing.base.features.community,
+                  t.pricing.base.features.noCommitment,
+                  { section: t.pricing.base.features.complementSection },
+                  t.pricing.base.features.nutritionConsults,
+                  t.pricing.base.features.psychSupport,
                 ],
-                priceNote: 'Ahorrá en los planes de 3 y 6 meses',
+                priceNote: t.pricing.base.priceNote,
               },
               {
-                id: 'mentoria', name: 'MENTORÍA 1 A 1', price: 0, days: 0, badge: 'CUPOS LIMITADOS', color: '#ff734a',
-                desc: 'Trabajá directamente conmigo y construyamos juntos un cambio que puedas sostener para toda la vida.',
+                id: 'mentoria', name: t.pricing.mentoria.name, price: 0, days: 0, badge: t.pricing.mentoria.badge, color: '#ff734a',
+                desc: t.pricing.mentoria.desc,
                 features: [
-                  { text: 'Comunicación directa conmigo', bold: true },
-                  { text: 'Entrenamiento personalizado 100%', sub: '(gimnasio - hogar)' },
-                  'Estrategia alimentaria adaptada',
-                  { text: 'Seguimiento y análisis de todas tus comidas', bold: true },
-                  'Ajustes permanentes',
-                  'Aplicación exclusiva para Android e iPhone',
-                  { text: 'Sesiones 1-1 conmigo', bold: true },
-                  'Comunidad privada de alumnos',
-                  'Prioridad absoluta en la respuesta',
-                  { section: 'Complementá tu proceso con:' },
-                  'Consultas nutricionales con profesionales especializados',
-                  'Acompañamiento psicológico para fortalecer hábitos y emociones',
+                  { text: t.pricing.mentoria.features.directComm, bold: true },
+                  { text: t.pricing.mentoria.features.fullTraining, sub: t.pricing.mentoria.features.fullTrainingSub },
+                  t.pricing.mentoria.features.nutritionStrategy,
+                  { text: t.pricing.mentoria.features.mealTracking, bold: true },
+                  t.pricing.mentoria.features.adjustments,
+                  t.pricing.mentoria.features.app,
+                  { text: t.pricing.mentoria.features.sessions, bold: true },
+                  t.pricing.mentoria.features.community,
+                  t.pricing.mentoria.features.priority,
+                  { section: t.pricing.mentoria.features.complementSection },
+                  t.pricing.mentoria.features.nutritionConsults,
+                  t.pricing.mentoria.features.psychSupport,
                 ],
               },
             ].map((plan) => (
@@ -1257,18 +1259,18 @@ export default function V4Page() {
           <div className="flex flex-nowrap justify-center gap-4 md:gap-8 text-white/30 text-[10px] md:text-xs font-label uppercase tracking-widest">
             <span className="flex items-center gap-1.5 md:gap-2">
               <Zap className="w-3.5 h-3.5 md:w-4 md:h-4 flex-shrink-0 text-[#c1ed00]" />
-              <span className="hidden md:inline">Acceso inmediato al pagar</span>
-              <span className="md:hidden">Acceso inmediato</span>
+              <span className="hidden md:inline">{t.pricing.trust.instantAccess}</span>
+              <span className="md:hidden">{t.pricing.trust.instantAccessShort}</span>
             </span>
             <span className="flex items-center gap-1.5 md:gap-2">
               <Shield className="w-3.5 h-3.5 md:w-4 md:h-4 flex-shrink-0 text-[#00e3fd]" />
-              <span className="hidden md:inline">Pago seguro con Mercado Pago</span>
-              <span className="md:hidden">Pago seguro</span>
+              <span className="hidden md:inline">{t.pricing.trust.securePayment}</span>
+              <span className="md:hidden">{t.pricing.trust.securePaymentShort}</span>
             </span>
             <span className="flex items-center gap-1.5 md:gap-2">
               <MessageCircle className="w-3.5 h-3.5 md:w-4 md:h-4 flex-shrink-0 text-[#ff734a]" />
-              <span className="hidden md:inline">Soporte por WhatsApp incluido</span>
-              <span className="md:hidden">Soporte WhatsApp</span>
+              <span className="hidden md:inline">{t.pricing.trust.whatsappSupport}</span>
+              <span className="md:hidden">{t.pricing.trust.whatsappSupportShort}</span>
             </span>
           </div>
         </div>
@@ -1284,15 +1286,17 @@ export default function V4Page() {
           >
             <div className="max-w-2xl space-y-3">
               <p className="font-label text-[#c1ed00] tracking-[0.4em] uppercase text-[10px]">
-                Testimonios R3SET
+                {t.transformations.label}
               </p>
               <h2 className="font-headline text-3xl sm:text-4xl lg:text-6xl font-black tracking-tighter uppercase leading-[0.95]">
-                TRANSFORMACIONES <span className="text-[#c1ed00] italic">REALES</span>
+                {t.transformations.titleBefore && `${t.transformations.titleBefore} `}
+                <span className="text-[#c1ed00] italic">{t.transformations.titleHighlight}</span>
+                {t.transformations.titleAfter && ` ${t.transformations.titleAfter}`}
               </h2>
               <div className="w-12 h-1 bg-[#c1ed00]" />
             </div>
             <p className="hidden md:block font-body text-on-surface-variant text-sm leading-relaxed italic md:text-right max-w-xs">
-              Esto no es teoría. Son personas que ya hicieron el proceso y hoy viven distinto.
+              {t.transformations.intro}
             </p>
           </motion.div>
 
@@ -1309,14 +1313,14 @@ export default function V4Page() {
             transition={{ duration: 0.6 }}
           >
             <p className="font-headline text-2xl lg:text-3xl font-bold uppercase tracking-tight mb-6">
-              ¡Vos podés ser el<br /><span className="text-[#c1ed00] italic">próximo caso!</span>
+              {t.transformations.ctaTextBefore}<br /><span className="text-[#c1ed00] italic">{t.transformations.ctaTextHighlight}</span>
             </p>
             <a
               href="#pricing"
               onClick={smoothScroll}
               className="inline-flex items-center gap-3 bg-[#cefc22] text-[#3b4a00] font-headline font-extrabold px-8 py-4 text-base lg:text-lg tracking-tight hover:scale-[1.05] hover:shadow-[0_0_30px_rgba(193,237,0,0.5)] active:scale-[0.98] transition-all duration-300 uppercase"
             >
-              ¡EMPEZÁ AHORA!
+              {t.transformations.ctaButton}
               <ArrowRight className="w-5 h-5" />
             </a>
           </motion.div>
@@ -1331,46 +1335,13 @@ export default function V4Page() {
             initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}
             variants={fadeUp} custom={0}
           >
-            <p className="font-label text-[10px] uppercase tracking-[0.3em] text-white/30">Preguntas frecuentes</p>
+            <p className="font-label text-[10px] uppercase tracking-[0.3em] text-white/30">{t.faq.label}</p>
             <h2 className="font-headline text-xl md:text-3xl lg:text-4xl font-bold tracking-tighter uppercase italic">FAQ</h2>
             <div className="w-8 md:w-12 h-1 bg-[#00e3fd]" />
           </motion.div>
 
           <div className="space-y-0 divide-y divide-white/8">
-            {[
-              {
-                q: '¿Necesito experiencia previa para empezar?',
-                a: 'No. Nuestros programas están diseñados tanto para personas que recién comienzan como para quienes ya tienen experiencia entrenando. Adaptamos el entrenamiento a tu nivel actual y progresamos paso a paso.',
-              },
-              {
-                q: '¿Cómo funciona el seguimiento?',
-                a: 'A través de nuestra aplicación registrás tus entrenamientos, progreso y hábitos. Además, realizamos seguimientos periódicos para ajustar el plan según tu evolución.',
-              },
-              {
-                q: '¿Qué incluye el acompañamiento nutricional y psicológico?',
-                a: 'Contarás con la posibilidad de ser atendido por profesionales especializados que te ayudarán a mejorar tu alimentación, fortalecer hábitos y trabajar los aspectos emocionales que muchas veces dificultan sostener el cambio.',
-              },
-              {
-                q: '¿Cuál es la diferencia entre el Plan Base y la Mentoría 1 a 1?',
-                a: 'El Plan Base incluye entrenamiento personalizado, aplicación, seguimiento y acompañamiento profesional. La Mentoría 1 a 1 incluye todo lo anterior, más comunicación directa con Ale Gerez, seguimiento personalizado de alimentación y hábitos, sesiones individuales y ajustes permanentes según tu evolución.',
-              },
-              {
-                q: '¿Cuándo obtengo acceso después de inscribirme?',
-                a: 'Los alumnos del Plan Base reciben acceso a la plataforma una vez confirmado el pago. En el caso de la Mentoría 1 a 1, primero deberás completar una solicitud de evaluación. Revisará personalmente tu caso y, si considera que puede ayudarte, se pondrá en contacto dentro de las próximas 24 horas hábiles para coordinar una videollamada.',
-              },
-              {
-                q: '¿Puedo cancelar mi suscripción en cualquier momento?',
-                a: 'Sí. Podés cancelar tu suscripción cuando lo desees y seguirás teniendo acceso hasta finalizar el período ya abonado. No existen permanencias ni penalizaciones.',
-              },
-              {
-                q: '¿Por qué este programa es diferente?',
-                a: 'Porque fue creado desde la experiencia real. Ale Gerez llegó a pesar más de 160 kg y atravesó personalmente el proceso de transformación que hoy ayuda a recorrer a otras personas. El programa combina entrenamiento, nutrición y trabajo de hábitos para lograr cambios sostenibles en el tiempo.',
-              },
-              {
-                q: '¿Cómo sé qué plan es el adecuado para mí?',
-                a: 'Si estás comenzando o buscás una guía estructurada, el Plan Base suele ser la mejor opción. Si necesitás un acompañamiento más cercano y personalizado, podés solicitar una evaluación para la Mentoría 1 a 1.',
-              },
-            ].map(({ q, a }, i) => (
+            {t.faq.items.map(({ q, a }, i) => (
               <FAQItem key={i} question={q} answer={a} />
             ))}
           </div>
@@ -1385,8 +1356,8 @@ export default function V4Page() {
             initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}
             variants={fadeUp} custom={0}
           >
-            <p className="font-label text-[10px] uppercase tracking-[0.3em] text-white/30">¿Tenés dudas?</p>
-            <h2 className="font-headline text-3xl lg:text-4xl font-bold tracking-tighter uppercase italic">HABLEMOS.</h2>
+            <p className="font-label text-[10px] uppercase tracking-[0.3em] text-white/30">{t.contact.question}</p>
+            <h2 className="font-headline text-3xl lg:text-4xl font-bold tracking-tighter uppercase italic">{t.contact.title}</h2>
             <div className="w-12 h-1 bg-[#00e3fd] mx-auto" />
           </motion.div>
 
@@ -1396,7 +1367,7 @@ export default function V4Page() {
             variants={staggerContainer}
           >
             <motion.a
-              href={`https://wa.me/${PHONE_NUMBER}?text=Hola!%20Tengo%20una%20consulta%20sobre%20el%20Metodo%20R3SET`}
+              href={`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(t.contact.whatsappMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 py-5 px-6 bg-[#c1ed00] text-[#0e0e0e] font-headline font-black text-sm uppercase tracking-widest hover:bg-[#d4ff00] active:scale-95 transition-all duration-200"
@@ -1404,16 +1375,16 @@ export default function V4Page() {
               whileHover={{ scale: 1.02 }}
             >
               <MessageCircle className="w-5 h-5" />
-              WhatsApp
+              {t.contact.whatsapp}
             </motion.a>
             <motion.a
-              href="mailto:info@alegerezcoach.com?subject=Consulta%20Metodo%20R3SET"
+              href={`mailto:info@alegerezcoach.com?subject=${encodeURIComponent(t.contact.emailSubject)}`}
               className="flex items-center justify-center gap-3 py-5 px-6 border border-white/15 text-white/70 font-headline font-black text-sm uppercase tracking-widest hover:border-white/30 hover:text-white active:scale-95 transition-all duration-200"
               variants={staggerItem}
               whileHover={{ scale: 1.02 }}
             >
               <Mail className="w-5 h-5" />
-              Email
+              {t.contact.email}
             </motion.a>
           </motion.div>
 
@@ -1422,7 +1393,7 @@ export default function V4Page() {
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            Respondemos dentro de las 24 hs · Sin compromiso
+            {t.contact.responseNote}
           </motion.p>
         </div>
       </section>
@@ -1444,32 +1415,32 @@ export default function V4Page() {
             variants={fadeUp}
             custom={0}
           >
-            ¿LISTO PARA <span className="text-[#c1ed00]" style={{ textShadow: '0 0 30px rgba(193,237,0,0.4)' }}>TRANSFORMAR</span><br className="hidden sm:block" /> TU CUERPO Y MENTE?
+            {t.ctaFinal.titleBefore} <span className="text-[#c1ed00]" style={{ textShadow: '0 0 30px rgba(193,237,0,0.4)' }}>{t.ctaFinal.titleHighlight}</span><br className="hidden sm:block" /> {t.ctaFinal.titleAfter}
           </motion.h2>
           <motion.p
             className="font-headline text-sm md:text-lg lg:text-2xl font-bold uppercase tracking-tight text-white/80 mb-6 whitespace-nowrap"
             variants={fadeUp}
             custom={1}
           >
-            Es momento de <span className="text-[#00e3fd] italic">recodificar</span> tus hábitos.
+            {t.ctaFinal.subtitleBefore} <span className="text-[#00e3fd] italic">{t.ctaFinal.subtitleHighlight}</span> {t.ctaFinal.subtitleAfter}
           </motion.p>
           <motion.p
             className="hidden md:block text-on-surface-variant mb-10 max-w-md mx-auto font-body leading-relaxed"
             variants={fadeUp}
             custom={2}
           >
-            Sumate a la mentoría 1-1 del método R3SET y empezá a construir resultados que sí puedas sostener.
+            {t.ctaFinal.description}
           </motion.p>
           <motion.div variants={fadeUp} custom={3} className="flex flex-col items-center gap-4">
             <Link
               href={`/${locale}/evaluacion`}
               className="inline-flex items-center gap-3 bg-[#ff734a] text-[#0e0e0e] font-headline font-extrabold px-10 py-5 text-base lg:text-lg tracking-tight hover:scale-[1.05] hover:shadow-[0_0_30px_rgba(255,115,74,0.5)] active:scale-[0.98] transition-all duration-300 uppercase"
             >
-              SOLICITAR EVALUACIÓN
+              {t.ctaFinal.button}
               <ArrowRight className="w-5 h-5" />
             </Link>
             <p className="font-label text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-white/40">
-              Cupos limitados <span className="text-[#c1ed00]/60 mx-1">•</span> Acceso online<span className="md:hidden"> </span><span className="hidden md:inline"> <span className="text-[#c1ed00]/60 mx-1">•</span> Empezá ya</span>
+              {t.ctaFinal.tagsMain} <span className="hidden md:inline">{t.ctaFinal.tagsExtra}</span>
             </p>
           </motion.div>
         </motion.div>
@@ -1485,12 +1456,12 @@ export default function V4Page() {
       >
         <div className="flex flex-col items-center md:items-start gap-2">
           <Image src="/images/icon-r3set.png" alt="MÉTODO R3SET" width={36} height={36} className="rounded-xl" />
-          <p className="font-label text-[8px] md:text-xs uppercase text-white/30 tracking-widest whitespace-nowrap">© {new Date().getFullYear()} MÉTODO R3SET. TODOS LOS DERECHOS RESERVADOS.</p>
+          <p className="font-label text-[8px] md:text-xs uppercase text-white/30 tracking-widest whitespace-nowrap">© {new Date().getFullYear()} MÉTODO R3SET. {t.footer.rights}</p>
         </div>
         <div className="flex gap-4 md:gap-8">
-          <a href="#" className="font-label text-[9px] md:text-xs uppercase text-white/30 hover:text-white transition-colors duration-300">Privacidad</a>
-          <a href="#" className="font-label text-[9px] md:text-xs uppercase text-white/30 hover:text-white transition-colors duration-300">Términos</a>
-          <a href="#" className="font-label text-[9px] md:text-xs uppercase text-white/30 hover:text-white transition-colors duration-300">Contacto</a>
+          <a href="#" className="font-label text-[9px] md:text-xs uppercase text-white/30 hover:text-white transition-colors duration-300">{t.footer.privacy}</a>
+          <a href="#" className="font-label text-[9px] md:text-xs uppercase text-white/30 hover:text-white transition-colors duration-300">{t.footer.terms}</a>
+          <a href="#" className="font-label text-[9px] md:text-xs uppercase text-white/30 hover:text-white transition-colors duration-300">{t.footer.contact}</a>
         </div>
         <div className="hidden md:flex gap-4">
           <Share2 className="w-5 h-5 text-white/30 hover:text-[#00e3fd] transition-colors duration-300 cursor-pointer" />
@@ -1502,29 +1473,29 @@ export default function V4Page() {
       <nav className="hidden fixed bottom-0 left-0 w-full grid grid-cols-5 items-center h-16 bg-[#0e0e0e]/95 backdrop-blur-xl z-40 border-t border-white/5">
         <a href="#method" onClick={smoothScroll} className="flex flex-col items-center justify-center gap-1 text-[#D1FF26] active:scale-90 transition-all">
           <Brain className="w-5 h-5" />
-          <span className="font-label text-[9px] uppercase tracking-widest">Método</span>
+          <span className="font-label text-[9px] uppercase tracking-widest">{t.mobileNav.method}</span>
         </a>
         <a href="#coach" onClick={smoothScroll} className="flex flex-col items-center justify-center gap-1 text-white/50 active:scale-90 transition-all">
           <Dumbbell className="w-5 h-5" />
-          <span className="font-label text-[9px] uppercase tracking-widest">Coach</span>
+          <span className="font-label text-[9px] uppercase tracking-widest">{t.mobileNav.coach}</span>
         </a>
         <a href="#transformations" onClick={smoothScroll} className="flex flex-col items-center justify-center gap-1 text-white/50 active:scale-90 transition-all">
           <Sparkles className="w-5 h-5" />
-          <span className="font-label text-[9px] uppercase tracking-widest">Transform.</span>
+          <span className="font-label text-[9px] uppercase tracking-widest">{t.mobileNav.transform}</span>
         </a>
         <a href="#pricing" onClick={smoothScroll} className="flex flex-col items-center justify-center gap-1 text-white/50 active:scale-90 transition-all">
           <Zap className="w-5 h-5" />
-          <span className="font-label text-[9px] uppercase tracking-widest">Planes</span>
+          <span className="font-label text-[9px] uppercase tracking-widest">{t.mobileNav.plans}</span>
         </a>
         {user ? (
           <Link href={`/${locale}/dashboard`} className="flex flex-col items-center justify-center gap-1 text-[#c1ed00]/70 active:scale-90 transition-all">
             <LayoutDashboard className="w-5 h-5" />
-            <span className="font-label text-[9px] uppercase tracking-widest">Mi Área</span>
+            <span className="font-label text-[9px] uppercase tracking-widest">{t.mobileNav.myArea}</span>
           </Link>
         ) : (
           <Link href={`/${locale}/register`} className="flex flex-col items-center justify-center gap-1 text-white/50 active:scale-90 transition-all">
             <UserPlus className="w-5 h-5" />
-            <span className="font-label text-[9px] uppercase tracking-widest">Unirse</span>
+            <span className="font-label text-[9px] uppercase tracking-widest">{t.mobileNav.join}</span>
           </Link>
         )}
       </nav>
