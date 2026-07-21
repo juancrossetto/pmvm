@@ -664,13 +664,14 @@ export default function V4Page() {
             )}
           </div>
 
-          {/* Mobile: auth indicator + burger */}
+          {/* Mobile: auth indicator + lang switcher + burger */}
           <div className="md:hidden flex items-center gap-3">
             {!authLoading && user && (
               <div className="w-7 h-7 rounded-full bg-[#c1ed00] flex items-center justify-center text-[#0e0e0e] font-black text-[11px]">
                 {initial}
               </div>
             )}
+            <LangSwitcher locale={locale} pathname={pathname} compact />
             <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-white/70 hover:text-[#c1ed00] transition-colors p-1">
               {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -700,8 +701,6 @@ export default function V4Page() {
                     {label}
                   </a>
                 ))}
-
-                <LangSwitcher locale={locale} pathname={pathname} compact />
 
                 <div className="border-t border-white/8 pt-3">
                   {!authLoading && (
