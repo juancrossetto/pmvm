@@ -6,7 +6,7 @@ import { useParams, usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState, useMemo, useRef } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import V4SplashManager from '@/components/v4/V4SplashScreen'
-import { Menu, X, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, LogOut, LayoutDashboard, Brain, Dumbbell, Sparkles, Zap, UserPlus, ArrowRight, Check, Plus, Utensils, Shield, MessageCircle, Mail, Share2, Megaphone, Award } from 'lucide-react'
+import { Menu, X, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, LogOut, LayoutDashboard, Brain, Dumbbell, Zap, ArrowRight, Check, Plus, Utensils, Shield, MessageCircle, Mail, Share2, Megaphone, Award } from 'lucide-react'
 import { PHONE_NUMBER } from '@/lib/data'
 import { createClient } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
@@ -1468,36 +1468,6 @@ export default function V4Page() {
         </div>
       </motion.footer>
 
-      {/* ── Mobile Bottom Nav ─────────────────────────────────────── */}
-      <nav className="hidden fixed bottom-0 left-0 w-full grid grid-cols-5 items-center h-16 bg-[#0e0e0e]/95 backdrop-blur-xl z-40 border-t border-white/5">
-        <a href="#method" onClick={smoothScroll} className="flex flex-col items-center justify-center gap-1 text-[#D1FF26] active:scale-90 transition-all">
-          <Brain className="w-5 h-5" />
-          <span className="font-label text-[9px] uppercase tracking-widest">{t.mobileNav.method}</span>
-        </a>
-        <a href="#coach" onClick={smoothScroll} className="flex flex-col items-center justify-center gap-1 text-white/50 active:scale-90 transition-all">
-          <Dumbbell className="w-5 h-5" />
-          <span className="font-label text-[9px] uppercase tracking-widest">{t.mobileNav.coach}</span>
-        </a>
-        <a href="#transformations" onClick={smoothScroll} className="flex flex-col items-center justify-center gap-1 text-white/50 active:scale-90 transition-all">
-          <Sparkles className="w-5 h-5" />
-          <span className="font-label text-[9px] uppercase tracking-widest">{t.mobileNav.transform}</span>
-        </a>
-        <a href="#pricing" onClick={smoothScroll} className="flex flex-col items-center justify-center gap-1 text-white/50 active:scale-90 transition-all">
-          <Zap className="w-5 h-5" />
-          <span className="font-label text-[9px] uppercase tracking-widest">{t.mobileNav.plans}</span>
-        </a>
-        {user ? (
-          <Link href={`/${locale}/dashboard`} className="flex flex-col items-center justify-center gap-1 text-[#c1ed00]/70 active:scale-90 transition-all">
-            <LayoutDashboard className="w-5 h-5" />
-            <span className="font-label text-[9px] uppercase tracking-widest">{t.mobileNav.myArea}</span>
-          </Link>
-        ) : (
-          <Link href={`/${locale}/register`} className="flex flex-col items-center justify-center gap-1 text-white/50 active:scale-90 transition-all">
-            <UserPlus className="w-5 h-5" />
-            <span className="font-label text-[9px] uppercase tracking-widest">{t.mobileNav.join}</span>
-          </Link>
-        )}
-      </nav>
       {/* ── Scroll to top ─────────────────────────────────────────── */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
