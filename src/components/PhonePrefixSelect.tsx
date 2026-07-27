@@ -11,6 +11,7 @@ interface PhonePrefixSelectProps {
   onPhoneNumberChange: (number: string) => void
   phonePlaceholder?: string
   inputClassName?: string
+  onBlur?: () => void
 }
 
 // Fuera del componente: función pura, no se recrea en cada render
@@ -30,6 +31,7 @@ export default function PhonePrefixSelect({
   onPhoneNumberChange,
   phonePlaceholder = '9 11 1234-5678',
   inputClassName = '',
+  onBlur,
 }: PhonePrefixSelectProps) {
   const [open, setOpen]     = useState(false)
   const [search, setSearch] = useState('')
@@ -188,6 +190,7 @@ export default function PhonePrefixSelect({
             onPhoneNumberChange(raw.replace(/[^\d\s\-]/g, ''))
           }
         }}
+        onBlur={onBlur}
         placeholder={phonePlaceholder}
         autoComplete="tel"
         className={`w-full px-4 py-2 lg:py-3 text-sm ${base} ${inputClassName}`}

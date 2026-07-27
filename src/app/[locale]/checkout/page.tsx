@@ -89,6 +89,7 @@ const i18n = {
     email_error_format: 'Formato de email inválido',
     phone_label: 'WhatsApp / Teléfono',
     phone_placeholder: '+54 9 11 1234-5678',
+    phone_error_incomplete: 'Verificá tu número, parece incompleto',
     password_label: 'Contraseña',
     password_placeholder: 'Mínimo 8 caracteres',
     login_email_label: 'Email',
@@ -129,6 +130,7 @@ const i18n = {
     email_error_format: 'Invalid email format',
     phone_label: 'WhatsApp / Phone',
     phone_placeholder: '+1 555 123 4567',
+    phone_error_incomplete: 'Check your number, it looks incomplete',
     password_label: 'Password',
     password_placeholder: 'At least 8 characters',
     login_email_label: 'Email',
@@ -169,6 +171,7 @@ const i18n = {
     email_error_format: 'Formato de email inválido',
     phone_label: 'WhatsApp / Telefone',
     phone_placeholder: '+55 11 91234-5678',
+    phone_error_incomplete: 'Verifique seu número, parece incompleto',
     password_label: 'Senha',
     password_placeholder: 'Mínimo 8 caracteres',
     login_email_label: 'Email',
@@ -215,6 +218,7 @@ export default function CheckoutPage({ params }: { params: Promise<{ locale: str
   const [phone, setPhone] = useState(() => typeof window !== 'undefined' ? sessionStorage.getItem('checkout_phone') || '' : '')
   const [phonePrefix, setPhonePrefix] = useState(() => typeof window !== 'undefined' ? sessionStorage.getItem('checkout_phonePrefix') || '+54' : '+54')
   const [phoneNumber, setPhoneNumber] = useState(() => typeof window !== 'undefined' ? sessionStorage.getItem('checkout_phoneNumber') || '' : '')
+  const [phoneError, setPhoneError] = useState<string | null>(null)
   const [password, setPassword] = useState('')
   const [acceptTerms, setAcceptTerms] = useState(false)
 
@@ -260,6 +264,7 @@ export default function CheckoutPage({ params }: { params: Promise<{ locale: str
   const plan = PLANS[selectedPlan]
 
   const isValidEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+  const isPhoneIncomplete = (v: string) => { const d = v.replace(/\D/g, ''); return d.length > 0 && d.length < 10 }
 
   const handleSubmit = async () => {
     setError(null)
@@ -268,6 +273,9 @@ export default function CheckoutPage({ params }: { params: Promise<{ locale: str
     if (!acceptTerms) { setError(t.error_terms); return }
 
     if (!user) {
+      // Aviso no bloqueante: no impide el envío, solo lo señala para que el usuario lo revise
+      if (isPhoneIncomplete(phoneNumber)) setPhoneError(t.phone_error_incomplete)
+
       if (mode === 'register') {
         if (!firstName.trim() || !lastName.trim() || !email.trim() || (cuentaHabilitada && !password)) { setError(t.error_required); return }
         if (email && !isValidEmail(email)) { setError(t.email_error_format); return }
@@ -486,9 +494,11 @@ export default function CheckoutPage({ params }: { params: Promise<{ locale: str
                       prefix={phonePrefix}
                       onPrefixChange={p => { setPhonePrefix(p); setPhone(`${p} ${phoneNumber}`.trim()) }}
                       phoneNumber={phoneNumber}
-                      onPhoneNumberChange={n => { setPhoneNumber(n); setPhone(`${phonePrefix} ${n}`.trim()) }}
+                      onPhoneNumberChange={n => { setPhoneNumber(n); setPhone(`${phonePrefix} ${n}`.trim()); setPhoneError(null) }}
+                      onBlur={() => { if (isPhoneIncomplete(phoneNumber)) setPhoneError(t.phone_error_incomplete) }}
                       phonePlaceholder="9 11 1234-5678"
                     />
+                    {phoneError && <p className="mt-1 text-[11px] text-red-400">{phoneError}</p>}
                   </div>
                   {cuentaHabilitada && (
                     <div>

@@ -19,6 +19,7 @@ export default function EvaluacionPage({
   const [emailError, setEmailError] = useState<string | null>(null)
   const [phonePrefix, setPhonePrefix] = useState('+54')
   const [phoneNumber, setPhoneNumber] = useState('')
+  const [phoneError, setPhoneError] = useState<string | null>(null)
   const [paisISO, setPaisISO]       = useState('AR')
   const [paisNombre, setPaisNombre] = useState('Argentina')
   const [ciudadNombre, setCiudadNombre] = useState('')
@@ -98,10 +99,12 @@ export default function EvaluacionPage({
                     prefix={phonePrefix}
                     onPrefixChange={setPhonePrefix}
                     phoneNumber={phoneNumber}
-                    onPhoneNumberChange={setPhoneNumber}
+                    onPhoneNumberChange={n => { setPhoneNumber(n); setPhoneError(null) }}
+                    onBlur={() => { const d = phoneNumber.replace(/\D/g, ''); if (d.length > 0 && d.length < 10) setPhoneError('Verificá tu número, parece incompleto') }}
                     phonePlaceholder="9 11 1234-5678"
                     inputClassName="rounded-lg lg:rounded-xl"
                   />
+                  {phoneError && <p className="mt-1 text-[11px] text-red-400">{phoneError}</p>}
                 </div>
 
                 {/* Ciudad / País */}
@@ -263,6 +266,9 @@ export default function EvaluacionPage({
                       setError('Formato de email inválido.')
                       return
                     }
+                    // Aviso no bloqueante: no impide el envío, solo lo señala para que el usuario lo revise
+                    const phoneDigits = phoneNumber.replace(/\D/g, '')
+                    if (phoneDigits.length > 0 && phoneDigits.length < 10) setPhoneError('Verificá tu número, parece incompleto')
                     setLoading(true)
                     try {
                       const nombre  = `${firstName.trim()} ${lastName.trim()}`.trim()
