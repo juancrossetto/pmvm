@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/server'
 import { sendWhatsAppMessage } from '@/lib/whatsapp'
-import { ratelimit, getIp } from '@/lib/rate-limit'
+import { checkRateLimit, getIp } from '@/lib/rate-limit'
 
 export const dynamic = 'force-dynamic'
 
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
     if (_hp) return NextResponse.json({ ok: true })
 
     // ── Rate limiting: 5 intentos por IP cada 10 minutos ──
-    const { success } = await ratelimit.limit(`evaluacion:${getIp(req)}`)
+    const { success } = await checkRateLimit(`evaluacion:${getIp(req)}`)
     if (!success) {
       return NextResponse.json(
         { error: 'Demasiados intentos. Esperá unos minutos e intentá de nuevo.' },

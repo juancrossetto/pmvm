@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/server'
+import { redis } from '@/lib/rate-limit'
 
 export const dynamic = 'force-dynamic'
 
@@ -19,5 +20,14 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ ok: false, error: error.message }, { status: 500 })
   }
 
-  return NextResponse.json({ ok: true, timestamp: new Date().toISOString(), plansCount: count })
+  // Evita que Upstash borre la base de rate-limiting por inactividad (14 días sin uso).
+  let upstashOk = true
+  try {
+    await redis.set('keep-alive:last-ping', new Date().toISOString())
+  } catch (upstashErr) {
+    upstashOk = false
+    console.error('Keep-alive: error consultando Upstash:', upstashErr)
+  }
+
+  return NextResponse.json({ ok: true, timestamp: new Date().toISOString(), plansCount: count, upstashOk })
 }
